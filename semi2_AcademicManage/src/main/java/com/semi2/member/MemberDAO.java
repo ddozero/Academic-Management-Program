@@ -1,4 +1,4 @@
-package com.joing.member;
+package com.semi2.member;
 
 /*
 	public int memberJoin(MemberDTO dto) {
@@ -38,7 +38,7 @@ public class MemberDAO {
 	
 	public boolean idCheck(String id) {
 		try {
-			conn = com.joing.db.JoingDB.getConn();
+			conn = com.semi2.db.Semi2DB.getConn();
 			
 			String sql = "select * from MEMBER1 where id = ?";
 			ps = conn.prepareStatement(sql);
@@ -61,7 +61,7 @@ public class MemberDAO {
 	
 	public int memberJoin(MemberDTO dto) {
 		try {
-			conn = com.joing.db.JoingDB.getConn();
+			conn = com.semi2.db.Semi2DB.getConn();
 			
 			String sql = "insert into MEMBER1 values(sq_MEMBER1_idx.nextval, ?, ?, ?, ?, ?, ?, ?, ?, to_date(?,'yyyy-mm-dd'), 0)";
 			
