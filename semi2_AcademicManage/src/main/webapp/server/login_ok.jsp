@@ -1,46 +1,45 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.semi2.member.*" %>
 
-<jsp:useBean id="mdto" class="com.semi2.member.MemberDTO" scope="session" />
-<jsp:setProperty property="*" name="mdto"/>
 <jsp:useBean id="mdao" class="com.semi2.member.MemberDAO" />
 
 <%
-	System.out.println("왜 안돼");
+	String userid = request.getParameter("userid");
+	String userpwd = request.getParameter("userpwd");
+	String saveid = request.getParameter("saveid");
+	
+	MemberDTO mdto = mdao.getUserInfo(userid);
+	
 	int result = mdao.loginCheck(mdto.getId(),mdto.getPwd());
-	System.out.println(mdto.getId()+"아이디 ||" + mdto.getPwd());
-	System.out.println("왜 안돼"+result);
-	if(result == 3){
-/* 		session.setAttribute("id", mdto.getId());
-		session.setAttribute("name", mdto.getName());
-		session.setAttribute("idx", mdto.getIdx());
-		session.setAttribute("midx", mdto.getMidx()); */
-
+	if(result==mdao.NOT_ID){
+		%>
+			<script>
+				window.alert('등록되지 않은 아이디입니다.');
+				location.href="login.jsp";
+			</script>
+		<%
+	}
+	else if(result==mdao.NOT_PWD){
+		%>
+		<script>
+			window.alert('비밀번호가 일치하지 않습니다.');
+			location.href="login.jsp";
+		</script>
+	<%
 	}
 
-	switch(result){
-		case 1:
-%>
-	<script>
-		alert("등록되어 있지 않은 아이디입니다.");
-		location.href = "login.jsp";
-	</script>
-<%
-			break;
-		case 2:
-%>
-	<script>
-		alert("비밀번호가 틀립니다.");
-		location.href = "login.jsp";
-	</script>
-<%
-			break;
-		default:
-%>
-	<script>
-		alert("오류가 발생했습니다. 고객센터에 문의하세요.");
-		location.href = "login.jsp";
-	</script>
-<%
+	else if(result==mdao.LOGIN_OK){
+		   session.setAttribute("sid", userid);
+		   session.setAttribute("sidx", mdto.getIdx());
+		   session.setAttribute("smidx", mdto.getMidx());
+		   session.setAttribute("sbane", mdto.getName());
+		   %>
+		   		<script>
+		   			window.alert('<%=mdto.getName()%>님 환영합니다.');
+		   		</script>
+		   <%
+	}
+	else if(result==mdao.ERROR){
+		   out.println("고객센터 연락바람");
 	}
 %>

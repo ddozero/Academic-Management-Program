@@ -120,15 +120,22 @@ public class MemberDAO {
 		      }
 		   }
 	
-	   public String getUserInfo(String userid) {
+	   public MemberDTO getUserInfo(String userid) {
 		      try {
 		         conn = com.semi2.db.Semi2DB.getConn();
 		         String sql = "select * from MEMBER1 where id=?";
 		         ps= conn.prepareStatement(sql);
 		         ps.setString(1, userid);
 		         rs = ps.executeQuery();
-		         rs.next();
-		         return rs.getString(1);
+		         
+		         MemberDTO dto = new MemberDTO();
+		         
+		         if(rs.next()) {
+		        	 dto.setIdx(rs.getInt("idx"));
+		        	 dto.setMidx(rs.getInt("midx"));
+		        	 dto.setName(rs.getString("name"));
+		         }
+		         return dto;
 		      } catch (Exception e) {
 		         e.printStackTrace();
 		         return null;
