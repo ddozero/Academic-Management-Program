@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-
 <header>
 	<div class="container">
 		<h1>
 			<a href="#"> SYS Academy </a>
 		</h1>
 		<div class="user-group">
-			<h4>방문자</h4>
+			<h4>매니저</h4>
 		</div>
 		<div class="id-group">
 			<a href="#">로그인</a> <a href="#">회원가입</a>
@@ -17,33 +16,52 @@
 
 	<nav id="aside">
 		<ul class="title-1">
-			<li class="subt">근태 관리</li>
-			<li><a href="#" class="active">내 정보</a></li>
-			<li><a href="#">출/퇴근 관리</a></li>
+			<li class="subt">수강생</li>
+			<li><a href="/semi2_AcademicManage/manager/managerIndex.jsp" class="active">수강생 정보</a></li>
+			<li><a href="#">수강생 출결 관리</a></li>
+			<li><a href="#">수강생 출결 인정</a><li>
 		</ul>
 
 		<ul class="title-2">
-			<li class="subt">수강생 관리</li>
-			<li><a href="#">수강생 정보</a></li>
-			<li><a href="#">수강생 출결 조회</a></li>
+			<li class="subt">강사</li>
+			<li><a href="#">강사 정보</a></li>
+			<li><a href="#">강사 근태 관리</a></li>
 		</ul>
 
 		<ul class="title-3">
 			<li class="subt">강좌 관리</li>
+			<li><a href="/semi2_AcademicManage/manager/managerLectureAdd.jsp">강좌 개설</a></li>
+			<li><a href="/semi2_AcademicManage/manager/managerLectureInfo.jsp">강좌 세부정보</a></li>
 			<li><a href="#">강좌 현황</a></li>
-			<li><a href="#">세부 강좌 등록</a></li>
-			<li><a href="#">시험 등록</a></li>
-			<li><a href="#">강좌 평가 조회</a></li>
 		</ul>
 
 		<ul class="title-4">
 			<li class="subt">게시판</li>
 			<li><a href="#">공지사항</a></li>
+			<li><a href="#">취업 알리미</a></li>
 		</ul>
 
 		<ul class="title-select">
 			<li class="subt-select"><a href="https://www.naver.com/"
-				class="drive-link">드라이브</a></li>
+				class="drive-link">학원 드라이브</a></li>
 		</ul>
 	</nav>
 </header>
+
+<!-- 메뉴 선택시 색변경(전체 헤더에 공통 적용해야함) -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    var menuLinks = document.querySelectorAll("#aside ul li a");
+
+    // URL 경로 가져오기
+    var currentUrl = window.location.pathname;
+
+    menuLinks.forEach(link => {
+        if (link.getAttribute("href") === currentUrl) {
+            link.classList.add("active");
+        } else {
+            link.classList.remove("active"); // 기존 active 제거
+        }
+    });
+});
+</script>
