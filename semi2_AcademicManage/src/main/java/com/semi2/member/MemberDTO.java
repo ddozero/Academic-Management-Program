@@ -1,4 +1,4 @@
-package com.joing.member;
+package com.semi2.member;
 
 
 public class MemberDTO {

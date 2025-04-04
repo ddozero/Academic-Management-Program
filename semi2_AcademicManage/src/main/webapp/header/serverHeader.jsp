@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+<%
+	String loginName = (String)session.getAttribute("name");
+%>
 
 
 <header>
@@ -11,7 +15,15 @@
 			<h4>관리자</h4>
 		</div>
 		<div class="id-group">
-			<a href="#">로그인</a> <a href="#">회원가입</a>
+			<%
+				if(loginName != null){
+			%>
+				<span><%=loginName %>님</span>
+				<a href="logout.jsp">로그아웃</a>
+			<%
+				}
+			%>
+
 		</div>
 	</div>
 

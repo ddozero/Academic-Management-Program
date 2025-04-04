@@ -1,9 +1,9 @@
-package com.joing.member;
+package com.semi2.member;
 
 /*
-	public int memberJoin(MemberDTO dto) {
+	public asd() {
 		try {
-			conn = com.joing.db.JoingDB.getConn();
+			conn = com.semi2.db.Semi2DB.getConn();
 		}catch(Exception e) {
 			e.printStackTrace();
 			return ;
@@ -27,10 +27,10 @@ public class MemberDAO {
 	private PreparedStatement ps;
 	private ResultSet rs;
 	
-	private static final int ERROR = -1;
-	private static final int NOT_ID = 1;
-	private static final int NOT_PWD = 2;
-	private static final int LOGIN_OK = 3;
+	   public static final int NOT_ID=1;
+	   public static final int NOT_PWD=2;
+	   public static final int LOGIN_OK=3;
+	   public static final int ERROR=-1;
 	
 	public MemberDAO() {
 		// TODO Auto-generated constructor stub
@@ -38,7 +38,7 @@ public class MemberDAO {
 	
 	public boolean idCheck(String id) {
 		try {
-			conn = com.joing.db.JoingDB.getConn();
+			conn = com.semi2.db.Semi2DB.getConn();
 			
 			String sql = "select * from MEMBER1 where id = ?";
 			ps = conn.prepareStatement(sql);
@@ -61,7 +61,7 @@ public class MemberDAO {
 	
 	public int memberJoin(MemberDTO dto) {
 		try {
-			conn = com.joing.db.JoingDB.getConn();
+			conn = com.semi2.db.Semi2DB.getConn();
 			
 			String sql = "insert into MEMBER1 values(sq_MEMBER1_idx.nextval, ?, ?, ?, ?, ?, ?, ?, ?, to_date(?,'yyyy-mm-dd'), 0)";
 			
@@ -90,4 +90,67 @@ public class MemberDAO {
 			}
 		}
 	}
-}
+	
+	public int loginCheck(MemberDTO dto) {
+	      try {
+	          conn = com.semi2.db.Semi2DB.getConn();
+	          
+	          String sql = "select * from MEMBER1 where id=?";
+	          ps = conn.prepareStatement(sql);
+	          ps.setString(1, dto.getId());
+	          rs = ps.executeQuery();
+	          
+	         if(!rs.next()) {
+	        	 return NOT_ID;
+	         }
+	         
+	         String sql1 = "select * from MEMBER1 where id=? and pwd = ?";
+	         ps = conn.prepareStatement(sql1);
+	          ps.setString(1, dto.getId());
+	          ps.setString(2, dto.getPwd());
+	          rs = ps.executeQuery();
+	          
+	          if (!rs.next()) {
+	              return NOT_PWD;
+	          } else {
+	              dto.setIdx(rs.getInt("idx"));
+	              dto.setMidx(rs.getInt("midx"));
+	              dto.setName(rs.getString("name"));
+
+	              return LOGIN_OK;
+	          }
+	          
+	       }catch(Exception e) {
+	          e.printStackTrace();
+	          return ERROR;
+	       }finally {
+	          try {
+	             if(rs!=null)rs.close();
+	             if(ps!=null)ps.close();
+	             if(conn!=null)conn.close();
+	          }catch(Exception e2) {
+	             e2.printStackTrace();
+	          }
+	       }
+	}
+	
+	public MemberDTO getUserInfo(MemberDTO dto) {
+			try {
+				conn = com.semi2.db.Semi2DB.getConn();
+				
+				String sql="select * from MEMBER1 where id=? and pwd=?";
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+				return null;
+			}finally {
+				try {
+					if(rs!=null)rs.close();
+					if(ps!=null)ps.close();
+					if(conn!=null)conn.close();
+				}catch(Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+		}
+	}

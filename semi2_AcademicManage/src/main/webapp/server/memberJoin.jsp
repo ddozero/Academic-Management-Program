@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="css/mainLayout.css">
+<link rel="stylesheet" type="text/css" href="../css/mainLayout.css">
 </head>
 	<script>
 		function addrCheck(){
@@ -102,7 +102,7 @@
 		}
 	</style>
 <body>
-<%@ include file="/header/mainHeader.jsp" %>
+<%@ include file="/header/serverHeader.jsp" %>
 	<section>
 		<article>
 			<h2>
