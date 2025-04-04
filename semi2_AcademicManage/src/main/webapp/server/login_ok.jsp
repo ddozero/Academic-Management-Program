@@ -8,9 +8,12 @@
 	String userpwd = request.getParameter("userpwd");
 	String saveid = request.getParameter("saveid");
 	
-	MemberDTO mdto = mdao.getUserInfo(userid);
-	
+	MemberDTO mdto=new MemberDTO();
+	mdto.setId(userid);
+	mdto.setPwd(userpwd);
+	System.out.println(mdto.getId()+"/"+mdto.getPwd());
 	int result = mdao.loginCheck(mdto.getId(),mdto.getPwd());
+	
 	if(result==mdao.NOT_ID){
 		%>
 			<script>
@@ -29,17 +32,25 @@
 	}
 
 	else if(result==mdao.LOGIN_OK){
+		MemberDTO mdto2 = mdao.getUserInfo(userid);
+		System.out.println(userid);
+		System.out.println(mdto2.getIdx());
+		System.out.println(mdto2.getMidx());
+		System.out.println(mdto2.getName());
+		System.out.println(userid);
 		   session.setAttribute("sid", userid);
-		   session.setAttribute("sidx", mdto.getIdx());
-		   session.setAttribute("smidx", mdto.getMidx());
-		   session.setAttribute("sbane", mdto.getName());
+		   session.setAttribute("sidx", mdto2.getIdx());
+		   session.setAttribute("smidx", mdto2.getMidx());
+		   session.setAttribute("sbane", mdto2.getName());
 		   %>
 		   		<script>
-		   			window.alert('<%=mdto.getName()%>님 환영합니다.');
+		   			window.alert('<%=mdto2.getName()%>님 환영합니다.');
+		   			location.href='main.jsp';
 		   		</script>
 		   <%
 	}
 	else if(result==mdao.ERROR){
 		   out.println("고객센터 연락바람");
 	}
-%>
+
+	%>
