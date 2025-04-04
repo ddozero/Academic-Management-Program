@@ -5,8 +5,8 @@ String saveid="";
 Cookie cks[]=request.getCookies();
 if(cks!=null){
    for(int i=0;i<cks.length;i++){
-      if(cks[i].getName().equals("id")){
-         saveid = cks[i].getValue();
+       if (cks[i].getName().equals("saveid")) {
+           saveid = cks[i].getValue();
       }
    }
 }
@@ -42,7 +42,13 @@ if(cks!=null){
 </script>
 </head>
 <body>
+<%-- <%
+System.out.println("됭재ㅣ");
+%> --%>
 <%@ include file="/header/serverHeader.jsp" %>
+<%
+System.out.println("login.jsp");
+%>
 <section>
 	<article>
 		<h2>로그인</h2>
@@ -50,11 +56,11 @@ if(cks!=null){
 			<table>
 				<tr>
 					<td><label>아이디</label>
-					<input type="text" name="id" value="<%=saveid%>"></td>
+					<input type="text" name="userid" value="<%=saveid%>"></td>
 				</tr>
 				<tr>
 					<td><label>비밀번호</label>
-					<input type="password" name="pwd"></td>
+					<input type="password" name="userpwd"></td>
 				</tr>
 				<tr>
 					<td>

@@ -7,7 +7,8 @@
 
 <%
 	System.out.println("왜 안돼");
-	int result = mdao.loginCheck(mdto);
+	int result = mdao.loginCheck(mdto.getId(),mdto.getPwd());
+	System.out.println(mdto.getId()+"아이디 ||" + mdto.getPwd());
 	System.out.println("왜 안돼"+result);
 	if(result == 3){
 /* 		session.setAttribute("id", mdto.getId());
@@ -15,20 +16,6 @@
 		session.setAttribute("idx", mdto.getIdx());
 		session.setAttribute("midx", mdto.getMidx()); */
 
-		String ctx = request.getContextPath();
-
-		switch(mdto.getMidx()){
-			case 1:
-				response.sendRedirect(ctx + "/server/main.jsp"); break;
-			case 2:
-				response.sendRedirect(ctx + "/manager/main.jsp"); break;
-			case 3:
-				response.sendRedirect(ctx + "/teacher/main.jsp"); break;
-			case 4:
-				response.sendRedirect(ctx + "/student/main.jsp");
-
-		}
-		return;
 	}
 
 	switch(result){
