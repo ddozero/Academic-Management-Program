@@ -11,7 +11,7 @@ public class ManagerLectureDTO {
 	private int reqscount;
 	private String comingdate;
 	private String enddate;
-	private String entiredate;
+	private int entiredate;
 	private String chargemname;
 	
 	private String groupname;
@@ -34,7 +34,7 @@ public class ManagerLectureDTO {
 	}
 
 	public ManagerLectureDTO(int classidx, int groupidx, String classname, String tname, int entirescount,
-			int reqscount, String comingdate, String enddate, String entiredate, String chargemname) {
+			int reqscount, String comingdate, String enddate, int entiredate, String chargemname) {
 		super();
 		this.classidx = classidx;
 		this.groupidx = groupidx;
@@ -112,11 +112,11 @@ public class ManagerLectureDTO {
 		this.enddate = enddate;
 	}
 
-	public String getEntiredate() {
+	public int getEntiredate() {
 		return entiredate;
 	}
 
-	public void setEntiredate(String entiredate) {
+	public void setEntiredate(int entiredate) {
 		this.entiredate = entiredate;
 	}
 

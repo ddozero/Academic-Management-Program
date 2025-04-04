@@ -34,7 +34,7 @@
 			
 			<tbody>
 			<%
-			ArrayList<LectureDTO> arr = mldao.managerLectureInfo();
+			ArrayList<ManagerLectureDTO> arr = mldao.managerLectureInfo();
 			if(arr==null||arr.size()==0){
 			%>
 				<tr>
@@ -62,8 +62,7 @@
 			%>
 				<tr>
 				<td colspan = "8">
-				<input type = "submit" value = "수정하기">
-				<input type =  "button" value = "취소하기">
+				<input type = "submit" value = "삭제하기">
 				</td>
 				
 				</tr>

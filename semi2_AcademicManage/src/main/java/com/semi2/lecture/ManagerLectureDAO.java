@@ -123,7 +123,7 @@ public class ManagerLectureDAO {
 	public int managerLectureAdd(ManagerLectureDTO dto) {
 		try {
 			conn = com.semi2.db.Semi2DB.getConn();
-			String sql = "INSERT INTO CLASS VALUES (sq_CLASS_classidx.nextval, ?, ?, ?, ?, ?, to_date(?,'yyyy-mm-dd'), to_date(?,'yyyy-mm-dd'), to_date(?,'yyyy-mm-dd'), ?)";
+			String sql = "INSERT INTO CLASS VALUES (sq_CLASS_classidx.nextval, ?, ?, ?, ?, ?, to_date(?,'yyyy-mm-dd'), to_date(?,'yyyy-mm-dd'), ?, ?)";
 			
 			int groupIdx = dto.getGroupidx();
 			if(groupIdx<=0) { //아직 등록된 강좌가 없으니, 없는 상태에서 name에서 찾아서 idx를 가져옴
@@ -137,7 +137,7 @@ public class ManagerLectureDAO {
 			ps.setInt(5, dto.getReqscount());
 			ps.setString(6, dto.getComingdate());
 			ps.setString(7, dto.getEnddate());
-			ps.setString(8, dto.getEntiredate());
+			ps.setInt(8, dto.getEntiredate());
 			ps.setString(9, dto.getChargemname());
 
 			int count = ps.executeUpdate();
@@ -158,14 +158,14 @@ public class ManagerLectureDAO {
 	}
 
 	/** (매니저) 등록 강좌 목록 조회 !! 학생 조회랑 겹침!! */
-	public ArrayList<LectureDTO> managerLectureInfo() {
+	public ArrayList<ManagerLectureDTO> managerLectureInfo() {
 		try {
 			conn = com.semi2.db.Semi2DB.getConn();
 			String sql = "select * from class order by classidx desc";
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 
-			ArrayList<LectureDTO> arr = new ArrayList<LectureDTO>();
+			ArrayList<ManagerLectureDTO> arr = new ArrayList<ManagerLectureDTO>();
 
 			while (rs.next()) {
 				int classidx = rs.getInt("classidx");
@@ -174,13 +174,14 @@ public class ManagerLectureDAO {
 				String tname = rs.getString("tname");
 				int entirescount = rs.getInt("entirescount");
 				int reqscount = rs.getInt("reqscount");
-				java.sql.Date comingdate = rs.getDate("comingdate");
-				java.sql.Date enddate = rs.getDate("enddate");
-				java.sql.Date entiredate = rs.getDate("entiredate");
+				String comingdate = rs.getString("comingdate");
+				String enddate = rs.getString("enddate");
+				int entiredate = rs.getInt("entiredate");
 				String chargemname = rs.getString("chargemname");
 
-				LectureDTO dto = new LectureDTO(classidx, groupidx, classname, tname, entirescount, reqscount,
-						comingdate, enddate, entiredate, chargemname);
+				ManagerLectureDTO dto = new ManagerLectureDTO(classidx, groupidx, classname, tname, entirescount,
+						reqscount, comingdate, enddate, entiredate, chargemname);
+			
 				arr.add(dto);
 			}
 			return arr;

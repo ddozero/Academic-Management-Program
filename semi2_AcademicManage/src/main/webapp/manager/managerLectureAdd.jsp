@@ -95,11 +95,12 @@
 				<th>총수업일</th>
 				<%
 				String comingDate = request.getParameter("comingdate");
+				String endDate = request.getParameter("enddate");
 				
 				
 				
 				%>
-				<td><input type="date" name="entiredate"></td>
+				<td><input type="text" name="entiredate"></td>
 			</tr>
 			
 			<tr>
@@ -112,6 +113,7 @@
 			<tr>
 				<td colspan="4">
 				<input type="submit" value="등록하기">
+				<input type="button" value="수정하기">
 				<input type="reset" value="초기화">
 			</tr>
 		</tbody>

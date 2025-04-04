@@ -20,15 +20,15 @@ INSERT INTO MEMBER1 VALUES(sq_MEMBER1_idx.nextval, 4, '박주연', 'F', 'manager2',
 
  
 --3.반테이블
-INSERT INTO CLASSGROUP VALUES (sq_CLASSGROUP_groupidx.nextval, 2, 'A반', '김도영', '채수림', 20);
-INSERT INTO CLASSGROUP VALUES (sq_CLASSGROUP_groupidx.nextval, 5, 'B반', '박주연', '김채현', 20); 
+INSERT INTO CLASSGROUP VALUES (sq_CLASSGROUP_groupidx.nextval, 1, 'A반', '김도영', '채수림', 20);
+INSERT INTO CLASSGROUP VALUES (sq_CLASSGROUP_groupidx.nextval, 2, 'B반', '박주연', '김채현', 20); 
 
 
 --4.강좌 테이블
-INSERT INTO CLASS VALUES (sq_CLASS_classidx.nextval, 1, '자바 백엔드', '채수림', 30, 25, TO_DATE('2025-03-01','YYYY-MM-DD'), TO_DATE('2025-07-30','YYYY-MM-DD'), TO_DATE('2025-08-01','YYYY-MM-DD'), '김도영');
-INSERT INTO CLASS VALUES (sq_CLASS_classidx.nextval, 2, '파이썬 기초', '김채현', 40, 30, TO_DATE('2025-04-01','YYYY-MM-DD'), TO_DATE('2025-08-30','YYYY-MM-DD'), TO_DATE('2025-09-01','YYYY-MM-DD'), '박주연');
+INSERT INTO CLASS VALUES (sq_CLASS_classidx.nextval, 1, '자바 백엔드', '채수림', 30, 25, TO_DATE('2025-03-01','YYYY-MM-DD'), TO_DATE('2025-07-30','YYYY-MM-DD'), 120, '김도영');
+INSERT INTO CLASS VALUES (sq_CLASS_classidx.nextval, 2, '파이썬 기초', '김채현', 40, 30, TO_DATE('2025-04-01','YYYY-MM-DD'), TO_DATE('2025-08-30','YYYY-MM-DD'), 120, '박주연');
 
---5.학생 세부사항 테이 블
+--5.학생 세부사항 테이블
 INSERT INTO MEMBER2 VALUES(sq_MEMBER2_m2idx.nextval, 2, 1, '학력None', '자격증None', '경력None', '특이사항None', '이미지경로None');
 INSERT INTO MEMBER2 VALUES(sq_MEMBER2_m2idx.nextval, 5, 2, '학력None', '자격증None', '경력None', '특이사항None', '이미지경로None');
 
