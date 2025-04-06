@@ -1,6 +1,6 @@
 package com.semi2.lecture;
 
-import java.sql.Date;
+
 
 public class ManagerLectureDTO {
 	private int classidx;
@@ -32,9 +32,12 @@ public class ManagerLectureDTO {
 		super();
 		this.groupname = groupname;
 	}
+	
+	
+	
 
 	public ManagerLectureDTO(int classidx, int groupidx, String classname, String tname, int entirescount,
-			int reqscount, String comingdate, String enddate, int entiredate, String chargemname) {
+			int reqscount, String comingdate, String enddate, int entiredate, String chargemname, String groupname) {
 		super();
 		this.classidx = classidx;
 		this.groupidx = groupidx;
@@ -46,7 +49,9 @@ public class ManagerLectureDTO {
 		this.enddate = enddate;
 		this.entiredate = entiredate;
 		this.chargemname = chargemname;
+		this.groupname = groupname;
 	}
+
 
 	public int getClassidx() {
 		return classidx;

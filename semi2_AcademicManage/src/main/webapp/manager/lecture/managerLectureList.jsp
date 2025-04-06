@@ -9,26 +9,25 @@
 <head>
 <meta charset="UTF-8">
 <title>SYS Academy</title>
-
-<link rel="stylesheet" type="text/css" href="../css/mainLayout.css">
+<link rel="stylesheet" type="text/css" href="/semi2_AcademicManage/css/mainLayout.css">
 </head>
 <body>
 <%@include file="/header/managerHeader.jsp"%>
-
-<section style = "border:1px solid; width: 700px; height:300px;">
+<section>
 	<article>
-		<form name = "menagerLectureInfo" method = "post" action = "memberUpdate_ok.jsp">
 		<table border = "1px">
 			<thead>
 				<tr>
 					<td>NO</td>
 					<td>강좌명</td>
 					<td>강사이름</td>
+					<td>수강반명</td>
 					<td>현재신청인원</td>
 					<td>총인원</td>
 					<td>개강날짜</td>
 					<td>종강날짜</td>
 					<td>총수강일</td>
+					<td>세부정보</td>
 				</tr>
 			</thead>
 			
@@ -45,36 +44,33 @@
 			}else{
 				for(int i = 0; i<arr.size(); i++){
 			%>
-					<tr onclick = "location.href=''">
+					<tr>
 						<td><%=arr.get(i).getClassidx() %></td>
 						<td><%=arr.get(i).getClassname() %></td>
 						<td><%=arr.get(i).getTname() %></td>
+						<td><%=arr.get(i).getGroupname() %></td>
 						<td><%=arr.get(i).getReqscount() %></td>
 						<td><%=arr.get(i).getEntirescount() %></td>
 						<td><%=arr.get(i).getComingdate() %></td>
 						<td><%=arr.get(i).getEnddate() %></td>
-						<td><%=arr.get(i).getEntiredate() %></td>
+						<td><%=arr.get(i).getEntiredate() %></td>				
+						<td>
+						<form name="managerLectureDetail" action="#" method="post">
+						<input type="hidden" name="classidx" value="<%=arr.get(i).getClassidx()%>">
+						<input type="submit" value="보기">
+						</form>
+						</td>
 					</tr>
 			<%
 				}
 			}
 			
 			%>
-				<tr>
-				<td colspan = "8">
-				<input type = "submit" value = "삭제하기">
-				</td>
-				
-				</tr>
+
 			</tbody>
 		</table>
-		</form>
 	</article>
 </section>
-
-
-
-
 <%@include file="/header/footer.jsp"%>
 </body>
 </html>

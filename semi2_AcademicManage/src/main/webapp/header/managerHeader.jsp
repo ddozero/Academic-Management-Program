@@ -2,22 +2,26 @@
 	pageEncoding="UTF-8"%>
 
 <header>
-	<div class="container">
-		<h1>
-			<a href="#"> SYS Academy </a>
-		</h1>
-		<div class="user-group">
-			<h4>매니저</h4>
-		</div>
-		<div class="id-group">
-			<a href="#">로그인</a> <a href="#">회원가입</a>
-		</div>
-	</div>
+	<!-- 여기부터 추가 -->
+  <div class="container">
+    <div class="left-group">
+      <h1><a href="#">SYS Academy</a></h1>
+      <div class="user-group">
+        <h4>매니저</h4>
+      </div>
+    </div>
+    <div class="right-group">
+      <div class="id-group">
+        <a href="#">로그인</a>
+        <a href="#">회원가입</a>
+      </div>
+    </div>
+  </div>
 
 	<nav id="aside">
 		<ul class="title-1">
 			<li class="subt">수강생</li>
-			<li><a href="/semi2_AcademicManage/manager/managerIndex.jsp" class="active">수강생 정보</a></li>
+			<li><a href="/semi2_AcademicManage/manager/lecture/managerIndex.jsp" class="active">수강생 정보</a></li>
 			<li><a href="#">수강생 출결 관리</a></li>
 			<li><a href="#">수강생 출결 인정</a><li>
 		</ul>
@@ -30,8 +34,8 @@
 
 		<ul class="title-3">
 			<li class="subt">강좌 관리</li>
-			<li><a href="/semi2_AcademicManage/manager/managerLectureAdd.jsp">강좌 개설</a></li>
-			<li><a href="/semi2_AcademicManage/manager/managerLectureInfo.jsp">강좌 세부정보</a></li>
+			<li><a href="/semi2_AcademicManage/manager/lecture/managerLectureAdd.jsp">강좌 개설</a></li>
+			<li><a href="/semi2_AcademicManage/manager/lecture/managerLectureList.jsp">강좌 세부정보</a></li>
 			<li><a href="#">강좌 현황</a></li>
 		</ul>
 

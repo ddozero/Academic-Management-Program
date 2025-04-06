@@ -1,3 +1,12 @@
+@charset "UTF-8";
+
+	@font-face {
+	  font-family: 'Pretendard';
+	  src: url('/semi2_AcademicManage/fonts/Pretendard-Regular.woff2') format('woff2');
+	  font-weight: normal;
+	  font-style: normal;
+	  font-display: swap;
+	}
 
     *{
         font-family: 'Pretendard', sans-serif;
@@ -11,11 +20,7 @@
         overflow-x: hidden;
         color: #333;
         word-break: keep-all;
-        padding-left: 250px; 
-        padding-top: 60px; 
-        padding-bottom: 60px;
-        background: #fff;
-        margin: 30px;
+		background-color: #E9ECF4;
     }
 
     header{
@@ -26,14 +31,23 @@
         position: fixed;
         top: 0;
         left: 0;
-        z-index: 10;
+        z-index: 100;
         display: flex;
         align-items: center;
     }
-
-    .header .container {
-	    padding: 0;
-    }
+    
+    section {
+		margin-top: 80px;
+		margin-left: 300px; 
+		margin-bottom: 80px;
+		background-color: #ffffff;
+		padding: 30px 40px;
+		border-radius: 10px;
+		max-width: calc(100% - 320px);
+		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+	}
+    
+    
 
     .container{
         width: 95%;
@@ -42,29 +56,50 @@
         display: flex;
         align-items:center;
         justify-content: space-between;
+        
     }
 
     .container h1 {
-        position: absolute;
+     	position: static;
         font-size:28px;
         font-weight : bold;
         text-decoration:none;
+        margin:0;
     }
-
+    
     .container h1 a{
         text-decoration:none;
         color:#567AF0;
     }
+    
+    .left-group {
+	  display: flex;
+	  align-items: center;
+	  gap: 12px;
+	}
+	
+	.left-group h1 {
+		font-size: 28px;
+		margin: 0;
+		line-height: 1; /* 불필요한 높이 제거 */
+	}
+
+	/* 오른쪽: 로그인/회원가입 */
+	.right-group {
+	  display: flex;
+	  align-items: center;
+	  gap: 12px;
+	}
 
     .user-group{
-        position: flex;
-        justify-content: center; 
-        align-items: center; 
-        width: 80px;
-        height: 32px;
-        margin-left:210px;
-        background: #567AF0;
-        border-radius: 10px;
+	  background: #567AF0;
+	  color: #fff;
+	  border-radius: 10px;
+	  width: 80px;
+	  height: 32px;
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
     }
 
     .user-group h4{
@@ -94,19 +129,18 @@
     /*nav 메뉴 영역*/
 
     #aside{
-        width: 250px; 
+        width: 280px; 
         position: fixed;
         left: 0;
         top: 60px; /* 헤더 아래부터 시작 */
-        bottom: 0; /* 푸터 위에서 끝 */
+        bottom: 50px;; /* 푸터 위에서 끝 */
         background: #fff;
         border-right: 1px solid #b8b8b8;
-        box-shadow: 0 0px 24px 0 rgba(0, 0, 0, 0.06);
         padding: 20px 15px;
         overflow-y: auto;
         display: flex;
         flex-direction: column;
-        z-index: 5; /* 푸터보다 아래에서 보이도록 지정함 */
+        z-index: 10; /* 푸터보다 아래에서 보이도록 지정함 */
         
     }
     #aside ul {
@@ -166,9 +200,8 @@
     }
 
 
-
     /*footer 영역*/
-    footer{
+	footer{
         position: fixed;
         bottom: 0;
         width: 100%;
