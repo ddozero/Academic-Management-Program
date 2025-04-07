@@ -8,11 +8,8 @@
 	String userpwd = request.getParameter("userpwd");
 	String saveid = request.getParameter("saveid");
 	
-	MemberDTO mdto=new MemberDTO();
-	mdto.setId(userid);
-	mdto.setPwd(userpwd);
-	System.out.println(mdto.getId()+"/"+mdto.getPwd());
-	int result = mdao.loginCheck(mdto.getId(),mdto.getPwd());
+
+	int result = mdao.loginCheck(userid,userpwd);
 	
 	if(result==mdao.NOT_ID){
 		%>
@@ -33,15 +30,9 @@
 
 	else if(result==mdao.LOGIN_OK){
 		MemberDTO mdto2 = mdao.getUserInfo(userid);
-		System.out.println(userid);
-		System.out.println(mdto2.getIdx());
-		System.out.println(mdto2.getMidx());
-		System.out.println(mdto2.getName());
-		System.out.println(userid);
+		
 		   session.setAttribute("sid", userid);
-		   session.setAttribute("sidx", mdto2.getIdx());
-		   session.setAttribute("smidx", mdto2.getMidx());
-		   session.setAttribute("sbane", mdto2.getName());
+		   session.setAttribute("smdto", mdto2);
 		   %>
 		   		<script>
 		   			window.alert('<%=mdto2.getName()%>님 환영합니다.');

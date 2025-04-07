@@ -11,5 +11,6 @@
 %>
 <script>
 	window.alert('<%=msg%>');
+	location.href='login.jsp';
 	window.self.close();
 </script>

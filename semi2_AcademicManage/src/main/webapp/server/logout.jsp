@@ -4,9 +4,7 @@
 	session.invalidate();
 	response.sendRedirect("/semi2_AcademicManage");
 %>
-<script>
-	location.href='/semi2_AcademicManage';
-</script>
+
 
 
 
