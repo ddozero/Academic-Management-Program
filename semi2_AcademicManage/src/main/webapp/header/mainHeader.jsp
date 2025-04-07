@@ -10,9 +10,9 @@
 		<div class="user-group">
 			<h4>방문자</h4>
 		</div>
-		<div class="id-group">
+<!-- 		<div class="id-group">
 			<a href="#">로그인</a> <a href="#">회원가입</a>
-		</div>
+		</div> -->
 	</div>
 </header>
 

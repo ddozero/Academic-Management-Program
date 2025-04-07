@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+<%
+	String sname = (String)session.getAttribute("sname");
+%>
 
 <header>
 	<div class="container">
@@ -11,7 +14,14 @@
 			<h4>수강생</h4>
 		</div>
 		<div class="id-group">
-			<a href="#">로그인</a> <a href="#">회원가입</a>
+			<%
+				if(sname != null){
+			%>
+				<span><%=sname %>님</span>
+				<a href="/semi2_AcademicManage/server/logout.jsp">로그아웃</a>
+			<%
+				}
+			%>
 		</div>
 	</div>
  

@@ -2,10 +2,8 @@
 	pageEncoding="UTF-8"%>
 	
 <%
-	String loginName = (String)session.getAttribute("name");
+	String sname = (String)session.getAttribute("sname");
 %>
-
-
 <header>
 	<div class="container">
 		<h1>
@@ -16,22 +14,21 @@
 		</div>
 		<div class="id-group">
 			<%
-				if(loginName != null){
+				if(sname != null){
 			%>
-				<span><%=loginName %>님</span>
-				<a href="logout.jsp">로그아웃</a>
+				<span><%=sname %>님</span>
+				<a href="/semi2_AcademicManage/server/logout.jsp">로그아웃</a>
 			<%
 				}
 			%>
-
 		</div>
 	</div>
 
 	<nav id="aside">
 		<ul class="title-1">
 			<li class="subt">회원 관리</li>
-			<li><a href="#" class="active">회원 승인</a></li>
-			<li><a href="#">매니저 관리</a></li>
+			<li><a href="/semi2_AcademicManage/server/memberAccept.jsp" class="active">회원 승인</a></li>
+			<li><a href="/semi2_AcademicManage/server/main.jsp" class="active">매니저 관리</a></li>
 			<li><a href="#">강사 조회</a></li>
 			<li><a href="#">수강생 조회</a></li>
 		</ul>

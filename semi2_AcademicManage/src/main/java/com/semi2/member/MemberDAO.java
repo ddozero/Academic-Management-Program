@@ -134,6 +134,8 @@ public class MemberDAO {
 		        	 dto.setIdx(rs.getInt("idx"));
 		        	 dto.setMidx(rs.getInt("midx"));
 		        	 dto.setName(rs.getString("name"));
+		        	 dto.setId(rs.getString("id"));
+		        	 dto.setPwd(rs.getString("pwd"));
 		         }
 		         return dto;
 		      } catch (Exception e) {

@@ -2,9 +2,10 @@
     pageEncoding="UTF-8"%>
 <%
 	session.invalidate();
-	response.sendRedirect("/semi2_AcademicManage");
+	response.sendRedirect("/semi2_AcademicManage/server/login.jsp");
 %>
 <script>
+	window.alert('ss');
 	location.href='/semi2_AcademicManage';
 </script>
 

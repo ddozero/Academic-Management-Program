@@ -19,6 +19,7 @@ if(cks!=null){
 <link rel="stylesheet" type="text/css" href="../css/mainLayout.css">
 <style>
 	article, table { margin: 0 auto; text-align: center; }
+	
 </style>
 <script>
 	function valid() {
@@ -42,13 +43,7 @@ if(cks!=null){
 </script>
 </head>
 <body>
-<%-- <%
-System.out.println("됭재ㅣ");
-%> --%>
-<%@ include file="/header/serverHeader.jsp" %>
-<%
-System.out.println("login.jsp");
-%>
+<%@ include file="/header/mainHeader.jsp" %>
 <section>
 	<article>
 		<h2>로그인</h2>
