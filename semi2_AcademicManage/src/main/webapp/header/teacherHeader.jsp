@@ -18,7 +18,7 @@
 	<nav id="aside">
 		<ul class="title-1">
 			<li class="subt">근태 관리</li>
-			<li><a href="/semi2_AcademicManage/teacher/teacherInfo.jsp" class="active">내 정보</a></li>
+			<li><a href="#" class="active">내 정보</a></li>
 			<li><a href="#">출/퇴근 관리</a></li>
 		</ul>
 
@@ -47,19 +47,3 @@
 
 	</nav>
 </header>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    var menuLinks = document.querySelectorAll("#aside ul li a");
-
-    // URL 경로 가져오기
-    var currentUrl = window.location.pathname;
-
-    menuLinks.forEach(link => {
-        if (link.getAttribute("href") === currentUrl) {
-            link.classList.add("active");
-        } else {
-            link.classList.remove("active"); // 기존 active 제거
-        }
-    });
-});
-</script>
