@@ -21,6 +21,7 @@ package com.semi2.member;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class MemberDAO {
 	private Connection conn;
@@ -149,4 +150,70 @@ public class MemberDAO {
 		         } catch (Exception e2) {}
 		      }
 		   }
-	}
+	   
+	   //*계정 목록 게시판 회원 조회*/
+	   public ArrayList<MemberDTO> memSelect(){
+			try {
+				conn = com.semi2.db.Semi2DB.getConn();
+				String sql = "select * from MEMBER1";
+				
+				ps = conn.prepareStatement(sql);
+				rs = ps.executeQuery();
+				
+				ArrayList<MemberDTO> arr = new ArrayList<MemberDTO>();
+				while(rs.next()) {
+					int idx = rs.getInt("idx");
+					int midx = rs.getInt("midx");
+					String name = rs.getString("name");
+					String sex = rs.getString("sex");
+					String id = rs.getString("id");
+					String pwd = rs.getString("pwd");
+					String tel = rs.getString("tel");
+					String email = rs.getString("email");
+					String addr = rs.getString("addr");
+					String birth = rs.getString("birth");
+					int appro = rs.getInt("appro");
+					
+					MemberDTO dto = new MemberDTO(idx, midx, name, sex, id, pwd, tel, email, addr, birth, appro);
+					arr.add(dto);
+				}
+				return arr;
+			}catch(Exception e) {
+				e.printStackTrace();
+				return null;
+			}finally {
+				try {
+					if(rs!=null)rs.close();
+					if(ps!=null)ps.close();
+					if(conn!=null)conn.close();
+				}catch(Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+		}
+	   
+	   //* 승인 처리 */
+	   public int updateAcc(int idx) {
+			try {
+				conn = com.semi2.db.Semi2DB.getConn();
+				
+				String sql ="update MEMBER1 set appro = 1 where idx = ?";
+				ps = conn.prepareStatement(sql);
+				ps.setInt(1, idx);
+				int count = ps.executeUpdate();
+				
+				return count;
+			}catch(Exception e) {
+				e.printStackTrace();
+				return ERROR;
+			}finally {
+				try {
+					if(rs!=null)rs.close();
+					if(ps!=null)ps.close();
+					if(conn!=null)conn.close();
+				}catch(Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+	   }
+   }

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" %>
+<%@ page import="com.semi2.*" %>
+<jsp:useBean id="mdao" class="com.semi2.member.MemberDAO"></jsp:useBean>
 <!DOCTYPE html>
 <html>
 <head>
@@ -83,21 +86,30 @@
 		margin-left: 6px;
 	}
 </style>
-
+<script>
+	function accept(){}
+</script>
 <title>회원 승인 목록</title>
 </head>
+<%
+	ArrayList<MemberDTO> arr = mdao.memSelect();
+%>
 <body>
 	<%@ include file="/header/serverHeader.jsp" %>
 	<section>
 		<article>
 			<h2>회원 승인 목록</h2>
 			<div class="inner">
-				
 				<div class="top">
 					<div class="left">
 						<span><b>승인 목록</b></span>
-						<input type="submit" value="전체조회" name="allselect">
-						<input type="submit" value="삭제" name="delete">
+						<select>
+							<option>전체조회</option>
+							<option>수강생</option>
+							<option>강사</option>
+							<option>매니저</option>
+						</select>
+						<input type="checkbox" name="ingAcc">승인대기
 					</div>
 					<div class="right">
 						<select>
@@ -124,16 +136,67 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td><input type="checkbox"></td>
-							<td>1</td>
-							<td>대기</td>
-							<td>학생</td>
-							<td>김하니</td>
-							<td>hani1234</td>
-							<td><button>완료</button></td>
-						</tr>
+						<%
+							if(arr == null || arr.size()==0){
+							%>
+								<tr><td colspan="7">가입한 계정이 없습니다.</td></tr>
+							<%
+							}else {
+								for(int i = 0; i < arr.size(); i++){
+									MemberDTO dto = arr.get(i);
+								%>
+									<tr>
+										<td><input type="checkbox"></td>
+										<td><%=dto.getIdx() %></td>
+										<%
+											if(dto.getAppro()==1){
+										%>
+											<td>[승인]</td>
+										<%
+											}else{
+										%>
+											<td>[대기]</td>
+										<%
+											}
+											switch(dto.getMidx()){
+												case 1 :%><td>[관리자]</td><%break;
+												case 2 :%><td>[수강생]</td><%break;
+												case 3 :%><td>[강사]</td><%break;
+												case 4 :%><td>[매니저]</td><%;
+											}
+												
+										%>
+										
+										<td><%=dto.getName() %></td>
+										<td><%=dto.getId() %></td>
+										<% 
+											if(dto.getAppro()==0){
+										%>
+										<td><a href="memberAccept_ok.jsp?idx=<%=dto.getIdx()%>">승인</a></td>
+										<%
+											}else{
+										%>
+										<td><button>완료</button></td>
+										<%
+											}
+										%>
+									</tr>
+								<%
+								}
+							}
+						%>
 					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="5" style="text-align:center;">
+								1 2 3 4 5
+							</td>
+							<td colspan="1" style="text-align:center;">
+								<input type="button" value="삭제">
+							</td>
+						</tr>
+					</tfoot>
 				</table>
 			</div>
 		</article>

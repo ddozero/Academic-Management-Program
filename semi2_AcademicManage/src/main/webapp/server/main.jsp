@@ -4,8 +4,8 @@
 //String name = (String)session.getAttribute("sname");
 //Integer midx = (Integer)session.getAttribute("smidx");
 MemberDTO mdto=(MemberDTO)session.getAttribute("smdto");
-String name=mdto.getName();
-Integer midx=mdto.getMidx();
+int midx = mdto.getMidx();
+String name = mdto.getName();
 %>
 <!DOCTYPE html>
 <html>
