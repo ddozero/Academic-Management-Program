@@ -88,13 +88,13 @@
 </style>
 <script>
 	function click(){
-		
+		location.href="memberAccept.jsp?";		
 	}
 </script>
 <title>회원 승인 목록</title>
 </head>
 <%
-	ArrayList<MemberDTO> arr = mdao.memSelect(sort);
+	//ArrayList<MemberDTO> arr = mdao.memSelect(sort);
 %>
 <body>
 	<%@ include file="/header/serverHeader.jsp" %>
