@@ -87,12 +87,14 @@
 	}
 </style>
 <script>
-	function accept(){}
+	function click(){
+		location.href="memberAccept.jsp?";		
+	}
 </script>
 <title>회원 승인 목록</title>
 </head>
 <%
-	ArrayList<MemberDTO> arr = mdao.memSelect();
+	//ArrayList<MemberDTO> arr = mdao.memSelect(sort);
 %>
 <body>
 	<%@ include file="/header/serverHeader.jsp" %>
@@ -109,7 +111,7 @@
 							<option>강사</option>
 							<option>매니저</option>
 						</select>
-						<input type="checkbox" name="ingAcc">승인대기
+						<input type="checkbox" name="ingAcc" onclick="click()">승인대기
 					</div>
 					<div class="right">
 						<select>

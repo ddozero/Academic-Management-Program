@@ -1,23 +1,5 @@
 package com.semi2.member;
 
-/*
-	public asd() {
-		try {
-			conn = com.semi2.db.Semi2DB.getConn();
-		}catch(Exception e) {
-			e.printStackTrace();
-			return ;
-		}finally {
-			try {
-				if(rs!=null)rs.close();
-				if(ps!=null)ps.close();
-				if(conn!=null)conn.close();
-			}catch(Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-	}
-*/
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -152,10 +134,15 @@ public class MemberDAO {
 		   }
 	   
 	   //*계정 목록 게시판 회원 조회*/
-	   public ArrayList<MemberDTO> memSelect(){
+	   public ArrayList<MemberDTO> memSelect(String sort){
 			try {
 				conn = com.semi2.db.Semi2DB.getConn();
 				String sql = "select * from MEMBER1";
+				if(sort.equals("1")) {
+					sql += "order by appro asc";
+				}else {
+					sql += "";
+				}
 				
 				ps = conn.prepareStatement(sql);
 				rs = ps.executeQuery();
