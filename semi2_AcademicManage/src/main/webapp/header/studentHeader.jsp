@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="com.semi2.member.*" %>
 
 <%
-	String sname = (String)session.getAttribute("sname");
+	//String sname = (String)session.getAttribute("sname");
+	MemberDTO dto=(MemberDTO)session.getAttribute("smdto");
+	String sname=dto.getName();
 %>
 
 <header>
