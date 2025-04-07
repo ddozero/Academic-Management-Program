@@ -1,5 +1,6 @@
 package com.semi2.member;
 
+import java.util.*;
 
 public class MemberDTO {
 	private int idx;
@@ -13,13 +14,26 @@ public class MemberDTO {
 	private String addr;
 	private String birth;
 	private int appro;
+	//매니저&강사세부사항
+	private int m3idx;
+	private int classidx;
+	private int groupidx;
+	private String edu2;
+	private String career;
+	private Date comingdate;
+	private String seleclass;
+	private String groupname;
+	private String memo;
+	private String imgaddr;
+	
 	
 	public MemberDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public MemberDTO(int idx, int midx, String name, String sex, String id, String pwd, String tel, String email,
-			String addr, String birth, int appro) {
+			String addr, String birth, int appro, int m3idx, int classidx, int groupidx, String edu2, String career,
+			Date comingdate, String seleclass, String groupname, String memo, String imgaddr) {
 		super();
 		this.idx = idx;
 		this.midx = midx;
@@ -32,6 +46,16 @@ public class MemberDTO {
 		this.addr = addr;
 		this.birth = birth;
 		this.appro = appro;
+		this.m3idx = m3idx;
+		this.classidx = classidx;
+		this.groupidx = groupidx;
+		this.edu2 = edu2;
+		this.career = career;
+		this.comingdate = comingdate;
+		this.seleclass = seleclass;
+		this.groupname = groupname;
+		this.memo = memo;
+		this.imgaddr = imgaddr;
 	}
 
 	public int getIdx() {
@@ -120,6 +144,86 @@ public class MemberDTO {
 
 	public void setAppro(int appro) {
 		this.appro = appro;
+	}
+
+	public int getM3idx() {
+		return m3idx;
+	}
+
+	public void setM3idx(int m3idx) {
+		this.m3idx = m3idx;
+	}
+
+	public int getClassidx() {
+		return classidx;
+	}
+
+	public void setClassidx(int classidx) {
+		this.classidx = classidx;
+	}
+
+	public int getGroupidx() {
+		return groupidx;
+	}
+
+	public void setGroupidx(int groupidx) {
+		this.groupidx = groupidx;
+	}
+
+	public String getEdu2() {
+		return edu2;
+	}
+
+	public void setEdu2(String edu2) {
+		this.edu2 = edu2;
+	}
+
+	public String getCareer() {
+		return career;
+	}
+
+	public void setCareer(String career) {
+		this.career = career;
+	}
+
+	public Date getComingdate() {
+		return comingdate;
+	}
+
+	public void setComingdate(Date comingdate) {
+		this.comingdate = comingdate;
+	}
+
+	public String getSeleclass() {
+		return seleclass;
+	}
+
+	public void setSeleclass(String seleclass) {
+		this.seleclass = seleclass;
+	}
+
+	public String getGroupname() {
+		return groupname;
+	}
+
+	public void setGroupname(String groupname) {
+		this.groupname = groupname;
+	}
+
+	public String getMemo() {
+		return memo;
+	}
+
+	public void setMemo(String memo) {
+		this.memo = memo;
+	}
+
+	public String getImgaddr() {
+		return imgaddr;
+	}
+
+	public void setImgaddr(String imgaddr) {
+		this.imgaddr = imgaddr;
 	}
 	
 	
