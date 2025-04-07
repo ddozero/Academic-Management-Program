@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
-
+<%@ page import="com.semi2.member.*" %>
+<%-- <%
+MemberDTO smdto=(MemberDTO)session.getAttribute("smdto");
+String sname = smdto.getName();	
+%> --%>
 <header>
 	<div class="container">
 		<h1>
@@ -11,15 +14,22 @@
 			<h4>관리자</h4>
 		</div>
 		<div class="id-group">
-			<a href="#">로그인</a> <a href="#">회원가입</a>
+<%--   			<%
+				if(sname != null){
+			%>
+				<span><%=sname %>님</span>
+				<a href="/semi2_AcademicManage/server/logout.jsp">로그아웃</a>
+			<%
+				}
+			%> --%>
 		</div>
 	</div>
 
 	<nav id="aside">
 		<ul class="title-1">
 			<li class="subt">회원 관리</li>
-			<li><a href="#" class="active">회원 승인</a></li>
-			<li><a href="#">매니저 관리</a></li>
+			<li><a href="/semi2_AcademicManage/server/memberAccept.jsp" class="active">회원 승인</a></li>
+			<li><a href="/semi2_AcademicManage/server/main.jsp" class="active">매니저 관리</a></li>
 			<li><a href="#">강사 조회</a></li>
 			<li><a href="#">수강생 조회</a></li>
 		</ul>
