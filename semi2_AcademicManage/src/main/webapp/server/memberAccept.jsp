@@ -86,15 +86,15 @@
 		margin-left: 6px;
 	}
 </style>
-<script>
-	function click(){
-		location.href="memberAccept.jsp?";		
-	}
-</script>
 <title>회원 승인 목록</title>
 </head>
 <%
-	//ArrayList<MemberDTO> arr = mdao.memSelect(sort);
+	String sort = "0";
+ 	String accept = request.getParameter("accept");
+	if(accept!=null){
+		sort = accept;
+	} 
+	ArrayList<MemberDTO> arr = mdao.memSelect(sort);
 %>
 <body>
 	<%@ include file="/header/serverHeader.jsp" %>
@@ -111,14 +111,23 @@
 							<option>강사</option>
 							<option>매니저</option>
 						</select>
-						<input type="checkbox" name="ingAcc" onclick="click()">승인대기
+						<input type="checkbox" id="accept" <%=sort.equals("1") ? "checked" : "" %>>승인대기
+						<script>
+							var check = document.getElementById("accept");
+							check.addEventListener("change",function(){
+								if(this.checked){
+									location.href="memberAccept.jsp?accept=" + "1";
+								}else{
+									location.href="memberAccept.jsp?accept=";
+								}
+							})
+						</script>
 					</div>
 					<div class="right">
 						<select>
 							<option>검색조건</option>
-							<option>수강생</option>
-							<option>강사</option>
-							<option>매니저</option>
+							<option>아이디</option>
+							<option>이름</option>
 						</select>
 						<input type="text" placeholder="조건을 선택해주세요.">
 						<input type="submit" value="검색">

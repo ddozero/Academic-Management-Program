@@ -137,9 +137,11 @@ public class MemberDAO {
 	   public ArrayList<MemberDTO> memSelect(String sort){
 			try {
 				conn = com.semi2.db.Semi2DB.getConn();
+				
 				String sql = "select * from MEMBER1";
+				
 				if(sort.equals("1")) {
-					sql += "order by appro asc";
+					sql += " order by appro asc";
 				}else {
 					sql += "";
 				}
@@ -148,6 +150,7 @@ public class MemberDAO {
 				rs = ps.executeQuery();
 				
 				ArrayList<MemberDTO> arr = new ArrayList<MemberDTO>();
+				
 				while(rs.next()) {
 					int idx = rs.getInt("idx");
 					int midx = rs.getInt("midx");
@@ -161,7 +164,19 @@ public class MemberDAO {
 					String birth = rs.getString("birth");
 					int appro = rs.getInt("appro");
 					
-					MemberDTO dto = new MemberDTO(idx, midx, name, sex, id, pwd, tel, email, addr, birth, appro);
+					MemberDTO dto = new MemberDTO();
+					dto.setIdx(idx);
+					dto.setMidx(midx);
+					dto.setName(name);
+					dto.setSex(sex);
+					dto.setId(id);
+					dto.setPwd(pwd);
+					dto.setTel(tel);
+					dto.setEmail(email);
+					dto.setAddr(addr);
+					dto.setBirth(birth);
+					dto.setAppro(appro);
+					
 					arr.add(dto);
 				}
 				return arr;
