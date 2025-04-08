@@ -2,5 +2,5 @@
 	pageEncoding="UTF-8"%>
 
 <footer>
-	<div>Copyright ⓒ 2025 SYS Academy. All rights reserved.</div>
+	<div class = "fcontent">Copyright ⓒ 2025 SYS Academy. All rights reserved.</div>
 </footer>
