@@ -11,6 +11,14 @@
 <%@include file="/header/managerHeader.jsp"%>
 
 
+ <div class = "all-title1">
+  <h2>강좌 개설</h2>
+  </div>
+  <section class= "all-section1">
+  
+  
+  </section>
+
 <%@include file="/header/footer.jsp"%>
 </body>
 </html>

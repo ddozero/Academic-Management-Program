@@ -10,27 +10,78 @@
 <meta charset="UTF-8">
 <title>SYS Academy</title>
 
+<style>
+.table-info {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 14px;
+    text-align: left;
+}
+
+
+.table-info-header th {
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.table-info td {
+    padding: 3px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.table-info td:nth-child(2), .table-info th:nth-child(2) { /*강좌명 너비 조정*/
+	width: 350px; 
+	word-break: break-word;
+}
+
+.table-info td:nth-child(8), .table-info th:nth-child(8) { /*삭제 너비 조정*/
+	width: 80px; 
+	word-break: break-word;
+}
+
+.table-info td:nth-child(9), .table-info th:nth-child(9) { /*수정 너비 조정*/
+	width: 80px; 
+	word-break: break-word;
+}
+
+.table-info td form input[type="submit"]{
+	background: #fff;
+	color: #777777;
+	border: 1px solid #d9d9d9;
+	border-radius: 10px;
+	width: 50px;
+	height:28px;
+	cursor: pointer;
+}
+
+.table-info td form input[type="submit"]:hover {
+  	color: #567AF0; /* 텍스트 색상 변경 */
+}
+</style>
+
 <link rel="stylesheet" type="text/css" href="/semi2_AcademicManage/css/mainLayout.css">
 </head>
 <body>
 <%@include file="/header/managerHeader.jsp"%>
 
-
 	<article>
-		<table border = "1px">
-			<thead>
+		<table class="table-info">
+			<thead class="table-info-header">
 				<tr>
-					<td>NO</td>
-					<td>강좌명</td>
-					<td>강사이름</td>
-					<td>수강반명</td>
-					<td>현재신청인원</td>
-					<td>총인원</td>
-					<td>개강날짜</td>
-					<td>종강날짜</td>
-					<td>총수강일</td>
-					<td>삭제</td>
-					<td>수정</td>
+					<th>NO</th>
+					<th>강좌명</th>
+					<th>강사명</th>
+					<th>수강반명</th>
+					<th>개강날짜</th>
+					<th>종강날짜</th>
+					<th>총수강일</th>
+					<th>삭제</th>
+					<th>수정</th>
 				</tr>
 			</thead>
 			
@@ -52,8 +103,6 @@
 						<td><%=arr.get(i).getClassname() %></td>
 						<td><%=arr.get(i).getTname() %></td>
 						<td><%=arr.get(i).getGroupname() %></td>
-						<td><%=arr.get(i).getReqscount() %></td>
-						<td><%=arr.get(i).getEntirescount() %></td>
 						<td><%=arr.get(i).getComingdate() %></td>
 						<td><%=arr.get(i).getEnddate() %></td>
 						<td><%=arr.get(i).getEntiredate() %></td>				

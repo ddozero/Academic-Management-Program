@@ -15,6 +15,7 @@ public class ManagerLectureDTO {
 	private String chargemname;
 	
 	private String groupname;
+	private String classintro;
 	
 	public ManagerLectureDTO() {
 		// TODO Auto-generated constructor stub
@@ -32,9 +33,32 @@ public class ManagerLectureDTO {
 		super();
 		this.groupname = groupname;
 	}
-	
-	
-	
+
+	public String getClassintro() {
+		return classintro;
+	}
+
+	public void setClassintro(String classintro) {
+		this.classintro = classintro;
+	}
+
+	public ManagerLectureDTO(int classidx, int groupidx, String classname, String tname, int entirescount,
+			int reqscount, String comingdate, String enddate, int entiredate, String chargemname, String groupname,
+			String classintro) {
+		super();
+		this.classidx = classidx;
+		this.groupidx = groupidx;
+		this.classname = classname;
+		this.tname = tname;
+		this.entirescount = entirescount;
+		this.reqscount = reqscount;
+		this.comingdate = comingdate;
+		this.enddate = enddate;
+		this.entiredate = entiredate;
+		this.chargemname = chargemname;
+		this.groupname = groupname;
+		this.classintro = classintro;
+	}
 
 	public ManagerLectureDTO(int classidx, int groupidx, String classname, String tname, int entirescount,
 			int reqscount, String comingdate, String enddate, int entiredate, String chargemname, String groupname) {

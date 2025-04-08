@@ -23,15 +23,15 @@ public class ManagerLectureDAO {
 			ps.setInt(1, midx);
 			rs = ps.executeQuery();
 
-			ArrayList<MemberDTO> memberPick = new ArrayList<MemberDTO>();
+			ArrayList<MemberDTO> arr = new ArrayList<MemberDTO>();
 			while (rs.next()) {
 				String name = rs.getString("name");
 
 				MemberDTO dto = new MemberDTO();
 				dto.setName(name);
-				memberPick.add(dto);
+				arr.add(dto);
 			}
-			return memberPick;
+			return arr;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -160,10 +160,10 @@ public class ManagerLectureDAO {
 	public ArrayList<ManagerLectureDTO> managerLectureInfo() {
 		try {
 			conn = com.semi2.db.Semi2DB.getConn();
-			String sql = "select classidx, g.groupidx, g.groupname, classname, c.tname, entirescount, reqscount, to_char(comingdate, 'yyyy-mm-dd') as comingdate, to_char(enddate, 'yyyy-mm-dd') as enddate, entiredate, chargemname\r\n"
+			String sql = "select c.classidx, g.groupidx, g.groupname, c.classname, c.tname, c.entirescount, c.reqscount, to_char(c.comingdate, 'yyyy-mm-dd') as comingdate, to_char(c.enddate, 'yyyy-mm-dd') as enddate, c.entiredate, c.chargemname\r\n"
 					+ "from class c, classgroup g\r\n"
 					+ "where c.groupidx = g.groupidx\r\n"
-					+ "order by classidx desc";
+					+ "order by classidx asc";
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 
@@ -239,10 +239,10 @@ public class ManagerLectureDAO {
 			PreparedStatement ps = null;
 			ResultSet rs = null;
 			conn=com.semi2.db.Semi2DB.getConn();
-			String sql = "select classidx, g.groupidx, g.groupname, classname, c.tname, entirescount, reqscount, to_char(comingdate, 'yyyy-mm-dd') as comingdate, to_char(enddate, 'yyyy-mm-dd') as enddate, entiredate, chargemname\r\n"
+			String sql = "select c.classidx, g.groupidx, g.groupname, c.classname, c.tname, c.entirescount, c.reqscount, to_char(c.comingdate, 'yyyy-mm-dd') as comingdate, to_char(c.enddate, 'yyyy-mm-dd') as enddate, c.entiredate, c.chargemname\r\n"
 					+ "from class c, classgroup g\r\n"
 					+ "where c.groupidx = g.groupidx and classidx = ?\r\n"
-					+ "order by classidx desc";
+					+ "order by classidx asc";
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, classidx);
 			rs = ps.executeQuery();
@@ -323,6 +323,121 @@ public class ManagerLectureDAO {
 		}
 	}
 	
+	/**(매니저) 세부 강좌 조회 메소드 */
+	public ManagerLectureDTO managerLectureList(int classidx){
+		try {
+			Connection conn = null;
+			PreparedStatement ps = null;
+			ResultSet rs = null;
+			conn=com.semi2.db.Semi2DB.getConn();
+			
+			String sql = "select c.classidx, g.groupidx, g.groupname, c.classname, c.tname, c.entirescount, c.reqscount, to_char(c.comingdate, 'yyyy-mm-dd') as comingdate, to_char(c.enddate, 'yyyy-mm-dd') as enddate,\r\n"
+					+ "c.entiredate, c.chargemname, d.classintro\r\n"
+					+ "from class c, classgroup g, CLASSDETIL d\r\n"
+					+ "where c.groupidx = g.groupidx \r\n"
+					+ "and c.classidx = d.classidx \r\n"
+					+ "and c.classidx=?\r\n";
+			
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, classidx);
+			rs = ps.executeQuery();
+			
+			ManagerLectureDTO dto = null;
+			
+			if(rs.next()) {
+				int groupidx = rs.getInt("groupidx");
+				String classname = rs.getString("classname");
+				String tname = rs.getString("tname");
+				int entirescount = rs.getInt("entirescount");
+				int reqscount = rs.getInt("reqscount");
+				String comingdate = rs.getString("comingdate");
+				String enddate = rs.getString("enddate");
+				int entiredate = rs.getInt("entiredate");
+				String chargemname = rs.getString("chargemname");
+				String groupname = rs.getString("groupname");
+				String classintro = rs.getString("classintro");
+				
+				dto = new ManagerLectureDTO(classidx, groupidx, classname, tname, entirescount,reqscount, comingdate, enddate, entiredate, chargemname, groupname, classintro);
+			}
+			return dto;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			try {
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
+		}
+	}
 	
+	public ArrayList<ManagerLectureDTO> lectureFind(String fkey, String fvalue){
+		try {
+			 Connection conn = null;
+			 PreparedStatement ps = null;
+			 ResultSet rs = null;
+			 conn=com.semi2.db.Semi2DB.getConn();
+			
+			if ("classidx".equals(fkey)) {
+			    fkey = "c.classidx";
+			} else if ("tname".equals(fkey)) {
+			    fkey = "c.tname";
+			} else if ("groupidx".equals(fkey)) {
+			    fkey = "g.groupidx";
+			}
+			
+			String sql = "select c.classidx, g.groupidx, g.groupname, c.classname, c.tname, c.entirescount, c.reqscount, " +
+		             "to_char(c.comingdate, 'yyyy-mm-dd') as comingdate, to_char(c.enddate, 'yyyy-mm-dd') as enddate, " +
+		             "c.entiredate, c.chargemname " +
+		             "from class c, classgroup g " +
+		             "where c.groupidx = g.groupidx " +
+		             "and " + fkey + " = ? ";
+
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, fvalue);
+			rs=ps.executeQuery();
+			
+			ArrayList<ManagerLectureDTO> arr = new ArrayList<ManagerLectureDTO>();
+			
+			while (rs.next()) {
+				int classidx = rs.getInt("classidx");
+				int groupidx = rs.getInt("groupidx");
+				String classname = rs.getString("classname");
+				String tname = rs.getString("tname");
+				int entirescount = rs.getInt("entirescount");
+				int reqscount = rs.getInt("reqscount");
+				String comingdate = rs.getString("comingdate");
+				String enddate = rs.getString("enddate");
+				int entiredate = rs.getInt("entiredate");
+				String chargemname = rs.getString("chargemname");
+				String groupname = rs.getString("groupname");
+
+				ManagerLectureDTO dto = new ManagerLectureDTO(classidx, groupidx, classname, tname, entirescount,
+						reqscount, comingdate, enddate, entiredate, chargemname, groupname);
+				arr.add(dto);
+				
+				System.out.println("fkey: " + fkey);
+			}
+			return arr;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (ps != null)
+					ps.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
+		}
+	}
 
 }
