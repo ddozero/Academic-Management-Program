@@ -61,25 +61,25 @@ public class MstudentDAO {
 	}
 	
 	/**(매니저) 학생 세부 정보 조회 */
-	public MemberDTO mstudentInfoDetail(int midx) {
+	public MemberDTO mstudentInfoDetail(int idx) {
 		try {
 			conn = com.semi2.db.Semi2DB.getConn();
 			
-			String sql = "select m1.midx, m1.idx, m1.name, m1.sex, m1.birth, m1.addr, m1.tel, m1.email, m2.edu, m2.career, g.groupname, c.classname, c.comingdate, c.enddate, m2.imgaddr, m2.memo\r\n"
+			String sql = "select m1.midx, m1.idx, m1.name, m1.sex, m1.tel, m1.email, m1.addr, m1.birth, m2.career, c.comingdate, g.groupname, m2.memo, m2.imgaddr, m2.edu, c.classname, c.enddate\r\n"
 					+ "from member1 m1, member2 m2, classgroup g, class c\r\n"
 					+ "where m1.idx = m2.idx\r\n"
 					+ "and m2.classidx = c.classidx\r\n"
-					+ "and g.groupidx = c.groupidx \r\n"
-					+ "and m1.midx = 2";
+					+ "and g.groupidx = c.groupidx\r\n"
+					+ "and m1.idx = ? and m1.midx!=0";
 			
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, midx);
+			ps.setInt(1, idx);
 			rs = ps.executeQuery();
 			
 			MemberDTO dto = null;
 			
 			if(rs.next()) {
-				int idx = rs.getInt("idx");
+				int midx = rs.getInt("idx");
 				String name = rs.getString("name");
 				String sex = rs.getString("sex");
 				String tel = rs.getString("tel");

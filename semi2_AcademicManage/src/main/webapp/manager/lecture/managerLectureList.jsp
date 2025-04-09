@@ -8,7 +8,7 @@
 request.setCharacterEncoding("utf-8");
 %>
 <%
-String classidx = request.getParameter("classidx");
+String classidx = request.getParameter("midx");
 %>
 
 <!DOCTYPE html>

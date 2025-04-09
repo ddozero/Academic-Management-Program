@@ -55,7 +55,7 @@ request.setCharacterEncoding("utf-8");
   	color: #567AF0; /* 텍스트 색상 변경 */
 }
 
-.LectureList-alert{
+.studentList-alert{
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -106,6 +106,7 @@ request.setCharacterEncoding("utf-8");
 			
 			<tbody>
 				<%
+				String idx = request.getParameter("idx");
 				ArrayList<MemberDTO> arr = msdao.mstudentInfo(2);
 				
 				if(arr==null||arr.size()==0){
@@ -145,7 +146,20 @@ request.setCharacterEncoding("utf-8");
 		<h2>수강생 정보</h2>
 	</div>
 	<section class= "all-section2">
-		<jsp:include page="mstudentList_ok.jsp"></jsp:include>
+	
+	 <%
+    if(idx == null||idx.equals("")){
+    %>
+    	<p class= "studentList-alert">학생 세부정보를 확인하시려면 '보기' 버튼을 클릭하세요.</p>
+    <%
+    }else{
+    %>
+		<jsp:include page="mstudentList_ok.jsp">
+			<jsp:param name="idx" value="<%=idx%>"/>
+		</jsp:include>
+	<%
+    }
+	%>	
 	</section>
 
 <%@include file="/header/footer.jsp"%>

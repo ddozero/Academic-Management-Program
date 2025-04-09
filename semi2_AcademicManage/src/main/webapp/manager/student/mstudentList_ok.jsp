@@ -63,19 +63,22 @@ request.setCharacterEncoding("utf-8");
 
 <%
 	String idx_s = request.getParameter("idx");
+
 	if(idx_s==null||idx_s.equals("")){
-		idx_s="0";
+		idx_s="123456";
 	}
 	int idx = Integer.parseInt(idx_s);
-	
 	System.out.println("idx: " + idx);
-	MemberDTO dto = msdao.mstudentInfoDetail(2);
+	
+	MemberDTO dto = msdao.mstudentInfoDetail(idx);
+	
 	if(dto==null){
 %>
 	<script>
 		window.alert("학생 정보 등록 중입니다.")
-		location.href = '/semi2_AcademicManage/manager/lecture/mstudentList.jsp';
+		location.href = '/semi2_AcademicManage/manager/student/mstudentList.jsp';
 	</script>
+	
 	<%
 	return;
 	}
