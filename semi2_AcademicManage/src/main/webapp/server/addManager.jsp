@@ -3,6 +3,10 @@
 	<%@page import="java.util.ArrayList"%>
     <%@page import="com.semi2.member.*" %>
 	<jsp:useBean id="mdao" class="com.semi2.member.AMemberDAO"></jsp:useBean>
+<%
+	MemberDTO mdto = (MemberDTO)session.getAttribute("smdto");
+	String name = mdto.getName();
+%>
 <!DOCTYPE html>
 <html>
 <head>

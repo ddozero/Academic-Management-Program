@@ -1,11 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.semi2.member.*" %>
+<%
+	MemberDTO mdto = (MemberDTO)session.getAttribute("smdto");
+	String name = mdto.getName();
+%>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<title>Main</title>
-	<link rel="stylesheet" type="text/css" href="../css/mainLayout3.css">
+	<link rel="stylesheet" type="text/css" href="../css/mainLayout.css">
 	<script>
 		function click1(){
 			location.href="memberJoin.jsp?mem=0";
