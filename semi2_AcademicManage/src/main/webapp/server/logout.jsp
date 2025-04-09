@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%
 	session.invalidate();
-	response.sendRedirect("/semi2_AcademicManage/server/login.jsp");
+	response.sendRedirect("/semi2_AcademicManage/server/index.jsp");
 %>
 
 

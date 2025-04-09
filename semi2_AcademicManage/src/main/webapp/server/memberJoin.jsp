@@ -85,9 +85,8 @@
 		h2{
       	  	color:#567AF0;
 		}
-		section{
-			width:400px;
-			margin:0 auto;
+ 		section{
+			margin-top:100px;
 		}
 		li{
 			list-style-type:none;
@@ -103,12 +102,12 @@
 	</style>
 <body>
 <%@ include file="/header/serverHeader.jsp" %>
-	<section>
+	<section class="all-section2">
 		<article>
 			<h2>
 				회원가입
 			</h2>
-			<form name="mj" action="memberJoin_ok.jsp" onsubmit="return valid()">
+			<form name="mj" action="memberJoin_ok.jsp?" onsubmit="return valid()">
 				<ul>
 					<%
 						String mem = request.getParameter("mem");

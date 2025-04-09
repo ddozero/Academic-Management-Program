@@ -33,7 +33,7 @@
 </style>
 <div class="left">
   <h2>---로그---</h2>
-  <button>회원가입</button>
+  <button onclick='location.href="memberJoin.jsp?mem=0"'>회원가입</button>
   <p>Tel. 123-1234<br>
      E-mail. e@naver.com
   </p>
