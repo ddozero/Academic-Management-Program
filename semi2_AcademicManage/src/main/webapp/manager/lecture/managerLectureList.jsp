@@ -7,9 +7,6 @@
 <%
 request.setCharacterEncoding("utf-8");
 %>
-<%
-String classidx = request.getParameter("midx");
-%>
 
 <!DOCTYPE html>
 <html>
@@ -106,6 +103,7 @@ String classidx = request.getParameter("midx");
 			
 			<tbody>
 			<%
+			String classidx = request.getParameter("classidx");
 
 			String fkey = request.getParameter("fkey");
 			String fvalue = request.getParameter("fvalue");
@@ -168,7 +166,7 @@ String classidx = request.getParameter("midx");
     %>
     
 		<jsp:include page="managerLectureList_ok.jsp">
-			<jsp:param name="classidx" value="<%=classidx %>"/>
+			<jsp:param name="classidx" value="<%=classidx%>"/>
 		</jsp:include>
    	<%
     }

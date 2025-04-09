@@ -50,6 +50,7 @@ request.setCharacterEncoding("utf-8");
 .image-placeholder img {
     width: 150px;
     height: 200px;
+    margin-top:20px;
     object-fit: cover;
     border: 1px solid #ddd; 
     border: 1px solid #ddd; 
@@ -65,7 +66,7 @@ request.setCharacterEncoding("utf-8");
 	String idx_s = request.getParameter("idx");
 
 	if(idx_s==null||idx_s.equals("")){
-		idx_s="123456";
+		idx_s="0";
 	}
 	int idx = Integer.parseInt(idx_s);
 	System.out.println("idx: " + idx);
@@ -85,9 +86,6 @@ request.setCharacterEncoding("utf-8");
 %>
 
 
-
-
-
 <body>
 <%@include file="/header/managerHeader.jsp"%>
 
@@ -96,7 +94,7 @@ request.setCharacterEncoding("utf-8");
   		<div class = "info-box">
             <!-- 이미지-->
             <div class="image-placeholder">
-                <img src="/semi2_AcademicManage/img/studenttest.jpg" alt="학생정보테스트용">
+                <img src=<%=dto.getImgaddr() %> alt="학생정보테스트용">
             </div>
   		
   			<table class = "table-add">
@@ -150,9 +148,6 @@ request.setCharacterEncoding("utf-8");
   		</table>
 	</div>
 </form>
- 
-
-
 
 <%@include file="/header/footer.jsp"%>
 </body>

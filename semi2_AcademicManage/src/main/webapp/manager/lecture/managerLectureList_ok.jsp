@@ -60,7 +60,7 @@ request.setCharacterEncoding("utf-8");
 	%>
 	<script>
 		window.alert("세부 강좌 등록 준비중입니다.")
-		location.href = '/semi2_AcademicManage/manager/student/mstudentList.jsp';
+		location.href = '/semi2_AcademicManage/manager/lecture/managerLectureList.jsp';
 	</script>
 	<%
 	return;
