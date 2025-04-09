@@ -60,7 +60,7 @@ request.setCharacterEncoding("utf-8");
 	%>
 	<script>
 		window.alert("세부 강좌 등록 준비중입니다.")
-		location.href = '/semi2_AcademicManage/manager/lecture/managerLectureList.jsp';
+		location.href = '/semi2_AcademicManage/manager/student/mstudentList.jsp';
 	</script>
 	<%
 	return;
@@ -71,7 +71,7 @@ request.setCharacterEncoding("utf-8");
   <%@include file="/header/managerHeader.jsp"%>
 
     <form name="mnagerLectureList">
-      <table class = "table-add" border = "1px">
+      <table class = "table-add">
         <tr>
           <th class="header-style">강좌명</th>
           <td class="cell-data" colspan="3"><%=dto.getClassname() %></td>

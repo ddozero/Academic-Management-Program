@@ -41,17 +41,6 @@ String classidx = request.getParameter("classidx");
     text-align: center;
 }
 
-.table-info td:nth-child(2), .table-info th:nth-child(2) { /*강좌명 너비 조정*/
-	width: 350px; 
-	word-break: break-word;
-}
-
-
-.table-info td:nth-child(9), .table-info th:nth-child(9) { /*수정 너비 조정*/
-	width: 80px; 
-	word-break: break-word;
-}
-
 .table-info td form input[type="submit"]{
 	background: #fff;
 	color: #777777;
@@ -75,6 +64,7 @@ String classidx = request.getParameter("classidx");
 	font-size: 16px;
 	color: #333;
 }
+
 </style>
 
 <link rel="stylesheet" type="text/css" href="/semi2_AcademicManage/css/mainLayout.css">
@@ -164,8 +154,7 @@ String classidx = request.getParameter("classidx");
 	</article>
 </section>
 
-    <br>
-      <div class = "all-title2">
+    <div class = "all-title2">
   		<h2>개설 강좌 세부 정보</h2>
  	</div>
  	
@@ -177,6 +166,7 @@ String classidx = request.getParameter("classidx");
     <%
     }else{
     %>
+    
 		<jsp:include page="managerLectureList_ok.jsp">
 			<jsp:param name="classidx" value="<%=classidx %>"/>
 		</jsp:include>
