@@ -6,31 +6,28 @@ MemberDTO smdto=(MemberDTO)session.getAttribute("smdto");
 String sname = smdto.getName();	
 %> --%>
 <header>
-	<div class="container">
-		<h1>
-			<a href="#"> SYS Academy </a>
-		</h1>
-		<div class="user-group">
-			<h4>관리자</h4>
-		</div>
-		<div class="id-group">
-<%--   			<%
-				if(sname != null){
-			%>
-				<span><%=sname %>님</span>
-				<a href="/semi2_AcademicManage/server/logout.jsp">로그아웃</a>
-			<%
-				}
-			%> --%>
-		</div>
-	</div>
+	<!-- 여기부터 추가 -->
+  <div class="container">
+    <div class="left-group">
+      <h1><a href="#">SYS Academy</a></h1>
+      <div class="user-group">
+        <h4>관리자</h4>
+      </div>
+    </div>
+    <div class="right-group">
+      <div class="id-group">
+        <a href="#">로그인</a>
+        <a href="#">회원가입</a>
+      </div>
+    </div>
+  </div>
 
 	<nav id="aside">
 		<ul class="title-1">
 			<li class="subt">회원 관리</li>
-			<li><a href="/semi2_AcademicManage/server/memberAccept.jsp" class="active">회원 승인</a></li>
-			<li><a href="/semi2_AcademicManage/server/main.jsp" class="active">매니저 관리</a></li>
-			<li><a href="#">강사 조회</a></li>
+			<li><a href="/semi2_AcademicManage/server/memberAccept.jsp">회원 승인</a></li>
+			<li><a href="/semi2_AcademicManage/server/addManager.jsp?sort=4" >매니저 관리</a></li>
+			<li><a href="#"class="active">강사 조회</a></li>
 			<li><a href="#">수강생 조회</a></li>
 		</ul>
 

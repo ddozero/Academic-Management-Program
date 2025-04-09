@@ -9,14 +9,14 @@ public class MemberDTO {
 	private String sex;
 	private String id;
 	private String pwd;
-	private String tel;
+	private String tel; 
 	private String email;
 	private String addr;
 	private String birth;
 	private int appro;
 	//매니저&강사세부사항
 	private int m3idx;
-	private int classidx;
+	private int classidx; 
 	private int groupidx;
 	private String edu2;
 	private String career;

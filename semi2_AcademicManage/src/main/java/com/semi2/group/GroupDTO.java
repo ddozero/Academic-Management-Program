@@ -8,6 +8,13 @@ public class GroupDTO {
 	private String mname;
 	private String tname;
 	private int scount;
+	//비품 테이블
+	private int itemidx;
+	private int groupidx;
+	private String itemname;
+	private int itemcose;
+	private int itemcount;
+	
 	
 	public GroupDTO() {
 		

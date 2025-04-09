@@ -36,7 +36,7 @@
 		   %>
 		   		<script>
 		   			window.alert('<%=mdto2.getName()%>님 환영합니다.');
-		   			location.href='main.jsp';
+		   			location.href='serverMain.jsp';
 		   		</script>
 		   <%
 	}

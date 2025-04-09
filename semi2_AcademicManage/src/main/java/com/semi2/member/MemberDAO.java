@@ -46,7 +46,7 @@ public class MemberDAO {
 		try {
 			conn = com.semi2.db.Semi2DB.getConn();
 			
-			String sql = "insert into MEMBER1 values(sq_MEMBER1_idx.nextval, ?, ?, ?, ?, ?, ?, ?, ?, to_date(?,'yyyy-mm-dd'), 0)";
+			String sql = "insert into MEMBER1 values(sq_MEMBER1_idx.nextval, ?, ?, ?, ?, ?, ?, ?, ?, to_date(?,'yyyy-mm-dd'), ?)";
 			
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, dto.getMidx());		
@@ -58,6 +58,7 @@ public class MemberDAO {
 			ps.setString(7, dto.getEmail());		
 			ps.setString(8, dto.getAddr());
 			ps.setString(9, dto.getBirth());
+			ps.setInt(10, dto.getAppro());
 			int count = ps.executeUpdate();
 			return count;
 		}catch(Exception e) {
@@ -141,9 +142,11 @@ public class MemberDAO {
 				String sql = "select * from MEMBER1";
 				
 				if(sort.equals("1")) {
-					sql += " order by appro asc";
+					sql += " order by appro asc,idx asc";
+				}else if(sort.equals("4")){
+					sql += " where midx = 4 order by idx asc";
 				}else {
-					sql += "";
+					sql += " order by idx asc";
 				}
 				
 				ps = conn.prepareStatement(sql);
@@ -194,7 +197,7 @@ public class MemberDAO {
 			}
 		}
 	   
-	   //* 승인 처리 */
+	   //* 회원별 승인 처리 */
 	   public int updateAcc(int idx) {
 			try {
 				conn = com.semi2.db.Semi2DB.getConn();

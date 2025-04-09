@@ -11,7 +11,7 @@
 <style>
 	body {
 		background-color : #E9ECF4;
-		padding-top : 100px;
+		padding-top : 50px;
 	}
 	.inner {
 		background-color : #ffffff;
@@ -19,7 +19,7 @@
 		border-radius : 8px;
 	}
 	h2 {
-		margin-bottom : 10px;
+		margin-bottom : 15px;
 	}
 	table {
 		background-color : #EEEEEE;

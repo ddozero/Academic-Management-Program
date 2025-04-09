@@ -110,10 +110,23 @@
 			</h2>
 			<form name="mj" action="memberJoin_ok.jsp" onsubmit="return valid()">
 				<ul>
+					<%
+						String mem = request.getParameter("mem");
+						if(mem.equals("0")){
+							%>
 					<li>
 						<input type="radio" name="midx" value="2" checked>학생
 						<input type="radio" name="midx" value="3">강사
 					</li>
+							<%
+						}else{
+							%>
+					<li>
+						<input type=hidden name="midx" value="4">
+					</li>
+							<%
+						}
+					%>
 					<li>
 						<label>이름</label>
 					</li>
@@ -171,6 +184,23 @@
 					<li>
 						<input type="submit" value="회원가입" class="button">
 					</li>
+					<% 
+						if(mem.equals("0")){
+							%>
+					<li>
+						<input type="hidden" name="appro" value="0">
+					</li>
+							<%
+						}else{
+							%>
+					<li>
+						<input type="hidden" name="appro" value="1">
+						<!-- <input type="hidden" name="comingdate"> -->
+					</li>		
+							<%
+						}
+					%>
+
 					</ul>
 		</form>
 		</article>

@@ -1,0 +1,20 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="../css/mainLayout.css">
+</head>
+<body>
+<%@ include file="/header/mainHeader.jsp" %>
+<section>
+	<article>
+		<%@ include file="/server/index_left_memberJoin.jsp" %>
+		<%@ include file="/server/index_right_login.jsp" %>
+	</article>
+</section>
+<%@ include file="/header/footer.jsp" %>
+</body>
+</html>
