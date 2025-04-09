@@ -2,8 +2,7 @@
     pageEncoding="UTF-8"%>
 	<%@page import="java.util.ArrayList"%>
     <%@page import="com.semi2.member.*" %>
-	<jsp:useBean id="mdao" class="com.semi2.member.MemberDAO"></jsp:useBean>
-	<jsp:useBean id="smdao" class="com.semi2.member.SmanagerDAO"></jsp:useBean>
+	<jsp:useBean id="mdao" class="com.semi2.member.AMemberDAO"></jsp:useBean>
 <!DOCTYPE html>
 <html>
 <head>
@@ -211,7 +210,7 @@
 	int idx = Integer.parseInt(idx_s);
 	
 	ArrayList<MemberDTO> arr = mdao.memSelect(sort);
-	MemberDTO dto2 = smdao.managerFind(idx);
+	MemberDTO dto2 = mdao.managerFind(idx);
 %>
 <body>
 <%@ include file="/header/serverHeader.jsp" %>

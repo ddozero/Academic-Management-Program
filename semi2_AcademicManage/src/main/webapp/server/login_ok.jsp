@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.semi2.member.*" %>
 
-<jsp:useBean id="mdao" class="com.semi2.member.MemberDAO" />
+<jsp:useBean id="mdao" class="com.semi2.member.AMemberDAO" />
 
 <%
 	String userid = request.getParameter("userid");

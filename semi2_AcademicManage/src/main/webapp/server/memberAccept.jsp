@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
 <%@ page import="com.semi2.*" %>
-<jsp:useBean id="mdao" class="com.semi2.member.MemberDAO"></jsp:useBean>
+<jsp:useBean id="mdao" class="com.semi2.member.AMemberDAO"></jsp:useBean>
 <!DOCTYPE html>
 <html>
 <head>

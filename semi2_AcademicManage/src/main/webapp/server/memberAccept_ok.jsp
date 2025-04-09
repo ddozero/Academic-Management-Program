@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
     <%@page import="com.semi2.member.*"%>
 <%
-	MemberDAO mdao = new MemberDAO();
+
+	AMemberDAO mdao = new AMemberDAO();
 
 	String idx_s = request.getParameter("idx");
 	System.out.println("idx_s는"+idx_s);
