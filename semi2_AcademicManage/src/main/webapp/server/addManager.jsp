@@ -214,8 +214,8 @@
 	MemberDTO dto2 = smdao.managerFind(idx);
 %>
 <body>
-<%-- <%@ include file="/header/serverHeader.jsp" %> --%>
-		<section>
+<%@ include file="/header/serverHeader.jsp" %>
+		<section class="all-section1">
 			<h2>매니저 관리</h2>
 			<article>
 				<div class="inner">

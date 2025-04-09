@@ -10,7 +10,6 @@
 <meta charset="UTF-8">
 <style>
 	body {
-		background-color : #E9ECF4;
 		padding-top : 50px;
 	}
 	.inner {
@@ -98,7 +97,7 @@
 %>
 <body>
 	<%@ include file="/header/serverHeader.jsp" %>
-	<section>
+	<section class="all-section1">
 		<article>
 			<h2>회원 승인 목록</h2>
 			<div class="inner">
