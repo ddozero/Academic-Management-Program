@@ -7,7 +7,7 @@ request.setCharacterEncoding("UTF-8");
 
 <jsp:useBean id="ldto" class="com.semi2.lecture.ManagerLectureDTO"></jsp:useBean>
 <jsp:setProperty property ="*" name = "ldto"/>
-<jsp:useBean id="mldao" class="com.semi2.lecture.ManagerLectureDAO"></jsp:useBean>
+<jsp:useBean id="mldao" class="com.semi2.lecture.MLectureDAO"></jsp:useBean>
 
 
 <%

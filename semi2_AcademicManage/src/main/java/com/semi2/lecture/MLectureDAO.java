@@ -5,12 +5,12 @@ import java.util.*;
 import com.semi2.group.GroupDTO;
 import com.semi2.member.*;
 
-public class ManagerLectureDAO {
+public class MLectureDAO {
 	private Connection conn;
 	private PreparedStatement ps;
 	private ResultSet rs;
 
-	public ManagerLectureDAO() {
+	public MLectureDAO() {
 
 	}
 

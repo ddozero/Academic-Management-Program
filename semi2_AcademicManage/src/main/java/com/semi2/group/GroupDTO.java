@@ -20,7 +20,19 @@ public class GroupDTO {
 		
 	}
 
-
+	
+	//반 테이블 생성자
+	public GroupDTO(int groupidx, int idx, String groupname, String mname, String tname, int scount) {
+		super();
+		this.groupidx = groupidx;
+		this.idx = idx;
+		this.groupname = groupname;
+		this.mname = mname;
+		this.tname = tname;
+		this.scount = scount;
+	}
+	
+	//비품 테이블 생성자
 	public GroupDTO(int groupidx, int idx, String groupname, String mname, String tname, int scount, int itemidx,
 			String itemname, int itemcose, int itemcount) {
 		super();
@@ -35,6 +47,8 @@ public class GroupDTO {
 		this.itemcose = itemcose;
 		this.itemcount = itemcount;
 	}
+
+
 
 
 	public int getGroupidx() {

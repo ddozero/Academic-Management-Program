@@ -16,22 +16,10 @@ MemberDTO dto = dao.getTeacherInfo(id, midx);
 <head>
 <meta charset="UTF-8">
 <title>내 정보 수정</title>
-<link rel="stylesheet" type="text/css" href="../css/mainLayout.css">
+<link rel="stylesheet" type="text/css" href="/semi2_AcademicManage/css/mainLayout.css">
 <style>
-body {
-	font-family: sans-serif;
-	background-color: #f0f0f0;
-	padding: 30px;
-}
 
-.wrapper {
-	max-width: 800px;
-	margin: 0 auto;
-	background-color: white;
-	border-radius: 10px;
-	padding: 30px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-}
+
 
 .title {
 	font-size: 20px;
@@ -108,12 +96,28 @@ body {
 	margin-left: 10px;
 	cursor: pointer;
 }
+
+.all-section-tinfoup{
+		margin-left: 320px; 
+		background-color: #ffffff;
+		padding: 20px 40px;
+		border-radius: 10px;
+		max-width: calc(100% - 360px);
+		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+		max-height: 1000px; /* 높이 설정 */
+  		overflow-y: auto; /* 세로 스크롤 추가 */
+}
+
 </style>
 </head>
 <body>
 	<%@include file="../header/teacherHeader.jsp"%>
-	<section>
-		<form action="./teacherInfoUpdate_ok.jsp" method="post">
+	
+	<div class = "all-title1">
+  <h2>내정보 수정</h2>
+  </div>
+  <section class= "all-section-tinfoup">
+	<form action="./teacherInfoUpdate_ok.jsp" method="post">
 			<input type="hidden" name="idx" value="<%= dto.getIdx() %>">
 			<div class="wrapper">
 				<div class="title"><%=dto.getName() %>

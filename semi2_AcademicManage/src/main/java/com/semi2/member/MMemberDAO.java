@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.sql.Date;
 
-public class MteacherDAO {
+public class MMemberDAO {
 
 	private Connection conn;
 	private PreparedStatement ps;

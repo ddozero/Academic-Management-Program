@@ -7,7 +7,7 @@
 
 <jsp:useBean id="gdto" class="com.semi2.group.GroupDTO"></jsp:useBean>
 <jsp:useBean id="mdto" class="com.semi2.lecture.ManagerLectureDTO"></jsp:useBean>
-<jsp:useBean id="mldao" class="com.semi2.lecture.ManagerLectureDAO"></jsp:useBean>
+<jsp:useBean id="mldao" class="com.semi2.lecture.MLectureDAO"></jsp:useBean>
 <!DOCTYPE html>
 <html>
 <head>

@@ -87,6 +87,19 @@ th, td {
 th {
 	background-color: #f5f5f5;
 }
+
+.all-section-tat{
+		margin-left: 320px; 
+		background-color: #ffffff;
+		padding: 20px 40px;
+		height : 700px;
+		border-radius: 10px;
+		max-width: calc(100% - 360px);
+		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+		max-height: 800px; /* 높이 설정 */
+  		overflow-y: auto; /* 세로 스크롤 추가 */
+}
+
 </style>
 <script>
     function noticeTime() {
@@ -118,7 +131,7 @@ th {
 			강사님 출/퇴근 관리
 		</h2>
 	</div>
-	<section class="all-section1">
+	<section class="all-section-tat">
 		<div class="clock-box">
 			<div class="time">
 				현재 시간: <span id="timer"></span>

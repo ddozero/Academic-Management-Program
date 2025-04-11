@@ -3,7 +3,7 @@
 <%@page import = "java.util.*" %>
 <%@page import = "com.semi2.lecture.*" %>
 
-<jsp:useBean id="mldao" class="com.semi2.lecture.ManagerLectureDAO"></jsp:useBean>
+<jsp:useBean id="mldao" class="com.semi2.lecture.MLectureDAO"></jsp:useBean>
 <!DOCTYPE html>
 <html>
 <head>

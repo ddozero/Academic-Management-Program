@@ -14,7 +14,7 @@ MemberDTO dto = dao.getTeacherInfo(id, midx);
 <head>
 <meta charset="UTF-8">
 <title>내 정보 보기</title>
-<link rel="stylesheet" type = "text/css" href="/semiTest/css/mainLayout.css"> 
+<link rel="stylesheet" type="text/css" href="/semi2_AcademicManage/css/mainLayout.css">
    <style>
     .title {
       font-size: 20px;
@@ -71,11 +71,32 @@ MemberDTO dto = dao.getTeacherInfo(id, midx);
       margin-left: 10px;
       cursor: pointer;
     }
+    
+    .all-section-tinfo {
+		margin-left: 320px; 
+		background-color: #ffffff;
+		padding: 20px 40px;
+		border-radius: 10px;
+		max-width: calc(100% - 360px);
+		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+		max-height: 1000px; /* 높이 설정 */
+  		overflow-y: auto; /* 세로 스크롤 추가 */
+	}
+	
   </style>
 </head>
+
+
 <body>
 <%@include file = "../header/teacherHeader.jsp" %>
-<section class = "all-section1">
+
+
+
+ <div class = "all-title1">
+  <h2>내 정보 보기</h2>
+  </div>
+  
+  <section class= "all-section-tinfo">
 <div>
   <div class="title"><%=dto.getName() %> 강사님 정보</div>
   
@@ -129,6 +150,10 @@ MemberDTO dto = dao.getTeacherInfo(id, midx);
   </div>
 </div>
 </section>
+
+
+
+
 <%@include file = "../header/footer.jsp" %>
 </body>
 </html>

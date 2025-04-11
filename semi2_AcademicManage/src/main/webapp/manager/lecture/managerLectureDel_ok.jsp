@@ -8,7 +8,7 @@ request.setCharacterEncoding("UTF-8");
 <%@ page import = "com.semi2.lecture.*"%>
 <jsp:useBean id="mldto" class="com.semi2.lecture.ManagerLectureDTO"></jsp:useBean>
 <jsp:setProperty property="*" name="mldto"/>
-<jsp:useBean id="mldao" class="com.semi2.lecture.ManagerLectureDAO"></jsp:useBean>
+<jsp:useBean id="mldao" class="com.semi2.lecture.MLectureDAO"></jsp:useBean>
 
 <%
 int classidx = Integer.parseInt(request.getParameter("classidx"));

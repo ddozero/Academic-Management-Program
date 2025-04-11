@@ -4,7 +4,7 @@
 <%@ page import = "java.util.*" %>
 <%@ page import = "com.semi2.member.*" %>
 
-<jsp:useBean id="msdao" class="com.semi2.member.MteacherDAO"></jsp:useBean>
+<jsp:useBean id="msdao" class="com.semi2.member.MMemberDAO"></jsp:useBean>
 <%
 request.setCharacterEncoding("utf-8");
 %>
