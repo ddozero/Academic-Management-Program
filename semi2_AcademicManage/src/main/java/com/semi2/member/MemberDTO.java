@@ -56,8 +56,53 @@ public class MemberDTO {
 	public void setEnddate(Date enddate) {
 		this.enddate = enddate;
 	}
-
 	
+	//0410추가 (매니저) 강사 세부정보 조회 생성자
+	public MemberDTO(int idx, int midx, String name, String sex, String tel, String email, String addr, String birth,
+			int appro, int m3idx, int classidx, String edu2, String career, Date comingdate, String groupname,
+			String memo, String seleclass, Date enddate, String imgaddr) {
+		super();
+		this.idx = idx;
+		this.midx = midx;
+		this.name = name;
+		this.sex = sex;
+		this.tel = tel;
+		this.email = email;
+		this.addr = addr;
+		this.birth = birth;
+		this.appro = appro;
+		this.m3idx = m3idx;
+		this.classidx = classidx;
+		this.edu2 = edu2;
+		this.career = career;
+		this.comingdate = comingdate;
+		this.groupname = groupname;
+		this.memo = memo;
+		this.seleclass = seleclass;
+		this.enddate = enddate;
+		this.imgaddr = imgaddr;
+	}
+
+
+	//0410추가 (매니저) 강사 목록 조회 생성자
+	public MemberDTO(int idx, int midx, String name, String sex, String tel, String email, String addr, String birth,
+			int appro, int m3idx, Date comingdate) {
+		super();
+		this.idx = idx;
+		this.midx = midx;
+		this.name = name;
+		this.sex = sex;
+		this.tel = tel;
+		this.email = email;
+		this.addr = addr;
+		this.birth = birth;
+		this.appro = appro;
+		this.m3idx = m3idx;
+		this.comingdate = comingdate;
+	}
+	
+
+
 	//(매니저)수강생 세부 정보 출력 생성자
 	public MemberDTO(int midx, int idx, String name, String sex, String tel, String email, String addr, String birth,
 			String career, Date comingdate, String groupname, String memo, String imgaddr, String edu, String classname,
@@ -80,26 +125,27 @@ public class MemberDTO {
 		this.classname = classname;
 		this.enddate = enddate;
 	}
-	
-	
+
+
+
+
+	//(매니저)수강생 목록 및 강사정보 출력 생성자
+	public MemberDTO(int idx, String name, String sex, String tel, String email, String birth, String addr, int m2idx) {
+		super();
+		this.idx = idx;
+		this.name = name;
+		this.sex = sex;
+		this.tel = tel;
+		this.email = email;
+		this.birth = birth;
+		this.addr = addr;
+		this.m2idx = m2idx;
+	}
+
 	public MemberDTO() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	  
-   //(매니저)수강생 목록 출력 생성자
-   public MemberDTO(int idx, String name, String sex, String tel, String email, String birth, String addr, int m2idx) {
-	super();
-	this.idx = idx;
-	this.name = name;
-	this.sex = sex;
-	this.tel = tel;
-	this.email = email;
-	this.birth = birth;
-	this.addr = addr;
-	this.m2idx = m2idx;
-}
-
 
 
 //회원테이블(MEMBER1)생성자
