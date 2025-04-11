@@ -1,9 +1,10 @@
+<%@page import="java.lang.reflect.Array"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "java.util.*" %>
 <%@ page import = "com.semi2.member.*" %>
 
-<jsp:useBean id="msdao" class="com.semi2.member.MstudentDAO"></jsp:useBean>
+<jsp:useBean id="msdao" class="com.semi2.member.MteacherDAO"></jsp:useBean>
 <%
 request.setCharacterEncoding("utf-8");
 %>
@@ -55,7 +56,7 @@ request.setCharacterEncoding("utf-8");
   	color: #567AF0; /* 텍스트 색상 변경 */
 }
 
-.list-alert{
+.List-alert{
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -66,22 +67,19 @@ request.setCharacterEncoding("utf-8");
 }
 
 </style>
-
 </head>
 
 
 <body>
 
-
-
 <div class = "all-title1">
-  <h2>수강생 정보 관리</h2>
+  <h2>강사 정보 관리</h2>
 </div>
  <section class= "all-section1">
   	<%@include file="/header/managerHeader.jsp"%>
 
     <article>
-		<form name="mstudentFind" method="post" action="mstudentList.jsp">
+		<form name="mteaherFind" method="post" action="mteaherList.jsp">
 			<select class= "se-Find" name = "fkey">
 				<option value = "">전체</option>
 				<option value = "classidx">이름</option>
@@ -100,6 +98,7 @@ request.setCharacterEncoding("utf-8");
 					<th>생년월일</th>
 					<th>연락처</th>
 					<th>이메일</th>
+					<th>입사연도</th>
 					<th>세부정보</th>
 				</tr>
 			</thead>
@@ -107,26 +106,27 @@ request.setCharacterEncoding("utf-8");
 			<tbody>
 				<%
 				String idx = request.getParameter("idx");
-				ArrayList<MemberDTO> arr = msdao.mstudentInfo(2);
+				ArrayList<MemberDTO> arr = msdao.mteacherList(3);
 				
 				if(arr==null||arr.size()==0){
 				%>
 				<tr>
-					<td colspan = "7"> 등록된 수강생이 없습니다.</td>
-				</tr>					
+					<td colspan = "7"> 등록된 강사가 없습니다. </td>
+				</tr>	
 				<%
 				}else{
 					for(int i = 0; i<arr.size(); i++){
-				%>	
+				%>
 				<tr>
-					<td><%=arr.get(i).getM2idx() %></td>
+					<td><%=arr.get(i).getM3idx() %></td>
 					<td><%=arr.get(i).getName() %></td>
 					<td><%=arr.get(i).getSex() %></td>
 					<td><%=arr.get(i).getBirth() %></td>
 					<td><%=arr.get(i).getTel() %></td>
 					<td><%=arr.get(i).getEmail() %></td>
+					<td><%=arr.get(i).getComingdate() %>
 					<td>
-					<form name="managerstudentList" method="post" action="/semi2_AcademicManage/manager/student/mstudentList.jsp">
+					<form name="mteacherList" method="post" action="/semi2_AcademicManage/manager/teacher/mteacherList.jsp">
 					<input type="hidden" name="idx" value="<%=arr.get(i).getIdx()%>">
 					<input type="submit" value="조회">
 					</form>
@@ -136,30 +136,30 @@ request.setCharacterEncoding("utf-8");
 					}
 				}
 				%>
+		
 			</tbody>
 		</table>
 	</article>
 </section>
 
-  
+ 
 <div class = "all-title2">
-		<h2>수강생 정보</h2>
+		<h2>강사 정보</h2>
 	</div>
 	<section class= "all-section2">
-	
-	 <%
-    if(idx == null||idx.equals("")){
-    %>
-    	<p class= "list-alert">학생 세부정보를 확인하시려면 '보기' 버튼을 클릭하세요.</p>
-    <%
-    }else{
-    %>
-		<jsp:include page="mstudentList_ok.jsp">
+	<%
+	if(idx==null||idx.equals("")){
+	%>
+		<p class = "List-alert">강사 세부정보를 확인하시려면 '보기' 버튼을 클릭하세요.</p>
+	<%
+	}else{
+	%>	
+		<jsp:include page="mteacherList_ok.jsp">
 			<jsp:param name="idx" value="<%=idx%>"/>
 		</jsp:include>
-	<%
-    }
-	%>	
+	<% 
+	}
+	%>
 	</section>
 
 <%@include file="/header/footer.jsp"%>

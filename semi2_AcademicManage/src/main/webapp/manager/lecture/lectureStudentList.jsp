@@ -7,18 +7,16 @@
 <%
 request.setCharacterEncoding("utf-8");
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>SYS Academy</title>
-
 <style>
 .table-info {
     width: 100%;
     border-collapse: collapse;
-    margin: 20px 0;
+    margin: 10px 0;
     font-size: 14px;
     text-align: left;
 }
@@ -52,7 +50,7 @@ request.setCharacterEncoding("utf-8");
   	color: #567AF0; /* 텍스트 색상 변경 */
 }
 
-.list-alert{
+.LectureList-alert{
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -89,7 +87,7 @@ form[name="lectureFind"] {
 .se-select { 
     background: #fff;
     color: #333;
-    border: 1px solid #d6d6d6; 
+    border: 1px solid #d9d9d9; 
     border-radius: 5px;
     width: 80px;
     height: 28px;
@@ -109,17 +107,12 @@ form[name="lectureFind"] {
     color: #333;
     border: 1px solid #d6d6d6; 
     border-radius: 5px;
-    padding : 5pxl=l
 }
-
 
 </style>
 
 <link rel="stylesheet" type="text/css" href="/semi2_AcademicManage/css/mainLayout.css">
 </head>
-
-
-
 <body>
 <%@include file="/header/managerHeader.jsp"%>
 <div class = "all-title1">
@@ -127,7 +120,7 @@ form[name="lectureFind"] {
 </div>
 <section class="all-section1">
 	<article>
-		<form class="se-lectureFind" name="lectureFind" method="post" action="managerLectureList.jsp">
+		<form class="se-lectureFind" name="lectureFind" method="post" action="lectureStudentList.jsp">
 			<select class = "se-select" name = "fkey">
 				<option value = "">전체</option>
 				<option value = "classidx">강좌번호</option>
@@ -148,7 +141,7 @@ form[name="lectureFind"] {
 					<th>개강날짜</th>
 					<th>종강날짜</th>
 					<th>총수강일</th>
-					<th>세부정보</th>
+					<th>현황</th>
 				</tr>
 			</thead>
 			
@@ -188,7 +181,7 @@ form[name="lectureFind"] {
 						<td><%=arr.get(i).getEnddate() %></td>
 						<td><%=arr.get(i).getEntiredate() %></td>				
 						<td>	
-						<form name="managerLectureList" method="post" action="/semi2_AcademicManage/manager/lecture/managerLectureList.jsp">
+						<form name="lectureStudentList" method="post" action="/semi2_AcademicManage/manager/lecture/lectureStudentList.jsp">
 						<input type="hidden" name="classidx" value="<%=arr.get(i).getClassidx()%>">
 						<input type="submit" value="보기">
 						</form>
@@ -203,28 +196,13 @@ form[name="lectureFind"] {
 	</article>
 </section>
 
-    <div class = "all-title2">
-  		<h2>개설 강좌 세부 정보</h2>
+ <div class = "all-title2">
+  		<h2>강좌별 수강생 현황</h2>
  	</div>
- 	
-<section class = "all-section2">
-    <%
-    if(classidx == null||classidx.equals("")){
-    %>
-    	<p class= "list-alert">강좌 세부정보를 확인하시려면 '보기' 버튼을 클릭하세요.</p>
-    <%
-    }else{
-    %>
-    
-		<jsp:include page="managerLectureList_ok.jsp">
-			<jsp:param name="classidx" value="<%=classidx%>"/>
-		</jsp:include>
-   	<%
-    }
-    %>
-</section>
+    <section class = "all-section2">
+      <jsp:include page="lectureStudentList_ok.jsp"></jsp:include>
+    </section>
 <%@include file="/header/footer.jsp"%>
-
 
 </body>
 </html>

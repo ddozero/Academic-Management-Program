@@ -28,15 +28,15 @@
 
 		<ul class="title-2">
 			<li class="subt">강사</li>
-			<li><a href="#">강사 정보</a></li>
-			<li><a href="#">강사 근태 관리</a></li>
+			<li><a href="/semi2_AcademicManage/manager/teacher/mteacherList.jsp" class="active">강사 정보</a></li>
+			<li><a href="/semi2_AcademicManage/manager/teacher/mteacherAttendList.jsp">강사 근태 관리</a></li>
 		</ul>
 
 		<ul class="title-3">
 			<li class="subt">강좌 관리</li>
 			<li><a href="/semi2_AcademicManage/manager/lecture/managerLectureAdd.jsp">강좌 개설</a></li>
 			<li><a href="/semi2_AcademicManage/manager/lecture/managerLectureList.jsp">강좌 세부정보</a></li>
-			<li><a href="#">강좌 현황</a></li>
+			<li><a href="/semi2_AcademicManage/manager/lecture/lectureStudentList.jsp">강좌별 수강생 현황</a></li>
 		</ul>
 
 		<ul class="title-4">

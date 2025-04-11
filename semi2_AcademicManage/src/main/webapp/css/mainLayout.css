@@ -51,6 +51,21 @@
 	  font-size: 15px;
 	  color : #333333;
 	}
+	
+	.all-section0 {
+		margin-left: 320px;
+		display: flex;
+		justify-content: center;
+		padding: 20px;
+		background-color: #CBD7FF;
+		border-radius: 10px;
+		width: calc(100% - 360px);
+		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+		margin-bottom: 10px;
+		border: 1px solid #567AF0;
+		flex-wrap: wrap;
+		box-sizing: border-box;
+	}
 
     .all-section1 {
 		margin-left: 320px; 
