@@ -1,35 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
-<%
-	String sname = (String)session.getAttribute("sname");
-%>
 
+<%
+String sname = (String) session.getAttribute("sname");
+%>
 <header>
 	<div class="container">
-		<h1>
-			<a href="#"> SYS Academy </a>
-		</h1>
-		<div class="user-group">
-			<h4>강사</h4>
+		<div class="left-group">
+			<h1>
+				<a href="#">SYS Academy</a>
+			</h1>
+			<div class="user-group">
+				<h4>매니저</h4>
+			</div>
 		</div>
-		<div class="id-group">
-			<%
-				if(sname != null){
-			%>
-				<span><%=sname %>님</span>
-				<a href="/semi2_AcademicManage/server/logout.jsp">로그아웃</a>
-			<%
-				}
-			%>
+		<div class="right-group">
+			<div class="id-group">
+				<a href="#">로그인</a> <a href="#">회원가입</a>
+			</div>
 		</div>
 	</div>
 
 	<nav id="aside">
 		<ul class="title-1">
 			<li class="subt">근태 관리</li>
-			<li><a href="/semi2_AcademicManage/teacher/teacherInfo.jsp" class="active">내 정보</a></li>
-			<li><a href="#">출/퇴근 관리</a></li>
+			<li><a href="/semi2_AcademicManage/teacher/teacherInfo.jsp" class="active">내
+					정보</a></li>
+			<li><a href="/semi2_AcademicManage/teacher/teacherAtten.jsp">출/퇴근 관리</a></li>
 		</ul>
 
 		<ul class="title-2">
@@ -45,14 +42,14 @@
 			<li><a href="#">시험 등록</a></li>
 			<li><a href="#">강좌 평가 조회</a></li>
 		</ul>
-		
+
 		<ul class="title-3">
 			<li class="subt">게시판</li>
 			<li><a href="#">공지사항</a></li>
 		</ul>
-		
+
 		<ul class="title-select">
-			<li class="subt-select"><a href = "#">수업용 드라이브</a></li>
+			<li class="subt-select"><a href="#">수업용 드라이브</a></li>
 		</ul>
 
 	</nav>
