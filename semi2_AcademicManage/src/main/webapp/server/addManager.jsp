@@ -8,185 +8,6 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="/semi2_AcademicManage/css/mainLayout.css">
-<style>
-	body {
-		background-color : #E9ECF4;
-		padding-top : 50px;
-	}
-	.inner {
-		background-color : #ffffff;
-		padding : 30px 20px;
-		border-radius : 8px;
-	}
-	h2 {
-		margin-bottom : 15px;
-	}
-	.inner table {
-		background-color : #EEEEEE;
-		padding : 0 10px 10px 10px;
-		width : 100%;
-		border-collapse : collapse;
-		margin-top : 10px;
-		border-right : 4px solid #EEEEEE;
-		border-left : 1px solid #EEEEEE;
-	}
-	.inner thead th {
-		background-color : #EEEEEE;
-		padding : 8px;
-		text-align : center;
-	}
-	tbody tr{
-		cursor: pointer;
-	}
-	.inner tbody td {
-		background-color : #ffffff;
-		border-bottom : 1px solid #ddd;
-		padding : 8px;
-		text-align : center;
-	}
-	.inner input[type="submit"] {
-		background-color : #D8D8D8;
-		border : none;
-		padding : 6px 18px;
-		border-radius : 2px;
-	}
-	.inner input[name="allselect"],
-	input[name="delete"] {
-		background-color : #567AF0;
-		color : white;
-		padding : 6px 18px;
-		border-radius : 2px;
-	}
-	.inner button {
-		background-color : #B5C6FF;
-		border : none;
-		padding : 2px 6px;
-		border-radius : 20px;
-	}
-	.inner select, input[type="text"] {
-		padding : 6px;
-		border : 1px solid #D8D8D8;
-		border-radius : 4px;
-	}
-	.top {
-		overflow : hidden;
-		margin-bottom : 10px;
-	}
-	.left {
-		float: left;
-	}
-	.right{
-		float: right;
-	}
-	.left button {
-		margin-left: 6px;
-	}
-	.right select,
-	.right input,
-	.right button {
-		margin-left: 6px;
-	}
-	.left input[type="button"]{
-	  background: #567AF0;
-	  color: #fff;
-	  border: none;
-	  border-radius: 10px;
-	  width: 80px;
-	  height: 32px;
-	  align-items: center;
-	  cursor: pointer;
-	}
-	input[readonly]{
-		background-color:#eeeeee;
-	}
-	input{
-		text-align:center;
-	}
-</style>
-<style>
-	.inner2 {
-		background-color : #ffffff;
-		padding : 30px 20px;
-		border-radius : 8px;
-		overflow : hidden;
-	}
-	.left2{
-		float:left;
-		border:1px solid black;
-		width:20%;
-	}
-	.left2 div{
-		border:1px solid black;
-		margin:40px;
-		height:150px;
-	}
-	.right2{
-		float:left;
-		border:1px solid black;
-	}
-	.right2 input{
-		border:none;
-	}
-	.right2 table {
-		padding : 0 10px 10px 10px;
-		width : 100%;
-		border-collapse : collapse;
-		margin-top : 10px;
-	}
-	.right2 th {
-		background-color:#eeeeee;
-	    border: 1px solid #ddd;
-		padding : 8px;
-		text-align : center;
-	}
- 	.right2 td {
-		background-color : #ffffff;
-		border: 1px solid #ddd;
-		padding : 8px;
-		text-align : center;
-	}
-/*	.inner2 input[type="submit"] {
-		background-color : #D8D8D8;
-		border : none;
-		padding : 6px 18px;
-		border-radius : 2px;
-	}
-	.inner2 input[name="allselect"],
-	input[name="delete"] {
-		background-color : #567AF0;
-		color : white;
-		padding : 6px 18px;
-		border-radius : 2px;
-	}
-	.inner2 button {
-		background-color : #B5C6FF;
-		border : none;
-		padding : 2px 6px;
-		border-radius : 20px;
-	}
-	.inner2 select, input[type="text"] {
-		padding : 6px;
-		border : 1px solid #D8D8D8;
-		border-radius : 4px;
-	}
-	.left2 button {
-		margin-left: 6px;
-	}
-	.right2 select,
-	.right2 input,
-	.right2 button {
-		margin-left: 6px;
-	}
-	.left2 input[type="button"]{
-	  background: #567AF0;
-	  color: #fff;
-	  border: none;
-	  border-radius: 10px;
-	  width: 80px;
-	  height: 32px;
-	  align-items: center;
-	  cursor: pointer; */
-</style>
 <script>
 	function managerJoin(){
 		location.href="memberJoin.jsp?mem=";
@@ -195,154 +16,204 @@
 		location.href="addManager.jsp?sort=4&idx="+idx;
 	}
 	function deletee(idx){
-		location.href="deleteManager_ok.jsp?idx="+idx;
+		location.href="deleteMember_ok.jsp?idx="+idx;
+	}
+	function memUpdate(idx){
+		location.href="addManager.jsp?sort=4&idx="+idx+"&update=";
+	}
+	function onlyNum(event){
+		if (event.keyCode >= 48 && event.keyCode <= 57){
+			return
+		}
+		event.preventDefault();
 	}
 </script>
+<style>
+.table-info {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 14px;
+    text-align: left;
+}
+.table-info-header th {
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+.table-info td {
+    padding: 3px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+.table-info td form input[type="submit"]{
+	background: #fff;
+	color: #777777;
+	border: 1px solid #d9d9d9;
+	border-radius: 10px;
+	width: 50px;
+	height:28px;
+	cursor: pointer;
+}
+.table-info td input[type="text"]{
+    padding: 3px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+input[readonly] {
+  background-color: #f0f0f0;
+  color: #999;
+  border: 1px solid #ccc;
+  cursor: not-allowed;
+}
+</style>
 <title>Insert title here</title>
 </head>
 <%
 	String sort = request.getParameter("sort");
 
 	String idx_s = request.getParameter("idx");
-	if(idx_s==null){
-		idx_s = "1";
-	}
+	if(idx_s==null)idx_s = "0";
 	int idx = Integer.parseInt(idx_s);
 	
+	String idxx_s = request.getParameter("idxx");
+	int[] idxHidden = mdao.addHiddenIdx(session, idxx_s);
+	
+	String update = request.getParameter("update");
+	if(update==null){
+		update="1";
+	}
+	
 	ArrayList<MemberDTO> arr = mdao.memSelect(sort);
-	MemberDTO dto2 = mdao.managerFind(idx);
+	MemberDTO dto2 = mdao.memberFind(idx);
 %>
 <body>
-<%@ include file="/header/serverHeader.jsp" %>
-		<section class="all-section1">
-			<h2>매니저 관리</h2>
-			<article>
-				<div class="inner">
-					<div class="top">
-						<div class="left">
-							<span><b>매니저 목록</b></span>
-							<input  type="button" value="계정 추가" onclick="managerJoin()">
-							<input  type="button" value="삭제" onclick="deletee('<%=idx%>')">
-						</div>
-						<div class="right">
-						</div>
-					</div>
-					<table>
-						<thead>
-							<tr>
-								<th></th>
-								<th>NO</th>
-								<th>이름</th>
-								<th>아이디</th>
-								<th>연락처</th>
-								<th>이메일</th>
-								<th>담당반</th>
-							</tr>
-						</thead>
-						<tbody>
-						<%
-							if(arr == null || arr.size()==0){
-								%>
-							<tr>
-								<td colspan="7">등록된 매니저 계정이 없습니다.</td>
-							</tr>
-								<%
-							}else{
-								for(int i = 0; i < arr.size(); i++){
-									MemberDTO dto = arr.get(i);
-								%>
-									<tr  onclick="showDetail('<%=dto.getIdx()%>')">
-										<td><input type="checkbox" <%= dto.getIdx() == idx ? "checked" : "" %>></td>
-										<td><%=i+1%></td>
-										<td><%=dto.getName() %></td>
-										<td><%=dto.getId() %></td>
-										<td><%=dto.getTel() %></td>
-										<td><%=dto.getEmail() %></td>
-										<%
-										if(dto.getGroupname()==null){
-										%>
-										<td>[미정]</td>
-										<%
-											}else{
-										%>
-										<td><%=dto.getGroupname() %></td>
-										<%
-											}
-										%>
-									</tr>
-								<%
+	<%@ include file="/header/serverHeader.jsp" %>
+	<div class="all-title1">
+		<h2>매니저 관리</h2>
+	</div>
+	<section class="all-section1">
+		<article>
+			<span><strong>매니저 목록</strong></span>
+			<input type="button" value="계정 추가" onclick="managerJoin()">
+			<input type="button" value="삭제" onclick="deletee('<%=idx%>')">
+			<table class="table-info">
+				<thead class="table-info-header">
+					<tr>
+						<th></th>
+						<th>NO</th>
+						<th>이름</th>
+						<th>아이디</th>
+						<th>연락처</th>
+						<th>이메일</th>
+						<th>담당반</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% if (arr == null || arr.size() == 0) { %>
+					<tr>
+						<td colspan="7">등록된 매니저 계정이 없습니다.</td>
+					</tr>
+					<% } else {
+						for (int i = 0; i < arr.size(); i++) {
+							MemberDTO dto = arr.get(i);
+							boolean hidden = false;
+							if (idxHidden != null && idxHidden[0] != 0) {
+								for (int j = 0; j < idxHidden.length; j++) {
+									if (dto.getIdx() == idxHidden[j]) {
+										hidden = true;
+										break;
+									}
 								}
 							}
-						%>
-						</tbody>
-						<tfoot>
-							<tr>
-								<td colspan="1"></td>
-								<td colspan="5" style="text-align:center;">
-									1 2 3 4 5
-								</td>
-								<td colspan="1" style="text-align:center;"></td>
-							</tr>
-						</tfoot>
-					</table>
-				</div>
-			</article>
-			<br>
+							if (hidden) continue;
+					%>
+					<tr onclick="showDetail('<%=dto.getIdx()%>')" id="check">
+						<td><input type="checkbox" <%= dto.getIdx() == idx ? "checked" : "" %>></td>
+						<td><%=dto.getIdx()%></td>
+						<td><%=dto.getName()%></td>
+						<td><%=dto.getId()%></td>
+						<td><%=dto.getTel()%></td>
+						<td><%=dto.getEmail()%></td>
+						<td><%=dto.getGroupname() == null ? "[미정]" : dto.getGroupname()%></td>
+					</tr>
+					<% }	} %>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td colspan="1"></td>
+						<td colspan="5" style="text-align:center;">1 2 3 4 5</td>
+						<td colspan="1" style="text-align:center;"></td>
+					</tr>
+				</tfoot>
+			</table>
+		</article>
+	</section>
 	
-			<article>
-				<div class="inner2">
-					<div class="left2">
-						<div>
-						</div>
-							<input type="button" value="사진 등록">
+	<br>
+
+	<section class="all-section2">
+		<article>
+			<span><strong>매니저 세부 정보</strong></span>
+				<div class="inner">
+					<div class="left">
+						<div>이미지</div>
+						 <div>
+						   <button type="button">이미지 등록</button>
+						 </div>
 					</div>
-					<div class="right2">
-						<table>
-							<tr>
-								<th>이름</th>
-								<td><input type="text" name="name" readonly value=<%=dto2.getIdx()==1 ? "":dto2.getName() %>></td>
-								<th>성별</th>
-								<td><input type="text" name="sex" readonly value=<%=dto2.getIdx()==1 ? "":(dto2.getSex().equals("F") ? "여자" : "남자") %>></td>
+					<div class="right">
+						<form action="memberUpdate_ok.jsp" method="post">
+							<table class="table-info">
+							  <thead class="table-info-header">
+							    <tr>
+							      <th>이름</th>
+							      <td><input type="text" name="name" <%=update.equals("1") ? "readonly" : ""%> value="<%=dto2.getIdx()==1 ? "" : dto2.getName()%>"></td>
+							<th>성별</th>
+							<td>
+							  <input type="text" name="sexx" <%=update.equals("1") ? "readonly" : ""%> value="<%=dto2.getIdx()==1 ? "" : (dto2.getSex().equals("F") ? "여자" : "남자")%>">
+								<input type="hidden" name="sex" value="<%=dto2.getSex()%>">
+							  </td>
 							</tr>
 							<tr>
-								<th>생년월일</th>
-								<td><input type="text" name="birth" readonly value=<%=dto2.getIdx()==1 ? "":dto2.getBirth() %>></td>
-								<th>주소</th>
-								<td><input type="text" name="addr" readonly value=<%=dto2.getIdx()==1 ? "":dto2.getAddr() %>></td>
+							  <th>생년월일</th>
+							  <td><input type="text" name="birth" <%=update.equals("1") ? "readonly" : ""%> value="<%=dto2.getIdx()==1 ? "" : dto2.getBirth().substring(0, 10)%>"></td>
+							<th>주소</th>
+							<td><input type="text" name="addr" <%=update.equals("1") ? "readonly" : ""%> value="<%=dto2.getIdx()==1 ? "" : dto2.getAddr()%>"></td>
 							</tr>
 							<tr>
-								<th>연락처</th>
-								<td><input type="text" name="tel" readonly value=<%=dto2.getIdx()==1 ? "":dto2.getTel() %>></td>
-								<th>이메일</th>
-								<td><input type="text" name="email" readonly value=<%=dto2.getIdx()==1 ? "":dto2.getEmail() %>></td>
+							  <th>연락처</th>
+							  <td><input type="text" name="tel" <%=update.equals("1") ? "readonly" : ""%> value="<%=dto2.getIdx()==1 ? "" : dto2.getTel()%>" onkeypress="onlyNum(event)"></td>
+							<th>이메일</th>
+							<td><input type="text" name="email" <%=update.equals("1") ? "readonly" : ""%> value="<%=dto2.getIdx()==1 ? "" : dto2.getEmail()%>"></td>
 							</tr>
 							<tr>
-								<th>입사일</th>
-								<td><input type="text" name="comingdate" readonly></td>
-								<th>경력</th>
-								<td><input type="text" name="career"></td>
+							  <th>입사일</th>
+							  <td><input type="text" name="comingdate" readonly value="<%=dto2.getIdx()==1 ? "" : dto2.getComingdate()%>" title="계정을 회원가입한 당일이 입사날짜 입니다."></td>
+							<th>경력</th>
+							<td><input type="text" name="career" <%=update.equals("1") ? (dto2.getCareer().equals("N") ? "":"readonly") : ""%> placeholder="-" value="<%=dto2.getIdx()==1 ? "" : dto2.getCareer()%>"></td>
 							</tr>
 							<tr>
-								<th>담당반</th>
-								<td><input type="text" name="groupname"></td>
-								<th>특이사항</th>
-								<td><input type="text" name="memo"></td>
-							</tr>
-<!-- 							<tr>
-								<th>특이사항</th>
-								<td colspan="3"><textarea name="note" style="width: 100%; height: 60px;"></textarea></td>
-							</tr> -->
-							<tr>
-								<td colspan="5" style="text-align: right;">
-									<button>수정</button>
-									<button>등록</button>
-								</td>
-							</tr>
-						</table>
+							  <th>담당반</th>
+							  <td><input type="text" name="groupname" <%=update.equals("1") ? (dto2.getGroupname().equals("N") ? "":"readonly") : ""%> placeholder="-" value="<%=dto2.getIdx()==1 ? "" : dto2.getGroupname()%>"></td>
+							<th>특이사항</th>
+							<td><input type="text" name="memo" <%=update.equals("1") ? (dto2.getMemo().equals("N") ? "":"readonly") : ""%> placeholder="-" value="<%=dto2.getIdx()==1 ? "" : dto2.getMemo()%>"></td>
+							    </tr>
+							  </thead>
+							</table>
+							<div style="text-align:right;">
+								<button type="button" onclick="memUpdate(<%=dto2.getIdx()%>)">수정</button>
+								<input type="hidden" name="idx" value="<%=dto2.getIdx()%>">
+								<input type="submit" value="등록">
+							</div>
+						</form>
 					</div>
-				</div>
+			 	</div>
 			</article>
 		</section>
-	<%@ include file="/header/footer.jsp" %>
+  <%@ include file="/header/footer.jsp" %>
 </body>
+
 </html>

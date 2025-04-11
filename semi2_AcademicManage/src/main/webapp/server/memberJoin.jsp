@@ -16,7 +16,7 @@
 		}
 		
 		/* 각각의 빈칸 input 유효성 검사 */
- 		function valid(){
+  		function valid(){
 			if(document.mj.name.value==''){
 				window.alert('이름을 입력하셔야 합니다.');
 				window.mj.name.focus();
@@ -27,7 +27,7 @@
 				window.mj.id.focus();
 				return false;
 			}
-			if(document.mj.pwd1.value==''){
+			if(document.mj.pwd.value==''){
 				window.alert('비밀번호를 입력하셔야 합니다.');
 				window.mj.pwd1.focus();
 				return false;
@@ -36,10 +36,10 @@
 				window.alert('비밀번호를 입력하셔야 합니다.');
 				window.mj.pwd2.focus();
 				return false;
-			}
+			} 
 			
 			/* 비밀번호 글자수 제한 || 비밀번호 일치 */
-			if(document.mj.pwd.value.length < 6){
+ 			if(document.mj.pwd.value.length < 6){
 				alert('비밀번호는 6글자 이상이어야 합니다.');
 				return false;
 			}
@@ -48,10 +48,10 @@
 				return false;
 			}else{
 				return true;
-			}
+			} 
 			
 			
-			if(document.mj.tel.value==''){
+ 			if(document.mj.tel.value==''){
 				window.alert('전화번호를 입력하셔야 합니다.');
 				window.mj.tel.focus();
 				return false;
@@ -85,9 +85,8 @@
 		h2{
       	  	color:#567AF0;
 		}
-		section{
-			width:400px;
-			margin:0 auto;
+ 		section{
+			margin-top:100px;
 		}
 		li{
 			list-style-type:none;
@@ -102,17 +101,17 @@
 		}
 	</style>
 <body>
-<%@ include file="/header/serverHeader.jsp" %>
-	<section>
+<%-- <%@ include file="/header/serverHeader.jsp" %> --%>
+	<section class="all-section2">
 		<article>
 			<h2>
 				회원가입
 			</h2>
-			<form name="mj" action="memberJoin_ok.jsp" onsubmit="return valid()">
+			<form name="mj" action="memberJoin_ok.jsp"><!--  onsubmit="return valid()"> -->
 				<ul>
 					<%
 						String mem = request.getParameter("mem");
-						if(mem.equals("0")){
+						if("0".equals(mem)){
 							%>
 					<li>
 						<input type="radio" name="midx" value="2" checked>학생
