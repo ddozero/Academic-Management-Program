@@ -34,16 +34,6 @@
 		MemberDTO mdto2 = mdao.getUserInfo(userid);
 		
 		   session.setAttribute("smdto", mdto2);
-		   
-		   if(saveid!=null){
-		      Cookie ck = new Cookie("saveid",mdto2.getId());
-		      ck.setMaxAge(60*60*24*30);
-		      response.addCookie(ck);
-		   }else{
-		      Cookie ck = new Cookie("saveid",mdto2.getId());
-		      ck.setMaxAge(0);
-		      response.addCookie(ck);      
-		   }
 	   %>
 	   		<script>
 	   			window.alert('<%=mdto2.getName()%>님 환영합니다.');
