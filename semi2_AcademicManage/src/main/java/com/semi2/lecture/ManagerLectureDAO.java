@@ -374,7 +374,7 @@ public class ManagerLectureDAO {
 			}
 		}
 	}
-	
+	/**(매니저) 매니저 목록 - 검색 기능*/
 	public ArrayList<ManagerLectureDTO> lectureFind(String fkey, String fvalue){
 		try {
 			 Connection conn = null;

@@ -12,9 +12,17 @@
 
 
  <div class = "all-title1">
-  <h2>강좌 개설</h2>
+  <h2>수강생 목록</h2>
   </div>
   <section class= "all-section1">
+  
+  
+  </section>
+
+ <div class = "all-title2">
+  <h2>수강생 정보</h2>
+  </div>
+  <section class= "all-section2">
   
   
   </section>

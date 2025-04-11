@@ -91,7 +91,7 @@
 			if(arr==null||arr.size()==0){
 			%>
 				<tr>
-					<td colspan = "8">개설된 강좌가 없습니다.</td>
+					<td colspan = "9">개설된 강좌가 없습니다.</td>
 				</tr>
 				
 			<%
@@ -107,8 +107,7 @@
 						<td><%=arr.get(i).getEnddate() %></td>
 						<td><%=arr.get(i).getEntiredate() %></td>				
 						<td>
-						
-						<!-- 삭제할때 1, 2번은 안됨.. 참조키를 먼저 삭제하라는데 어떻게..? -->
+				
 						<form name = "managerLectureDel" action="/semi2_AcademicManage/manager/lecture/managerLectureDel_ok.jsp" method="post">
 						<input type="hidden" name="classidx" value="<%=arr.get(i).getClassidx() %>">
 						<input type="submit" value ="삭제">

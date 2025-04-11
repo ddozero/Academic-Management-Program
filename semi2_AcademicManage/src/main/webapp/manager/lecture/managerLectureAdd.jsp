@@ -102,10 +102,16 @@ select {
 </head>
 <body>
   <%@include file="/header/managerHeader.jsp"%>
+  
   <div class = "all-title1">
+  
   <h2>강좌 개설</h2>
+  
   </div>
+  
+  
   <section class= "all-section1">
+  
     <form name="mnagerLectureAdd" action="managerLectureAdd_ok.jsp" method="post">
       <table class = "table-add">
         <tr>
@@ -181,8 +187,7 @@ select {
     </form>
   </section>
     
-    <br>
-      <div class = "all-title2">
+     <div class = "all-title2">
   		<h2>개설 강좌 목록</h2>
  	</div>
     <section class = "all-section2">

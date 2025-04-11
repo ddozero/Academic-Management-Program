@@ -71,7 +71,7 @@ request.setCharacterEncoding("utf-8");
   <%@include file="/header/managerHeader.jsp"%>
 
     <form name="mnagerLectureList">
-      <table class = "table-add" border = "1px">
+      <table class = "table-add">
         <tr>
           <th class="header-style">강좌명</th>
           <td class="cell-data" colspan="3"><%=dto.getClassname() %></td>
