@@ -2,13 +2,14 @@ package com.semi2.group;
 
 public class GroupDTO {
 	
+	// 반(Group) 테이블
 	private int groupidx;
 	private int idx;
 	private String groupname;
 	private String mname;
 	private String tname;
 	private int scount;
-	//비품 테이블
+	//비품(item) 테이블
 	private int itemidx;
 	private String itemname;
 	private int itemcose;

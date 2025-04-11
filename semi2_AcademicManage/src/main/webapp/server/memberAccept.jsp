@@ -7,99 +7,117 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="../css/mainLayout.css">
+<script>
+	function showDetail(idx) {
+	    var accept = document.getElementById("accept");
+	    if (accept.checked) {
+	        location.href="memberAccept.jsp?accept=1&idx=" + idx
+	    }else{
+		    location.href="memberAccept.jsp?accept=&idx=" + idx
+	    }
+	}
+	function deletee(idx){
+		location.href="deleteMember_ok.jsp?member=1&idx="+idx;
+	}
+</script>
 <meta charset="UTF-8">
 <style>
-	body {
-		padding-top : 50px;
-	}
-	.inner {
-		background-color : #ffffff;
-		padding : 30px 20px;
-		border-radius : 8px;
-	}
-	h2 {
-		margin-bottom : 15px;
-	}
-	table {
-		background-color : #EEEEEE;
-		padding : 0 10px 10px 10px;
-		width : 100%;
-		border-collapse : collapse;
-		margin-top : 10px;
-		border-right : 4px solid #EEEEEE;
-		border-left : 1px solid #EEEEEE;
-	}
-	thead th {
-		background-color : #EEEEEE;
-		padding : 8px;
-		text-align : center;
-	}
-	tbody tr{
-	}
-	tbody td {
-		background-color : #ffffff;
-		border-bottom : 1px solid #ddd;
-		padding : 8px;
-		text-align : center;
-	}
-	input[type="submit"] {
-		background-color : #D8D8D8;
-		border : none;
-		padding : 6px 18px;
-		border-radius : 2px;
-	}
-	input[name="allselect"],
-	input[name="delete"] {
-		background-color : #567AF0;
-		color : white;
-		padding : 6px 18px;
-		border-radius : 2px;
-	}
-	button {
-		background-color : #B5C6FF;
-		border : none;
-		padding : 2px 6px;
-		border-radius : 20px;
-	}
-	select, input[type="text"] {
-		padding : 6px;
-		border : 1px solid #D8D8D8;
-		border-radius : 4px;
-	}
-	.top {
-		overflow : hidden;
-		margin-bottom : 10px;
-	}
-	.left {
-		float: left;
-	}
-	.right{
-		float: right;
-	}
-	.left button {
-		margin-left: 6px;
-	}
-	.right select,
-	.right input,
-	.right button {
-		margin-left: 6px;
-	}
+.table-info {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 14px;
+    text-align: left;
+}
+
+
+.table-info-header th {
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.table-info td {
+    padding: 3px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+.table-info td form input[type="submit"]{
+	background: #fff;
+	color: #777777;
+	border: 1px solid #d9d9d9;
+	border-radius: 10px;
+	width: 50px;
+	height:28px;
+	cursor: pointer;
+}
+button {
+	background-color : #B5C6FF;
+	border : none;
+	padding : 2px 6px;
+	border-radius : 20px;
+}
+select, input[type="text"] {
+	padding : 6px;
+	border : 1px solid #D8D8D8;
+	border-radius : 4px;
+}
+.top {
+	overflow : hidden;
+	margin-bottom : 10px;
+}
+.left {
+	float: left;
+}
+.right{
+	float: right;
+}
+.left button {
+	margin-left: 6px;
+}
+.right select,
+.right input,
+.right button {
+	margin-left: 6px;
+}
+   .all-section-ac {
+	margin-left: 320px; 
+	margin-bottom: 10px;
+	background-color: #ffffff;
+	padding: 20px 40px;
+	border-radius: 10px;
+	max-width: calc(100% - 360px);
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+	max-height: 1000px; /* 높이 설정 */
+ 		overflow-y: auto; /* 세로 스크롤 추가 */
+}
 </style>
 <title>회원 승인 목록</title>
 </head>
 <%
+	String idx_s = request.getParameter("idx");
+	if(idx_s==null)idx_s="0";
+	int idx = Integer.parseInt(idx_s);
+	
+	String idxx_s = request.getParameter("idxx");
+	int[] idxHidden = mdao.addHiddenIdx(session, idxx_s);
+	
 	String sort = "0";
  	String accept = request.getParameter("accept");
-	if(accept!=null){
-		sort = accept;
-	} 
+	if(accept!=null)sort = accept;
+	 
 	ArrayList<MemberDTO> arr = mdao.memSelect(sort);
+	MemberDTO dto2 = mdao.memberFind(idx);
 %>
 <body>
 	<%@ include file="/header/serverHeader.jsp" %>
-	<section class="all-section1">
+	<div class="all-title1">
+		<h2>회원 승인 목록</h2>
+	</div>
+	<section class="all-section-ac">
 		<article>
-			<h2>회원 승인 목록</h2>
 			<div class="inner">
 				<div class="top">
 					<div class="left">
@@ -114,11 +132,7 @@
 						<script>
 							var check = document.getElementById("accept");
 							check.addEventListener("change",function(){
-								if(this.checked){
-									location.href="memberAccept.jsp?accept=" + "1";
-								}else{
-									location.href="memberAccept.jsp?accept=";
-								}
+								 showDetail(<%=idx%>)
 							})
 						</script>
 					</div>
@@ -133,8 +147,8 @@
 					</div>
 				</div>
 
-				<table>
-					<thead>
+				<table class="table-info">
+					<thead class="table-info-header">
 						<tr>
 							<th></th>
 							<th>NO</th>
@@ -152,11 +166,23 @@
 								<tr><td colspan="7">가입한 계정이 없습니다.</td></tr>
 							<%
 							}else {
-								for(int i = 0; i < arr.size(); i++){
-									MemberDTO dto = arr.get(i);
+								for (int i = 0; i < arr.size(); i++) {
+								    MemberDTO dto = arr.get(i);
+								    
+								    boolean hidden = false;
+								    if (idxHidden != null && idxHidden[0] != 0) {
+								        for (int j = 0; j < idxHidden.length; j++) {
+								            if (dto.getIdx() == idxHidden[j]) {
+								                hidden = true;
+								                break;
+								            }
+								        }
+								    }
+								    if (hidden)continue;
 								%>
-									<tr>
-										<td><input type="checkbox"></td>
+									<tr onclick="showDetail(<%=dto.getIdx()%>)">
+									
+										<td><input type="checkbox" <%= dto.getIdx() == idx ? "checked" : "" %>></td>
 										<td><%=dto.getIdx() %></td>
 										<%
 											if(dto.getAppro()==1){
@@ -203,7 +229,7 @@
 								1 2 3 4 5
 							</td>
 							<td colspan="1" style="text-align:center;">
-								<input type="button" value="삭제">
+								<input type="button" value="삭제" onclick="deletee(<%=idx%>)">
 							</td>
 						</tr>
 					</tfoot>
