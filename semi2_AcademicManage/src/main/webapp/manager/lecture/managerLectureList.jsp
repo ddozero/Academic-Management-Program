@@ -19,8 +19,9 @@ request.setCharacterEncoding("utf-8");
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
-    font-size: 14px;
+    font-size: 15px;
     text-align: left;
+    
 }
 
 

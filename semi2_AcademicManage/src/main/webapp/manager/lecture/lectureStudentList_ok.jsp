@@ -5,7 +5,7 @@
 <%@page import = "com.semi2.lecture.*" %>
 
 <jsp:useBean id="mdto" class="com.semi2.member.MemberDTO"></jsp:useBean>
-<jsp:useBean id="msdao" class="com.semi2.member.MstudentDAO"></jsp:useBean>
+<jsp:useBean id="mdao" class="com.semi2.member.MMemberDAO"></jsp:useBean>
 <%
 request.setCharacterEncoding("utf-8");
 %>
@@ -21,7 +21,7 @@ request.setCharacterEncoding("utf-8");
     width: 100%;
     border-collapse: collapse;
     margin: 10px 0;
-    font-size: 14px;
+    font-size: 15px;
     text-align: left;
 }
 
@@ -89,7 +89,7 @@ if(classidx_s==null||classidx_s.equals("")){
 	classidx_s = "0";
 }
 int classidx = Integer.parseInt(classidx_s);
-ArrayList<MemberDTO> arr = msdao.lectureStudentList(classidx);
+ArrayList<MemberDTO> arr = mdao.lectureStudentList(classidx);
 
 //총 개수구하기
 int totalCount = 0;
@@ -121,7 +121,7 @@ System.out.println("classidx: " + classidx);
 			if(arr==null||arr.size()==0){
 			%>
 			<tr>
-				<td colspan = "5"> 등록된 수강생이 없습니다. </td>
+				<td colspan = "5" style="font-size:15px;"> 등록된 수강생이 없습니다. </td>
 			</tr>
 			<%
 			}else{

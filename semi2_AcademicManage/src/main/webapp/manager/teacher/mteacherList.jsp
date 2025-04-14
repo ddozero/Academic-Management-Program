@@ -4,7 +4,7 @@
 <%@ page import = "java.util.*" %>
 <%@ page import = "com.semi2.member.*" %>
 
-<jsp:useBean id="msdao" class="com.semi2.member.MMemberDAO"></jsp:useBean>
+<jsp:useBean id="mdao" class="com.semi2.member.MMemberDAO"></jsp:useBean>
 <%
 request.setCharacterEncoding("utf-8");
 %>
@@ -22,7 +22,7 @@ request.setCharacterEncoding("utf-8");
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
-    font-size: 14px;
+    font-size: 15px;
     text-align: left;
 }
 
@@ -106,12 +106,12 @@ request.setCharacterEncoding("utf-8");
 			<tbody>
 				<%
 				String idx = request.getParameter("idx");
-				ArrayList<MemberDTO> arr = msdao.mteacherList(3);
+				ArrayList<MemberDTO> arr = mdao.mteacherList(3);
 				
 				if(arr==null||arr.size()==0){
 				%>
 				<tr>
-					<td colspan = "7"> 등록된 강사가 없습니다. </td>
+					<td colspan = "8"> 등록된 강사가 없습니다. </td>
 				</tr>	
 				<%
 				}else{

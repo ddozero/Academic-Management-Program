@@ -17,8 +17,9 @@ request.setCharacterEncoding("utf-8");
     width: 100%;
     border-collapse: collapse;
     margin: 10px 0;
-    font-size: 14px;
+    font-size: 15px;
     text-align: left;
+    
 }
 
 
@@ -164,7 +165,7 @@ form[name="lectureFind"] {
 			if(arr==null||arr.size()==0){
 			%>
 				<tr>
-					<td colspan = "9">개설된 강좌가 없습니다.</td>
+					<td colspan = "9" style="font-size:15px;">개설된 강좌가 없습니다.</td>
 				</tr>
 				
 			<%

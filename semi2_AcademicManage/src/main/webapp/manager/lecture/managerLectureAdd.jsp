@@ -21,6 +21,7 @@
   border-collapse: collapse;
   margin: 20px auto;
   border-radius : 10px;
+  font-size : 15px;
 }
 
 .header-style {
@@ -29,7 +30,8 @@
   border: 1px solid #ddd;
   white-space: nowrap;
   background-color: #eee;
-  font-size : 15px;
+
+ 
 }
 
 .cell-data {
@@ -37,6 +39,7 @@
   text-align: center;
   padding: 3px;
   border: 1px solid #ddd;
+
 }
 
 

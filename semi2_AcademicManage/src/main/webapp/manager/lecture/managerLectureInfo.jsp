@@ -17,6 +17,7 @@
     margin: 20px 0;
     font-size: 14px;
     text-align: left;
+    font-size : 15px;
 }
 
 

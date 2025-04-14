@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.sql.*"%>
 <%@ page import = "java.util.*" %>
 <%@ page import = "com.semi2.group.*" %>
 <%@ page import = "com.semi2.record.*" %>
 
-<jsp:useBean id="mtdao" class="com.semi2.record.MRecordDAO"></jsp:useBean>
+<jsp:useBean id="mrdao" class="com.semi2.record.MRecordDAO"></jsp:useBean>
 <!DOCTYPE html>
 <html>
 <head>
@@ -92,13 +93,15 @@ ul.sc-list {
 
 <section class = "all-section0">
 <div class = "all-box">
+
 	<div class="left-box">
 	  <div class="search-group">
-				<form class = "search" name = "selectGroub" method="post" action = "mteacherAttendList.jsp">
+		<form class = "search" name = "selectList" method="post" action = "mteacherAttendList.jsp">
 					<label> 담당 반 </label>	
-					<select class = "se-select">
+					<select class = "se-select" name = "groupidx">
+						<option value = "" selected> 반 선택 </option>
 				<%
-					ArrayList<GroupDTO> arr = mtdao.groupSelect();
+					ArrayList<GroupDTO> arr = mrdao.groupSelect();
 					if(arr==null||arr.size()==0){
 				%>
 						<option value = ""> 미정 </option>
@@ -109,36 +112,12 @@ ul.sc-list {
 						<option value="<%=arr.get(i).getIdx()%>"><%=arr.get(i).getGroupname()%></option>
 				<%
 						}
-					}
-				%>
+					}	
+				%>	
 					</select>
-						<input class = "sebt" type="submit" value="선택"> 
-				</form>
-		</div>
-					
-		<div class = "search-group">
-				<form class="search" name="dateFind" method="post" action="mteacherAttendList.jsp">
-					<select class = "se-select" name = "fkey">
-						<option value = "">전체</option>
-					</select>
-					<input class = "setxt" type="date" name = "fvalue">
+					<input class = "setxt" type="date" name = "attendate" value = <%=new java.sql.Date(System.currentTimeMillis()).toString() %>>
 					<input class = "sebt" type="submit" value="검색">
-				</form>
-		</div>
-		
-		 <div class="search-group">
-				<form class="search" name="attendFind" method="post" action="mteacherAttendList.jsp">
-					<label>상태</label>
-					<select class = "se-select" name = "fkey">
-						<option value = "">전체</option>
-						<option value = "attend1">출근</option>
-						<option value = "attend2">결근</option>
-						<option value = "attend3">지각</option>
-						<option value = "attend4">휴가</option>
-						<option value = "attend5">병가</option>
-					</select>
-					<input class = "sebt" type="submit" value="검색">
-				</form>
+		</form>
 		</div>
 	</div>
 
@@ -148,10 +127,13 @@ ul.sc-list {
 			<form class="search" name="dateFind" method="post" action="mteacherAttendList.jsp">
 				<select class = "se-select" name = "fkey">
 					<option value = "">전체</option>
-					<option value = "date">수강반명</option>
 					<option value = "name">강사명</option>
 				</select>
 				<input class = "setxt" type="text" name = "fvalue">
+				
+				<input type="hidden" name="groupidx" value="<%= request.getParameter("groupidx") %>">
+   				<input type="hidden" name="attendate" value="<%= request.getParameter("attendate") %>">
+				
 				<input class = "sebt" type="submit" value="검색">
 			</form>
 		</div>

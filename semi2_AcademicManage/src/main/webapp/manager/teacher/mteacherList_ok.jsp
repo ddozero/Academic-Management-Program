@@ -4,7 +4,7 @@
 <%@ page import = "java.util.*" %>    
     
 <jsp:useBean id="mdto" class="com.semi2.member.MemberDTO"></jsp:useBean>
-<jsp:useBean id="msdao" class="com.semi2.member.MMemberDAO"></jsp:useBean>
+<jsp:useBean id="mdao" class="com.semi2.member.MMemberDAO"></jsp:useBean>
 
 <%
 request.setCharacterEncoding("utf-8");
@@ -73,7 +73,7 @@ request.setCharacterEncoding("utf-8");
 	
 	System.out.println("idx:" + idx);
 	
-	MemberDTO dto = msdao.mteacherListDetail(idx);
+	MemberDTO dto = mdao.mteacherListDetail(idx);
 	
 	if(dto==null){		
 	%>

@@ -4,7 +4,7 @@
 <%@ page import = "java.util.*" %>    
     
 <jsp:useBean id="mdto" class="com.semi2.member.MemberDTO"></jsp:useBean>
-<jsp:useBean id="msdao" class="com.semi2.member.MstudentDAO"></jsp:useBean>
+<jsp:useBean id="mdao" class="com.semi2.member.MMemberDAO"></jsp:useBean>
 
 <%
 request.setCharacterEncoding("utf-8");
@@ -21,6 +21,7 @@ request.setCharacterEncoding("utf-8");
   border-collapse: collapse;
   margin: 20px auto;
   border-radius : 10px;
+  font-size: 15px;
 }
 
 .header-style {
@@ -37,6 +38,7 @@ request.setCharacterEncoding("utf-8");
   text-align: left;
   padding: 10px;
   border: 1px solid #ddd;
+  font-size: 15px;
 }
 
 .info-box{
@@ -71,7 +73,7 @@ request.setCharacterEncoding("utf-8");
 	int idx = Integer.parseInt(idx_s);
 	System.out.println("idx: " + idx);
 	
-	MemberDTO dto = msdao.mstudentInfoDetail(idx);
+	MemberDTO dto = mdao.mstudentInfoDetail(idx);
 	
 	if(dto==null){
 %>
