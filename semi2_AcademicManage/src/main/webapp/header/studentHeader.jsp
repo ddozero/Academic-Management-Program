@@ -10,12 +10,14 @@
 
 <header>
 	<div class="container">
+	   <div class="left-group">	
 		<h1>
 			<a href="#"> SYS Academy </a>
 		</h1>
 		<div class="user-group">
 			<h4>수강생</h4>
 		</div>
+	   </div>
 		<div class="id-group">
 			<%
 				if(sname != null){
@@ -32,7 +34,7 @@
 		<ul class="title-1">
 			<li class="subt">출결 관리</li>
 			<li><a href="#" class="active">내 정보</a></li>
-			<li><a href="#">입실/퇴실</a></li>
+			<li><a href="/semi2_AcademicManage/student/attendance/studentAttend.jsp">입실/퇴실</a></li>
 			<li><a href="#">출결 인정 신청</a></li>
 			<li><a href="#">출결 신청 내역</a></li>
 		</ul>
@@ -41,7 +43,7 @@
 			<li class="subt">강좌 관리</li>
 			<li><a href="/semi2_AcademicManage/student/studentlecture/studentLectureList.jsp">개설 강좌 조회</a></li>
 			<li><a href="/semi2_AcademicManage/student/studentlecture/studentMyLecture.jsp">내 강좌 관리</a></li>
-			<li><a href="#">시험 문제 풀기</a></li>
+			<li><a href="/semi2_AcademicManage/student/test/studentTestList.jsp">시험 문제 풀기</a></li>
 			<li><a href="#">성적표 조회</a></li>
 			<li><a href="#">강사 평가</a></li>
 		</ul>
@@ -54,3 +56,20 @@
 		
 	</nav>
 </header>
+<!-- 메뉴 선택시 색변경(전체 헤더에 공통 적용해야함) -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    var menuLinks = document.querySelectorAll("#aside ul li a");
+
+    // URL 경로 가져오기
+    var currentUrl = window.location.pathname;
+
+    menuLinks.forEach(link => {
+        if (link.getAttribute("href") === currentUrl) {
+            link.classList.add("active");
+        } else {
+            link.classList.remove("active"); // 기존 active 제거
+        }
+    });
+});
+</script>
