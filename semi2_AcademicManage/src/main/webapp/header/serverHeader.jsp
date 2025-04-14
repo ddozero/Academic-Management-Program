@@ -32,8 +32,8 @@
 		<ul class="title-1">
 			<li class="subt">회원 관리</li>
 			<li><a href="/semi2_AcademicManage/server/memberAccept.jsp?idxx=0">회원 승인</a></li>
-			<li><a href="/semi2_AcademicManage/server/addManager.jsp?sort=4&idxx=0" >매니저 관리</a></li>
-			<li><a href="#"class="active">강사 조회</a></li>
+			<li><a href="/semi2_AcademicManage/server/addManager.jsp?sort=4&idxx=0">매니저 관리</a></li>
+			<li><a href="#">강사 조회</a></li>
 			<li><a href="#">수강생 조회</a></li>
 		</ul>
 
@@ -52,3 +52,19 @@
 
 	</nav>
 </header>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    var currentUrl = window.location.pathname + window.location.search;
+    var menuLinks = document.querySelectorAll("#aside ul li a");
+
+    menuLinks.forEach(link => {
+        var href = link.getAttribute("href");
+        if (currentUrl === href) {
+            link.classList.add("active");
+        } else {
+            link.classList.remove("active");
+        }
+    });
+});
+</script>

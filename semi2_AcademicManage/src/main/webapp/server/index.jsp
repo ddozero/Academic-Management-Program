@@ -6,15 +6,53 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="../css/mainLayout.css">
+  <style>
+.login-wrapper {
+  width: 800px;
+  height: 450px;
+  margin: 150px auto;
+  display: flex;
+  background-color: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.left {
+  width: 50%;
+  background-color: #4c6ef5;
+  color: white;
+  text-align: center;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.right {
+  width: 50%; /* ✅ 오른쪽도 딱 50% */
+  background-color: #fff;
+  padding: 40px 30px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+  </style>
 </head>
 <body>
 <%@ include file="/header/mainHeader.jsp" %>
 <section>
-	<article>
-		<%@ include file="/server/index_left_memberJoin.jsp" %>
-		<%@ include file="/server/index_right_login.jsp" %>
-	</article>
+  <article>
+    <div class="login-wrapper">
+      <%@ include file="/server/index_left_memberJoin.jsp" %>
+      <%@ include file="/server/index_right_login.jsp" %>
+    </div>
+  </article>
 </section>
+
 <%@ include file="/header/footer.jsp" %>
 </body>
 <!-- /* sort : 0 , 1 , 4 사용중 || AMemberDAO - memSelect(String sort)에서 사용 중 */ -->
