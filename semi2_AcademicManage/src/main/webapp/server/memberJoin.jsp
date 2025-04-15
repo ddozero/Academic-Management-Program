@@ -101,70 +101,176 @@
   .submit-btn:hover {
     background-color: #3b5bdb;
   }
+  .inline-radio {
+  display: flex;
+  gap: 20px;
+  margin-top: 5px;
+	}
+	
+	.inline-radio label {
+	  display: inline-flex;
+	  align-items: center;
+	  gap: 5px;
+	}
+	
 </style>
 
-<script>
-  function idCheck(){
-    window.open("idCheck.jsp","idCheck","width=500,height=400");
-  }
-  function addrCheck(){
-    window.open("addrCheck.jsp","addr","width=500,height=400");
-  }
-  function onlyNum(event){
-    if (event.keyCode < 48 || event.keyCode > 57){
-      event.preventDefault();
-    }
-  }
-</script>
+	<script>
+		function addrCheck(){
+			window.open("addrCheck.jsp","addr","width=500px,height=400")
+		}
+		function idCheck(){
+			window.open("idCheck.jsp","idCheck","width=420px,height=250")
+		}
+		
+		/* 각각의 빈칸 input 유효성 검사 */
+  		function valid(){
+			if(document.mj.name.value==''){
+				window.alert('이름을 입력하셔야 합니다.');
+				window.mj.name.focus();
+				return false;
+			}
+			if(document.mj.id.value==''){
+				window.alert('아이디를 입력하셔야 합니다.');
+				window.mj.id.focus();
+				return false;
+			}
+			if(document.mj.pwd.value==''){
+				window.alert('비밀번호를 입력하셔야 합니다.');
+				window.mj.pwd1.focus();
+				return false;
+			}
+			if(document.mj.pwd2.value==''){
+				window.alert('비밀번호를 입력하셔야 합니다.');
+				window.mj.pwd2.focus();
+				return false;
+			} 
+			
+			/* 비밀번호 글자수 제한 || 비밀번호 일치 */
+ 			if(document.mj.pwd.value.length < 6){
+				alert('비밀번호는 6글자 이상이어야 합니다.');
+				return false;
+			}
+			if(document.mj.pwd.value != document.mj.pwd2.value){
+				alert('비밀번호가 일치 하지 않습니다.');
+				return false;
+			}else{
+				return true;
+			} 
+			
+			
+ 			if(document.mj.tel.value==''){
+				window.alert('전화번호를 입력하셔야 합니다.');
+				window.mj.tel.focus();
+				return false;
+			}
+			if(document.mj.birth.value==''){
+				window.alert('생일을 입력하셔야 합니다.');
+				window.mj.birth.focus();
+				return false;
+			}
+			if(document.mj.addr.value==''){
+				window.alert('주소를 입력하셔야 합니다.');
+				window.mj.addr.focus();
+				return false;
+			}
+			if(document.mj.email.value==''){
+				window.alert('이메일 입력하셔야 합니다.');
+				window.mj.email.focus();
+				return false;
+			}
+		}
+		
+		/* 숫자만 입력이 되어야 하는 유효성 검사 */
+		function onlyNum(event){
+			if (event.keyCode >= 48 && event.keyCode <= 57){
+				return
+			}
+			event.preventDefault();
+		}
+	</script>
 </head>
 <body>
-  <div class="join-wrapper">
-    <h2>회원가입</h2>
-    <form name="mj" action="memberJoin_ok.jsp" method="post">
-
-      <div class="form-group">
-        <label>아이디</label>
-        <div class="inline-group">
-          <input type="text" name="id" placeholder="사용하실 아이디를 입력해주세요.">
-          <button type="button" onclick="idCheck()">ID 검사</button>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>비밀번호</label>
-        <input type="password" name="pwd" placeholder="사용하실 비밀번호를 입력해주세요.">
-      </div>
-
-      <div class="form-group">
-        <label>비밀번호 확인</label>
-        <input type="password" name="pwd2" placeholder="확인용 비밀번호를 다시 입력해주세요.">
-      </div>
-
-      <div class="form-group">
-        <label>전화번호</label>
-        <input type="text" name="tel" onkeypress="onlyNum(event)" placeholder="010-0000-0000">
-      </div>
-
-      <div class="form-group">
-        <label>생년월일</label>
-        <input type="date" name="birth" value="2025-04-01">
-      </div>
-
-      <div class="form-group">
-        <label>주소</label>
-        <div class="inline-group">
-          <input type="text" name="addr" placeholder="주소를 입력해주세요.">
-          <button type="button" onclick="addrCheck()">주소 검색</button>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>이메일</label>
-        <input type="email" name="email" placeholder="ex. IT@itac.com">
-      </div>
-
-      <input type="submit" value="회원가입" class="submit-btn">
-    </form>
-  </div>
+	<div class="join-wrapper">
+		<h2>회원가입</h2>
+		<form name="mj" action="memberJoin_ok.jsp" method="post">
+		
+		<% String mem = request.getParameter("mem"); %>
+		
+		<% if ("0".equals(mem)) { %>
+			<div class="form-group">
+				<label>회원 유형</label>
+				<div class="inline-radio">
+					<label><input type="radio" name="midx" value="2" checked> 학생</label>
+					<label><input type="radio" name="midx" value="3"> 강사</label>
+				</div>
+			</div>
+		<% } else { %>
+			<input type="hidden" name="midx" value="4">
+		<% } %>
+		
+			<div class="form-group">
+				<label>이름</label>
+				<input type="text" name="name" placeholder="이름을 입력하세요.">
+			</div>
+		
+			<div class="form-group">
+				<label>성별</label>
+				<div class="inline-radio">
+					<label><input type="radio" name="sex" value="M" checked> 남자</label>
+					<label><input type="radio" name="sex" value="F"> 여자</label>
+				</div>
+			</div>
+		
+			<div class="form-group">
+				<label>아이디</label>
+				<div class="inline-group">
+					<input type="text" name="id" readonly placeholder="사용하실 아이디를 입력해주세요.">
+					<button type="button" onclick="idCheck()">ID 검사</button>
+				</div>
+			</div>
+		
+			<div class="form-group">
+				<label>비밀번호</label>
+				<input type="password" name="pwd" placeholder="사용하실 비밀번호를 입력해주세요.">
+			</div>
+			
+			<div class="form-group">
+				<label>비밀번호 확인</label>
+				<input type="password" name="pwd2" placeholder="확인용 비밀번호를 다시 입력해주세요.">
+			</div>
+			
+			<div class="form-group">
+				<label>전화번호</label>
+				<input type="text" name="tel" onkeypress="onlyNum(event)" placeholder="010-0000-0000">
+			</div>
+			
+			<div class="form-group">
+				<label>생년월일</label>
+				<input type="date" name="birth" value="2025-04-01">
+			</div>
+			
+			<div class="form-group">
+				<label>주소</label>
+				<div class="inline-group">
+					<input type="text" name="addr" readonly placeholder="주소를 입력해주세요.">
+					<button type="button" onclick="addrCheck()">주소 검색</button>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label>이메일</label>
+				<input type="email" name="email" placeholder="ex. IT@itac.com">
+			</div>
+			
+			<% if ("0".equals(mem)) { %>
+			<input type="hidden" name="appro" value="0">
+			<% } else { %>
+			<input type="hidden" name="appro" value="1">
+			<% } %>
+			<input type="submit" value="회원가입" class="submit-btn">
+		</form>
+	</div>
 </body>
+
 </html>

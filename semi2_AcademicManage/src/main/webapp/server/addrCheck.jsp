@@ -12,17 +12,15 @@
   }
 
   body {
-    font-family: 'Noto Sans KR', sans-serif;
     background-color: #f6f7fb;
   }
 
   .popup-wrapper {
     max-width: 500px;
-    margin: 40px auto;
+    margin: 10px auto;
     background-color: #fff;
     border-radius: 12px;
     padding: 30px 25px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
   }
 
   h2 {

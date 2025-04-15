@@ -39,7 +39,7 @@
 
 		<ul class="title-2">
 			<li class="subt">반 관리</li>
-			<li><a href="#">반 등록</a></li>
+			<li><a href="/semi2_AcademicManage/server/addGroup.jsp?gidx=0">반 등록</a></li>
 			<li><a href="#">비품 관리</a></li>
 		</ul>
 
