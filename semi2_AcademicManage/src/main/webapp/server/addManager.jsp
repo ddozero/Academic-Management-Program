@@ -68,6 +68,34 @@ input[readonly] {
   border: 1px solid #ccc;
   cursor: not-allowed;
 }
+.image-placeholder img {
+    width: 150px;
+    height: 200px;
+    margin-top:20px;
+    object-fit: cover;
+    border: 1px solid #ddd; 
+    border: 1px solid #ddd; 
+  	border-radius: 10px;
+}
+.inner {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.image-placeholder {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.table-inner {
+  flex: 8;
+}
+
 </style>
 <title>Insert title here</title>
 </head>
@@ -155,65 +183,68 @@ input[readonly] {
 	<br>
 
 	<section class="all-section2">
-		<article>
-			<span><strong>매니저 세부 정보</strong></span>
-				<div class="inner">
-					<div class="left">
-						<div>이미지</div>
-						 <div>
-						   <button type="button">이미지 등록</button>
-						 </div>
-					</div>
-					<div class="right">
-						<form action="memberUpdate_ok.jsp" method="post">
-							<table class="table-info">
-							  <thead class="table-info-header">
-							    <tr>
-							      <th>이름</th>
-							      <td><input type="text" name="name" <%=update.equals("1") ? "readonly" : ""%> value="<%=dto2.getIdx()==1 ? "" : dto2.getName()%>"></td>
-							<th>성별</th>
-							<td>
-							  <input type="text" name="sexx" <%=update.equals("1") ? "readonly" : ""%> value="<%=dto2.getIdx()==1 ? "" : (dto2.getSex().equals("F") ? "여자" : "남자")%>">
-								<input type="hidden" name="sex" value="<%=dto2.getSex()%>">
-							  </td>
-							</tr>
-							<tr>
-							  <th>생년월일</th>
-							  <td><input type="text" name="birth" <%=update.equals("1") ? "readonly" : ""%> value="<%=dto2.getIdx()==1 ? "" : dto2.getBirth().substring(0, 10)%>"></td>
-							<th>주소</th>
-							<td><input type="text" name="addr" <%=update.equals("1") ? "readonly" : ""%> value="<%=dto2.getIdx()==1 ? "" : dto2.getAddr()%>"></td>
-							</tr>
-							<tr>
-							  <th>연락처</th>
-							  <td><input type="text" name="tel" <%=update.equals("1") ? "readonly" : ""%> value="<%=dto2.getIdx()==1 ? "" : dto2.getTel()%>" onkeypress="onlyNum(event)"></td>
-							<th>이메일</th>
-							<td><input type="text" name="email" <%=update.equals("1") ? "readonly" : ""%> value="<%=dto2.getIdx()==1 ? "" : dto2.getEmail()%>"></td>
-							</tr>
-							<tr>
-							  <th>입사일</th>
-							  <td><input type="text" name="comingdate" readonly value="<%=dto2.getIdx()==1 ? "" : dto2.getComingdate()%>" title="계정을 회원가입한 당일이 입사날짜 입니다."></td>
-							<th>경력</th>
-							<td><input type="text" name="career" <%=update.equals("1") ? (dto2.getCareer().equals("N") ? "":"readonly") : ""%> placeholder="-" value="<%=dto2.getIdx()==1 ? "" : dto2.getCareer()%>"></td>
-							</tr>
-							<tr>
-							  <th>담당반</th>
-							  <td><input type="text" name="groupname" <%=update.equals("1") ? (dto2.getGroupname().equals("N") ? "":"readonly") : ""%> placeholder="-" value="<%=dto2.getIdx()==1 ? "" : dto2.getGroupname()%>"></td>
-							<th>특이사항</th>
-							<td><input type="text" name="memo" <%=update.equals("1") ? (dto2.getMemo().equals("N") ? "":"readonly") : ""%> placeholder="-" value="<%=dto2.getIdx()==1 ? "" : dto2.getMemo()%>"></td>
-							    </tr>
-							  </thead>
-							</table>
-							<div style="text-align:right;">
-								<button type="button" onclick="memUpdate(<%=dto2.getIdx()%>)">수정</button>
-								<input type="hidden" name="idx" value="<%=dto2.getIdx()%>">
-								<input type="submit" value="등록">
-							</div>
-						</form>
-					</div>
-			 	</div>
-			</article>
-		</section>
-  <%@ include file="/header/footer.jsp" %>
+	  <article>
+	    <span><strong>매니저 세부 정보</strong></span>
+	    <form action="memberUpdate_ok.jsp" method="post">
+	      <div class="inner">
+			<div class="image-placeholder">
+			  <img src="<%=dto2.getImgaddr() %>" alt="선생님이미지테스트">
+			  <div style="text-align:center; margin-top:10px;">
+			    <input type="button" value="버튼">
+			  </div>
+			</div>
+
+	
+	        <div class="table-inner">
+	          <table class="table-info">
+	            <thead class="table-info-header">
+	              <tr>
+	                <th>이름</th>
+	                <td><input type="text" name="name" <%=update.equals("1") ? "readonly" : ""%> value="<%=dto2.getIdx()==1 ? "" : dto2.getName()%>"></td>
+	                <th>성별</th>
+	                <td>
+	                  <input type="text" name="sexx" <%=update.equals("1") ? "readonly" : ""%> value="<%=dto2.getIdx()==1 ? "" : (dto2.getSex().equals("F") ? "여자" : "남자")%>">
+	                  <input type="hidden" name="sex" value="<%=dto2.getSex()%>">
+	                </td>
+	              </tr>
+	              <tr>
+	                <th>생년월일</th>
+	                <td><input type="text" name="birth" <%=update.equals("1") ? "readonly" : ""%> value="<%=dto2.getIdx()==1 ? "" : dto2.getBirth().substring(0, 10)%>"></td>
+	                <th>주소</th>
+	                <td><input type="text" name="addr" <%=update.equals("1") ? "readonly" : ""%> value="<%=dto2.getIdx()==1 ? "" : dto2.getAddr()%>"></td>
+	              </tr>
+	              <tr>
+	                <th>연락처</th>
+	                <td><input type="text" name="tel" <%=update.equals("1") ? "readonly" : ""%> value="<%=dto2.getIdx()==1 ? "" : dto2.getTel()%>" onkeypress="onlyNum(event)"></td>
+	                <th>이메일</th>
+	                <td><input type="text" name="email" <%=update.equals("1") ? "readonly" : ""%> value="<%=dto2.getIdx()==1 ? "" : dto2.getEmail()%>"></td>
+	              </tr>
+	              <tr>
+	                <th>입사일</th>
+	                <td><input type="text" name="comingdate" readonly value="<%=dto2.getIdx()==1 ? "" : dto2.getComingdate()%>" title="계정을 회원가입한 당일이 입사날짜 입니다."></td>
+	                <th>경력</th>
+	                <td><input type="text" name="career" <%=update.equals("1") ? (dto2.getCareer().equals("N") ? "" : "readonly") : ""%> placeholder="-" value="<%=dto2.getIdx()==1 ? "" : dto2.getCareer()%>"></td>
+	              </tr>
+	              <tr>
+	                <th>담당반</th>
+	                <td><input type="text" name="groupname" <%=update.equals("1") ? (dto2.getGroupname().equals("N") ? "" : "readonly") : ""%> placeholder="-" value="<%=dto2.getIdx()==1 ? "" : dto2.getGroupname()%>"></td>
+	                <th>특이사항</th>
+	                <td><input type="text" name="memo" <%=update.equals("1") ? (dto2.getMemo().equals("N") ? "" : "readonly") : ""%> placeholder="-" value="<%=dto2.getIdx()==1 ? "" : dto2.getMemo()%>"></td>
+	              </tr>
+	            </thead>
+	          </table>
+	          <div style="text-align:right; margin-top: 10px;">
+	            <button type="button" onclick="memUpdate(<%=dto2.getIdx()%>)">수정</button>
+	            <input type="hidden" name="idx" value="<%=dto2.getIdx()%>">
+	            <input type="submit" value="등록">
+	          </div>
+	        </div>
+	      </div>
+	    </form>
+	  </article>
+	</section>
+
+	<%@ include file="/header/footer.jsp" %>
 </body>
 
 </html>

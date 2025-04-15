@@ -1,18 +1,126 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="../css/mainLayout.css">
-</head>
+<title>회원가입</title>
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #f0f3fa;
+  }
+
+  .join-wrapper {
+    max-width: 500px;
+    margin: 80px auto;
+    padding: 40px 30px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  }
+
+  h2 {
+    font-size: 26px;
+    color: #3b5bdb;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #3b5bdb;
+    padding-bottom: 8px;
+  }
+
+  .form-group {
+    margin-bottom: 18px;
+  }
+
+  label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #222;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  input[type="date"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+  }
+
+  input::placeholder {
+    color: #aaa;
+  }
+
+  .inline-group {
+    display: flex;
+    gap: 8px;
+  }
+
+  .inline-group input[type="text"] {
+    flex: 1;
+  }
+
+  .inline-group button {
+    padding: 10px 16px;
+    background-color: #567AF0;
+    color: #fff;
+    font-size: 13px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .inline-group button:hover {
+    background-color: #3b5bdb;
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 13px;
+    background-color: #567AF0;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+
+  .submit-btn:hover {
+    background-color: #3b5bdb;
+  }
+  .inline-radio {
+  display: flex;
+  gap: 20px;
+  margin-top: 5px;
+	}
+	
+	.inline-radio label {
+	  display: inline-flex;
+	  align-items: center;
+	  gap: 5px;
+	}
+	
+</style>
+
 	<script>
 		function addrCheck(){
-			window.open("addrCheck.jsp","addr","width=300px,height=200")
+			window.open("addrCheck.jsp","addr","width=500px,height=400")
 		}
 		function idCheck(){
-			window.open("idCheck.jsp","idCheck","width=300px,height=200")
+			window.open("idCheck.jsp","idCheck","width=420px,height=250")
 		}
 		
 		/* 각각의 빈칸 input 유효성 검사 */
@@ -81,129 +189,88 @@
 			event.preventDefault();
 		}
 	</script>
-	<style>
-		h2{
-      	  	color:#567AF0;
-		}
- 		section{
-			margin-top:100px;
-		}
-		li{
-			list-style-type:none;
-		}
-		.button {
-			background-Color:#567AF0;
-			color:#FFFFFF;
-			font:14px;
-			font-weight:bold;
-			width:600;
-			height:30;
-		}
-	</style>
+</head>
 <body>
-<%-- <%@ include file="/header/serverHeader.jsp" %> --%>
-	<section class="all-section2">
-		<article>
-			<h2>
-				회원가입
-			</h2>
-			<form name="mj" action="memberJoin_ok.jsp"><!--  onsubmit="return valid()"> -->
-				<ul>
-					<%
-						String mem = request.getParameter("mem");
-						if("0".equals(mem)){
-							%>
-					<li>
-						<input type="radio" name="midx" value="2" checked>학생
-						<input type="radio" name="midx" value="3">강사
-					</li>
-							<%
-						}else{
-							%>
-					<li>
-						<input type=hidden name="midx" value="4">
-					</li>
-							<%
-						}
-					%>
-					<li>
-						<label>이름</label>
-					</li>
-					<li>
-						<input type="text" name="name">
-					</li>
-					<li>
-						<input type="radio" name="sex" value="M" checked>남자
-						<input type="radio" name="sex" value="F">여자
-					</li>
-					<li>
-						<label>ID</label>
-					</li>
-					<li>
-						<input type="text" name="id" readonly>
-						<input type="button" value="중복검사" onclick="idCheck()">
-					</li>
-					<li>
-						<label>비밀번호</label>
-					</li>
-					<li>
-						<input type="password" name="pwd">
-					</li>
-					<li>
-						<label>비밀번호 확인</label>
-					</li>
-					<li>
-						<input type="password" name="pwd2">
-					</li>
-					<li>
-						<label>전화번호</label>
-					</li>
-					<li>
-						<input type="text" name="tel" onkeypress="onlyNum(event)">
-					</li>
-					<li>
-						<label>생년월일</label>
-					</li>
-					<li>
-						<input type="date" name="birth">
-					</li>
-					<li>
-						<label>주소</label>
-					</li>
-					<li>
-						<input type="text" name="addr" readonly>			
-						<input type="button" value="주소검색" onclick="addrCheck()">
-					</li>
-					<li>
-						<label>이메일</label>
-					</li>
-					<li>
-						<input type="text" name="email">
-					</li>
-					<li>
-						<input type="submit" value="회원가입" class="button">
-					</li>
-					<% 
-						if(mem.equals("0")){
-							%>
-					<li>
-						<input type="hidden" name="appro" value="0">
-					</li>
-							<%
-						}else{
-							%>
-					<li>
-						<input type="hidden" name="appro" value="1">
-						<!-- <input type="hidden" name="comingdate"> -->
-					</li>		
-							<%
-						}
-					%>
-
-					</ul>
+	<div class="join-wrapper">
+		<h2>회원가입</h2>
+		<form name="mj" action="memberJoin_ok.jsp" method="post">
+		
+		<% String mem = request.getParameter("mem"); %>
+		
+		<% if ("0".equals(mem)) { %>
+			<div class="form-group">
+				<label>회원 유형</label>
+				<div class="inline-radio">
+					<label><input type="radio" name="midx" value="2" checked> 학생</label>
+					<label><input type="radio" name="midx" value="3"> 강사</label>
+				</div>
+			</div>
+		<% } else { %>
+			<input type="hidden" name="midx" value="4">
+		<% } %>
+		
+			<div class="form-group">
+				<label>이름</label>
+				<input type="text" name="name" placeholder="이름을 입력하세요.">
+			</div>
+		
+			<div class="form-group">
+				<label>성별</label>
+				<div class="inline-radio">
+					<label><input type="radio" name="sex" value="M" checked> 남자</label>
+					<label><input type="radio" name="sex" value="F"> 여자</label>
+				</div>
+			</div>
+		
+			<div class="form-group">
+				<label>아이디</label>
+				<div class="inline-group">
+					<input type="text" name="id" readonly placeholder="사용하실 아이디를 입력해주세요.">
+					<button type="button" onclick="idCheck()">ID 검사</button>
+				</div>
+			</div>
+		
+			<div class="form-group">
+				<label>비밀번호</label>
+				<input type="password" name="pwd" placeholder="사용하실 비밀번호를 입력해주세요.">
+			</div>
+			
+			<div class="form-group">
+				<label>비밀번호 확인</label>
+				<input type="password" name="pwd2" placeholder="확인용 비밀번호를 다시 입력해주세요.">
+			</div>
+			
+			<div class="form-group">
+				<label>전화번호</label>
+				<input type="text" name="tel" onkeypress="onlyNum(event)" placeholder="010-0000-0000">
+			</div>
+			
+			<div class="form-group">
+				<label>생년월일</label>
+				<input type="date" name="birth" value="2025-04-01">
+			</div>
+			
+			<div class="form-group">
+				<label>주소</label>
+				<div class="inline-group">
+					<input type="text" name="addr" readonly placeholder="주소를 입력해주세요.">
+					<button type="button" onclick="addrCheck()">주소 검색</button>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label>이메일</label>
+				<input type="email" name="email" placeholder="ex. IT@itac.com">
+			</div>
+			
+			<% if ("0".equals(mem)) { %>
+			<input type="hidden" name="appro" value="0">
+			<% } else { %>
+			<input type="hidden" name="appro" value="1">
+			<% } %>
+			<input type="submit" value="회원가입" class="submit-btn">
 		</form>
-		</article>
-	</section>
-<%@ include file="/header/footer.jsp" %>
+	</div>
 </body>
+
 </html>

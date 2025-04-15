@@ -33,7 +33,18 @@
 </style>
 <div class="left">
   <h2>---로그---</h2>
-  <button onclick='location.href="memberJoin.jsp?mem=0"'>회원가입</button>
+  <button onclick="openJoinPopup()">회원가입</button>
+
+<script>
+  function openJoinPopup() {
+    window.open(
+      "memberJoin.jsp?mem=0",
+      "joinPopup",
+      "width=600,height=800,left=300,top=100,scrollbars=yes"
+    );
+  }
+</script>
+
   <p>Tel. 123-1234<br>
      E-mail. e@naver.com
   </p>
