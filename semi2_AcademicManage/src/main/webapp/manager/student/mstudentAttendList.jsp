@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import = "com.semi2.record.*" %>
 <%@ page import = "java.util.*" %>
+<%@ page import = "com.semi2.record.*" %>
 <%@ page import = "java.text.*" %>
 
 <jsp:useBean id="mrdao" class="com.semi2.record.MRecordDAO"></jsp:useBean>
@@ -143,10 +143,10 @@ function recordTimeUp(recordidx, recordtime, tname){
 
 <body>
 	<div class = "all-title1">
- 	 <h2>강사 근태 관리</h2>
+ 	 <h2>수강생 출결 관리</h2>
 	</div>
 
-	<jsp:include page="mteacherAttendSearch.jsp"></jsp:include>
+	<jsp:include page="mstudentAttendSearch.jsp"></jsp:include>
 	
 	<section class= "all-section1">
 		<table class="table-info">
@@ -159,7 +159,7 @@ function recordTimeUp(recordidx, recordtime, tname){
 					<th>일자</th>
 					<th>입실시간</th>
 					<th>퇴실시간</th>
-					<th>총 근무시간</th>
+					<th>총 수업시간</th>
 					<th>시간 수정</th>
 					<th>상태</th>
 					<th>변경처리</th>
@@ -168,39 +168,39 @@ function recordTimeUp(recordidx, recordtime, tname){
 			
 			<tbody>
 				<%
-				String fkey = request.getParameter("fkey"); //이름검색 : name
+				String fkey = request.getParameter("fkey");
 				String fvalue = request.getParameter("fvalue");
 				String groupidx_s = request.getParameter("groupidx");
 				String attendate_s = request.getParameter("attendate");
-
+				
 				int groupidx = 0;
 				
 				if(groupidx_s==null||groupidx_s.equals("")){
-					groupidx_s = "0";
+					groupidx_s="0";
 				}
 				groupidx = Integer.parseInt(groupidx_s);
-				System.out.println("강사groupidx값 :" + groupidx); //반번호 결과값 출력
-				int midx = 3; //강사 3값만 조회
+				System.out.println("학생 groupidx값" + groupidx);
+				
+				int midx = 2;
 				
 				java.sql.Date attendate = null;
 				if(attendate_s!=null&&!attendate_s.equals("")){
 					attendate = java.sql.Date.valueOf(attendate_s);
 				}
-				System.out.println("강사attendate :" + attendate); //날짜 결과 값 출력
+				System.out.println("학생 attendate :" + attendate);
 				
 				ArrayList<RecordDTO> arr = null;
-				if("name".equals(fkey) && fvalue != null && !fvalue.equals("")){
+				if("name".equals(fkey) && fvalue !=null && !fvalue.equals("")){
 					arr = mrdao.attendFind(fvalue, groupidx, attendate);
 				}else{
-					arr = mrdao.recordSelectList(midx, groupidx, attendate);
+					arr = mrdao.recordSelectList(midx, groupidx, attendate);	
 				}
-				
 				
 				if(arr==null||arr.size()==0){
 					if("name".equals(fkey) && fvalue != null && !fvalue.equals("")){
 				%>
 				<tr>
-					<td colspan = "11" style="font-size:16px; padding:5px;"> 등록된 강사가 아닙니다. </td>
+					<td colspan = "11" style="font-size:16px; padding:5px;"> 등록된 학생이 아닙니다. </td>
 				</tr>
 				<%
 					}else{
@@ -218,20 +218,21 @@ function recordTimeUp(recordidx, recordtime, tname){
 						
 						//status값 문자로 출력하기
 						 switch (r2dto.getStatus()) {
-			               case 1: statusText = "출근"; break;
+			               case 1: statusText = "출석"; break;
 			               case 2: statusText = "지각"; break;
 			               case 3: statusText = "병가"; break;
-			               case 4: statusText = "휴가"; break;
-			               case 5: statusText = "결근"; break;
+			               case 4: statusText = "조퇴"; break;
+			               case 5: statusText = "휴가"; break;
+			               case 6: statusText = "결석"; break;
 			               default: statusText = "기타";
-			         }
+			           }	
 				%>
 				<tr>
 					<td><%=i+1 %></td>
-					<td><%=arr.get(i).getName()%></td>
+					<td><%=arr.get(i).getName() %></td>
 					<td><%=arr.get(i).getGroupname() %></td>
 					<td><%=arr.get(i).getClassname() %></td>
-					<td><%=arr.get(i).getattendate() %>
+					<td><%=arr.get(i).getattendate() %></td>
 					<td><%=sdfDateTime.format(arr.get(i).getIntime()) %></td>
 					<td><%=sdfDateTime.format(arr.get(i).getOuttime()) %></td>
 					<td><%=arr.get(i).getRecordtime() %>분</td>
@@ -239,15 +240,12 @@ function recordTimeUp(recordidx, recordtime, tname){
 					<td><%=statusText%></td>		
 					<td>
 									
-					<form class= "form-sclist" name="mteacherAttendList" method="post" action="/semi2_AcademicManage/manager/teacher/trecordStatusUp_ok.jsp">
+					<form class= "form-sclist" name="mteacherAttendList" method="post" action="/semi2_AcademicManage/manager/student/mrecordStatusUp_ok.jsp">
 						<select class = "se-select" name = "status">
-							<option value = "1" <%=r2dto.getStatus()==1 ? "selected" : "" %>>출근</option>
-							<option value = "2" <%=r2dto.getStatus()==2 ? "selected" : "" %>>지각</option>
-							<option value = "3" <%=r2dto.getStatus()==3 ? "selected" : "" %>>병가</option>
-							<option value = "4" <%=r2dto.getStatus()==4 ? "selected" : "" %>>휴가</option>
-							<option value = "5" <%=r2dto.getStatus()==5 ? "selected" : "" %>>결근</option>
+							<option value = "1" <%=r2dto.getStatus()==1?"selected":"" %>>출석</option>
+							<option value = "2" <%=r2dto.getStatus()==2?"selected":"" %>>지각</option>
+							<option value = "5" <%=r2dto.getStatus()==5?"selected":"" %>>결석</option>
 						</select>
-						
 						<input type="hidden" name="groupidx" value="<%= groupidx_s %>">
 						<input type="hidden" name="attendate" value="<%= attendate_s %>">
 						<input type="hidden" name="recordidx" value="<%=arr.get(i).getRecordidx()%>">
@@ -256,15 +254,13 @@ function recordTimeUp(recordidx, recordtime, tname){
 					</td>
 				</tr>
 				<%
-					}
 				}
-				%>
-			
+			}
+			%>
 			</tbody>
 		</table>
 	</section>
-	
-	
+
 
 <%@include file="/header/footer.jsp"%>
 </body>

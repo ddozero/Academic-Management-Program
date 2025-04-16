@@ -64,7 +64,7 @@ request.setCharacterEncoding("utf-8");
 }
 
 /* 검색창 디자인 */
-.se-lectureFind {
+.se-Find {
     float: right; 
     margin: 10px 0; 
 }
@@ -128,7 +128,7 @@ form[name="lectureFind"] {
 </div>
 <section class="all-section1">
 	<article>
-		<form class="se-lectureFind" name="lectureFind" method="post" action="managerLectureList.jsp">
+		<form class="se-Find" name="lectureFind" method="post" action="managerLectureList.jsp">
 			<select class = "se-select" name = "fkey">
 				<option value = "">전체</option>
 				<option value = "classidx">강좌번호</option>

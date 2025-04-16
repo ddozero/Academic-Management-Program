@@ -100,6 +100,20 @@ select {
 .addbt input[type="submit"]:hover {
   background: #4569d6;
 }
+
+/* 강좌등록 section 별도 수정 */
+.all-section-madd {
+		margin-left: 320px; 
+		background-color: #ffffff;
+		padding: 20px 40px;
+		border-radius: 10px;
+		max-width: calc(100% - 360px);
+		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+		height : 350px;
+		max-height: 350px; /* 높이 설정 */
+  		overflow-y: auto; /* 세로 스크롤 추가 */
+}
+
 </style>
 
 </head>
@@ -113,7 +127,7 @@ select {
   </div>
   
   
-  <section class= "all-section1">
+  <section class= "all-section-madd">
   
     <form name="mnagerLectureAdd" action="managerLectureAdd_ok.jsp" method="post">
       <table class = "table-add">
@@ -182,6 +196,13 @@ select {
           <th class="header-style">종강일</th>
           <td class="cell-data"><input type="date" name="enddate"></td>
         </tr>
+        
+        <tr>
+        <th class="header-style">강좌 개요</th>
+        <td class = "cell-data" colspan="3"><input type="text" name = "classintro"></td>
+        </tr>
+        
+        
       </table>
         <div class = "addbt">
             <input type="submit" value="등록하기">

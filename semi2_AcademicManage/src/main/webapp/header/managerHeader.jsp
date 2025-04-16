@@ -22,8 +22,8 @@
 		<ul class="title-1">
 			<li class="subt">수강생</li>
 			<li><a href="/semi2_AcademicManage/manager/student/mstudentList.jsp" class="active">수강생 정보</a></li>
-			<li><a href="#">수강생 출결 관리</a></li>
-			<li><a href="#">수강생 출결 인정</a><li>
+			<li><a href="/semi2_AcademicManage/manager/student/mstudentAttendList.jsp">수강생 출결 관리</a></li>
+			<li><a href="/semi2_AcademicManage/manager/student/mstudentAttendFile.jsp">출결 인정 서류</a><li>
 		</ul>
 
 		<ul class="title-2">

@@ -95,6 +95,18 @@ select {
 .addbt input[type="submit"]:hover {
   background: #4569d6;
 }
+
+.all-section-mup {
+		margin-left: 320px; 
+		background-color: #ffffff;
+		padding: 20px 40px;
+		border-radius: 10px;
+		max-width: calc(100% - 360px);
+		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+		height : 350px;
+		max-height: 350px; /* 높이 설정 */
+  		overflow-y: auto; /* 세로 스크롤 추가 */
+}
 </style>
 
 <link rel="stylesheet" type="text/css" href="/semi2_AcademicManage/css/mainLayout.css">
@@ -112,8 +124,8 @@ select {
 	if (dto == null) {
 	%>
 	<script>
-		window.alert("잘못된 접근입니다.")
-		location.href = '/semi2_AcademicManage/manager/lecture/managerLectureAdd.jsp';
+		window.alert("수정할 값을 전부 입력해주세요.")
+		history.back();
 	</script>
 	<%
 	return;
@@ -122,7 +134,7 @@ select {
   <div class = "all-title1">
   <h2>강좌 수정</h2>
   </div>
-	<section class="all-section1">
+	<section class="all-section-mup">
 		<form name="managerLectureUp" action="/semi2_AcademicManage/manager/lecture/managerLectureUp_ok.jsp" method="post">
 			<input type="hidden" name="classidx" value="<%=dto.getClassidx()%>">
 			<table class = "table-add">
@@ -212,6 +224,11 @@ select {
 					<th class="header-style">종강일</th>
 					<td class="cell-data"><input type="date" name="enddate" value="<%=dto.getEnddate() %>"></td>
 				</tr>
+				
+				 <tr>
+			        <th class="header-style">강좌 개요</th>
+			        <td class = "cell-data" colspan="3"><input type="text" name = "classintro"></td>
+			     </tr>
 				</tbody>
 			</table>
 				<div class="addbt">
