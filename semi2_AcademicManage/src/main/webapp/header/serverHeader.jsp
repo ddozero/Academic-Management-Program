@@ -45,7 +45,7 @@
 
 		<ul class="title-3">
 			<li class="subt">게시판</li>
-			<li><a href="#">자유게시판</a></li>
+			<li><a href="/semi2_AcademicManage/server/freeBbsList.jsp">자유게시판</a></li>
 			<li><a href="#">공지사항</a></li>
 			<li><a href="#">취업알리미</a></li>
 		</ul>

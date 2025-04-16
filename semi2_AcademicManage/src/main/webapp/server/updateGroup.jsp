@@ -1,3 +1,4 @@
+<%@page import="com.semi2.lecture.LectureDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
    	<%@page import="java.util.ArrayList"%>
@@ -118,8 +119,6 @@ input[readonly] {
 							<th>반</th>
 							<th>매니저</th>
 							<th>강사</th>
-							<th>개강일</th>
-							<th>종강일</th>
 							<th>총원</th>
 						</tr>
 					</thead>
@@ -227,8 +226,8 @@ input[readonly] {
 							<%
 								}
 							%>
-							<td><input type="text" name="start" readonly <%= gdto.getGroupidx()%>></td>
-							<td><input type="text" name="end" readonly <%= gdto.getGroupidx()%>></td>
+							<%
+							%>
 							<td><input type="text" name="scount" <%=gdto.getScount()==0 ? "":"readonly" %> value="<%= gdto.getScount()%>"oninput="scount(this)"></td>
 						</tr>
 					<%
@@ -267,13 +266,6 @@ input[readonly] {
 						<td></td>
 					</tr>
 				</tbody>
-				<tfoot>
-					<tr>
-						<td colspan="1"></td>
-						<td colspan="4" style="text-align:center;">1 2 3 4 5</td>
-						<td colspan="1" style="text-align:center;"></td>
-					</tr>
-				</tfoot>
 			</table>
 		</article>
 	</section>

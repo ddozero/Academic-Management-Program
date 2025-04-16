@@ -3,6 +3,7 @@
    	<%@page import="java.util.ArrayList"%>
     <%@page import="com.semi2.group.*" %>
     <%@page import="com.semi2.member.*" %>
+    <%@page import="com.semi2.lecture.*" %>
     <jsp:useBean id="gdto" class="com.semi2.group.GroupDTO"></jsp:useBean>
     <jsp:useBean id="gdao" class="com.semi2.group.AGroupDAO"></jsp:useBean>
     <jsp:useBean id="mdto" class="com.semi2.member.MemberDTO"></jsp:useBean>
@@ -66,8 +67,8 @@ input[readonly] {
 }
 </style>
 <script>
-	function addGroup(){
-		location.href="addGroup_ok.jsp";
+	function addGroup(gidx){
+		location.href="addGroup_ok.jsp?gidx"+gidx;
 	}
 	function updateGroup(gidx){
 		location.href="updateGroup.jsp?gidx="+gidx;
@@ -78,10 +79,13 @@ input[readonly] {
 	function update(gidx){
 		location.href="addGroup.jsp?gidx="+gidx;
 	}
+	function deleteGroup(gidx){
+		location.href="deleteGroup.jsp?gidx="+gidx;
+	}
 </script>
 <%
 	String gidx_s = request.getParameter("gidx");
-	if(gidx_s.equals(null)){
+	if(gidx_s==null){
 		gidx_s="0";
 	}
 	int gidx = Integer.parseInt(gidx_s);
@@ -95,8 +99,9 @@ input[readonly] {
 	<section class="all-section1">
 		<article>
 			<span><strong>반 목록</strong></span>
-			<input type="button" value="반 생성" onclick="addGroup()">
+			<input type="button" value="반 생성" onclick="addGroup(<%=gidx%>)">
 			<input type="button" value="수정" onclick="updateGroup2(<%=gidx %>)">
+			<input type="button" value="삭제" onclick="deleteGroup(<%=gidx %>)">
 			<table class="table-info">
 				<thead class="table-info-header">
 					<tr>
@@ -105,8 +110,6 @@ input[readonly] {
 						<th>반</th>
 						<th>매니저</th>
 						<th>강사</th>
-						<th>개강일</th>
-						<th>종강일</th>
 						<th>총원</th>
 					</tr>
 				</thead>
@@ -126,14 +129,14 @@ input[readonly] {
 					<tr>
 						<td><input type="checkbox" onclick="update(<%=gdto.getGroupidx()%>)" <%=gdto.getGroupidx()== gidx ? "checked":"" %>></td>
 						<td><%= gdto.getGroupidx()%></td>
-						<td><input type="text" name="groupname" <%=gdto.getGroupname().equals("N") ? "":"readonly" %> value="<%= gdto.getGroupname()%>"  onclick="updateGroup(<%=gdto.getGroupidx()%>)"></td>
+						<td><input type="text" name="groupname" <%=gdto.getGroupname().equals("-") ? "":"readonly" %> value="<%= gdto.getGroupname()%>"></td>
 						<%
 
-						if(gdto.getMname().equals("N")){
+						if(gdto.getMname().equals("")){
 
 						%>
 						<td>
-							<select onchange="memberChangeUpdate()"  onclick="updateGroup(<%=gdto.getGroupidx()%>)">
+							<select onchange="memberChangeUpdate()">
 						<% 
 							ArrayList<MemberDTO> mMarr = gdao.selectManager();
 						%>
@@ -151,15 +154,15 @@ input[readonly] {
 						<%
 						}else{
 						%>
-						<td><input type="text" name="mname" <%=gdto.getMname().equals("N") ? "":"readonly" %> value="<%=gdto.getMname() %>"></td>
+						<td><input type="text" name="mname" <%=gdto.getMname().equals("") ? "":"readonly" %> value="<%=gdto.getMname() %>"></td>
 						<%
 						}
 						%>
 						<%
-							if(gdto.getTname().equals("N")){
+							if(gdto.getTname().equals("")){
 						%>
 						<td>
-							<select onchange="memberChangeUpdate()"  onclick="updateGroup(<%=gdto.getGroupidx()%>)">
+							<select onchange="memberChangeUpdate()">
 						<% 
 							ArrayList<MemberDTO> mTarr = gdao.selectTeacher();
 						%>
@@ -177,13 +180,16 @@ input[readonly] {
 						<%
 							}else{
 						%>
-						<td><input type="text" name="tname" <%=gdto.getTname().equals("N") ? "":"readonly" %> value="<%=gdto.getTname() %>"></td>
+						<td><input type="text" name="tname" <%=gdto.getTname().equals("") ? "":"readonly" %> value="<%=gdto.getTname() %>"></td>
 								<%
 							}
 						%>
-						<td><input type="text" name="start" readonly <%= gdto.getGroupidx()%>></td>
-						<td><input type="text" name="end" readonly <%= gdto.getGroupidx()%>></td>
-						<td><input type="text" name="scount" <%=gdto.getScount()==0 ? "":"readonly" %> value="<%= gdto.getScount()%>"  onclick="updateGroup(<%=gdto.getGroupidx()%>)"></td>
+						<%
+							if(gdto.getTname().equals("N")){
+								gdto.setTname("미지정");
+							}
+						%>
+						<td><input type="text" name="scount" <%=gdto.getScount()==1 ? "":"readonly" %> value="<%= gdto.getScount()%>"></td>
 					</tr>
 				<%
 						}
@@ -221,13 +227,6 @@ input[readonly] {
 						<td></td>
 					</tr>
 				</tbody>
-				<tfoot>
-					<tr>
-						<td colspan="1"></td>
-						<td colspan="4" style="text-align:center;">1 2 3 4 5</td>
-						<td colspan="1" style="text-align:center;"></td>
-					</tr>
-				</tfoot>
 			</table>
 		</article>
 	</section>
