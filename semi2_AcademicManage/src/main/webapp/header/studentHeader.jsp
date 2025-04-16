@@ -44,7 +44,7 @@
 			<li><a href="/semi2_AcademicManage/student/studentlecture/studentLectureList.jsp">개설 강좌 조회</a></li>
 			<li><a href="/semi2_AcademicManage/student/studentlecture/studentMyLecture.jsp">내 강좌 관리</a></li>
 			<li><a href="/semi2_AcademicManage/student/test/studentTestList.jsp">시험 문제 풀기</a></li>
-			<li><a href="#">성적표 조회</a></li>
+			<li><a href="/semi2_AcademicManage/student/test/studentScore.jsp">성적표 조회</a></li>
 			<li><a href="#">강사 평가</a></li>
 		</ul>
 
