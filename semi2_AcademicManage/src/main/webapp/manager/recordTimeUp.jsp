@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import = "com.semi2.record.*" %>
+
+
 <jsp:useBean id="rdao" class="com.semi2.record.MRecordDAO"></jsp:useBean>
 <%
 request.setCharacterEncoding("UTF-8");
@@ -82,6 +84,8 @@ request.setCharacterEncoding("UTF-8");
 </head>
 
 <%
+
+
 String tname = request.getParameter("tname");
 String recordidx_s = request.getParameter("recordidx");
 String recordtime_s = request.getParameter("recordtime");
@@ -97,13 +101,16 @@ if(recordidx_s != null && recordtime_s != null){
 
 <body>
 <div class = "popup-container">
-	<form name = "recordTimeUp" action = "recordTimeUp_ok.jsp" method="post">
+	<form name = "recordTimeUp" action = "/semi2_AcademicManage/manager/recordTimeUp_ok.jsp" method="post">
 		<div class = "all-popbox">
 			<div class ="popup-title"><h4>총 근무시간 변경</h4></div>
 			<input type="hidden" name="tname" value="<%= tname %>">
-			<div class = "popup-text"> <%=tname %> 강사님의 변경하실 근무시간을 입력해주세요.</div>
+			<div class = "popup-text"> <%=tname %>님의 변경하실 근무시간을 입력해주세요.</div>
 			
-			<div class = "popup-text-plus">총 근무시간 : 8시간(480분) <br> 반차기준 : 4시간(240분) </div>
+			<div class = "popup-text-plus">
+			총 근무 및 출석 시간 : 8시간(480분) <br> 
+			오전/오후 근무 및 출석 기준 : 4시간(240분) 
+			</div>
 			
 			<div class = "popup-form-context">
 			<input type="hidden" name="recordidx" value="<%= recordidx %>">

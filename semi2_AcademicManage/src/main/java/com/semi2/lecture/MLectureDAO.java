@@ -124,13 +124,14 @@ public class MLectureDAO {
 			Connection conn = null;
 			PreparedStatement ps = null;
 			conn = com.semi2.db.Semi2DB.getConn();
-			String sql = "INSERT INTO CLASS VALUES (sq_CLASS_classidx.nextval, ?, ?, ?, ?, ?, to_date(?,'yyyy-mm-dd'), to_date(?,'yyyy-mm-dd'), ?, ?)";
+			String sql = "INSERT INTO CLASS VALUES (sq_CLASS_classidx.nextval, ?, ?, ?, ?, ?, to_date(?,'yyyy-mm-dd'), to_date(?,'yyyy-mm-dd'), ?, ?,?)";
 			
 			int groupIdx = dto.getGroupidx();
 			if(groupIdx<=0) { //아직 등록된 강좌가 없으니, 없는 상태에서 name에서 찾아서 idx를 가져옴
 				groupIdx = GroupIdxSearch(dto.getGroupname());				
 			}
 			ps = conn.prepareStatement(sql);
+			
 			ps.setInt(1,groupIdx);
 			ps.setString(2, dto.getClassname());
 			ps.setString(3, dto.getTname());
@@ -140,7 +141,8 @@ public class MLectureDAO {
 			ps.setString(7, dto.getEnddate());
 			ps.setInt(8, dto.getEntiredate());
 			ps.setString(9, dto.getChargemname());
-
+			ps.setString(10, dto.getClassintro());
+			
 			int count = ps.executeUpdate();
 			return count;
 
@@ -239,7 +241,7 @@ public class MLectureDAO {
 			PreparedStatement ps = null;
 			ResultSet rs = null;
 			conn=com.semi2.db.Semi2DB.getConn();
-			String sql = "select c.classidx, g.groupidx, g.groupname, c.classname, c.tname, c.entirescount, c.reqscount, to_char(c.comingdate, 'yyyy-mm-dd') as comingdate, to_char(c.enddate, 'yyyy-mm-dd') as enddate, c.entiredate, c.chargemname\r\n"
+			String sql = "select c.classidx, g.groupidx, g.groupname, c.classname, c.tname, c.entirescount, c.reqscount, to_char(c.comingdate, 'yyyy-mm-dd') as comingdate, to_char(c.enddate, 'yyyy-mm-dd') as enddate, c.entiredate, c.chargemname, c.classintro\r\n"
 					+ "from class c, classgroup g\r\n"
 					+ "where c.groupidx = g.groupidx and classidx = ?\r\n"
 					+ "order by classidx asc";
@@ -260,8 +262,9 @@ public class MLectureDAO {
 				int entiredate = rs.getInt("entiredate");
 				String chargemname = rs.getString("chargemname");
 				String groupname = rs.getString("groupname");
+				String classintro = rs.getString("classintro");
 				
-				dto = new ManagerLectureDTO(classidx, groupidx, classname, tname, entirescount,reqscount, comingdate, enddate, entiredate, chargemname, groupname);
+				dto = new ManagerLectureDTO(classidx, groupidx, classname, tname, entirescount,reqscount, comingdate, enddate, entiredate, chargemname, groupname, classintro);
 			}
 			return dto;
 		} catch (Exception e) {
@@ -286,7 +289,7 @@ public class MLectureDAO {
 			conn=com.semi2.db.Semi2DB.getConn();
 			
 			String sql="update class set\r\n"
-					+ "groupidx = ?, classname = ?, tname = ?, entirescount = ?, reqscount = ?, comingdate = to_date(?, 'yyyy-mm-dd'), enddate = to_date(?, 'yyyy-mm-dd'), entiredate = ?, chargemname = ?\r\n"
+					+ "groupidx = ?, classname = ?, tname = ?, entirescount = ?, reqscount = ?, comingdate = to_date(?, 'yyyy-mm-dd'), enddate = to_date(?, 'yyyy-mm-dd'), entiredate = ?, chargemname = ?, classintro =?\r\n"
 					+ "where classidx = ?";
 			ps=conn.prepareStatement(sql);
 			
@@ -304,7 +307,8 @@ public class MLectureDAO {
 			ps.setString(7, dto.getEnddate());
 			ps.setInt(8, dto.getEntiredate());
 			ps.setString(9, dto.getChargemname());
-			ps.setInt(10, dto.getClassidx());
+			ps.setString(10, dto.getClassintro());
+			ps.setInt(11, dto.getClassidx());
 			
 			int count = ps.executeUpdate();
 			return count;
@@ -332,10 +336,9 @@ public class MLectureDAO {
 			conn=com.semi2.db.Semi2DB.getConn();
 			
 			String sql = "select c.classidx, g.groupidx, g.groupname, c.classname, c.tname, c.entirescount, c.reqscount, to_char(c.comingdate, 'yyyy-mm-dd') as comingdate, to_char(c.enddate, 'yyyy-mm-dd') as enddate,\r\n"
-					+ "c.entiredate, c.chargemname, d.classintro\r\n"
-					+ "from class c, classgroup g, CLASSDETIL d\r\n"
+					+ "c.entiredate, c.chargemname, c.classintro\r\n"
+					+ "from class c, classgroup g\r\n"
 					+ "where c.groupidx = g.groupidx \r\n"
-					+ "and c.classidx = d.classidx \r\n"
 					+ "and c.classidx=?\r\n";
 			
 			ps = conn.prepareStatement(sql);
@@ -374,7 +377,7 @@ public class MLectureDAO {
 			}
 		}
 	}
-	/**(매니저) 매니저 목록 - 검색 기능*/
+	/**(매니저) 강좌 목록 - 검색 기능*/
 	public ArrayList<ManagerLectureDTO> lectureFind(String fkey, String fvalue){
 		try {
 			 Connection conn = null;

@@ -17,65 +17,151 @@ public class RecordDTO {
 	private Timestamp outtime;
 	private String classname;
 	
-	
-	//추가DTO 250413
+	//recordissue 테이블(추가)
+	private int issueidx;
+	private String issuestatus; //신청상태
+	private String issuedivi; //질병조퇴구분
+	private int appro; //승인구분
+	private String filename;
+	Date reqdate; //신청날자 
+
+	//추가생성자 250415 - 수강생 출결 질병/조퇴 목록 조회(도영)
 	private String name;
-	private String groupname;
-	private int groupidx;
-	private String tname;
-
-	public String getName() {
-		return name;
-	}
-	
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	public String getTname() {
-		return tname;
-	}
-
-	public void setTname(String tname) {
-		this.tname = tname;
-	}
-
-	public String getGroupname() {
-		return groupname;
-	}
-
-	public void setGroupname(String groupname) {
-		this.groupname = groupname;
-	}
-
-	public int getGroupidx() {
-		return groupidx;
-	}
-
-	public void setGroupidx(int groupidx) {
-		this.groupidx = groupidx;
-	}
-
-	//(매니저) 250411 강사 근태 관리 추가 DTO - 도영
-	public RecordDTO(int recordidx, int midx, int idx, int classidx, int recordtime, int entirate, int currate,
-			int status, Date attendate, Timestamp intime, Timestamp outtime, String classname, String groupname,
-			int groupidx, String name) {
+	public RecordDTO(int recordidx, int midx, int idx, int classidx, int status, Date attendate, String filename,
+			String name, String groupname, int groupidx) {
 		super();
 		this.recordidx = recordidx;
 		this.midx = midx;
 		this.idx = idx;
 		this.classidx = classidx;
-		this.recordtime = recordtime;
-		this.entirate = entirate;
-		this.currate = currate;
 		this.status = status;
 		this.attendate = attendate;
-		this.intime = intime;
-		this.outtime = outtime;
-		this.classname = classname;
+		this.filename = filename;
+		this.name = name;
 		this.groupname = groupname;
 		this.groupidx = groupidx;
-		this.name = name;
+	}
+	
+	//추가DTO 250413
+
+		private String groupname;
+		private int groupidx;
+		private String tname;
+
+		public String getName() {
+			return name;
+		}
+		
+		public void setName(String name) {
+			this.name = name;
+		}
+		
+		public String getTname() {
+			return tname;
+		}
+
+		public void setTname(String tname) {
+			this.tname = tname;
+		}
+
+		public String getGroupname() {
+			return groupname;
+		}
+
+		public void setGroupname(String groupname) {
+			this.groupname = groupname;
+		}
+
+		public int getGroupidx() {
+			return groupidx;
+		}
+
+		public void setGroupidx(int groupidx) {
+			this.groupidx = groupidx;
+		}
+		
+
+		//(매니저) 250411 강사 근태 관리 추가 생성자- 도영
+		public RecordDTO(int recordidx, int midx, int idx, int classidx, int recordtime, int entirate, int currate,
+				int status, Date attendate, Timestamp intime, Timestamp outtime, String classname, String groupname,
+				int groupidx, String name) {
+			super();
+			this.recordidx = recordidx;
+			this.midx = midx;
+			this.idx = idx;
+			this.classidx = classidx;
+			this.recordtime = recordtime;
+			this.entirate = entirate;
+			this.currate = currate;
+			this.status = status;
+			this.attendate = attendate;
+			this.intime = intime;
+			this.outtime = outtime;
+			this.classname = classname;
+			this.groupname = groupname;
+			this.groupidx = groupidx;
+			this.name = name;
+		}
+
+
+	public RecordDTO(int idx, int issueidx, String issuestatus, String issuedivi, int appro, String filename,
+				Date reqdate) {
+		super();
+		this.idx = idx;
+		this.issueidx = issueidx;
+		this.issuestatus = issuestatus;
+		this.issuedivi = issuedivi;
+		this.appro = appro;
+		this.filename = filename;
+		this.reqdate = reqdate;
+	}
+
+	public int getIssueidx() {
+		return issueidx;
+	}
+
+	public void setIssueidx(int issueidx) {
+		this.issueidx = issueidx;
+	}
+
+	public String getIssuestatus() {
+		return issuestatus;
+	}
+
+	public void setIssuestatus(String issuestatus) {
+		this.issuestatus = issuestatus;
+	}
+
+	public String getIssuedivi() {
+		return issuedivi;
+	}
+
+	public void setIssuedivi(String issuedivi) {
+		this.issuedivi = issuedivi;
+	}
+
+	public int getAppro() {
+		return appro;
+	}
+
+	public void setAppro(int appro) {
+		this.appro = appro;
+	}
+
+	public String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+
+	public Date getReqdate() {
+		return reqdate;
+	}
+
+	public void setReqdate(Date reqdate) {
+		this.reqdate = reqdate;
 	}
 
 	

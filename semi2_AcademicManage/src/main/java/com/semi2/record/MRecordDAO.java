@@ -20,6 +20,7 @@ public class MRecordDAO {
 			conn = com.semi2.db.Semi2DB.getConn();
 			String sql = "select * from CLASSGROUP where groupname not in('미지정') ";
 			
+			
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 			
@@ -56,7 +57,7 @@ public class MRecordDAO {
 	}
 	
 	
-	/** (매니저) 강사 출결 정보 가져오기 메소드 */
+	/** (매니저) 강사, 학생 출결 정보 가져오기 메소드 */
 	public ArrayList<RecordDTO> recordSelectList(int midx, int groupidx, Date attendate){
 		try {
 			conn = com.semi2.db.Semi2DB.getConn();
@@ -113,7 +114,7 @@ public class MRecordDAO {
 		}
 	}
 	
-	/** (매니저) 강사 출결관리 - 총 근무시간 수정 메소드 */
+	/** (매니저) 강사, 학생 출결관리 - 총 근무시간 수정 메소드 */
 	public int recordTimeUp(RecordDTO dto) {
 		try {
 			conn = com.semi2.db.Semi2DB.getConn();
@@ -140,7 +141,7 @@ public class MRecordDAO {
 	}
 	
 	
-	/**(매니저) 강사 출결관리 검색 조회(수강반명, 강사명) */
+	/**(매니저) 강사, 학생 출결관리 검색 조회(수강반명, 강사명) */
 	public ArrayList<RecordDTO> attendFind(String name, int groupidx, Date attendate){
 		try {
 			conn = com.semi2.db.Semi2DB.getConn();
@@ -189,14 +190,91 @@ public class MRecordDAO {
 			return null;
 		}finally {
 			try {
-				
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
 			} catch (Exception e2) {
 				// TODO: handle exception
 			}
 		}
 	}
 	
+	/**(매니저) 강사 근태관리 상태값 변경 */
+	public int lectureStatusUp(RecordDTO dto) {
+		try {
+			conn = com.semi2.db.Semi2DB.getConn();
+			String sql = "update record set status = ? where recordidx = ?";
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, dto.getStatus());
+			ps.setInt(2, dto.getRecordidx());
+			
+			int count = ps.executeUpdate();
+			return count;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}finally {
+			try {
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
+		}
+	}
 	
-	
+	/**(매니저) 수강생 출결 질병 / 조퇴 목록 조회 */
+	public ArrayList<RecordDTO> msRecordFile(int midx, int groupidx, Date attendate){
+		try {
+			conn = com.semi2.db.Semi2DB.getConn();
+			String sql = "select r.recordidx, r.midx, r.idx, c.classidx, r.status, r.attendate, rs.filename, m1.name, g.groupname, g.groupidx \r\n"
+					+ "from record r, class c, classgroup g, member1 m1, recordissue rs\r\n"
+					+ "where r.classidx = c.classidx\r\n"
+					+ "and c.groupidx = g.groupidx\r\n"
+					+ "and r.idx = m1.idx\r\n"
+					+ "and r.idx = rs.idx\r\n"
+					+ "and r.midx = ? and g.groupidx = ?\r\n"
+					+ "and trunc(r.attendate) = trunc(?)";
+			
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, midx);
+			ps.setInt(2, groupidx);
+			ps.setDate(3, attendate);
+			
+			rs = ps.executeQuery();
+			
+			ArrayList<RecordDTO> arr = new ArrayList<RecordDTO>();
+			
+			while(rs.next()) {
+				int recordidx = rs.getInt("recordidx");
+				int idx = rs.getInt("idx");
+				int classidx = rs.getInt("classidx");
+				int status = rs.getInt("status");
+				String groupname = rs.getString("groupname");
+				String filename = rs.getString("filename");
+				String name = rs.getString("name");
+				
+				RecordDTO dto = new RecordDTO(recordidx, midx, idx, classidx, status, attendate, filename, name, groupname, groupidx);
+				arr.add(dto);
+				
+			}
+			return arr;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			try {
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
+		}
+	}
+
 }
 

@@ -59,6 +59,56 @@ public class MMemberDAO {
 		}
 	}
 	
+	/**(매니저) 학생 검색 후 목록 조회 */
+	public ArrayList<MemberDTO> mstudentFind(String fkey, String fvalue){
+		try {
+			conn = com.semi2.db.Semi2DB.getConn();
+			
+			String sql = "select m2.m2idx,m1.idx, name,sex,id,pwd,tel,email,addr, to_char(birth, 'yyyy-mm-dd') as birth,appro \r\n"
+					+ "from member1 m1, member2 m2\r\n"
+					+ "where m1.idx = m2.idx \r\n"
+					+ "and " + fkey + " = ? ";
+					
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, fvalue);
+			rs=ps.executeQuery();
+			
+			ArrayList<MemberDTO> arr = new ArrayList<MemberDTO>();
+			
+			while(rs.next()) {
+				int idx = rs.getInt("idx");
+				String name = rs.getString("name");
+				String sex = rs.getString("sex");
+				String tel = rs.getString("tel");
+				String email = rs.getString("email");
+				String addr = rs.getString("addr");
+				String birth = rs.getString("birth");
+				int m2idx = rs.getInt("m2idx");
+				
+				MemberDTO dto = new MemberDTO(idx, name, sex, tel, email, birth, addr, m2idx);
+				arr.add(dto);
+				
+				System.out.println("fkey: " + fkey);
+			}
+			return arr;
+					
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (ps != null)
+					ps.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
+		}
+	}
+	
 	/**(매니저) 학생 세부 정보 조회 */
 	public MemberDTO mstudentInfoDetail(int idx) {
 		try {
@@ -223,6 +273,60 @@ public class MMemberDAO {
 		}
 	}
 	
+	/**(매니저) 강사 검색 후 목록 조회 */
+	public ArrayList<MemberDTO> mteacherFind(String fkey, String fvalue){
+		try {
+			conn = com.semi2.db.Semi2DB.getConn();
+			
+			String sql = "select m1.idx, m1.midx, m1.name,m1.sex,m1.tel,m1.email,m1.addr, to_char(m1.birth, 'yyyy-mm-dd') as birth,m1.appro,m3.m3idx,m3.comingdate \r\n"
+					+ "from member1 m1, member3 m3\r\n"
+					+ "where m1.idx = m3.idx \r\n"
+					+ "and " + fkey + " = ? ";
+					
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, fvalue);
+			rs=ps.executeQuery();
+			
+			ArrayList<MemberDTO> arr = new ArrayList<MemberDTO>();
+			
+			while(rs.next()) {
+				int idx = rs.getInt("idx");
+				int midx = rs.getInt("midx");
+				String name = rs.getString("name");
+				String sex = rs.getString("sex");
+				String tel = rs.getString("tel");
+				String email = rs.getString("email");
+				String addr = rs.getString("addr");
+				String birth = rs.getString("birth");
+				int appro = rs.getInt("appro");
+				int m3idx = rs.getInt("m3idx");
+				Date comingdate = rs.getDate("comingdate");
+				
+				MemberDTO dto = new MemberDTO(idx, midx, name, sex, tel, email, addr, birth, appro, m3idx, comingdate);
+				arr.add(dto);
+				
+				System.out.println("fkey: " + fkey);
+			}
+			return arr;
+					
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (ps != null)
+					ps.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
+		}
+	}
+	
+
 	/**(매니저) 강사 목록 세부 조회*/
 	public MemberDTO mteacherListDetail(int idx) {
 		try {

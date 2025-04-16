@@ -65,14 +65,60 @@ request.setCharacterEncoding("utf-8");
 	color: #333;
 }
 
-</style>
+/* 검색창 디자인 */
+.se-Find {
+    float: right; 
+    margin: 10px 0; 
+}
 
+form[name="mstudentFind"] {
+    float: right;
+}
+
+.sebt{ 
+    background: #d8d8d8;
+    color: #333;
+    border: 1px solid #d9d9d9;
+    border-radius: 5px;
+    width: 50px;
+    height: 28px;
+    cursor: pointer;
+}
+
+.search-button:hover {
+    color: #567AF0;
+}
+
+.se-select { 
+    background: #fff;
+    color: #333;
+    border: 1px solid #d6d6d6; 
+    border-radius: 5px;
+    width: 80px;
+    height: 28px;
+    cursor: pointer; /* 커서 모양 */
+    padding : 5px;
+}
+
+
+.se-select:focus {
+    outline: none; 
+}
+
+.setxt{
+	width : 200px;
+	height : 28px;
+	background: #fff;
+    color: #333;
+    border: 1px solid #d6d6d6; 
+    border-radius: 5px;
+    padding : 5px;
+}
+
+</style>
 </head>
 
-
 <body>
-
-
 
 <div class = "all-title1">
   <h2>수강생 정보 관리</h2>
@@ -81,14 +127,13 @@ request.setCharacterEncoding("utf-8");
   	<%@include file="/header/managerHeader.jsp"%>
 
     <article>
-		<form name="mstudentFind" method="post" action="mstudentList.jsp">
-			<select class= "se-Find" name = "fkey">
+		<form class = "se-Find" name="mstudentFind" method="post" action="mstudentList.jsp">
+			<select class= "se-select" name = "fkey">
 				<option value = "">전체</option>
-				<option value = "classidx">이름</option>
-				<option value = "tname">수강반명</option>
+				<option value = "name">이름</option>
 			</select>
-			<input type="text" name = "fvalue">
-			<input type="submit" value="검색">
+			<input class = "setxt" type="text" name = "fvalue">
+			<input class = "sebt" type="submit" value="검색">
 		</form>
 		
 		<table class="table-info">
@@ -107,7 +152,17 @@ request.setCharacterEncoding("utf-8");
 			<tbody>
 				<%
 				String idx = request.getParameter("idx");
-				ArrayList<MemberDTO> arr = mdao.mstudentInfo(2);
+				
+				String fkey = request.getParameter("fkey");
+				String fvalue = request.getParameter("fvalue");
+				
+				ArrayList<MemberDTO> arr = null;
+				
+				if(fkey == null || fvalue == null || fkey.equals("") || fvalue.equals("")){
+					arr = mdao.mstudentInfo(2);
+				}else{
+					arr = mdao.mstudentFind(fkey, fvalue);
+				}
 				
 				if(arr==null||arr.size()==0){
 				%>
