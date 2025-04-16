@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import com.semi2.lecture.LectureDTO;
+import com.semi2.lecture.ManagerLectureDTO;
 import com.semi2.member.MemberDTO;
 
 public class AGroupDAO {
@@ -185,5 +187,80 @@ public class AGroupDAO {
                e2.printStackTrace();
             }
          }
+	}
+	
+	//* 반 삭제 */
+	public int deleteGroup(int gidx) {
+        try {
+            conn = com.semi2.db.Semi2DB.getConn();
+            
+            String sql = "delete from classgroup where groupidx = ?";
+            
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, gidx);
+            
+            int count = ps.executeUpdate();
+            
+            return count;
+         }catch(Exception e) {
+            e.printStackTrace();
+            return -1;
+         }finally {
+            try {
+               if(rs!=null)rs.close();
+               if(ps!=null)ps.close();
+               if(conn!=null)conn.close();
+            }catch(Exception e2) {
+               e2.printStackTrace();
+            }
+         }
+	}
+	// 강사이름으로 담당강좌 찾기
+	/**개설 강좌 조회 메서드-오진우*/
+	public LectureDTO findLectureByTname(String tName){
+		try {
+			conn=com.semi2.db.Semi2DB.getConn();
+			
+			String sql="select * from class where tname = ?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, tName);
+			rs=ps.executeQuery();
+			while(rs.next()) {
+				int classidx=rs.getInt("classidx");
+				String classname=rs.getString("classname");
+				String tname=rs.getString("tname");
+				int reqscount=rs.getInt("reqscount");
+				int entirescount=rs.getInt("entirescount");
+				java.sql.Date comingdate=rs.getDate("comingdate");
+				java.sql.Date enddate=rs.getDate("enddate");
+				int entiredate=rs.getInt("entiredate");
+				
+				LectureDTO ldto=new LectureDTO();
+				ldto.setClassidx(classidx);
+				ldto.setClassname(classname);
+				ldto.setTname(tname);
+				ldto.setReqscount(reqscount);
+				ldto.setEntirescount(entirescount);
+				ldto.setComingdate(comingdate);
+				ldto.setEnddate(enddate);
+				ldto.setEntiredate(entiredate);
+				
+				return ldto;
+			}
+			return null;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			try {
+				if(rs!=null)rs.close();
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
 	}
 }

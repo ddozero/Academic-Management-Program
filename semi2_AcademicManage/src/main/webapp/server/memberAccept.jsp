@@ -7,19 +7,6 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="../css/mainLayout.css">
-<script>
-	function showDetail(idx) {
-	    var accept = document.getElementById("accept");
-	    if (accept.checked) {
-	        location.href="memberAccept.jsp?accept=1&idx=" + idx
-	    }else{
-		    location.href="memberAccept.jsp?accept=&idx=" + idx
-	    }
-	}
-	function deletee(idx){
-		location.href="deleteMember_ok.jsp?member=1&idx="+idx;
-	}
-</script>
 <meta charset="UTF-8">
 <style>
 .table-info {
@@ -94,6 +81,19 @@ select, input[type="text"] {
  		overflow-y: auto; /* 세로 스크롤 추가 */
 }
 </style>
+<script>
+	function showDetail(idx) {
+	    var accept = document.getElementById("accept");
+	    if (accept.checked) {
+	        location.href="memberAccept.jsp?accept=1&idx=" + idx
+	    }else{
+		    location.href="memberAccept.jsp?accept=&idx=" + idx
+	    }
+	}
+	function deletee(idx){
+		location.href="deleteMember_ok.jsp?member=1&idx="+idx;
+	}
+</script>
 <title>회원 승인 목록</title>
 </head>
 <%
