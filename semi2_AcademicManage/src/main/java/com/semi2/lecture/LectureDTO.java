@@ -15,12 +15,9 @@ public class LectureDTO {
    private Date enddate;
    private int entiredate;
    private String chargemname;
-   //강좌세부사항 테이블(CLASSDETIL)
-   private int class2idx;
-   private int weekidx;
-   private String class2name;
    private String classintro;
    //주차테이블(CLASSDETIL2)
+   private int weekidx;
    private int weeknum;
    private String weekname;
    private String weekcon;
@@ -30,276 +27,239 @@ public class LectureDTO {
    private int idx;
    private int estinum;
    private String esticon;
-   //추가(도영)
-   private String groupname;
-
    
    public LectureDTO() {
-      // TODO Auto-generated constructor stub
+	// TODO Auto-generated constructor stub
    }
-
-   //(매니저)추가 생성자 - 도영
-
+   
    //강좌(CLASS)테이블 생성자
-   public LectureDTO(int classidx, int groupidx, String classname, String tname, int entirescount, int reqscount,
-      Date comingdate, Date enddate, int entiredate, String chargemname) {
-      super();
-      this.classidx = classidx;
-      this.groupidx = groupidx;
-      this.classname = classname;
-      this.tname = tname;
-      this.entirescount = entirescount;
-      this.reqscount = reqscount;
-      this.comingdate = comingdate;
-      this.enddate = enddate;
-      this.entiredate = entiredate;
-      this.chargemname = chargemname;
-   }
-   
-   //강좌세부사항(CLASSDETIL)테이블 생성자
-   public LectureDTO(int class2idx, int classidx,  int weekidx, String class2name, String classintro) {
-      super();
-      this.class2idx = class2idx;
-      this.classidx = classidx;
-      this.weekidx = weekidx;
-      this.class2name = class2name;
-      this.classintro = classintro;
-   }
-   
-   //주차테이블(CLASSDETIL2)테이블 생성자
-   public LectureDTO(int weekidx,int classidx, int weeknum, String weekname, String weekcon, String weekperiod) {
-      super();
-      this.weekidx = weekidx;
-      this.classidx = classidx;
-      this.weeknum = weeknum;
-      this.weekname = weekname;
-      this.weekcon = weekcon;
-      this.weekperiod = weekperiod;
-   }
-   
-   //강좌평가(ClASSESTIMATE)테이블 생성자
-   public LectureDTO(int estidx, int classidx,  int idx, int estinum, String esticon) {
-      super();
-      this.estidx = estidx;
-      this.classidx = classidx;
-      this.idx = idx;
-      this.estinum = estinum;
-      this.esticon = esticon;
-   }
+	public LectureDTO(int classidx, int groupidx, String classname, String tname, int entirescount, int reqscount,
+			Date comingdate, Date enddate, int entiredate, String chargemname, String classintro) {
+		super();
+		this.classidx = classidx;
+		this.groupidx = groupidx;
+		this.classname = classname;
+		this.tname = tname;
+		this.entirescount = entirescount;
+		this.reqscount = reqscount;
+		this.comingdate = comingdate;
+		this.enddate = enddate;
+		this.entiredate = entiredate;
+		this.chargemname = chargemname;
+		this.classintro = classintro;
+	}
+	
+	//주차테이블(CLASSDETIL2) 생성자
+	public LectureDTO(int classidx, int weekidx, int weeknum, String weekname, String weekcon, String weekperiod) {
+		super();
+		this.classidx = classidx;
+		this.weekidx = weekidx;
+		this.weeknum = weeknum;
+		this.weekname = weekname;
+		this.weekcon = weekcon;
+		this.weekperiod = weekperiod;
+	}
+	
 
-   public LectureDTO(int classidx, int groupidx, String classname, String tname, int entirescount, int reqscount,
-         Date comingdate, Date enddate, int entiredate, String chargemname, int class2idx, int weekidx,
-         String class2name, String classintro, int weeknum, String weekname, String weekcon, String weekperiod,
-         int estidx, int idx, int estinum, String esticon, String groupname) {
-      super();
-      this.classidx = classidx;
-      this.groupidx = groupidx;
-      this.classname = classname;
-      this.tname = tname;
-      this.entirescount = entirescount;
-      this.reqscount = reqscount;
-      this.comingdate = comingdate;
-      this.enddate = enddate;
-      this.entiredate = entiredate;
-      this.chargemname = chargemname;
-      this.class2idx = class2idx;
-      this.weekidx = weekidx;
-      this.class2name = class2name;
-      this.classintro = classintro;
-      this.weeknum = weeknum;
-      this.weekname = weekname;
-      this.weekcon = weekcon;
-      this.weekperiod = weekperiod;
-      this.estidx = estidx;
-      this.idx = idx;
-      this.estinum = estinum;
-      this.esticon = esticon;
-      this.groupname = groupname;
-   }
+	//강좌평가테이블(ClASSESTIMATE) 생성자
+	
+	public LectureDTO(int classidx, int estidx, int idx, int estinum, String esticon) {
+		super();
+		this.classidx = classidx;
+		this.estidx = estidx;
+		this.idx = idx;
+		this.estinum = estinum;
+		this.esticon = esticon;
+	}
+		
+	
+	public LectureDTO(int classidx, int groupidx, String classname, String tname, int entirescount, int reqscount,
+			Date comingdate, Date enddate, int entiredate, String chargemname, String classintro, int weekidx,
+			int weeknum, String weekname, String weekcon, String weekperiod, int estidx, int idx, int estinum,
+			String esticon) {
+		super();
+		this.classidx = classidx;
+		this.groupidx = groupidx;
+		this.classname = classname;
+		this.tname = tname;
+		this.entirescount = entirescount;
+		this.reqscount = reqscount;
+		this.comingdate = comingdate;
+		this.enddate = enddate;
+		this.entiredate = entiredate;
+		this.chargemname = chargemname;
+		this.classintro = classintro;
+		this.weekidx = weekidx;
+		this.weeknum = weeknum;
+		this.weekname = weekname;
+		this.weekcon = weekcon;
+		this.weekperiod = weekperiod;
+		this.estidx = estidx;
+		this.idx = idx;
+		this.estinum = estinum;
+		this.esticon = esticon;
+	}
 
-   public int getClassidx() {
-      return classidx;
-   }
+	public int getClassidx() {
+		return classidx;
+	}
 
-   public void setClassidx(int classidx) {
-      this.classidx = classidx;
-   }
+	public void setClassidx(int classidx) {
+		this.classidx = classidx;
+	}
 
-   public int getGroupidx() {
-      return groupidx;
-   }
+	public int getGroupidx() {
+		return groupidx;
+	}
 
-   public void setGroupidx(int groupidx) {
-      this.groupidx = groupidx;
-   }
+	public void setGroupidx(int groupidx) {
+		this.groupidx = groupidx;
+	}
 
-   public String getClassname() {
-      return classname;
-   }
+	public String getClassname() {
+		return classname;
+	}
 
-   public void setClassname(String classname) {
-      this.classname = classname;
-   }
+	public void setClassname(String classname) {
+		this.classname = classname;
+	}
 
-   public String getTname() {
-      return tname;
-   }
+	public String getTname() {
+		return tname;
+	}
 
-   public void setTname(String tname) {
-      this.tname = tname;
-   }
+	public void setTname(String tname) {
+		this.tname = tname;
+	}
 
-   public int getEntirescount() {
-      return entirescount;
-   }
+	public int getEntirescount() {
+		return entirescount;
+	}
 
-   public void setEntirescount(int entirescount) {
-      this.entirescount = entirescount;
-   }
+	public void setEntirescount(int entirescount) {
+		this.entirescount = entirescount;
+	}
 
-   public int getReqscount() {
-      return reqscount;
-   }
+	public int getReqscount() {
+		return reqscount;
+	}
 
-   public void setReqscount(int reqscount) {
-      this.reqscount = reqscount;
-   }
+	public void setReqscount(int reqscount) {
+		this.reqscount = reqscount;
+	}
 
-   public Date getComingdate() {
-      return comingdate;
-   }
+	public Date getComingdate() {
+		return comingdate;
+	}
 
-   public void setComingdate(Date comingdate) {
-      this.comingdate = comingdate;
-   }
+	public void setComingdate(Date comingdate) {
+		this.comingdate = comingdate;
+	}
 
-   public Date getEnddate() {
-      return enddate;
-   }
+	public Date getEnddate() {
+		return enddate;
+	}
 
-   public void setEnddate(Date enddate) {
-      this.enddate = enddate;
-   }
+	public void setEnddate(Date enddate) {
+		this.enddate = enddate;
+	}
 
-   public int getEntiredate() {
-      return entiredate;
-   }
+	public int getEntiredate() {
+		return entiredate;
+	}
 
-   public void setEntiredate(int entiredate) {
-      this.entiredate = entiredate;
-   }
+	public void setEntiredate(int entiredate) {
+		this.entiredate = entiredate;
+	}
 
-   public String getChargemname() {
-      return chargemname;
-   }
+	public String getChargemname() {
+		return chargemname;
+	}
 
-   public void setChargemname(String chargemname) {
-      this.chargemname = chargemname;
-   }
+	public void setChargemname(String chargemname) {
+		this.chargemname = chargemname;
+	}
 
-   public int getClass2idx() {
-      return class2idx;
-   }
+	public String getClassintro() {
+		return classintro;
+	}
 
-   public void setClass2idx(int class2idx) {
-      this.class2idx = class2idx;
-   }
+	public void setClassintro(String classintro) {
+		this.classintro = classintro;
+	}
 
-   public int getWeekidx() {
-      return weekidx;
-   }
+	public int getWeekidx() {
+		return weekidx;
+	}
 
-   public void setWeekidx(int weekidx) {
-      this.weekidx = weekidx;
-   }
+	public void setWeekidx(int weekidx) {
+		this.weekidx = weekidx;
+	}
 
-   public String getClass2name() {
-      return class2name;
-   }
+	public int getWeeknum() {
+		return weeknum;
+	}
 
-   public void setClass2name(String class2name) {
-      this.class2name = class2name;
-   }
+	public void setWeeknum(int weeknum) {
+		this.weeknum = weeknum;
+	}
 
-   public String getClassintro() {
-      return classintro;
-   }
+	public String getWeekname() {
+		return weekname;
+	}
 
-   public void setClassintro(String classintro) {
-      this.classintro = classintro;
-   }
+	public void setWeekname(String weekname) {
+		this.weekname = weekname;
+	}
 
-   public int getWeeknum() {
-      return weeknum;
-   }
+	public String getWeekcon() {
+		return weekcon;
+	}
 
-   public void setWeeknum(int weeknum) {
-      this.weeknum = weeknum;
-   }
+	public void setWeekcon(String weekcon) {
+		this.weekcon = weekcon;
+	}
 
-   public String getWeekname() {
-      return weekname;
-   }
+	public String getWeekperiod() {
+		return weekperiod;
+	}
 
-   public void setWeekname(String weekname) {
-      this.weekname = weekname;
-   }
+	public void setWeekperiod(String weekperiod) {
+		this.weekperiod = weekperiod;
+	}
 
-   public String getWeekcon() {
-      return weekcon;
-   }
+	public int getEstidx() {
+		return estidx;
+	}
 
-   public void setWeekcon(String weekcon) {
-      this.weekcon = weekcon;
-   }
+	public void setEstidx(int estidx) {
+		this.estidx = estidx;
+	}
 
-   public String getWeekperiod() {
-      return weekperiod;
-   }
+	public int getIdx() {
+		return idx;
+	}
 
-   public void setWeekperiod(String weekperiod) {
-      this.weekperiod = weekperiod;
-   }
+	public void setIdx(int idx) {
+		this.idx = idx;
+	}
 
-   public int getEstidx() {
-      return estidx;
-   }
+	public int getEstinum() {
+		return estinum;
+	}
 
-   public void setEstidx(int estidx) {
-      this.estidx = estidx;
-   }
+	public void setEstinum(int estinum) {
+		this.estinum = estinum;
+	}
 
-   public int getIdx() {
-      return idx;
-   }
+	public String getEsticon() {
+		return esticon;
+	}
 
-   public void setIdx(int idx) {
-      this.idx = idx;
-   }
-
-   public int getEstinum() {
-      return estinum;
-   }
-
-   public void setEstinum(int estinum) {
-      this.estinum = estinum;
-   }
-
-   public String getEsticon() {
-      return esticon;
-   }
-
-   public void setEsticon(String esticon) {
-      this.esticon = esticon;
-   }
-
-   public String getGroupname() {
-      return groupname;
-   }
-
-   public void setGroupname(String groupname) {
-      this.groupname = groupname;
-   }
-        
-   
+	public void setEsticon(String esticon) {
+		this.esticon = esticon;
+	}
+		   
+	   
+	
 }
