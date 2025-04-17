@@ -82,6 +82,9 @@ input[readonly] {
 	function deleteGroup(gidx){
 		location.href="deleteGroup.jsp?gidx="+gidx;
 	}
+	function showDetail(gidx,groupname){
+		location.href="addGroup.jsp?gidx="+gidx+"&groupname="+groupname;
+	}
 </script>
 <%
 	String gidx_s = request.getParameter("gidx");
@@ -89,6 +92,12 @@ input[readonly] {
 		gidx_s="0";
 	}
 	int gidx = Integer.parseInt(gidx_s);
+	
+	String groupname = request.getParameter("groupname");
+	if(groupname==null){
+		groupname="미지정";
+	}
+	
 %>
 </head>
 <body>
@@ -126,7 +135,7 @@ input[readonly] {
 						for (int i = 0; i < arr.size(); i++) {
 						gdto = arr.get(i);
 				%>
-					<tr>
+					<tr  onclick="showDetail('<%=gdto.getGroupidx()%>','<%=gdto.getGroupname() %>')">
 						<td><input type="checkbox" onclick="update(<%=gdto.getGroupidx()%>)" <%=gdto.getGroupidx()== gidx ? "checked":"" %>></td>
 						<td><%= gdto.getGroupidx()%></td>
 						<td><input type="text" name="groupname" <%=gdto.getGroupname().equals("-") ? "":"readonly" %> value="<%= gdto.getGroupname()%>"></td>
@@ -218,14 +227,29 @@ input[readonly] {
 					</tr>
 				</thead>
 				<tbody>
+				<%
+					ArrayList<MemberDTO> marr = gdao.inGroup(groupname);
+					if(marr==null || marr.size()==0){
+						%>
+					<tr><td colspan="6">배정된 학생이 없습니다.</td></tr>
+						<%
+					}else{
+						for(int i = 0; i < marr.size(); i++){
+							mdto = marr.get(i);
+							%>
 					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td><%= i+1 %></td>
+						<td><%= mdto.getName() %></td>
+						<td><%= mdto.getId() %></td>
+						<td><%= mdto.getTel() %></td>
+						<td><%= mdto.getEmail() %></td>
+						<td><%= mdto.getGroupname()%></td>
 					</tr>
+							<%
+						}
+					}
+				%>
+
 				</tbody>
 			</table>
 		</article>

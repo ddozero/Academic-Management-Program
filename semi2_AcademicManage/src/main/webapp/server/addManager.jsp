@@ -169,13 +169,6 @@ input[readonly] {
 					</tr>
 					<% }	} %>
 				</tbody>
-				<tfoot>
-					<tr>
-						<td colspan="1"></td>
-						<td colspan="5" style="text-align:center;">1 2 3 4 5</td>
-						<td colspan="1" style="text-align:center;"></td>
-					</tr>
-				</tfoot>
 			</table>
 		</article>
 	</section>

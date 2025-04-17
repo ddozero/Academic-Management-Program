@@ -259,6 +259,47 @@ public class AGroupDAO {
 				e2.printStackTrace();
 			}
 		}
-		
 	}
+	
+	public ArrayList<MemberDTO> inGroup(String groupName) {
+        try {
+            conn = com.semi2.db.Semi2DB.getConn();
+            
+            String sql = "select m1.name, m1.id, m1.tel, m1.email, m2.groupname from member1 m1 , member2 m2 where m1.idx=m2.idx and m2.groupname = ?";
+            
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, groupName);
+            rs = ps.executeQuery();
+            
+            ArrayList<MemberDTO> arr = new ArrayList<MemberDTO>();
+            
+            while(rs.next()) {
+            	MemberDTO dto = new MemberDTO();
+            	dto.setName(rs.getString("name"));
+            	dto.setId(rs.getString("id"));
+            	dto.setTel(rs.getString("tel"));
+            	dto.setEmail(rs.getString("email"));
+            	dto.setGroupname(rs.getString("groupname"));
+            	
+            	arr.add(dto);
+            }
+            
+            return arr;
+            
+         }catch(Exception e) {
+            e.printStackTrace();
+            return null;
+         }finally {
+            try {
+               if(rs!=null)rs.close();
+               if(ps!=null)ps.close();
+               if(conn!=null)conn.close();
+            }catch(Exception e2) {
+               e2.printStackTrace();
+            }
+         }
+	}
+	
+	
+	
 }
