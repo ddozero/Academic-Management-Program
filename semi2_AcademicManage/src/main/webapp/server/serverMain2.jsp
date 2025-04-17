@@ -1,4 +1,4 @@
-<%-- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.semi2.member.*" %>
     <%@page import="com.semi2.board.*" %>
 	<%@page import="java.util.ArrayList"%>
@@ -31,17 +31,25 @@
 						<td colspan="5">등록된 게시물이 없습니다.</td>
 					</tr>
 						<%					
-					}
-q				%>
+					}else{
+						System.out.println(arr.size());
+						for(int i =  arr.size()-1; i > arr.size()-5; i--){
+							bdto = arr.get(i);
+							
+							%>
 					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
+						<td><%=bdto.getBoardidx() %></td>
+						<td><%=bdto.getTitle() %></td>
+						<td><%=bdto.getName() %></td>
+						<td><%=bdto.getWritedate() %></td>
+						<td><%=bdto.getReadnum() %></td>
+					</tr>		
+							<%
+						}
+					}
+				%>
+
 				</tbody>
 			</table>
 		</article>
 	</section>
- --%>
