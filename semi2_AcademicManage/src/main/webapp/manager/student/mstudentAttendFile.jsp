@@ -5,13 +5,14 @@
 <%@ page import = "com.semi2.record.*"%>
 <%@ page import = "java.util.*" %>
 <%@ page import = "java.text.*" %>
-
-<jsp:useBean id="mrdao" class="com.semi2.record.MRecordDAO"></jsp:useBean>
 <%
 request.setCharacterEncoding("utf-8");
-
-SimpleDateFormat sdfDateTime = new SimpleDateFormat("HH:mm:ss");
 %>
+
+
+<jsp:useBean id="mrdao" class="com.semi2.record.MRecordDAO"></jsp:useBean>
+<jsp:useBean id ="mrdto" class="com.semi2.record.RecordDTO"></jsp:useBean>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -151,13 +152,20 @@ SimpleDateFormat sdfDateTime = new SimpleDateFormat("HH:mm:ss");
 			String fvalue = request.getParameter("fvalue");
 			String groupidx_s = request.getParameter("groupidx");
 			String attendate_s = request.getParameter("attendate");
+			String idx_s = request.getParameter("idx");
 			
-			
-			int midx = 2; //학생 2값만 조회
 			int groupidx = 0;
+			int idx = 0;
 			if(groupidx_s==null||groupidx_s.equals("")){
 				groupidx_s = "0";
 			}
+			
+			if(idx_s!=null && !idx_s.equals("")){
+				idx = Integer.parseInt(idx_s);
+				mrdto.setIdx(idx);
+			}
+			System.out.println("mrdto.getIdx() 값: " + mrdto.getIdx());
+			System.out.println("idx: " + idx);
 			
 			java.sql.Date attendate = null;
 			if(attendate_s!=null&&!attendate_s.equals("")){
@@ -169,11 +177,14 @@ SimpleDateFormat sdfDateTime = new SimpleDateFormat("HH:mm:ss");
 			System.out.println("수강생출결인정groupidx값 :" + groupidx);
 			
 			ArrayList<RecordDTO> arr = null;
+		 	arr = mrdao.msRecordFile(idx, groupidx, attendate);
+
+			
 			//이름 검색 시 
 			if ("name".equals(fkey) && fvalue != null && !fvalue.equals("")) {
    				arr = mrdao.attendFind(fvalue, groupidx, attendate);
 			} else {
-			    arr = mrdao.recordSelectList(midx, groupidx, attendate);
+			    arr = mrdao.msRecordFile(idx, groupidx, attendate);
 			}
 						
 			if(arr==null||arr.size()==0){
@@ -213,6 +224,8 @@ SimpleDateFormat sdfDateTime = new SimpleDateFormat("HH:mm:ss");
 				<td><%=statusText %></td>
 				<td>
 					<form class= "form-sclist" name="mteacherAttendFile" method="post" action="/semi2_AcademicManage/manager/student/mrecordStatusFileUp_ok.jsp">
+					<input type="hidden" name = "idx" value = "<%=arr.get(i).getIdx() %>">
+					
 						<select class = "se-select" name = "status">
 							<option value = "3" <%=r2dto.getStatus()==3?"selected":"" %>>병결(출석)</option>
 							<option value = "4" <%=r2dto.getStatus()==4?"selected":"" %>>조퇴</option>
@@ -226,6 +239,7 @@ SimpleDateFormat sdfDateTime = new SimpleDateFormat("HH:mm:ss");
 				</td>
 			</tr>
 			<%
+			
 				}
 			}
 			%>

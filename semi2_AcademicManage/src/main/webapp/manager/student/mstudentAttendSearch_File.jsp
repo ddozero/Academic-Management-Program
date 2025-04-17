@@ -4,6 +4,16 @@
 <%@ page import = "java.util.*" %>
 <%@ page import = "com.semi2.group.*" %>
 <%@ page import = "com.semi2.record.*" %>
+<%@ page import = "com.semi2.member.*" %>
+<%
+request.setCharacterEncoding("utf-8");
+%>
+
+<%
+RecordDTO mrdto = new RecordDTO();
+String idx = request.getParameter("idx");
+%>
+
 
 <jsp:useBean id="mrdao" class="com.semi2.record.MRecordDAO"></jsp:useBean>
 <!DOCTYPE html>
@@ -96,7 +106,7 @@ ul.sc-list {
 
 	<div class="left-box">
 	  <div class="search-group">
-		<form class = "search" name = "selectList" method="post" action = "mstudentAttendFile.jsp">
+		<form class = "search" name = "selectList" method="post" action = "/semi2_AcademicManage/manager/student/mstudentAttendFile.jsp">
 					<label> 담당 반 </label>	
 					<select class = "se-select" name = "groupidx">
 						<option value = "" selected> 반 선택 </option>
@@ -110,14 +120,23 @@ ul.sc-list {
 					}else{
 						for(int i = 0; i<arr.size(); i++){
 				%>
-					<option value = "<%=arr.get(i).getIdx() %>"><%=arr.get(i).getGroupname() %></option>
+					<option value = "<%=arr.get(i).getGroupidx() %>"><%=arr.get(i).getGroupname() %></option>
+					
 				<%
 						}
 					}
 				%>
-					
 					</select>
-					<input class = "setxt" type="date" name = "attendate" value = <%=new java.sql.Date(System.currentTimeMillis()).toString() %>>
+				<%
+				 // 요청 파라미터로 전달받기
+				if (idx != null && !idx.equals("")) {
+				    int idxValue = Integer.parseInt(idx);
+				    mrdto.setIdx(idxValue);
+				    System.out.println("초기화된 mrdto idx 값: " + mrdto.getIdx());
+				}
+				%>
+					<input type="hidden" name="idx" value="<%=mrdto.getIdx()%>">
+					<input class = "setxt" type="date" name = "attendate" value = "<%=new java.sql.Date(System.currentTimeMillis()).toString() %>">
 					<input class = "sebt" type="submit" value="검색">
 		</form>
 		</div>

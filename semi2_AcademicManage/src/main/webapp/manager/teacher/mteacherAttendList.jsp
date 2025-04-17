@@ -192,7 +192,7 @@ function recordTimeUp(recordidx, recordtime, tname){
 				if("name".equals(fkey) && fvalue != null && !fvalue.equals("")){
 					arr = mrdao.attendFind(fvalue, groupidx, attendate);
 				}else{
-					arr = mrdao.recordSelectList(midx, groupidx, attendate);
+					arr = mrdao.mtrecordSelectList(midx, groupidx, attendate);
 				}
 				
 				

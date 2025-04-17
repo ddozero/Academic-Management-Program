@@ -2,8 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ page import = "java.util.*" %>
 <%@ page import = "com.semi2.member.*" %>
+<%@ page import = "com.semi2.group.*" %>
 
 <jsp:useBean id="mdao" class="com.semi2.member.MMemberDAO"></jsp:useBean>
+<jsp:useBean id="mrdao" class="com.semi2.record.MRecordDAO"></jsp:useBean>
 <%
 request.setCharacterEncoding("utf-8");
 %>
@@ -115,8 +117,25 @@ form[name="mstudentFind"] {
     padding : 5px;
 }
 
+.total-count p{
+	font-size: 14px;
+	color : #666;
+	margin-top:15px;
+}
+
+
 </style>
+
 </head>
+
+<%
+int totalCount = 0;
+//if (arr != null) {
+//	totalCount = arr.size();
+///} else {
+//	totalCount = 0; 
+//}
+%>
 
 <body>
 
@@ -135,7 +154,9 @@ form[name="mstudentFind"] {
 			<input class = "setxt" type="text" name = "fvalue">
 			<input class = "sebt" type="submit" value="검색">
 		</form>
-		
+		<div class = "total-count">
+			<p>총 <%=totalCount %>명</p>
+		</div>
 		<table class="table-info">
 			<thead class="table-info-header">
 				<tr>
@@ -145,6 +166,7 @@ form[name="mstudentFind"] {
 					<th>생년월일</th>
 					<th>연락처</th>
 					<th>이메일</th>
+					<th>반배정</th>
 					<th>세부정보</th>
 				</tr>
 			</thead>
@@ -167,7 +189,7 @@ form[name="mstudentFind"] {
 				if(arr==null||arr.size()==0){
 				%>
 				<tr>
-					<td colspan = "7"> 등록된 수강생이 없습니다.</td>
+					<td colspan = "8"> 등록된 수강생이 없습니다.</td>
 				</tr>					
 				<%
 				}else{
@@ -180,6 +202,30 @@ form[name="mstudentFind"] {
 					<td><%=arr.get(i).getBirth() %></td>
 					<td><%=arr.get(i).getTel() %></td>
 					<td><%=arr.get(i).getEmail() %></td>
+					<td>
+					<form class = "search" name = "selectList" method="post" action = "msgroupSelect_ok.jsp">
+					<input type="hidden" name="m2idx" value="<%=arr.get(i).getM2idx()%>">
+					<select class = "se-select" name = "groupidx">
+					<option value = "" selected> 반 선택 </option>
+				<%
+					ArrayList<GroupDTO> arr2 = mrdao.groupSelect();
+					if(arr2==null||arr2.size()==0){
+				%>
+						<option value = ""> 미정 </option>
+				<%
+					}else{
+						for(int j = 0; j<arr2.size(); j++){
+				%>		
+						<option value="<%=arr2.get(j).getGroupidx()%>"><%=arr2.get(j).getGroupname()%></option>
+				<%
+						}
+					}	
+				%>	
+					</select>
+					<input class = "sebt" type="submit" value="배정">
+					</form>
+					
+					</td>
 					<td>
 					<form name="managerstudentList" method="post" action="/semi2_AcademicManage/manager/student/mstudentList.jsp">
 					<input type="hidden" name="idx" value="<%=arr.get(i).getIdx()%>">
