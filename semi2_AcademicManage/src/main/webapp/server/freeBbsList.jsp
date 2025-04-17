@@ -172,7 +172,7 @@ select, input[type="text"] {
 			                	}else{
 			                		switch(bdto.getMidx()){
 			                		case 1: 
-			                			%>
+			                			%> 
 			                			<strong>관리자만 열람이 가능한 글입니다.</strong>
 			                			<%break;
 			                		case 2:

@@ -11,7 +11,7 @@
 	<!-- 여기부터 추가 -->
   <div class="container">
     <div class="left-group">
-      <h1><a href="#">SYS Academy</a></h1>
+      <h1><a href="/semi2_AcademicManage/server/serverMain.jsp">SYS Academy</a></h1>
       <div class="user-group">
         <h4>관리자</h4>
       </div>
@@ -33,14 +33,11 @@
 			<li class="subt">회원 관리</li>
 			<li><a href="/semi2_AcademicManage/server/memberAccept.jsp?idxx=0">회원 승인</a></li>
 			<li><a href="/semi2_AcademicManage/server/addManager.jsp?sort=4&idxx=0">매니저 관리</a></li>
-			<li><a href="#">강사 조회</a></li>
-			<li><a href="#">수강생 조회</a></li>
 		</ul>
 
 		<ul class="title-2">
 			<li class="subt">반 관리</li>
 			<li><a href="/semi2_AcademicManage/server/addGroup.jsp?gidx=0">반 등록</a></li>
-			<li><a href="#">비품 관리</a></li>
 		</ul>
 
 		<ul class="title-3">
