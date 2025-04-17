@@ -33,6 +33,15 @@ public class GroupDTO {
 		this.itemcose = itemcose;
 		this.itemcount = itemcount;
 	}
+	
+	public GroupDTO(int groupidx, String groupname, String mname, String tname, int scount) {
+		super();
+		this.groupidx = groupidx;
+		this.groupname = groupname;
+		this.mname = mname;
+		this.tname = tname;
+		this.scount = scount;
+	}
 
 
 	public int getGroupidx() {

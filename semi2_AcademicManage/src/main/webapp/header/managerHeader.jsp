@@ -2,8 +2,8 @@
 	pageEncoding="UTF-8"%>
 	<%@page import="com.semi2.member.*" %>
 <%
-MemberDTO dto=(MemberDTO)session.getAttribute("smdto");
-String sname=dto.getName();
+MemberDTO dto1=(MemberDTO)session.getAttribute("smdto");
+String sname=dto1.getName();
 %>
 <header>
 	<!-- 여기부터 추가 -->
