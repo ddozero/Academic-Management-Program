@@ -3,7 +3,7 @@ package com.semi2.member;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
+import java.util.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -178,6 +178,7 @@ public class AMemberDAO {
 	             
 	             rs.next();  
 	             
+	             System.out.println(rs.getInt(1));
 	             return rs.getInt(1);
 
 	          }catch(Exception e) {
@@ -360,7 +361,7 @@ public class AMemberDAO {
 	         try {
 	             conn = com.semi2.db.Semi2DB.getConn();
 	             
-	             String sql="insert into member2 values(sq_MEMBER2_m2idx.nextval,?,0,'N','N','N','N','N')";
+	             String sql="insert into member2 values(sq_MEMBER2_m2idx.nextval,?,0,0,'N','N','N','N','N','N')";
 	             ps = conn.prepareStatement(sql);
 	             ps.setInt(1, idx);
 	             
@@ -457,9 +458,35 @@ public class AMemberDAO {
 	       }
 	   }
 
+	   	public String autoInt() {
+	   		int ran1 = (int)(Math.random() * (57 - 48 + 1)) + 48;
+	   		int ran2 = (int)(Math.random() * (90 - 65 + 1)) + 65;
+	   		int ran3 = (int)(Math.random() * (122 - 97 + 1)) + 97;
+	   		int ran4 = (int)(Math.random() * (57 - 48 + 1)) + 48;
+	   		int ran5 = (int)(Math.random() * (90 - 65 + 1)) + 65;
+	   		int ran6 = (int)(Math.random() * (122 - 97 + 1)) + 97;
 
-	   
+	   		char[] chars = new char[6];
+	   		chars[0] = (char)ran1;
+	   		chars[1] = (char)ran2;
+	   		chars[2] = (char)ran3;
+	   		chars[3] = (char)ran4;
+	   		chars[4] = (char)ran5;
+	   		chars[5] = (char)ran6;
 
+	   		ArrayList<Character> charList = new ArrayList<>();
+	   		for (int i = 0; i < chars.length; i++) {
+	   		    charList.add(chars[i]);
+	   		}
 
+	   		Collections.shuffle(charList);
 
+	   		StringBuilder result = new StringBuilder();
+	   		
+	   		for (int i = 0; i < charList.size(); i++) {
+	   		    result.append(charList.get(i));
+	   		}
+
+	   		return result.toString();
+	   	}
    }

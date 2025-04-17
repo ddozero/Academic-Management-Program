@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+    <%@page import="com.semi2.member.*" %>
+    <jsp:useBean id="mdao" class="com.semi2.member.AMemberDAO"></jsp:useBean>
 <%
 String saveid = "";
 
@@ -11,26 +13,7 @@ if (cks != null) {
     }
 }
 %>
-<script>
-  function valid() {
-    if (document.login.userid.value == '') {
-      alert('아이디를 입력해주세요');
-      document.login.userid.focus();
-      return false;
-    }
-    if (document.login.userpwd.value == '') {
-      alert('비밀번호를 입력해주세요');
-      document.login.userpwd.focus();
-      return false;
-    }
-    if (document.login.autoinput.value == '') {
-      alert('자동방지 번호를 입력해주세요');
-      document.login.autoinput.focus();
-      return false;
-    }
-    return true;
-  }
-</script>
+
 <style>
 .right {
   width: 100%;
@@ -119,8 +102,39 @@ button[type="submit"] {
 button[type="submit"]:hover {
   background-color: #3b5bdb;
 }
+input[name="autoonly"]{
+	letter-spacing : 5px;
+}
 </style>
 
+<script>
+console.log('ddd');
+  function valid() {
+    if (document.login.userid.value == '') {
+      alert('아이디를 입력해주세요');
+      document.login.userid.focus();
+      return false;
+    }
+    if (document.login.userpwd.value == '') {
+      alert('비밀번호를 입력해주세요');
+      document.login.userpwd.focus();
+      return false;
+    }
+    if (document.login.autoinput.value == '') {
+      alert('자동방지 번호를 입력해주세요');
+      document.login.autoinput.focus();
+      return false;
+    }
+    
+    if(document.login.autoonly.value != document.login.autoinput.value){
+    	alert('자동방지 번호가 일치하지 않습니다.')
+    	return false;
+    }
+    
+    return true;
+    
+  }
+</script>
 <div class="right">
   <h2>로그인</h2>
   <form name="login" action="login_ok.jsp" method="post" onsubmit="return valid()">
@@ -140,10 +154,10 @@ button[type="submit"]:hover {
     </div>
 
     <div class="captcha-group">
-      <input type="text" name="autoonly" readonly value="12345">
+      <input type="text" name="autoonly" readonly value="1">
+      <%=mdao.autoInt()%>
       <input type="text" name="autoinput" placeholder="자동입력방지문자">
     </div>
-
     <button type="submit">로그인</button>
   </form>
 </div>
