@@ -3,6 +3,13 @@
     <%@page import="com.semi2.board.*" %>
 	<%@page import="java.util.ArrayList"%>
 	<jsp:useBean id="bdao" class="com.semi2.board.ABoardDAO"></jsp:useBean>
+<%
+	MemberDTO mdto = (MemberDTO)session.getAttribute("smdto");
+	int midx = mdto.getMidx();
+	int idx = mdto.getIdx();
+	System.out.println("세션에 등록된 midx는 "+midx);
+	System.out.println("세션에 등록된 idx는 "+idx);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -89,6 +96,8 @@ select, input[type="text"] {
 <title>Insert title here</title>
 </head>
 <%
+	
+	
 	int totalCnt = bdao.getTotalCnt();
 	int listSize = 5;
 	int pageSize = 5;
@@ -156,8 +165,31 @@ select, input[type="text"] {
 			                	    &nbsp;&nbsp;
 		                	<%
 			                	    }
-		                	%>
+			                	if(midx==bdto.getMidx() || idx==bdto.getIdx() || midx==1){
+			                		%>
 			                	<a href="freeBbsContent.jsp?boardidx=<%=bdto.getBoardidx() %>"><%=bdto.getTitle() %></a>
+			                		<%
+			                	}else{
+			                		switch(bdto.getMidx()){
+			                		case 1: 
+			                			%>
+			                			<strong>관리자만 열람이 가능한 글입니다.</strong>
+			                			<%break;
+			                		case 2:
+			                			%>
+			                			<strong>학생만 열람이 가능한 글입니다.</strong>
+			                			<%break;
+			                		case 3:
+			                			%>
+			                			<strong>강사만 열람이 가능한 글입니다.</strong>
+			                			<%break;
+			                		case 4:
+			                			%>
+			                			<strong>매니저만 열람이 가능한 글입니다.</strong>
+			                			<%
+			                		}
+			                	}
+		                	%>
 			                </td>
 			                <td><%=bdto.getName() %></td>
 			                <td><%=bdto.getWritedate() %></td>
