@@ -171,15 +171,15 @@ public class ABoardDAO {
 		try {
 			conn = com.semi2.db.Semi2DB.getConn();
 
-			int ref = getMaxRef();
-
-			String sql = "insert into board values(sq_BOARD_boardidx.nextval,'server','자유 게시판',?,?,?,?,sysdate,0,?,0,0,0)";
+			String sql = "insert into board values(sq_BOARD_boardidx.nextval,?,?,'자유 게시판',?,?,?,?,sysdate,0,0,0,0,?)";
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, dto.getTitle());
-			ps.setString(2, dto.getName());
-			ps.setString(3, dto.getPwd());
-			ps.setString(4, dto.getContent());
-			ps.setInt(5, ref + 1);
+			ps.setInt(1, dto.getMidx());
+			ps.setInt(2, dto.getIdx());
+			ps.setString(3, dto.getTitle());
+			ps.setString(4, dto.getName());
+			ps.setString(5, dto.getPwd());
+			ps.setString(6, dto.getContent());
+			ps.setString(7, dto.getSecret());
 
 			int count = ps.executeUpdate();
 

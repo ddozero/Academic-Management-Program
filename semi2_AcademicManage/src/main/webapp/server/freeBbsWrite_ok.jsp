@@ -8,6 +8,12 @@
     <jsp:setProperty property="*" name="bdto"/>
     <jsp:useBean id="bdao" class="com.semi2.board.ABoardDAO"></jsp:useBean>
 <%
+	String midx = request.getParameter("midx");
+	System.out.println("midx는 "+midx);
+	if(bdto.getSecret()==null){
+		bdto.setSecret("0");
+	}
+	
 	int result = bdao.bbsWrite(bdto);
 	String msg = result > 0 ? "등록되었습니다.":"실패";
 %>

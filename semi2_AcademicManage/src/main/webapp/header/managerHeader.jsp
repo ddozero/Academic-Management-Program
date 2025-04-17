@@ -1,20 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+	<%@page import="com.semi2.member.*" %>
+<%
+MemberDTO dto=(MemberDTO)session.getAttribute("smdto");
+String sname=dto.getName();
+%>
 <header>
 	<!-- 여기부터 추가 -->
   <div class="container">
     <div class="left-group">
-      <h1><a href="#">SYS Academy</a></h1>
+      <h1><a href="/semi2_AcademicManage/server/serverMain.jsp">SYS Academy</a></h1>
       <div class="user-group">
         <h4>매니저</h4>
       </div>
     </div>
     <div class="right-group">
-      <div class="id-group">
-        <a href="#">로그인</a>
-        <a href="#">회원가입</a>
-      </div>
+   		<div class="id-group">
+			<%
+				if(sname != null){
+			%>
+				<span><%=sname %>님</span>
+				<a href="/semi2_AcademicManage/server/logout.jsp">로그아웃</a>
+			<%
+				}
+			%>
+		</div>
     </div>
   </div>
 

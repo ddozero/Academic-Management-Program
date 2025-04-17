@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	MemberDTO mdto = (MemberDTO)session.getAttribute("smdto");
+	String pwd = mdto.getPwd();
+	System.out.println(pwd);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -111,8 +116,7 @@ textarea {
 							<tr>
 								<th>작성자</th>
 								<td><input type="text" name="name"></td>
-								<th>비밀번호</th>
-								<td><input type="password" name="pwd"></td>
+								<td><input type="hidden" name="pwd" value="<%=pwd%>"></td>
 							</tr>
 						</thead>
 						<tbody>
@@ -125,7 +129,7 @@ textarea {
 						<tfoot>
 							<tr>
 								<td>
-								  <input type="checkbox" name="secret" id="check" value="0">비밀글
+								  <input type="checkbox" name="secret" id="check" >비밀글
 								  <span id="targetArea"></span>
 								</td>
 								
@@ -136,7 +140,7 @@ textarea {
 								    if (this.checked) {
   								      const select = document.createElement("select");
 									this.value = this.checked ? "1" : "0";
-  								      select.name = "membersort";
+  								      select.name = "midx";
 								      select.innerHTML = `
 								        <option value="1">선택</option>
 								        <option value="2">학생</option>
