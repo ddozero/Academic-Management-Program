@@ -114,12 +114,12 @@ public class MMemberDAO {
 		try {
 			conn = com.semi2.db.Semi2DB.getConn();
 			
-			String sql = "select m1.midx, m1.idx, m1.name, m1.sex, m1.tel, m1.email, m1.addr, to_char(m1.birth, 'yyyy-mm-dd') as birth, m2.career, c.comingdate, g.groupname, m2.memo, m2.imgaddr, m2.edu, c.classname, c.enddate\r\n"
+			String sql = "select m1.midx, m1.idx, m1.name, m1.sex, m1.tel, m1.email, m1.addr, m1.birth, m2.career, c.comingdate, m2.groupname, m2.memo, m2.imgaddr, m2.edu, c.classname, c.enddate\r\n"
 					+ "from member1 m1, member2 m2, classgroup g, class c\r\n"
 					+ "where m1.idx = m2.idx\r\n"
 					+ "and m2.classidx = c.classidx\r\n"
-					+ "and g.groupidx = c.groupidx\r\n"
-					+ "and m1.idx = ? and m1.midx!='0'";
+					+ "and g.groupidx = m2.groupidx\r\n"
+					+ "and m1.idx = ?";
 			
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, idx);
@@ -332,10 +332,11 @@ public class MMemberDAO {
 		try {
 			conn = com.semi2.db.Semi2DB.getConn();
 			
-			String sql = "select m1.midx, m1.idx, m1.name, m1.sex, m1.tel, m1.email, m1.addr,to_char(m1.birth, 'yyyy-mm-dd') as birth, m1.appro, m3.m3idx, m3.classidx, m3.edu2, m3.career, c.comingdate, m3.groupname,m3.memo, m3.selecclass, c.enddate, m3.imgaddr\r\n"
-					+ "from member1 m1, member3 m3, class c\r\n"
+			String sql = "select m1.midx, m1.idx, m1.name, m1.sex, m1.tel, m1.email, m1.addr, m1.birth, m1.appro, m3.m3idx, m3.classidx, m3.edu2, m3.career, c.comingdate, g.groupname, m3.memo, m3.selecclass, c.enddate, m3.imgaddr\r\n"
+					+ "from member1 m1, member3 m3, class c, classgroup g \r\n"
 					+ "where m1.idx = m3.idx\r\n"
 					+ "and m3.classidx = c.classidx\r\n"
+					+ "and g.groupidx = m3.groupidx\r\n"
 					+ "and m1.idx = ?";
 			
 			ps = conn.prepareStatement(sql);
@@ -379,6 +380,40 @@ public class MMemberDAO {
 				if(rs!=null)rs.close();
 				if(ps!=null)ps.close();
 				if(conn!=null)conn.close();
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
+		}
+	}
+	
+	
+	/**(매니저) 학생 반배정 기능 메소드*/
+	public int msgroupSelect(MemberDTO dto) {
+		try {
+			conn = com.semi2.db.Semi2DB.getConn();
+			
+			String sql = "update member2 set \r\n"
+					+ "groupidx = (select groupidx from classgroup where groupidx = ?),\r\n"
+					+ "groupname = (select groupname from classgroup where groupidx = ?)\r\n"
+					+ "where m2idx = ?";
+			
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, dto.getGroupidx());
+			ps.setInt(2, dto.getGroupidx());
+			ps.setInt(3, dto.getM2idx());
+			
+			int count = ps.executeUpdate();
+			return count;
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}finally {
+			try {
+			if(ps!=null)ps.close();
+			if(conn!=null)conn.close();
 			} catch (Exception e2) {
 				// TODO: handle exception
 			}

@@ -7,6 +7,34 @@
 <title>SYS Academy</title>
 <link rel="stylesheet" type="text/css" href="/semi2_AcademicManage/css/mainLayout.css">
 </head>
+
+<style>
+.table-add {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px auto;
+  border-radius : 10px;
+  font-size : 15px;
+}
+
+.header-style {
+  width: 15%;
+  text-align: center;
+  border: 1px solid #ddd;
+  white-space: nowrap;
+  background-color: #eee;
+
+ 
+}
+
+.cell-data {
+  width : 25%;
+  text-align: center;
+  padding: 3px;
+  border: 1px solid #ddd;
+
+}
+</style>
 <body>
 <%@include file="/header/managerHeader.jsp"%>
 

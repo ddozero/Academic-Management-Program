@@ -109,7 +109,7 @@ ul.sc-list {
 					}else{
 						for(int i = 0; i<arr.size(); i++){
 				%>		
-						<option value="<%=arr.get(i).getIdx()%>"><%=arr.get(i).getGroupname()%></option>
+						<option value="<%=arr.get(i).getGroupidx()%>"><%=arr.get(i).getGroupname()%></option>
 				<%
 						}
 					}	

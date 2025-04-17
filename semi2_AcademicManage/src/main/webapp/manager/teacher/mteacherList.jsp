@@ -28,6 +28,13 @@ request.setCharacterEncoding("utf-8");
     text-align: left;
 }
 
+.table-info th:nth-child(8), .table-info td:nth-child(8) {
+    width: 15%; /* 8열 너비 설정 */
+}
+
+.table-info th:nth-child(9), .table-info td:nth-child(9) {
+    width: 10%; /* 9열 너비 설정 */
+}
 
 .table-info-header th {
     background-color: #f4f4f4;
@@ -42,6 +49,7 @@ request.setCharacterEncoding("utf-8");
     border: 1px solid #ddd;
     text-align: center;
 }
+
 
 
 .table-info td form input[type="submit"]{
@@ -151,7 +159,6 @@ form[name="mteaherFind"] {
 					<th>연락처</th>
 					<th>이메일</th>
 					<th>입사연도</th>
-					<th>반 배정</th>
 					<th>세부정보</th>
 				</tr>
 			</thead>
@@ -186,16 +193,7 @@ form[name="mteaherFind"] {
 					<td><%=arr.get(i).getTel() %></td>
 					<td><%=arr.get(i).getEmail() %></td>
 					<td><%=arr.get(i).getComingdate() %>
-					<td>
-						<form class = "search" name ="selectgroup" method="post" action ="mteacherList.jsp"></form>
-						<select class = "se-select" name = "groupidx">
-							<option value = "" selected>반 선택</option>
-						<%
-							ArrayList<GroupDTO> arr2 = mrdao.groupSelect();
-						
-						%>
-						</select>
-					</td>
+
 					<td>
 					<form name="mteacherList" method="post" action="/semi2_AcademicManage/manager/teacher/mteacherList.jsp">
 					<input type="hidden" name="idx" value="<%=arr.get(i).getIdx()%>">

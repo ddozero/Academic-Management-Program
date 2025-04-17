@@ -62,13 +62,12 @@ public class MLectureDAO {
 
 			while (rs.next()) {
 				int groupidx = rs.getInt("groupidx");
-				int idx = rs.getInt("idx");
 				String groupname = rs.getString("groupname");
 				String mname = rs.getString("mname");
 				String tname = rs.getString("tname");
 				int scount = rs.getInt("scount");
 
-				GroupDTO dto = new GroupDTO(groupidx, idx, groupname, mname, tname, scount);
+				GroupDTO dto = new GroupDTO(groupidx, groupname, mname, tname, scount);
 				arr.add(dto);
 			}
 			return arr;
