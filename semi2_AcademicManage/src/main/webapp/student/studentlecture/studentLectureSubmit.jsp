@@ -55,8 +55,8 @@
 <br>
 
 <form name="fm" action="studentLectureSubmit_ok.jsp">
+<input type="hidden" name="classidx" value="<%=ldto.getClassidx() %>">
 <ul class="lecture-details">
-	<input type="hidden" name="classidx" value="<%=ldto.getClassidx() %>">
 	<li>강좌번호:<%=ldto.getClassidx() %></li>
 	<li>강좌명:<%=ldto.getClassname() %></li>
 	<li>강사:<%=ldto.getTname() %></li>

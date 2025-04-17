@@ -12,7 +12,6 @@
 
 	ArrayList<LectureDTO> arr=sldao.lectureDetailList(classidx);
 	
-	String classintro=sldao.lectureDetailList2(classidx);
 	
 	
 	String num_s=request.getParameter("num");
@@ -107,6 +106,14 @@ function showpopup2(){
   	color: #567AF0; /* 텍스트 색상 변경 */
 }
 
+.extra1{
+	background-color: #f4f4f4;
+    color: #333;
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #ddd;
+    font-weight: bold;
+}
 
 
 </style>
@@ -145,7 +152,7 @@ function showpopup2(){
 				
 			</tr>
 			<tr>
-				<td colspan="8">강좌목차</td>
+				<td colspan="8" class="extra1">강좌목차</td>
 			</tr>
 			<%
 			if(arr==null||arr.size()==0){
@@ -159,7 +166,7 @@ function showpopup2(){
 				for(int i=0;i<arr.size();i++){
 			%>
 				<tr>
-					<td><%=arr.get(i).getWeeknum()%><%=arr.get(i).getWeekname() %></td>
+					<td class="extra1" ><%=arr.get(i).getWeeknum()%><%=arr.get(i).getWeekname() %></td>
 					<td colspan="7"><%=arr.get(i).getWeekcon()%></td>
 				</tr>
 					
@@ -170,8 +177,8 @@ function showpopup2(){
 			%>
 			
 			<tr>
-				<td>강좌세부내용</td>
-				<td colspan="7"><%=classintro %></td>
+				<td class="extra1">강좌세부내용</td>
+				<td colspan="7"><%=ldto.getClassintro() %></td>
 			</tr>
 			<tr >
 				<td colspan="6" style="border: none;"></td>

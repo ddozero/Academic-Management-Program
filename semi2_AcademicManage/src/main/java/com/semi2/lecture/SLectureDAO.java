@@ -11,7 +11,6 @@ public class SLectureDAO {
 	public SLectureDAO() {
 		// TODO Auto-generated constructor stub
 	}
-	
 	/**개설 강좌 조회 메서드-오진우*/
 	public ArrayList<LectureDTO> lectureList(){
 		try {
@@ -19,6 +18,7 @@ public class SLectureDAO {
 			String sql="select * from class where not classidx=0";
 			ps=conn.prepareStatement(sql);
 			rs=ps.executeQuery();
+			LectureDTO ldto=null;
 			ArrayList<LectureDTO> arr=new ArrayList<LectureDTO>();
 			while(rs.next()) {
 				int classidx=rs.getInt("classidx");
@@ -30,7 +30,7 @@ public class SLectureDAO {
 				java.sql.Date enddate=rs.getDate("enddate");
 				int entiredate=rs.getInt("entiredate");
 				
-				LectureDTO ldto=new LectureDTO();
+				ldto=new LectureDTO();
 				ldto.setClassidx(classidx);
 				ldto.setClassname(classname);
 				ldto.setTname(tname);
@@ -57,7 +57,6 @@ public class SLectureDAO {
 		}
 		
 	}
-	
 	/**개설 강좌 자세히 보기1-오진우*/
 	public LectureDTO lectureDetail(int classidx) {
 		try {
@@ -75,6 +74,7 @@ public class SLectureDAO {
 				java.sql.Date comingdate=rs.getDate("comingdate");
 				java.sql.Date enddate=rs.getDate("enddate");
 				int entiredate=rs.getInt("entiredate");
+				String classintro=rs.getString("classintro");
 				
 				ldto=new LectureDTO();
 				ldto.setClassidx(classidx);
@@ -85,6 +85,7 @@ public class SLectureDAO {
 				ldto.setComingdate(comingdate);
 				ldto.setEnddate(enddate);
 				ldto.setEntiredate(entiredate);
+				ldto.setClassintro(classintro);
 			}
 			
 			return ldto;
@@ -103,7 +104,6 @@ public class SLectureDAO {
 		}
 	}
 	
-
 	/**개설 강좌 자세히 보기2-오진우*/
 	public ArrayList<LectureDTO> lectureDetailList(int classidx){
 		try {
@@ -140,20 +140,54 @@ public class SLectureDAO {
 			}
 		}
 	}
-	
-	/**개설 강좌 자세히 보기3-오진우*/
-	public String lectureDetailList2(int classidx){
+
+	/**현재 신청강좌 존재시 신청불가 메서드*/
+	public int studentCheckMyLecture(int idx) {
 		try {
 			conn=com.semi2.db.Semi2DB.getConn();
-			String sql="select classintro from classdetil where classidx=?";
+			String sql="select classidx from member2 where idx=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, idx);
+			rs=ps.executeQuery();
+			int classidx=-1;
+			if(rs.next()) {
+				classidx=rs.getInt("classidx");
+			}
+			return classidx;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}finally {
+			try {
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+				
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+	
+	
+	/**인원초과시 신청불가체크 -오진우*/
+	public LectureDTO studentCheckCount(int classidx) {
+		try {
+			conn=com.semi2.db.Semi2DB.getConn();
+			String sql="select reqscount,entirescount from class where classidx=?";
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, classidx);
 			rs=ps.executeQuery();
-			String classintro=null;
+			LectureDTO ldto=null;
 			if(rs.next()) {
-				classintro=rs.getString("classintro");
+				int reqscount=rs.getInt("reqscount");
+				int entirescount=rs.getInt("entirescount");
+				
+				ldto=new LectureDTO();
+				ldto.setReqscount(reqscount);
+				ldto.setEntirescount(entirescount);
 			}
-			return classintro;
+			return ldto;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -167,6 +201,9 @@ public class SLectureDAO {
 			}
 		}
 	}
+	
+	
+	
 	
 	/**내 강좌 보기 -오진우*/
 	public LectureDTO studentMyLecture(int idx) {

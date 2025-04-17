@@ -9,8 +9,14 @@
 	MemberDTO mdto=(MemberDTO)session.getAttribute("smdto");
 	
 	int result=smdao.studentDelLecture(mdto.getIdx());
+	int result2=smdao.studentDelLecture2(classidx);
+	String msg=null;
 	
-	String msg=result>0?"취소가 완료되었습니다.":"취소가 실패했습니다.";
+	if(result>0&&result2>0){
+		msg="취소가 완료되었습니다.";
+	}else if(result<=0||result2<=0){
+		msg="취소가 실패했습니다. 관리자에게 문의해주세요";
+	}
 
 %>
 

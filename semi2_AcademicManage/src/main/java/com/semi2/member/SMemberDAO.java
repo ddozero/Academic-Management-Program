@@ -57,4 +57,48 @@ public class SMemberDAO {
 		}
 	}
 	
+	/**강좌 신청시 현재 인원 추가 -오진우*/
+	public int studentAddLecture2(int classidx) {
+		try {
+			conn=com.semi2.db.Semi2DB.getConn();
+			String sql="update class set reqscount=reqscount+1 where classidx=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, classidx);
+			int result=ps.executeUpdate();
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}finally {
+			try {
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+				
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+	/**강좌 신청시 현재 인원 감소 -오진우*/
+	public int  studentDelLecture2(int classidx) {
+		try {
+			conn=com.semi2.db.Semi2DB.getConn();
+			String sql="update class set reqscount=reqscount-1 where classidx=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, classidx);
+			int result=ps.executeUpdate();
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}finally {
+			try {
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+				
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
 }
