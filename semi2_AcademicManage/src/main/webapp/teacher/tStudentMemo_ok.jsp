@@ -20,7 +20,7 @@ if (dto == null) {
 %>
 <script>
 	alert("학생 정보 등록 중입니다.");
-	location.href = '/semiTest/teacher/tStudentMemo.jsp';
+	location.href = '/semi2_AcademicManage/teacher/tStudentMemo.jsp';
 </script>
 <%
 return;
@@ -37,9 +37,9 @@ boolean isEdit = "edit".equals(request.getParameter("action"));
 <head>
 <meta charset="UTF-8">
 <title>SYS Academy</title>
-<link rel="stylesheet" type="text/css"
-	href="/semiTest/css/mainLayout.css">
+<link rel="stylesheet" type="text/css" href="/semi2_AcademicManage/css/mainLayout.css">
 <style>
+
 .table-add {
 	width: 100%;
 	border-collapse: collapse;
@@ -120,11 +120,14 @@ input.blue-btn {
 		<%
 		}
 		%>
-
+		<div class="all-title2">
+		
+		</div>
 		<div class="info-box">
 			<div class="image-placeholder">
 				<img src="<%=dto.getImgaddr()%>" alt="학생정보테스트용">
 			</div>
+			
 			<table class="table-add">
 				<tr>
 					<th class="header-style">이름</th>
@@ -185,26 +188,28 @@ input.blue-btn {
 			</table>
 		</div>
 
-		<div
-			style="text-align: right; margin: 0 auto; max-width: 1000px; margin-bottom: 30px;">
+		<div style="text-align: right; margin: 0 auto; max-width: 1000px; margin-bottom: 30px;">
 			<%
 			if (isEdit) {
 			%>
 			<input type="submit" value="저장" class="blue-btn"> <input
 				type="button" value="취소" class="blue-btn"
 				onclick="location.href='tStudentMemo.jsp?idx=<%=dto.getIdx()%>'">
-	</form>
+	
+		</div>
+		</form>
 	<%
 	} else {
 	%>
 	<form method="post" action="tStudentMemo.jsp">
+	<div>
 		<input type="hidden" name="idx" value="<%=dto.getIdx()%>">
 		<input type="hidden" name="action" value="edit">
 		<input type="submit" value="수정하기" class="blue-btn">
-	</form>
+	
 	<% } %>
 	</div>
-
+</form>
 	<%@include file="/header/footer.jsp"%>
 </body>
 </html>

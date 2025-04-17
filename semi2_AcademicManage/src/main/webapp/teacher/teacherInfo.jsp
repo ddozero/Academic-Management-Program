@@ -3,19 +3,33 @@
 <%@ page import = "java.util.*" %>
 <%@ page import = "com.semi2.member.*" %>
 <%
-
 String id = "teacher";
 int midx = 3;
+int idx = 3;
+
 TMemberDAO dao = new TMemberDAO();
 MemberDTO dto = dao.getTeacherInfo(id, midx);
+
+if (dto == null) {
+    out.println("<script>alert('강사 정보를 불러올 수 없습니다.'); history.back();</script>");
+    return;
+}
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>내 정보 보기</title>
-<link rel="stylesheet" type="text/css" href="/semi2_AcademicManage/css/mainLayout.css">
+<title>SYS Academy</title>
+<link rel="stylesheet" type = "text/css" href="/semi2_AcademicManage/css/mainLayout.css"> 
    <style>
+    .wrapper {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: white;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
     .title {
       font-size: 20px;
       font-weight: bold;
@@ -71,37 +85,15 @@ MemberDTO dto = dao.getTeacherInfo(id, midx);
       margin-left: 10px;
       cursor: pointer;
     }
-    
-    .all-section-tinfo {
-		margin-left: 320px; 
-		background-color: #ffffff;
-		padding: 20px 40px;
-		border-radius: 10px;
-		max-width: calc(100% - 360px);
-		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-		max-height: 1000px; /* 높이 설정 */
-  		overflow-y: auto; /* 세로 스크롤 추가 */
-	}
-	
   </style>
 </head>
-
-
 <body>
 <%@include file = "../header/teacherHeader.jsp" %>
-
-
-
- <div class = "all-title1">
-  <h2>내 정보 보기</h2>
-  </div>
-  
-  <section class= "all-section-tinfo">
-<div>
-  <div class="title"><%=dto.getName() %> 강사님 정보</div>
+<div class="wrapper">
+  <div class="title"><%= dto.getName() != null ? dto.getName() : "이름없음" %> 강사님 정보</div>
   
   <div class="info-box">
-    <h3><%=dto.getName() %> 강사님 기본 정보</h3>
+   <h3><%=dto.getName() %> 강사님 기본 정보</h3>
     
     <div class="info-content">
      <div class="image-box">
@@ -135,7 +127,7 @@ MemberDTO dto = dao.getTeacherInfo(id, midx);
         </tr>
         <tr>
           <td class="label">반</td><td><%=dto.getGroupname() %></td>
-          <td class="label">담당강좌명</td><td><%=dto.getClassidx() %></td>
+          <td class="label">담당강좌명</td><td><%=dto.getClassname() %></td>
         </tr>
         <tr>
           <td class="label">특이사항</td><td><%=dto.getMemo() %></td>
@@ -150,10 +142,6 @@ MemberDTO dto = dao.getTeacherInfo(id, midx);
   </div>
 </div>
 </section>
-
-
-
-
 <%@include file = "../header/footer.jsp" %>
 </body>
 </html>

@@ -5,7 +5,6 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import com.semi2.member.*;
 
 public class TstudentDAO {
 	private Connection conn;
@@ -115,6 +114,8 @@ public class TstudentDAO {
 			}
 		}
 	}
+	
+
 	
 	/**(매니저) 강좌별 수강생 현황 조회 */
 	public ArrayList<MemberDTO> lectureStudentList(int classidx) {

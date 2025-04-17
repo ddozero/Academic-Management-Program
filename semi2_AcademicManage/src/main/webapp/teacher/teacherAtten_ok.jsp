@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ page import="com.semi2.record.*"%>
-<%@ page import="com.semi2.member.*"%>
-<%@ page import="java.sql.*"%>
-<%@ page import="java.sql.Timestamp"%>
+    pageEncoding="UTF-8"%>
+<%@ page import="com.semi2.record.*" %>
+<%@ page import="com.semi2.member.*" %>
+<%@ page import="java.sql.*" %>
+<%@ page import="java.sql.Timestamp" %>
 
-<jsp:useBean id="rdto" class="com.semi2.record.RecordDTO"
-	scope="request"></jsp:useBean>
+<jsp:useBean id="rdto" class="com.semi2.record.RecordDTO" scope="request"></jsp:useBean>
 <jsp:setProperty name="rdto" property="*" />
 <jsp:useBean id="rdao" class="com.semi2.record.TRecordDAO" scope="page"></jsp:useBean>
 
@@ -24,7 +23,7 @@ if ("in".equals(action)) {
 
     if (isAbsenceDuplicate) {
 %>
-<script>
+    <script>
       alert("이미 출근 처리된 기록이 있습니다.");
       history.back();
     </script>
@@ -33,6 +32,7 @@ if ("in".equals(action)) {
         rdto.setRecordtime(480);
         rdto.setEntirate(0);       // 전체출석률
         rdto.setCurrate(0);          // 현재출석률
+        rdto.setStatus(5);          // 상태구분(출근/출석 1, 퇴근2, 지각3, 조퇴4 , 결석5, 질병 6)
         rdto.setattendate(now);		// 금일시간
         rdto.setIntime(now2);		// 출근시간(시분초포함)
         rdto.setOuttime(now2);        // 출근 시 퇴근은 일단 동일하게 저장
@@ -40,13 +40,13 @@ if ("in".equals(action)) {
         int result = rdao.attenInSave(rdto);
 %>
 <% if (result > 0) { %>
-<script>
+    <script>
       alert("출근이 정상적으로 처리되었습니다.");
       location.href = "teacherAtten.jsp";
     </script>
 <% } else { %>
-<script>
-      alert("출근 처리에 실패했습니다. 다시 시도해주세요.");
+    <script>
+      alert("출근 처리 실패했습니다. 다시 시도해주세요.");
       history.back();
     </script>
 <% } %>
@@ -67,7 +67,7 @@ if ("in".equals(action)) {
 
     if (isAlreadyOut) {
 %>
-<script>
+    <script>
       alert("이미 퇴근 처리된 기록이 있습니다.");
       history.back();
     </script>
@@ -76,13 +76,13 @@ if ("in".equals(action)) {
     	int result = rdao.attenOutSave(midx, idx, classidx, outtime);
 %>
 <% if (result > 0) { %>
-<script>
+    <script>
       alert("퇴근이 정상적으로 처리되었습니다.");
       location.href = "teacherAtten.jsp";
     </script>
 <% } else { %>
-<script>
-      alert("퇴근 처리에 실패했습니다. 다시 시도해주세요.");
+    <script>
+      alert("퇴근 처리 실패했습니다. 다시 시도해주세요.");
       history.back();
     </script>
 <% } %>

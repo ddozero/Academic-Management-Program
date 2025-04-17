@@ -1,7 +1,5 @@
 package com.semi2.lecture;
 
-import java.sql.*;
-
 public class ManagerLectureDTO {
    private int classidx;
    private int groupidx;
@@ -22,6 +20,11 @@ public class ManagerLectureDTO {
    private String weekname;
    private String weekcon;
    private String weekperiod;
+   //강좌평가테이블
+   private int estidx;
+   private int idx;
+   private int estinum;
+   private String esticon;
    
    public ManagerLectureDTO() {
       // TODO Auto-generated constructor stub
@@ -91,6 +94,15 @@ public class ManagerLectureDTO {
       this.weekcon = weekcon;
       this.weekperiod = weekperiod;
    }
+   //강좌평가테이블
+   public ManagerLectureDTO(int classidx, int estidx, int idx, int estinum, String esticon) {
+	   super();
+	   this.classidx = classidx;
+	   this.estidx = estidx;
+	   this.idx = idx;
+	   this.estinum = estinum;
+	   this.esticon = esticon;
+ 	}
 
    public int getClassidx() {
       return classidx;
@@ -211,6 +223,37 @@ public class ManagerLectureDTO {
    public void setWeekperiod(String weekperiod) {
       this.weekperiod = weekperiod;
    }
+	
+   public int getEstidx() {
+	  return estidx;
+   }
+	
+   public void setEstidx(int estidx) {
+	  this.estidx = estidx;
+   }
+	
+   public int getIdx() {
+	  return idx;
+   }
+	
+   public void setIdx(int idx) {
+	  this.idx = idx;
+   }
+	
+   public int getEstinum() {
+	  return estinum;
+   }
+	
+   public void setEstinum(int estinum) {
+	  this.estinum = estinum;
+   }
+	
+   public String getEsticon() {
+	  return esticon;
+   }
+	
+   public void setEsticon(String esticon) {
+	  this.esticon = esticon;
+   }
 
 }
-

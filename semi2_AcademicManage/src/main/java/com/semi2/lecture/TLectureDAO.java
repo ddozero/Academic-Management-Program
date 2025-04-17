@@ -2,7 +2,6 @@ package com.semi2.lecture;
 
 import java.sql.*;
 import java.util.*;
-import com.semi2.member.*;
 
 public class TLectureDAO {
 	private Connection conn;
@@ -281,5 +280,40 @@ public class TLectureDAO {
 	        } catch (Exception e2) {}
 	    }
 	}
+	// 강좌평가테이블 보기
+	public ArrayList<ManagerLectureDTO> getEstimateMemo(int classidx) {
+		ArrayList<ManagerLectureDTO> estiList = new ArrayList<>();
+		try {
+			conn = com.semi2.db.Semi2DB.getConn();
+	        String sql = "SELECT * FROM CLASSESTIMATE WHERE classidx = ?";
+	        ps = conn.prepareStatement(sql);
+	        ps.setInt(1, classidx);
+	        rs = ps.executeQuery();
 
+	        while (rs.next()) {
+	            int estidx = rs.getInt("estidx");
+	            int idx = rs.getInt("idx");
+	            int estinum = rs.getInt("estinum");
+	            String esticon = rs.getString("esticon");
+
+	            ManagerLectureDTO dto = new ManagerLectureDTO();
+	            dto.setEstidx(estidx);
+	            dto.setEstinum(estinum);
+	            dto.setEsticon(esticon);
+	            dto.setIdx(idx);
+	            estiList.add(dto);
+		        }
+		} catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				  if (ps != null) ps.close();
+		          if (conn != null) conn.close();
+			} catch(Exception e2) {
+				
+			}
+		}
+		return estiList;
+	}
+	
 }

@@ -7,21 +7,21 @@
 <%
 request.setCharacterEncoding("utf-8");
 
-// 📌 입력 파라미터 수신
+// 입력 파라미터 수신
 int classidx = Integer.parseInt(request.getParameter("classidx"));
 int weeknum = Integer.parseInt(request.getParameter("weeknum"));
 String weekname = request.getParameter("weekname");
 String weekcon = request.getParameter("weekcon");
-String weekperiod = request.getParameter("weekperiod"); // varchar 타입 그대로 사용
+String weekperiod = request.getParameter("weekperiod");
 
-//DTO 설정
+// DTO 설정
 dto.setClassidx(classidx);
 dto.setWeeknum(weeknum);
 dto.setWeekname(weekname);
 dto.setWeekcon(weekcon);
 dto.setWeekperiod(weekperiod);
 
-//DB 등록 요청
+// DB 등록 요청
 int result = mldao.insertLectureWeek(dto);
 %>
 
@@ -29,7 +29,7 @@ int result = mldao.insertLectureWeek(dto);
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>세부 강좌 등록 결과</title>
+  <title>SYS Academy</title>
 </head>
 <body>
 <script>
@@ -38,7 +38,7 @@ int result = mldao.insertLectureWeek(dto);
     window.opener.location.reload();  // 부모창 새로고침
     window.close();                   // 현재 팝업 닫기
 <% } else { %>
-    alert("등록에 실패했습니다. 다시 시도해주세요.");
+    alert("등록 실패했습니다. 다시 시도해주세요.");
     history.back();
 <% } %>
 </script>

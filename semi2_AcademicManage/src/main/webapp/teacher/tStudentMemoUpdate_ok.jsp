@@ -15,10 +15,10 @@ int result = 0;
 try {
     idx = Integer.parseInt(idx_s);
     result = msdao.updateStudentMemo(idx, memo);
-    System.out.println("📌 [tStudentMemoUpdate_ok.jsp] idx: " + idx);
-    System.out.println("📌 [tStudentMemoUpdate_ok.jsp] memo: " + memo);
+    System.out.println("[tStudentMemoUpdate_ok.jsp] idx: " + idx);
+    System.out.println("[tStudentMemoUpdate_ok.jsp] memo: " + memo);
 } catch(Exception e) {
-    System.out.println("📌 [tStudentMemoUpdate_ok.jsp] 예외 발생");
+    System.out.println("[tStudentMemoUpdate_ok.jsp] 예외 발생");
     e.printStackTrace();
 }
 %>

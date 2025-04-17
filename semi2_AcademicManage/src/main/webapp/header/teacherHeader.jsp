@@ -11,7 +11,7 @@ String sname = (String) session.getAttribute("sname");
 				<a href="#">SYS Academy</a>
 			</h1>
 			<div class="user-group">
-				<h4>매니저</h4>
+				<h4>강사</h4>
 			</div>
 		</div>
 		<div class="right-group">
@@ -32,7 +32,7 @@ String sname = (String) session.getAttribute("sname");
 		<ul class="title-2">
 			<li class="subt">수강생 관리</li>
 			<li><a href="/semi2_AcademicManage/teacher/tStudentMemo.jsp">수강생 정보</a></li>
-			<li><a href="#">담당강좌 수강생 출결 조회</a></li>
+			<li><a href="/semi2_AcademicManage/teacher/LStudentAtten.jsp">담당강좌 수강생 출결 조회</a></li>
 		</ul>
 
 		<ul class="title-3">
@@ -40,7 +40,7 @@ String sname = (String) session.getAttribute("sname");
 			<li><a href="/semi2_AcademicManage/teacher/teacherLectureList.jsp">담당강좌 관리</a></li>
 			<li><a href="#">서술형시험 등록</a></li>
 			<li><a href="#">서술형시험 조회현황</a></li>
-			<li><a href="#">강좌 평가 조회</a></li>
+			<li><a href="/semi2_AcademicManage/teacher/tClassEstimate.jsp">강좌 평가 조회</a></li>
 		</ul>
 
 		<ul class="title-3">
@@ -53,7 +53,7 @@ String sname = (String) session.getAttribute("sname");
 		</ul>
 
 	</nav>
-</header>
+</header> 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     var menuLinks = document.querySelectorAll("#aside ul li a");

@@ -7,15 +7,15 @@
 <%
 request.setCharacterEncoding("utf-8");
 int classidx = Integer.parseInt(request.getParameter("classidx"));
-ArrayList<Integer> usedWeeks = mldao.getUsedWeekNums(classidx); // ✅ 이미 등록된 주차들
-int entireWeekCount = mldao.getCalculatedWeekCount(classidx);   // ✅ 전체 등록 가능 주차수 계산
+ArrayList<Integer> usedWeeks = mldao.getUsedWeekNums(classidx); // 이미 등록된 주차들
+int entireWeekCount = mldao.getCalculatedWeekCount(classidx);   // 전체 등록 가능 주차수 계산
 %>
 
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>세부 강좌 등록</title>
+  <title>SYS Academy</title>
 <style>
 body {
 	font-family: sans-serif;
@@ -63,6 +63,7 @@ td {
 .btn:hover {
 	background-color: #3457c0;
 }
+
 </style>
 </head>
 <body>

@@ -14,7 +14,7 @@ request.setCharacterEncoding("utf-8");
 <meta charset="UTF-8">
 
 <title>SYS Academy</title>
-<link rel="stylesheet" type="text/css" href="/semiTest/css/mainLayout.css">
+<link rel="stylesheet" type="text/css" href="/semi2_AcademicManage/css/mainLayout.css">
 
 <style>
 .table-info {
@@ -64,14 +64,25 @@ request.setCharacterEncoding("utf-8");
 	font-size: 16px;
 	color: #333;
 }
-
+.all-section2-sub{
+		margin-left: 320px; 
+		margin-bottom: 100px;
+		background-color: #ffffff;
+		padding: 8px 30px;
+		border-radius: 10px;
+		max-width: calc(100% - 360px);
+		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+		height: 500; /* 추가 높이 설정 */
+		max-height: 380px; /* 높이 설정 */
+  		overflow-y: auto; /* 세로 스크롤 추가 */
+  		overflow-x: hidden;
+  		margin-bottom : 20px;
+}
 </style>
 
 </head>
 
-
 <body>
-
 
 <div class = "all-title1">
   <h2>수강생 정보 관리</h2>
@@ -125,7 +136,7 @@ request.setCharacterEncoding("utf-8");
 					<td><%=arr.get(i).getTel() %></td>
 					<td><%=arr.get(i).getEmail() %></td>
 					<td>
-					<form name="managerstudentList" method="post" action="/semiTest/teacher/tStudentMemo.jsp">
+					<form name="managerstudentList" method="post" action="/semi2_AcademicManage/teacher/tStudentMemo.jsp">
 					<input type="hidden" name="idx" value="<%=arr.get(i).getIdx()%>">
 					<input type="submit" value="조회">
 					</form>
@@ -144,7 +155,7 @@ request.setCharacterEncoding("utf-8");
 <div class = "all-title2">
 		<h2>수강생 정보</h2>
 	</div>
-	<section class= "all-section2">
+	<section class= "all-section2-sub">
 	
 	 <%
     if(idx == null||idx.equals("")){

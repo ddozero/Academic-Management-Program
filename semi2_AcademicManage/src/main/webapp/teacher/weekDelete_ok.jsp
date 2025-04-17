@@ -15,7 +15,7 @@ int result = mldao.deleteWeekByNum(classidx, weeknum);
 <% if (result > 0) { %>
     alert("해당 주차 정보가 삭제되었습니다.");
 <% } else { %>
-    alert("삭제에 실패했습니다.");
+    alert("삭제 실패했습니다.");
 <% } %>
 location.href = "teacherLectureList.jsp";
 </script>

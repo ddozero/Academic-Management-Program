@@ -1,11 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ page import="java.util.*"%>
-<%@ page import="java.sql.Date"%>
-<%@ page import="com.semi2.record.*"%>
-<%@ page import="com.semi2.member.*"%>
-<%@ page import="java.sql.Timestamp"%>
-<%@ page import="java.text.SimpleDateFormat"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import = "java.util.*" %>
+<%@ page import = "java.sql.Date" %>
+<%@ page import = "com.semi2.record.*" %>
+<%@ page import = "com.semi2.member.*" %>
+<%@ page import = "java.sql.Timestamp" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 
 <%
 String id = "teacher";
@@ -20,88 +19,66 @@ RecordDTO rdto = new RecordDTO();
 rdao.getClassByName(rdto, name);
 int classidx = rdto.getClassidx();
 String classname = rdto.getClassname();
-ArrayList<RecordDTO> arrdto = rdao.recordShow();
+ArrayList<RecordDTO> arrdto = rdao.recordShow(midx);
 SimpleDateFormat sdfDateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<title>강사 출퇴근 관리</title>
-<link rel="stylesheet" type="text/css"
-	href="/semi2_AcademicManage/css/mainLayout.css">
-<style>
-.clock-box {
-	background-color: #e4ecff;
-	padding: 20px 30px;
-	border-radius: 10px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	border: 1px solid #c7d9ff;
-	margin-bottom: 30px;
-	flex-wrap: wrap;
-}
-
-.clock-box .time {
-	font-size: 16px;
-}
-
-.btn-box {
-	display: flex;
-	gap: 10px;
-}
-
-.btn {
-	background-color: #356ae6;
-	color: #fff;
-	padding: 10px 24px;
-	border: none;
-	border-radius: 6px;
-	cursor: pointer;
-	font-size: 15px;
-	transition: background-color 0.2s ease;
-}
-
-.btn:hover {
-	background-color: #2d5bd0;
-}
-
-.record-box h3 {
-	font-size: 16px;
-	margin-bottom: 10px;
-}
-
-table {
-	width: 100%;
-	border-collapse: collapse;
-}
-
-th, td {
-	border: 1px solid #ccc;
-	padding: 12px;
-	text-align: center;
-	font-size: 14px;
-}
-
-th {
-	background-color: #f5f5f5;
-}
-
-.all-section-tat{
-		margin-left: 320px; 
-		background-color: #ffffff;
-		padding: 20px 40px;
-		height : 700px;
-		border-radius: 10px;
-		max-width: calc(100% - 360px);
-		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-		max-height: 800px; /* 높이 설정 */
-  		overflow-y: auto; /* 세로 스크롤 추가 */
-}
-
-</style>
-<script>
+  <meta charset="UTF-8">
+  <title>SYS Academy</title>
+  <link rel="stylesheet" type="text/css" href="/semi2_AcademicManage/css/mainLayout.css">
+  <style>
+    .clock-box {
+      background-color: #e4ecff;
+      padding: 20px 30px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid #c7d9ff;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+    .clock-box .time {
+      font-size: 16px;
+    }
+    .btn-box {
+      display: flex;
+      gap: 10px;
+    }
+    .btn {
+      background-color: #356ae6;
+      color: #fff;
+      padding: 10px 24px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 15px;
+      transition: background-color 0.2s ease;
+    }
+    .btn:hover {
+      background-color: #2d5bd0;
+    }
+    .record-box h3 {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 12px;
+      text-align: center;
+      font-size: 14px;
+    }
+    th {
+      background-color: #f5f5f5;
+    }
+  </style>
+  <script>
     function noticeTime() {
       var now = new Date();
 
@@ -124,54 +101,50 @@ th {
 </head>
 
 <body onload="noticeTime()">
-	<%@ include file="../header/teacherHeader.jsp"%>
+<%@ include file="../header/teacherHeader.jsp" %>
 
-	<div class="all-title1">
-		<h2><%= mdto.getName() %>
-			강사님 출/퇴근 관리
-		</h2>
+<div class="all-title1">
+  <h2><%= mdto.getName() %> 강사님 출/퇴근 관리</h2>
+</div>
+<section class="all-section1">
+  <div class="clock-box">
+    <div class="time">현재 시간: <span id="timer"></span></div>
+    <div class="btn-box">
+	<!-- 출근 버튼 -->
+	<form action="teacherAtten_ok.jsp" method="post">
+		<input type="hidden" name="midx" value="<%= midx %>">
+	    <input type="hidden" name="idx" value="<%= idx %>">
+	    <input type="hidden" name="classidx" value="<%= classidx %>">
+	    <input type="hidden" name="name" value="<%= name %>">
+	    <button class="btn" type="submit" name="action" value="in">출근</button>
+	</form>
+
+ 	<!-- 퇴근 버튼 -->
+	<form action="teacherAtten_ok.jsp" method="post">
+	    <input type="hidden" name="midx" value="<%= midx %>">
+	    <input type="hidden" name="idx" value="<%= idx %>">
+	    <input type="hidden" name="classidx" value="<%= classidx %>">
+	    <input type="hidden" name="name" value="<%= name %>">
+	    <button class="btn" type="submit" name="action" value="out">퇴근</button>
+	</form>
 	</div>
-	<section class="all-section-tat">
-		<div class="clock-box">
-			<div class="time">
-				현재 시간: <span id="timer"></span>
-			</div>
-			<div class="btn-box">
-				<!-- 출근 버튼 -->
-				<form action="teacherAtten_ok.jsp" method="post">
-					<input type="hidden" name="midx" value="<%= midx %>"> <input
-						type="hidden" name="idx" value="<%= idx %>"> <input
-						type="hidden" name="classidx" value="<%= classidx %>"> <input
-						type="hidden" name="name" value="<%= name %>">
-					<button class="btn" type="submit" name="action" value="in">출근</button>
-				</form>
-
-				<!-- 퇴근 버튼 -->
-				<form action="teacherAtten_ok.jsp" method="post">
-					<input type="hidden" name="midx" value="<%= midx %>"> <input
-						type="hidden" name="idx" value="<%= idx %>"> <input
-						type="hidden" name="classidx" value="<%= classidx %>"> <input
-						type="hidden" name="name" value="<%= name %>">
-					<button class="btn" type="submit" name="action" value="out">퇴근</button>
-				</form>
-			</div>
-		</div>
-		<div class="record-box">
-			<h3>입퇴실 기록</h3>
-			<table>
-				<thead>
-					<tr>
-						<th>NO</th>
-						<th>담당강좌명</th>
-						<th>날짜</th>
-						<th>출근</th>
-						<th>퇴근</th>
-						<th>총 근무시간</th>
-						<th>구분</th>
-					</tr>
-				</thead>
-				<tbody>
-					<% if (arrdto != null && !arrdto.isEmpty()) {
+  </div>
+  <div class="record-box">
+      <h3>입퇴실 기록</h3>
+<table>
+  <thead>
+    <tr>
+      <th>NO</th>
+      <th>담당강좌명</th>
+      <th>날짜</th>
+      <th>출근</th>
+      <th>퇴근</th>
+      <th>총 근무시간</th>
+      <th>구분</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% if (arrdto != null && !arrdto.isEmpty()) {
        for (int i = 0; i < arrdto.size(); i++) {
            RecordDTO r2dto = arrdto.get(i);
            String statusText;
@@ -181,25 +154,23 @@ th {
                default: statusText = "기타";
            }
   %>
-					<tr>
-						<td><%= i + 1 %></td>
-						<td><%= rdto.getClassname() %></td>
-						<td><%= r2dto.getattendate() %></td>
-						<td><%= (r2dto.getIntime() != null) ? sdfDateTime.format(r2dto.getIntime()) : "-" %></td>
-						<td><%= (r2dto.getOuttime() != null) ? sdfDateTime.format(r2dto.getOuttime()) : "-" %></td>
-						<td><%= r2dto.getRecordtime() %>분</td>
-						<td><%= statusText %></td>
-					</tr>
-					<%   }
+    <tr>
+      <td><%= i + 1 %></td>
+      <td><%= rdto.getClassname() %></td>
+      <td><%= r2dto.getattendate() %></td>
+      <td><%= (r2dto.getIntime() != null) ? sdfDateTime.format(r2dto.getIntime()) : "-" %></td>
+	  <td><%= (r2dto.getOuttime() != null) ? sdfDateTime.format(r2dto.getOuttime()) : "-" %></td>
+      <td><%= r2dto.getRecordtime() %>분</td>
+      <td><%= statusText %></td>
+    </tr>
+  <%   }
      } else { %>
-					<tr>
-						<td colspan="7">출퇴근 기록이 없습니다.</td>
-					</tr>
-					<% } %>
-				</tbody>
-			</table>
-		</div>
-	</section>
-	<%@ include file="../header/footer.jsp"%>
+    <tr><td colspan="7">출퇴근 기록이 없습니다.</td></tr>
+  <% } %>
+  </tbody>
+</table>
+  </div>
+</section>
+<%@ include file="../header/footer.jsp" %>
 </body>
 </html>
