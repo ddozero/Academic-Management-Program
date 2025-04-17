@@ -29,7 +29,6 @@ public class AGroupDAO {
             ArrayList<GroupDTO> arr = new ArrayList<GroupDTO>();
             while(rs.next()) {
             	int groupidx = rs.getInt("groupidx");
-            	int idx = rs.getInt("idx");
             	String groupname = rs.getString("groupname");
             	String mname = rs.getString("mname");
             	String tname = rs.getString("tname");
@@ -37,7 +36,6 @@ public class AGroupDAO {
             	
             	GroupDTO gdto = new GroupDTO();
             	gdto.setGroupidx(groupidx);
-            	gdto.setIdx(idx);
             	gdto.setGroupname(groupname);
             	gdto.setMname(mname);
             	gdto.setTname(tname);

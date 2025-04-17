@@ -4,7 +4,6 @@ public class GroupDTO {
 	
 	// 반(Group) 테이블
 	private int groupidx;
-	private int idx;
 	private String groupname;
 	private String mname;
 	private String tname;
@@ -20,24 +19,11 @@ public class GroupDTO {
 		
 	}
 
-	
-	//반 테이블 생성자
-	public GroupDTO(int groupidx, int idx, String groupname, String mname, String tname, int scount) {
-		super();
-		this.groupidx = groupidx;
-		this.idx = idx;
-		this.groupname = groupname;
-		this.mname = mname;
-		this.tname = tname;
-		this.scount = scount;
-	}
-	
-	//비품 테이블 생성자
-	public GroupDTO(int groupidx, int idx, String groupname, String mname, String tname, int scount, int itemidx,
+
+	public GroupDTO(int groupidx, String groupname, String mname, String tname, int scount, int itemidx,
 			String itemname, int itemcose, int itemcount) {
 		super();
 		this.groupidx = groupidx;
-		this.idx = idx;
 		this.groupname = groupname;
 		this.mname = mname;
 		this.tname = tname;
@@ -49,8 +35,6 @@ public class GroupDTO {
 	}
 
 
-
-
 	public int getGroupidx() {
 		return groupidx;
 	}
@@ -58,16 +42,6 @@ public class GroupDTO {
 
 	public void setGroupidx(int groupidx) {
 		this.groupidx = groupidx;
-	}
-
-
-	public int getIdx() {
-		return idx;
-	}
-
-
-	public void setIdx(int idx) {
-		this.idx = idx;
 	}
 
 
@@ -150,4 +124,6 @@ public class GroupDTO {
 		this.itemcount = itemcount;
 	}
 
+	
+	
 }
