@@ -7,13 +7,13 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 
 <%
-String id = "teacher";
-int midx = 3;
-int idx = 3;
+MemberDTO mdto=(MemberDTO)session.getAttribute("smdto");
+String id = mdto.getId();
+int midx = mdto.getMidx();
+int idx = mdto.getIdx();
+String name = mdto.getName();
 
 TMemberDAO mtdao = new TMemberDAO();
-MemberDTO mdto = mtdao.getTeacherInfo(id, midx);
-String name = mdto.getName();
 TRecordDAO rdao = new TRecordDAO();
 RecordDTO rdto = new RecordDTO();
 rdao.getClassByName(rdto, name);

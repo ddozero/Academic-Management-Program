@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
+<%@ page import="com.semi2.member.*"%>
 <%@ page import="com.semi2.lecture.*"%>
 <jsp:useBean id="mldao" class="com.semi2.lecture.TLectureDAO" />
 
 <%
 request.setCharacterEncoding("utf-8");
-String name = "채수림".trim();
+
+MemberDTO mdto = (MemberDTO)session.getAttribute("smdto");
+String name = mdto.getName().trim();
 ArrayList<ManagerLectureDTO> list = mldao.findLectureByTname(name);
 ManagerLectureDTO dto = null;
 if (list != null && list.size() > 0) {

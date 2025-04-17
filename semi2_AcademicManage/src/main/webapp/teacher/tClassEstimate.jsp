@@ -2,11 +2,15 @@
 <%@ page import="java.sql.*"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.semi2.lecture.*"%>
+<%@ page import="com.semi2.member.*"%>
+
 <jsp:useBean id="mldto" class="com.semi2.lecture.ManagerLectureDTO" />
 <jsp:useBean id="mldao" class="com.semi2.lecture.TLectureDAO" />
 
 <%
-String tname = "채수림";
+MemberDTO mdto = (MemberDTO)session.getAttribute("smdto");
+String tname = mdto.getName();
+
 String classidxParam = request.getParameter("classidx");
 int selectedClassidx = classidxParam != null ? Integer.parseInt(classidxParam) : -1;
 

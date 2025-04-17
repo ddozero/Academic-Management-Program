@@ -3,14 +3,16 @@
 <%@ page import="java.sql.*"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.semi2.record.*"%>
+<%@ page import="com.semi2.member.*"%>
 
 <jsp:useBean id="dao" class="com.semi2.record.TRecordDAO" />
 <jsp:useBean id="rdto" class="com.semi2.record.RecordDTO" />
 <%
-String id = "teacher";
-int midx = 3;
-int idx = 3;
-String name = "채수림"; //강사 이름 하드코딩
+MemberDTO mdto=(MemberDTO)session.getAttribute("smdto");
+String id = mdto.getId();
+int midx = mdto.getMidx();
+int idx = mdto.getIdx();
+String name = mdto.getName();
 
 String today = new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date());
 String attendate_s = request.getParameter("attendate");

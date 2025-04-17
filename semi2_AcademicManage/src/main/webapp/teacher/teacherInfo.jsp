@@ -3,9 +3,10 @@
 <%@ page import = "java.util.*" %>
 <%@ page import = "com.semi2.member.*" %>
 <%
-String id = "teacher";
-int midx = 3;
-int idx = 3;
+MemberDTO mdto=(MemberDTO)session.getAttribute("smdto");
+String id = mdto.getId();
+int midx = mdto.getMidx();
+int idx = mdto.getIdx();
 
 TMemberDAO dao = new TMemberDAO();
 MemberDTO dto = dao.getTeacherInfo(id, midx);

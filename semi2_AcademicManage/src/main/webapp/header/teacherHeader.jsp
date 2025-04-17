@@ -16,7 +16,7 @@ String sname = (String) session.getAttribute("sname");
 		</div>
 		<div class="right-group">
 			<div class="id-group">
-				<a href="#">로그인</a> <a href="#">회원가입</a>
+				<a href="#">로그인</a> <a href="/semi2_AcademicManage/teacher/logout.jsp" >로그아웃</a> <a href="#">회원가입</a>
 			</div>
 		</div>
 	</div>
