@@ -103,36 +103,54 @@
 <div class = "all-title1">
 <h2><%=mdto.getName() %> 수강생님 입/퇴실 관리</h2> 
 </div>
+
 <section class="all-section1">
 	<span>현재시간  <span id="timer">0000-00-00 00:00:00 </span></span>
-	
-	<%
-		String sw_s=request.getParameter("sw");
-		Boolean sw=Boolean.parseBoolean(sw_s);
-	
-	%>
 	<span class="display: block;">
-	
 	<%
-		if(sw==true){
-	%>
-		<input style="float: right;" type="button" name="checkout" value="퇴실" onclick="location.href='studentAttend_ok.jsp?num=2'">
-	<% 		
-		}else if(sw_s==null){
-	%>
-		<input style="float: right;" type="button" name="checkout" value="퇴실" onclick="location.href='studentAttend_ok.jsp?num=2'">
-		<input style="float: right;" type="button" name="checkin" value="입실"  onclick="location.href='studentAttend_ok.jsp?num=1'">
-	
-	<%
-		}else if(sw==false){
+		rdto=srdao.studentShowAttend(mdto);
 		
+	
+		Calendar now=Calendar.getInstance();
+		int y=now.get(Calendar.YEAR);
+		int m=now.get(Calendar.MONTH)+1;
+		int d=now.get(Calendar.DATE);
+		String temp1=y+"-0"+m+"-"+d;
+		String temp2=null;
+		String temp6=null;
+		
+		if(rdto!=null){
+			temp2=rdto.getattendate().toString();
+			temp6=rdto.getOuttime().toString();
+			
+			if(!temp2.equals(temp1)){ 
+	%>
+			<input style="float: right;" type="button" name="checkout" value="퇴실" onclick="window.alert('입실 처리되지 않았습니다.')">
+			<input style="float: right;" type="button" name="checkin" value="입실"   onclick="location.href='studentAttend_ok.jsp?num=1'">
+	<%		
+			}else if(temp6.equals("0001-01-01 00:00:00.0")){
+	%>		
+			<input style="float: right;" type="button" name="checkout" value="퇴실" onclick="location.href='studentAttend_ok.jsp?num=2'">
+	<%		
+			}else {
+	%>			
+			
+			
+	<%			
+			}
+					
+		}else{//아예 값이 없을때
+	%>
+			<input style="float: right;" type="button" name="checkout" value="퇴실" onclick="window.alert('입실 처리되지 않았습니다.')">
+			<input style="float: right;" type="button" name="checkin" value="입실"   onclick="location.href='studentAttend_ok.jsp?num=1'">
+	<%
 		}
 	%>
+				
+		
 	
-			
 		
 	</span>
-	
 </section>
 
 <div class="all-title2">
@@ -155,7 +173,7 @@
 		<tbody>
 		<%
 			
-			rdto=srdao.studentShowAttend(mdto);
+			
 		
 			SimpleDateFormat sdf=new SimpleDateFormat("HH:mm:ss");
 			String timeOnly="";
@@ -176,16 +194,6 @@
 			}
 			
 				
-			
-			Calendar now=Calendar.getInstance();
-			int y=now.get(Calendar.YEAR);
-			int m=now.get(Calendar.MONTH)+1;
-			int d=now.get(Calendar.DATE);
-			String temp1=y+"-0"+m+"-"+d;
-			String temp2=null;
-			if(rdto!=null){
-				temp2=rdto.getattendate().toString();
-			}
 			
 			
 			if(rdto==null||!temp2.equals(temp1)){

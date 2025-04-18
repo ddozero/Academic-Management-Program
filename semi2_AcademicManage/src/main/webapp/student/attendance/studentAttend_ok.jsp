@@ -29,6 +29,6 @@
 
 <script>
 	window.alert('<%=msg%>');
-	location.href='studentAttend.jsp?sw=<%=sw%>';
+	location.href='studentAttend.jsp';
 
 </script>
