@@ -16,7 +16,7 @@ String sname = (String) session.getAttribute("sname");
 		</div>
 		<div class="right-group">
 			<div class="id-group">
-				<a href="#">로그인</a> <a href="/semi2_AcademicManage/teacher/logout.jsp" >로그아웃</a> <a href="#">회원가입</a>
+				<a href="#">로그인</a> <a href="/semi2_AcademicManage/server/logout.jsp" >로그아웃</a> <a href="#">회원가입</a>
 			</div>
 		</div>
 	</div>
@@ -24,8 +24,7 @@ String sname = (String) session.getAttribute("sname");
 	<nav id="aside">
 		<ul class="title-1">
 			<li class="subt">근태 관리</li>
-			<li><a href="/semi2_AcademicManage/teacher/teacherInfo.jsp" class="active">내
-					정보</a></li>
+			<li><a href="/semi2_AcademicManage/teacher/teacherInfo.jsp" class="active">내정보</a></li>
 			<li><a href="/semi2_AcademicManage/teacher/teacherAtten.jsp">출/퇴근 관리</a></li>
 		</ul>
 
@@ -38,8 +37,8 @@ String sname = (String) session.getAttribute("sname");
 		<ul class="title-3">
 			<li class="subt">강좌 관리</li>
 			<li><a href="/semi2_AcademicManage/teacher/teacherLectureList.jsp">담당강좌 관리</a></li>
-			<li><a href="#">서술형시험 등록</a></li>
-			<li><a href="#">서술형시험 조회현황</a></li>
+			<li><a href="/semi2_AcademicManage/teacher/tTestManagement.jsp">시험 등록</a></li>
+			<li><a href="/semi2_AcademicManage/teacher/testSubmitCheck.jsp">시험 제출 조회현황</a></li>
 			<li><a href="/semi2_AcademicManage/teacher/tClassEstimate.jsp">강좌 평가 조회</a></li>
 		</ul>
 

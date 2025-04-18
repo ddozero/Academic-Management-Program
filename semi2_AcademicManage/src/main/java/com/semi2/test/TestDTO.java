@@ -4,7 +4,7 @@ public class TestDTO {
 	//시험문제 테이블
 	private int testidx;//시험고유번호
 	private int classidx;//강좌고유번호
-	private int num;//항목번호(이게 아마 문제번호)
+	private int numidx;//항목번호(이게 아마 문제번호)
 	private String exam;//시험 문제
 	private String rightanswer;//정답
 	private int score;//배점
@@ -19,20 +19,22 @@ public class TestDTO {
 	//추가 컬럼
 	private String classname;
 	private String tname;
+	//강사 추가컬럼
+	private String sname; //학생이름
+	private String groupname;
 	
 	
 	public TestDTO() {
 		// TODO Auto-generated constructor stub
 	}
-
-
-	public TestDTO(int testidx, int classidx, int num, String exam, String rightanswer, int score, int sansweridx,
+	
+	public TestDTO(int testidx, int classidx, int numidx, String exam, String rightanswer, int score, int sansweridx,
 			int idx, int groupidx, String sanswer, int yesorno, int totalscore, int submit, String classname,
-			String tname) {
+			String tname, String sname, String groupname) {
 		super();
 		this.testidx = testidx;
 		this.classidx = classidx;
-		this.num = num;
+		this.numidx = numidx;
 		this.exam = exam;
 		this.rightanswer = rightanswer;
 		this.score = score;
@@ -45,11 +47,9 @@ public class TestDTO {
 		this.submit = submit;
 		this.classname = classname;
 		this.tname = tname;
+		this.sname = sname;
+		this.groupname = groupname;
 	}
-
-
-
-
 
 	public String getClassname() {
 		return classname;
@@ -83,12 +83,12 @@ public class TestDTO {
 		this.classidx = classidx;
 	}
 
-	public int getNum() {
-		return num;
+	public int getNumidx() {
+		return numidx;
 	}
 
-	public void setNum(int num) {
-		this.num = num;
+	public void setNumidx(int numidx) {
+		this.numidx = numidx;
 	}
 
 	public String getExam() {
@@ -170,6 +170,21 @@ public class TestDTO {
 	public void setSubmit(int submit) {
 		this.submit = submit;
 	}
-	
+
+	public String getSname() {
+		return sname;
+	}
+
+	public void setSname(String sname) {
+		this.sname = sname;
+	}
+
+	public String getGroupname() {
+		return groupname;
+	}
+
+	public void setGroupname(String groupname) {
+		this.groupname = groupname;
+	}
 	
 }
