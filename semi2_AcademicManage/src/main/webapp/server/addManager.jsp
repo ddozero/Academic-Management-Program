@@ -181,9 +181,9 @@ input[readonly] {
 	    <form action="memberUpdate_ok.jsp" method="post">
 	      <div class="inner">
 			<div class="image-placeholder">
-			  <img src="<%=dto2.getImgaddr() %>" alt="선생님이미지테스트">
+			  <img src="/semi2_AcademicManage/img/<%=dto2.getImgaddr() %>" alt="선생님이미지테스트">
 			  <div style="text-align:center; margin-top:10px;">
-			    <input type="button" value="버튼">
+			    <input type="button" value="업로드" onclick="window.open('addManagerImg.jsp?idx=<%=dto2.getIdx() %>','form','width=600px,height=400px')">
 			  </div>
 			</div>
 

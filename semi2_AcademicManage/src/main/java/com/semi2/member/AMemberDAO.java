@@ -229,6 +229,7 @@ public class AMemberDAO {
 					dto.setCareer(rs.getString("career"));
 					dto.setGroupname(rs.getString("groupname"));
 					dto.setMemo(rs.getString("memo"));
+					dto.setImgaddr(rs.getString("imgaddr"));
 					
 					
 	             return dto;
@@ -336,7 +337,7 @@ public class AMemberDAO {
 	         try {
 	             conn = com.semi2.db.Semi2DB.getConn();
 	             
-	             String sql ="insert into member3 values (sq_member3_m3idx.nextval, ?, 0, 0,'N', 'N', sysdate,'N', 'N', 'N', 'N')";
+	             String sql ="insert into member3 values (sq_member3_m3idx.nextval, ?, 0, 0,'N', 'N', sysdate,'N', 'N', 'N', 'defaultpf.jpg')";
 	             
 	             ps = conn.prepareStatement(sql);
 	             ps.setInt(1, idx);
@@ -361,7 +362,7 @@ public class AMemberDAO {
 	         try {
 	             conn = com.semi2.db.Semi2DB.getConn();
 	             
-	             String sql="insert into member2 values(sq_MEMBER2_m2idx.nextval,?,0,0,'N','N','N','N','N','N')";
+	             String sql="insert into member2 values(sq_MEMBER2_m2idx.nextval,?,0,0,'N','N','N','N','N','defaultpf.jpg')";
 	             ps = conn.prepareStatement(sql);
 	             ps.setInt(1, idx);
 	             
@@ -444,6 +445,34 @@ public class AMemberDAO {
 	           int result2 = ps.executeUpdate();
 
 	           return result1 + result2;
+
+	       } catch (Exception e) {
+	           e.printStackTrace();
+	           return -1;
+	       } finally {
+	           try {
+	               if (ps != null) ps.close();
+	               if (conn != null) conn.close();
+	           } catch (Exception e2) {
+	               e2.printStackTrace();
+	           }
+	       }
+	   }
+	   
+	   public int manaImg(int idx, String img) {
+	       try {
+	           conn = com.semi2.db.Semi2DB.getConn();
+
+	           String sql1 = "update member3 set imgaddr=? where idx=?";
+	           
+	           ps = conn.prepareStatement(sql1);
+	           
+	           ps.setString(1, img);
+	           ps.setInt(2, idx);
+	           
+	           int count = ps.executeUpdate();
+
+	           return count;
 
 	       } catch (Exception e) {
 	           e.printStackTrace();
