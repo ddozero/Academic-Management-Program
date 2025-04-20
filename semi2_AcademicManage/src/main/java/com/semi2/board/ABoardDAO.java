@@ -118,7 +118,7 @@ public class ABoardDAO {
 			int end = cp * ls;
 
 			String sql = "select * from  " + "(select rownum as rnum,a.* from "
-					+ "(select * from Board order by ref desc,sunbun asc)a)b " + "where rnum >= ? and rnum <= ?";
+					+ "(select * from Board order by ref desc,sunbun asc)a)b " + "where rnum >= ? and rnum <= ? and category= '자유 게시판' order by rnum desc";
 			// String sql ="select * from jsp_bbs order by idx desc";
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, start);
@@ -350,5 +350,25 @@ public class ABoardDAO {
 				e2.printStackTrace();
 			}
 		}
+	}
+	
+	public int updateReadnum(int boardidx) {
+	    try {
+	        conn = com.semi2.db.Semi2DB.getConn();
+	        String sql = "UPDATE board SET readnum = readnum + 1 WHERE boardidx = ?";
+	        ps = conn.prepareStatement(sql);
+	        ps.setInt(1, boardidx);
+	        return ps.executeUpdate();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return -1;
+	    } finally {
+	        try {
+	            if (ps != null) ps.close();
+	            if (conn != null) conn.close();
+	        } catch (Exception e2) {
+	            e2.printStackTrace();
+	        }
+	    }
 	}
 }

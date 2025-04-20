@@ -28,7 +28,7 @@
 .table-info td {
     padding: 3px;
     border: 1px solid #ddd;
-    text-align: center;
+    text-align: left;
 }
 
 .table-info td form input[type="submit"]{
@@ -48,7 +48,7 @@ button {
 }
 select, input[type="text"],input[type="password"] {
 	padding : 6px;
-	border : 1px solid #D8D8D8;
+	border : 1px solid #fff;
 	border-radius : 4px;
 }
 .top {
@@ -86,7 +86,15 @@ textarea {
     padding: 10px;
     box-sizing: border-box;  /* padding과 border가 포함된 크기로 설정 */
 }
-
+input[type="submit"],input[type="button"] {
+    background-color: #4c6ef5;
+    color: white;
+    padding: 5px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
 </style>
 <script>
 	function moveList(){
@@ -114,11 +122,11 @@ textarea {
 						<thead class="table-info-header">
 							<tr>
 								<th>제목</th>
-								<td colspan="3"><input type="text" name="title" value="<%=bdto.getTitle() %>"></td>
+								<td colspan="3"><input type="text" name="title" size="100" value="<%=bdto.getTitle() %>"></td>
 							</tr>
 							<tr>
 								<th>작성자</th>
-								<td><input type="text" name="name" value="<%=bdto.getName() %>"></td>
+								<td><input type="text" name="name" size="100" value="<%=bdto.getName() %>"></td>
 							</tr>
 						</thead>
 						<tbody>

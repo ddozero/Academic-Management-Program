@@ -79,7 +79,7 @@ form {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-  background-color: #f9f9f9;
+  background-color: #fff;
 }
 
 .captcha-group input[name="autoonly"] {
@@ -154,8 +154,7 @@ console.log('ddd');
     </div>
 
     <div class="captcha-group">
-      <input type="text" name="autoonly" readonly value="1">
-      <%=mdao.autoInt()%>
+      <input type="text" name="autoonly" readonly value="<%=mdao.autoInt()%>">
       <input type="text" name="autoinput" placeholder="자동입력방지문자">
     </div>
     <button type="submit">로그인</button>

@@ -47,7 +47,7 @@ button {
 }
 select, input[type="text"],input[type="password"] {
 	padding : 6px;
-	border : 1px solid #D8D8D8;
+	border : 1px solid #fff;
 	border-radius : 4px;
 }
 .top {
@@ -85,6 +85,15 @@ select, input[type="text"],input[type="password"] {
         padding: 10px;
         box-sizing: border-box;  /* padding과 border가 포함된 크기로 설정 */
     }
+    input[type="submit"],input[type="button"] {
+    background-color: #4c6ef5;
+    color: white;
+    padding: 5px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
 </style>
 <script>
 	function movePwd(bidx){
@@ -100,10 +109,9 @@ select, input[type="text"],input[type="password"] {
 <title>Insert title here</title>
 </head>
 <%
-	String boardidx_s = request.getParameter("boardidx");
-	int boardidx = Integer.parseInt(boardidx_s);
+	int boardidx = Integer.parseInt(request.getParameter("boardidx"));
+	bdao.updateReadnum(boardidx);
 	BoardDTO bdto = bdao.bbsContent(boardidx);
-	
 %>
 <body>
 <%@ include file="/header/serverHeader.jsp" %>
@@ -133,7 +141,6 @@ select, input[type="text"],input[type="password"] {
 	              			<input type="button" value="삭제하기" onclick="deleteCon(<%=bdto.getBoardidx()%>)">
 	              			<input type="button" value="수정하기" onclick="movePwd(<%=bdto.getBoardidx()%>)">
 	              			<input type="button" value="목록" onclick="bbsList()">
-	              			<a href="freeBbsReplyWrite.jsp?title=<%=bdto.getTitle()%>&ref=<%= bdto.getRef()%>&lev=<%= bdto.getLev()%>&sunbun=<%= bdto.getSunbun()%>">답글쓰기</a>
 	              		</td>
 	              	</tr>
 	              </tfoot>

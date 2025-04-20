@@ -3,6 +3,8 @@
 <%@ page import="java.util.*" %>
 <%@ page import="com.semi2.*" %>
 <jsp:useBean id="mdao" class="com.semi2.member.AMemberDAO"></jsp:useBean>
+<jsp:useBean id="bdao" class="com.semi2.board.ABoardDAO"></jsp:useBean>
+<jsp:useBean id="bdto" class="com.semi2.board.BoardDTO"></jsp:useBean>
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,8 +79,17 @@ select, input[type="text"] {
 	border-radius: 10px;
 	max-width: calc(100% - 360px);
 	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-	max-height: 1000px; /* 높이 설정 */
+	max-height: 600px; /* 높이 설정 */
  		overflow-y: auto; /* 세로 스크롤 추가 */
+}
+input[type="submit"],input[type="button"] {
+    background-color: #4c6ef5;
+    color: white;
+    padding: 5px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
 }
 </style>
 <script>
@@ -97,6 +108,7 @@ select, input[type="text"] {
 <title>회원 승인 목록</title>
 </head>
 <%
+
 	String idx_s = request.getParameter("idx");
 	if(idx_s==null)idx_s="0";
 	int idx = Integer.parseInt(idx_s);
@@ -122,12 +134,6 @@ select, input[type="text"] {
 				<div class="top">
 					<div class="left">
 						<span><b>승인 목록</b></span>
-						<select>
-							<option>전체조회</option>
-							<option>수강생</option>
-							<option>강사</option>
-							<option>매니저</option>
-						</select>
 						<input type="checkbox" id="accept" <%=sort.equals("1") ? "checked" : "" %>>승인대기
 						<script>
 							var check = document.getElementById("accept");
@@ -137,13 +143,7 @@ select, input[type="text"] {
 						</script>
 					</div>
 					<div class="right">
-						<select>
-							<option>검색조건</option>
-							<option>아이디</option>
-							<option>이름</option>
-						</select>
-						<input type="text" placeholder="조건을 선택해주세요.">
-						<input type="submit" value="검색">
+						<input type="button" value="삭제" onclick="deletee(<%=idx%>)">
 					</div>
 				</div>
 
@@ -166,7 +166,7 @@ select, input[type="text"] {
 								<tr><td colspan="7">가입한 계정이 없습니다.</td></tr>
 							<%
 							}else {
-								for (int i = 0; i < arr.size(); i++) {
+								for (int i = 1; i < arr.size(); i++) {
 								    MemberDTO dto = arr.get(i);
 								    
 								    boolean hidden = false;
@@ -184,6 +184,7 @@ select, input[type="text"] {
 									
 										<td><input type="checkbox" <%= dto.getIdx() == idx ? "checked" : "" %>></td>
 										<td><%=dto.getIdx() %></td>
+						
 										<%
 											if(dto.getAppro()==1){
 										%>
@@ -222,17 +223,6 @@ select, input[type="text"] {
 							}
 						%>
 					</tbody>
-					<tfoot>
-						<tr>
-							<td colspan="1"></td>
-							<td colspan="5" style="text-align:center;">
-								1 2 3 4 5
-							</td>
-							<td colspan="1" style="text-align:center;">
-								<input type="button" value="삭제" onclick="deletee(<%=idx%>)">
-							</td>
-						</tr>
-					</tfoot>
 				</table>
 			</div>
 		</article>

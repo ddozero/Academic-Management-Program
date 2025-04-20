@@ -33,7 +33,7 @@
 	<nav id="aside">
 		<ul class="title-1">
 			<li class="subt">출결 관리</li>
-			<li><a href="#" class="active">내 정보</a></li>
+			<li><a href="/semi2_AcademicManage/student/myInfo/studentMyinfo.jsp">내 정보</a></li>
 			<li><a href="/semi2_AcademicManage/student/attendance/studentAttend.jsp">입실/퇴실</a></li>
 			<li><a href="#">출결 인정 신청</a></li>
 			<li><a href="#">출결 신청 내역</a></li>

@@ -105,7 +105,9 @@ select, input[type="text"] {
 <%
 		} else if(midx == 2){
 %>
-	<%@ include file="/header/studentHeader.jsp" %>
+	<script>
+		location.href="/semi2_AcademicManage/student/myInfo/studentMyinfo.jsp";
+	</script>
 <%
 		} else if(midx == 3){
 %>

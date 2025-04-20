@@ -7,6 +7,8 @@ import java.util.*;
 
 import javax.servlet.http.HttpSession;
 
+import com.semi2.board.BoardDTO;
+
 public class AMemberDAO {
 	private Connection conn;
 	private PreparedStatement ps;
@@ -518,4 +520,6 @@ public class AMemberDAO {
 
 	   		return result.toString();
 	   	}
+	   	
+	   
    }

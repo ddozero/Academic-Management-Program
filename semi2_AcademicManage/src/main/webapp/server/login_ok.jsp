@@ -27,14 +27,23 @@
 			window.alert('비밀번호가 일치하지 않습니다.');
 			location.href="index.jsp";
 		</script>
-	<%
-	}
-
-	else if(result==mdao.LOGIN_OK){
+<%
+	} else if(result == mdao.LOGIN_OK){
 		MemberDTO mdto2 = mdao.getUserInfo(userid);
-		
-		   session.setAttribute("smdto", mdto2);
-	   %>
+		session.setAttribute("smdto", mdto2);
+
+		if ("on".equals(saveid)) {
+			Cookie ck = new Cookie("saveid", userid);
+			ck.setMaxAge(60 * 60 * 24 * 7);            
+			ck.setPath("/");                           
+			response.addCookie(ck);                     
+		} else {
+			Cookie ck = new Cookie("saveid", "");
+			ck.setMaxAge(0);                            
+			ck.setPath("/");
+			response.addCookie(ck);
+		}
+%>
 	   		<script>
 	   			window.alert('<%=mdto2.getName()%>님 환영합니다.');
 	   			location.href='serverMain.jsp';

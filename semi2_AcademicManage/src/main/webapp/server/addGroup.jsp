@@ -65,6 +65,15 @@ input[readonly] {
   border: 1px solid #ccc;
   cursor: not-allowed;
 }
+input[type="submit"],input[type="button"] {
+    background-color: #4c6ef5;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
 </style>
 <script>
 	function addGroup(gidx){
@@ -132,7 +141,7 @@ input[readonly] {
 					</tr>
 				<%
 					}else{
-						for (int i = 0; i < arr.size(); i++) {
+						for (int i = 1; i < arr.size(); i++) {
 						gdto = arr.get(i);
 				%>
 					<tr  onclick="showDetail('<%=gdto.getGroupidx()%>','<%=gdto.getGroupname() %>')">
