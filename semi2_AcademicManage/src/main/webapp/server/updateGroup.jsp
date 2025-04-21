@@ -59,6 +59,15 @@ input[readonly] {
   gap: 20px;
   align-items: flex-start;
 }
+input[type="submit"],input[type="button"] {
+    background-color: #4c6ef5;
+    color: white;
+    padding: 4px 10px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
 </style>
 <script>
 	function addGroup(){
@@ -132,7 +141,7 @@ input[readonly] {
 						</tr>
 					<%
 						}else{
-							for (int i = 0; i < arr.size(); i++) {
+							for (int i = 1; i < arr.size(); i++) {
 							gdto = arr.get(i);
 					%>
 						<tr>

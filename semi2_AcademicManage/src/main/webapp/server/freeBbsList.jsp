@@ -7,6 +7,8 @@
 	MemberDTO mdto = (MemberDTO)session.getAttribute("smdto");
 	int midx = mdto.getMidx();
 	int idx = mdto.getIdx();
+	System.out.println("midx:"+midx);
+	System.out.println("idx:"+idx);
 %>
 <!DOCTYPE html>
 <html>
@@ -106,7 +108,7 @@ input[type="submit"],input[type="button"] {
 	
 	
 	int totalCnt = bdao.getTotalCnt();
-	int listSize = 5;
+	int listSize = 10;
 	int pageSize = 5;
 	
 	String cp_s = request.getParameter("cp");
@@ -172,7 +174,7 @@ input[type="submit"],input[type="button"] {
 			                	    &nbsp;&nbsp;
 		                	<%
 			                	    }
-			                	if(midx==bdto.getMidx() || idx==bdto.getIdx() || midx==1){
+			                	if(midx==bdto.getMidx() || idx==bdto.getIdx() || midx==1 || bdto.getMidx()==0){
 			                		%>
 			                	<a href="freeBbsContent.jsp?boardidx=<%=bdto.getBoardidx() %>"><%=bdto.getTitle() %></a>
 			                		<%

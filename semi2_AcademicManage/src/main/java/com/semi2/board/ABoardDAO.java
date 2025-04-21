@@ -111,58 +111,55 @@ public class ABoardDAO {
 	}
 
 	public ArrayList<BoardDTO> bbsList(int cp, int ls) {
-		try {
-			conn = com.semi2.db.Semi2DB.getConn();
+	    try {
+	        conn = com.semi2.db.Semi2DB.getConn();
 
-			int start = (cp - 1) * ls + 1;
-			int end = cp * ls;
+	        int start = (cp - 1) * ls + 1;
+	        int end = cp * ls;
 
-			String sql = "select * from  " + "(select rownum as rnum,a.* from "
-					+ "(select * from Board order by ref desc,sunbun asc)a)b " + "where rnum >= ? and rnum <= ? and category= '자유 게시판' order by rnum desc";
-			// String sql ="select * from jsp_bbs order by idx desc";
-			ps = conn.prepareStatement(sql);
-			ps.setInt(1, start);
-			ps.setInt(2, end);
-			rs = ps.executeQuery();
+	        String sql = "SELECT * FROM (SELECT rownum AS rnum, a.* FROM (SELECT * FROM board WHERE category = '자유 게시판' ORDER BY boardidx DESC) a WHERE rownum <= ?) WHERE rnum >= ?";
 
-			ArrayList<BoardDTO> arr = new ArrayList<BoardDTO>();
-			while (rs.next()) {
-				int boardidx = rs.getInt("boardidx");
-				int midx = rs.getInt("midx");
-				int idx = rs.getInt("idx");
-				String category = rs.getString("category");
-				String title = rs.getString("title");
-				String name = rs.getString("name");
-				String pwd = rs.getString("pwd");
-				String content = rs.getString("content");
-				java.sql.Date writedate = rs.getDate("writedate");
-				int readnum = rs.getInt("readnum");
-				int ref = rs.getInt("ref");
-				int lev = rs.getInt("lev");
-				int sunbun = rs.getInt("sunbun");
-				String secret = rs.getString("secret");
 
-				BoardDTO bdto = new BoardDTO(boardidx, midx, idx, category, title, name, pwd, content, writedate,
-						readnum, ref, lev, sunbun, secret);
+	        ps = conn.prepareStatement(sql);
+	        ps.setInt(1, end);   // rownum <= ?
+	        ps.setInt(2, start); // rnum >= ?
 
-				arr.add(bdto);
+	        rs = ps.executeQuery();
 
-			}
-			return arr;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		} finally {
-			try {
-				if (rs != null)
-					rs.close();
-				if (ps != null)
-					ps.close();
-				if (conn != null)
-					conn.close();
-			} catch (Exception e2) {
-			}
-		}
+	        ArrayList<BoardDTO> arr = new ArrayList<BoardDTO>();
+	        while (rs.next()) {
+	            int boardidx = rs.getInt("boardidx");
+	            int midx = rs.getInt("midx");
+	            int idx = rs.getInt("idx");
+	            String category = rs.getString("category");
+	            String title = rs.getString("title");
+	            String name = rs.getString("name");
+	            String pwd = rs.getString("pwd");
+	            String content = rs.getString("content");
+	            java.sql.Date writedate = rs.getDate("writedate");
+	            int readnum = rs.getInt("readnum");
+	            int ref = rs.getInt("ref");
+	            int lev = rs.getInt("lev");
+	            int sunbun = rs.getInt("sunbun");
+	            String secret = rs.getString("secret");
+
+	            BoardDTO bdto = new BoardDTO(boardidx, midx, idx, category, title, name, pwd, content,
+	                                         writedate, readnum, ref, lev, sunbun, secret);
+	            arr.add(bdto);
+	        }
+	        return arr;
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return null;
+	    } finally {
+	        try {
+	            if (rs != null) rs.close();
+	            if (ps != null) ps.close();
+	            if (conn != null) conn.close();
+	        } catch (Exception e2) {
+	            e2.printStackTrace();
+	        }
+	    }
 	}
 
 	

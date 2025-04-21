@@ -68,12 +68,13 @@ input[readonly] {
 input[type="submit"],input[type="button"] {
     background-color: #4c6ef5;
     color: white;
-    padding: 5px 10px;
+    padding: 4px 10px;
     border: none;
     border-radius: 6px;
     font-size: 16px;
     cursor: pointer;
 }
+
 </style>
 <script>
 	function addGroup(gidx){
@@ -160,7 +161,7 @@ input[type="submit"],input[type="button"] {
 						%>
 								<option value="N">매니저 선택</option>
 						<%
-							for(int j = 0; j < mMarr.size(); j++){
+							for(int j = 1; j < mMarr.size(); j++){
 								mdto = mMarr.get(j);
 						%>
 								<option value="<%=mdto.getIdx()%>"><%=mdto.getName() %></option>
@@ -186,7 +187,7 @@ input[type="submit"],input[type="button"] {
 						%>
 								<option value="N">강사 선택</option>
 						<%
-							for(int j = 0; j < mTarr.size(); j++){
+							for(int j = 1; j < mTarr.size(); j++){
 								mdto = mTarr.get(j);
 						%>
 								<option value="<%=mdto.getIdx()%>"><%=mdto.getName() %></option>
@@ -207,7 +208,7 @@ input[type="submit"],input[type="button"] {
 								gdto.setTname("미지정");
 							}
 						%>
-						<td><input type="text" name="scount" <%=gdto.getScount()==1 ? "":"readonly" %> value="<%= gdto.getScount()%>"></td>
+						<td><input type="text" name="scount" <%=gdto.getScount()==1 ? "readonly":"readonly" %> value="<%= gdto.getScount()%>"></td>
 					</tr>
 				<%
 						}
