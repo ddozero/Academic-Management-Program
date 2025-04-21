@@ -95,7 +95,15 @@ input[readonly] {
 .table-inner {
   flex: 8;
 }
-
+input[type="submit"],input[type="button"] {
+    background-color: #4c6ef5;
+    color: white;
+    padding: 3px 7px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
 </style>
 <title>Insert title here</title>
 </head>
@@ -136,7 +144,6 @@ input[readonly] {
 						<th>아이디</th>
 						<th>연락처</th>
 						<th>이메일</th>
-						<th>담당반</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -145,7 +152,7 @@ input[readonly] {
 						<td colspan="7">등록된 매니저 계정이 없습니다.</td>
 					</tr>
 					<% } else {
-						for (int i = 0; i < arr.size(); i++) {
+						for (int i = 1; i < arr.size(); i++) {
 							MemberDTO dto = arr.get(i);
 							boolean hidden = false;
 							if (idxHidden != null && idxHidden[0] != 0) {
@@ -165,17 +172,9 @@ input[readonly] {
 						<td><%=dto.getId()%></td>
 						<td><%=dto.getTel()%></td>
 						<td><%=dto.getEmail()%></td>
-						<td><%=dto.getGroupname() == null ? "[미정]" : dto.getGroupname()%></td>
 					</tr>
 					<% }	} %>
 				</tbody>
-				<tfoot>
-					<tr>
-						<td colspan="1"></td>
-						<td colspan="5" style="text-align:center;">1 2 3 4 5</td>
-						<td colspan="1" style="text-align:center;"></td>
-					</tr>
-				</tfoot>
 			</table>
 		</article>
 	</section>
@@ -188,9 +187,9 @@ input[readonly] {
 	    <form action="memberUpdate_ok.jsp" method="post">
 	      <div class="inner">
 			<div class="image-placeholder">
-			  <img src="<%=dto2.getImgaddr() %>" alt="선생님이미지테스트">
+			  <img src="/semi2_AcademicManage/img/<%=dto2.getImgaddr() %>" alt="이미지테스트">
 			  <div style="text-align:center; margin-top:10px;">
-			    <input type="button" value="버튼">
+			    <input type="button" value="업로드" onclick="window.open('addManagerImg.jsp?idx=<%=dto2.getIdx() %>','form','width=600px,height=400px')">
 			  </div>
 			</div>
 
@@ -223,18 +222,18 @@ input[readonly] {
 	                <th>입사일</th>
 	                <td><input type="text" name="comingdate" readonly value="<%=dto2.getIdx()==1 ? "" : dto2.getComingdate()%>" title="계정을 회원가입한 당일이 입사날짜 입니다."></td>
 	                <th>경력</th>
-	                <td><input type="text" name="career" <%=update.equals("1") ? (dto2.getCareer().equals("N") ? "" : "readonly") : ""%> placeholder="-" value="<%=dto2.getIdx()==1 ? "" : dto2.getCareer()%>"></td>
+	                <td><input type="text" name="career" <%=update.equals("1") ? (dto2.getCareer()==null ? "" : "readonly") : ""%> placeholder="-" value="<%=dto2.getIdx()==1 ? "" : dto2.getCareer()%>"></td>
 	              </tr>
 	              <tr>
 	                <th>담당반</th>
-	                <td><input type="text" name="groupname" <%=update.equals("1") ? (dto2.getGroupname().equals("N") ? "" : "readonly") : ""%> placeholder="-" value="<%=dto2.getIdx()==1 ? "" : dto2.getGroupname()%>"></td>
+	                <td><input type="text" name="groupname" <%=update.equals("1") ? (dto2.getGroupname()==null ? "" : "readonly") : ""%> placeholder="-" value="<%=dto2.getIdx()==1 ? "" : dto2.getGroupname()%>"></td>
 	                <th>특이사항</th>
-	                <td><input type="text" name="memo" <%=update.equals("1") ? (dto2.getMemo().equals("N") ? "" : "readonly") : ""%> placeholder="-" value="<%=dto2.getIdx()==1 ? "" : dto2.getMemo()%>"></td>
+	                <td><input type="text" name="memo" <%=update.equals("1") ? (dto2.getMemo()==null ? "" : "readonly") : ""%> placeholder="-" value="<%=dto2.getIdx()==1 ? "" : dto2.getMemo()%>"></td>
 	              </tr>
 	            </thead>
 	          </table>
 	          <div style="text-align:right; margin-top: 10px;">
-	            <button type="button" onclick="memUpdate(<%=dto2.getIdx()%>)">수정</button>
+	            <input type="button" onclick="memUpdate(<%=dto2.getIdx()%>)" value="수정">
 	            <input type="hidden" name="idx" value="<%=dto2.getIdx()%>">
 	            <input type="submit" value="등록">
 	          </div>
@@ -243,8 +242,6 @@ input[readonly] {
 	    </form>
 	  </article>
 	</section>
-
 	<%@ include file="/header/footer.jsp" %>
 </body>
-
 </html>

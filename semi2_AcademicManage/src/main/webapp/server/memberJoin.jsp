@@ -114,7 +114,6 @@
 	}
 	
 </style>
-
 	<script>
 		function addrCheck(){
 			window.open("addrCheck.jsp","addr","width=500px,height=400")
@@ -154,9 +153,7 @@
 			if(document.mj.pwd.value != document.mj.pwd2.value){
 				alert('비밀번호가 일치 하지 않습니다.');
 				return false;
-			}else{
-				return true;
-			} 
+			}
 			
 			
  			if(document.mj.tel.value==''){
@@ -178,7 +175,10 @@
 				window.alert('이메일 입력하셔야 합니다.');
 				window.mj.email.focus();
 				return false;
-			}
+			}else{
+				return true;
+			} 
+			
 		}
 		
 		/* 숫자만 입력이 되어야 하는 유효성 검사 */
@@ -190,12 +190,22 @@
 		}
 	</script>
 </head>
+<% String mem = request.getParameter("mem"); %>
 <body>
 	<div class="join-wrapper">
+	<%if("0".equals(mem)){
+		%>
 		<h2>회원가입</h2>
-		<form name="mj" action="memberJoin_ok.jsp" method="post">
+		<%
+	}else{
+		%>
+		<h2>매니저 계정 추가</h2>
+		<%
+	} 
+	%>
+		<form name="mj" action="memberJoin_ok.jsp" method="post" onsubmit="return valid()">
 		
-		<% String mem = request.getParameter("mem"); %>
+		
 		
 		<% if ("0".equals(mem)) { %>
 			<div class="form-group">
@@ -232,7 +242,7 @@
 		
 			<div class="form-group">
 				<label>비밀번호</label>
-				<input type="password" name="pwd" placeholder="사용하실 비밀번호를 입력해주세요.">
+				<input type="password" name="pwd" placeholder="비밀번호는 6자 이상입니다.">
 			</div>
 			
 			<div class="form-group">
@@ -246,8 +256,8 @@
 			</div>
 			
 			<div class="form-group">
-				<label>생년월일</label>
-				<input type="date" name="birth" value="2025-04-01">
+				<label>이메일</label>
+				<input type="email" name="email" placeholder="ex. IT@itac.com">
 			</div>
 			
 			<div class="form-group">
@@ -259,9 +269,11 @@
 			</div>
 			
 			<div class="form-group">
-				<label>이메일</label>
-				<input type="email" name="email" placeholder="ex. IT@itac.com">
+				<label>생년월일</label>
+				<input type="date" name="birth" value="2025-04-01">
 			</div>
+			
+			
 			
 			<% if ("0".equals(mem)) { %>
 			<input type="hidden" name="appro" value="0">

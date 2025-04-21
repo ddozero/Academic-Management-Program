@@ -65,6 +65,16 @@ input[readonly] {
   border: 1px solid #ccc;
   cursor: not-allowed;
 }
+input[type="submit"],input[type="button"] {
+    background-color: #4c6ef5;
+    color: white;
+    padding: 4px 10px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
 </style>
 <script>
 	function addGroup(gidx){
@@ -82,6 +92,9 @@ input[readonly] {
 	function deleteGroup(gidx){
 		location.href="deleteGroup.jsp?gidx="+gidx;
 	}
+	function showDetail(gidx,groupname){
+		location.href="addGroup.jsp?gidx="+gidx+"&groupname="+groupname;
+	}
 </script>
 <%
 	String gidx_s = request.getParameter("gidx");
@@ -89,6 +102,12 @@ input[readonly] {
 		gidx_s="0";
 	}
 	int gidx = Integer.parseInt(gidx_s);
+	
+	String groupname = request.getParameter("groupname");
+	if(groupname==null){
+		groupname="미지정";
+	}
+	
 %>
 </head>
 <body>
@@ -123,10 +142,10 @@ input[readonly] {
 					</tr>
 				<%
 					}else{
-						for (int i = 0; i < arr.size(); i++) {
+						for (int i = 1; i < arr.size(); i++) {
 						gdto = arr.get(i);
 				%>
-					<tr>
+					<tr  onclick="showDetail('<%=gdto.getGroupidx()%>','<%=gdto.getGroupname() %>')">
 						<td><input type="checkbox" onclick="update(<%=gdto.getGroupidx()%>)" <%=gdto.getGroupidx()== gidx ? "checked":"" %>></td>
 						<td><%= gdto.getGroupidx()%></td>
 						<td><input type="text" name="groupname" <%=gdto.getGroupname().equals("-") ? "":"readonly" %> value="<%= gdto.getGroupname()%>"></td>
@@ -142,7 +161,7 @@ input[readonly] {
 						%>
 								<option value="N">매니저 선택</option>
 						<%
-							for(int j = 0; j < mMarr.size(); j++){
+							for(int j = 1; j < mMarr.size(); j++){
 								mdto = mMarr.get(j);
 						%>
 								<option value="<%=mdto.getIdx()%>"><%=mdto.getName() %></option>
@@ -168,7 +187,7 @@ input[readonly] {
 						%>
 								<option value="N">강사 선택</option>
 						<%
-							for(int j = 0; j < mTarr.size(); j++){
+							for(int j = 1; j < mTarr.size(); j++){
 								mdto = mTarr.get(j);
 						%>
 								<option value="<%=mdto.getIdx()%>"><%=mdto.getName() %></option>
@@ -189,7 +208,7 @@ input[readonly] {
 								gdto.setTname("미지정");
 							}
 						%>
-						<td><input type="text" name="scount" <%=gdto.getScount()==1 ? "":"readonly" %> value="<%= gdto.getScount()%>"></td>
+						<td><input type="text" name="scount" <%=gdto.getScount()==1 ? "readonly":"readonly" %> value="<%= gdto.getScount()%>"></td>
 					</tr>
 				<%
 						}
@@ -218,14 +237,29 @@ input[readonly] {
 					</tr>
 				</thead>
 				<tbody>
+				<%
+					ArrayList<MemberDTO> marr = gdao.inGroup(groupname);
+					if(marr==null || marr.size()==0){
+						%>
+					<tr><td colspan="6">배정된 학생이 없습니다.</td></tr>
+						<%
+					}else{
+						for(int i = 0; i < marr.size(); i++){
+							mdto = marr.get(i);
+							%>
 					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td><%= i+1 %></td>
+						<td><%= mdto.getName() %></td>
+						<td><%= mdto.getId() %></td>
+						<td><%= mdto.getTel() %></td>
+						<td><%= mdto.getEmail() %></td>
+						<td><%= mdto.getGroupname()%></td>
 					</tr>
+							<%
+						}
+					}
+				%>
+
 				</tbody>
 			</table>
 		</article>

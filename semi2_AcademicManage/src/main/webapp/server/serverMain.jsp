@@ -105,15 +105,21 @@ select, input[type="text"] {
 <%
 		} else if(midx == 2){
 %>
-	<%@ include file="/header/studentHeader.jsp" %>
+	<script>
+		location.href="/semi2_AcademicManage/student/myInfo/studentMyinfo.jsp";
+	</script>
 <%
 		} else if(midx == 3){
 %>
-	<%@ include file="/header/teacherHeader.jsp" %>
+	<script>
+		location.href="/semi2_AcademicManage/teacher/teacherInfo.jsp";
+	</script>
 <%
 		} else if(midx == 4){
 %>
-	<%@ include file="/header/managerHeader.jsp" %>
+	<script>
+		location.href="/semi2_AcademicManage/manager/student/mstudentList.jsp";
+	</script>
 <%
 		}
 	}

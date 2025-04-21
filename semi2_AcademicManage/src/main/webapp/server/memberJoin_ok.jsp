@@ -8,6 +8,18 @@
     <jsp:setProperty property="*" name="mdto"/>
     <jsp:useBean id="mdao" class="com.semi2.member.AMemberDAO"></jsp:useBean>
 <%
+	System.out.println("idx "+mdto.getIdx());
+	System.out.println("midx "+mdto.getMidx());
+	System.out.println("name "+mdto.getName());
+	System.out.println("sex "+mdto.getSex());
+	System.out.println("id "+mdto.getId());
+	System.out.println("pwd "+mdto.getPwd());
+	System.out.println("tel "+mdto.getTel());
+	System.out.println("email "+mdto.getEmail());
+	System.out.println("addr "+mdto.getAddr());
+	System.out.println("birth "+mdto.getBirth());
+	System.out.println("appro "+mdto.getAppro());
+	
 
 	String appro_s = request.getParameter("appro");
 	int appro = Integer.parseInt(appro_s);

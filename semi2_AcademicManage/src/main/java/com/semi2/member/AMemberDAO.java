@@ -3,9 +3,11 @@ package com.semi2.member;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
+import java.util.*;
 
 import javax.servlet.http.HttpSession;
+
+import com.semi2.board.BoardDTO;
 
 public class AMemberDAO {
 	private Connection conn;
@@ -178,6 +180,7 @@ public class AMemberDAO {
 	             
 	             rs.next();  
 	             
+	             System.out.println(rs.getInt(1));
 	             return rs.getInt(1);
 
 	          }catch(Exception e) {
@@ -228,6 +231,7 @@ public class AMemberDAO {
 					dto.setCareer(rs.getString("career"));
 					dto.setGroupname(rs.getString("groupname"));
 					dto.setMemo(rs.getString("memo"));
+					dto.setImgaddr(rs.getString("imgaddr"));
 					
 					
 	             return dto;
@@ -335,7 +339,7 @@ public class AMemberDAO {
 	         try {
 	             conn = com.semi2.db.Semi2DB.getConn();
 	             
-	             String sql ="insert into member3 values (sq_member3_m3idx.nextval, ?, 0, 0,'N', 'N', sysdate,'N', 'N', 'N', 'N')";
+	             String sql ="insert into member3 values (sq_member3_m3idx.nextval, ?, 0, 0,'N', 'N', sysdate,'N', 'N', 'N', 'defaultpf.jpg')";
 	             
 	             ps = conn.prepareStatement(sql);
 	             ps.setInt(1, idx);
@@ -360,7 +364,7 @@ public class AMemberDAO {
 	         try {
 	             conn = com.semi2.db.Semi2DB.getConn();
 	             
-	             String sql="insert into member2 values(sq_MEMBER2_m2idx.nextval,?,0,'N','N','N','N','N')";
+	             String sql="insert into member2 values(sq_MEMBER2_m2idx.nextval,?,0,0,'N','N','N','N','N','defaultpf.jpg')";
 	             ps = conn.prepareStatement(sql);
 	             ps.setInt(1, idx);
 	             
@@ -456,10 +460,66 @@ public class AMemberDAO {
 	           }
 	       }
 	   }
-
-
 	   
+	   public int manaImg(int idx, String img) {
+	       try {
+	           conn = com.semi2.db.Semi2DB.getConn();
 
+	           String sql1 = "update member3 set imgaddr=? where idx=?";
+	           
+	           ps = conn.prepareStatement(sql1);
+	           
+	           ps.setString(1, img);
+	           ps.setInt(2, idx);
+	           
+	           int count = ps.executeUpdate();
 
+	           return count;
 
+	       } catch (Exception e) {
+	           e.printStackTrace();
+	           return -1;
+	       } finally {
+	           try {
+	               if (ps != null) ps.close();
+	               if (conn != null) conn.close();
+	           } catch (Exception e2) {
+	               e2.printStackTrace();
+	           }
+	       }
+	   }
+
+	   	public String autoInt() {
+	   		int ran1 = (int)(Math.random() * (57 - 48 + 1)) + 48;
+	   		int ran2 = (int)(Math.random() * (90 - 65 + 1)) + 65;
+	   		int ran3 = (int)(Math.random() * (122 - 97 + 1)) + 97;
+	   		int ran4 = (int)(Math.random() * (57 - 48 + 1)) + 48;
+	   		int ran5 = (int)(Math.random() * (90 - 65 + 1)) + 65;
+	   		int ran6 = (int)(Math.random() * (122 - 97 + 1)) + 97;
+
+	   		char[] chars = new char[6];
+	   		chars[0] = (char)ran1;
+	   		chars[1] = (char)ran2;
+	   		chars[2] = (char)ran3;
+	   		chars[3] = (char)ran4;
+	   		chars[4] = (char)ran5;
+	   		chars[5] = (char)ran6;
+
+	   		ArrayList<Character> charList = new ArrayList<>();
+	   		for (int i = 0; i < chars.length; i++) {
+	   		    charList.add(chars[i]);
+	   		}
+
+	   		Collections.shuffle(charList);
+
+	   		StringBuilder result = new StringBuilder();
+	   		
+	   		for (int i = 0; i < charList.size(); i++) {
+	   		    result.append(charList.get(i));
+	   		}
+
+	   		return result.toString();
+	   	}
+	   	
+	   
    }

@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+ <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+ <%@page import="java.util.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -89,7 +90,8 @@
   function show(){
     const addr1 = document.getElementById("addr1").value;
     const addr2 = document.getElementById("addr2").value;
-    opener.document.mj.addr.value = '[' + addr1 + '] ' + addr2;
+    const detail = document.getElementById("detail").value;
+    opener.document.mj.addr.value = '[' + addr1 + '] ' + addr2 + " " +detail;
     window.close();
   }
 </script>
@@ -98,8 +100,8 @@
   <div class="popup-wrapper">
     <h2>주소검색</h2>
     <div class="form-row">
-      <input type="text" id="addr1" class="addr1" placeholder="예: 12345">
-      <input type="text" id="addr2" class="addr2" placeholder="예: 서울시 강남구 ...">
+      <input type="text" id="addr1" class="addr1" placeholder="우편번호">
+      <input type="text" id="addr2" class="addr2" placeholder="예: 서울시 마포구 ...">
     </div>
     <div class="form-row-full">
       <input type="text" id="detail" placeholder="예: 101동 202호">
