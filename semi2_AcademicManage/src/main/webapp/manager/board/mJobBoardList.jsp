@@ -2,8 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ page import = "java.util.*" %>
 <%@ page import = "com.semi2.board.*" %>
+<%@ page import = "com.semi2.member.*" %>
 <jsp:useBean id="mbdao" class="com.semi2.board.MBoardDAO" scope="session"></jsp:useBean>
-
+<%
+	MemberDTO dto2=(MemberDTO)session.getAttribute("smdto");
+	int midx = dto2.getMidx();
+%>
 
 <!DOCTYPE html>
 <html>
@@ -192,7 +196,17 @@ if(cp%pageSize==0)userGroup--;
 %>
 
 <body>
+<%
+	if(midx==1){
+		%>
+<%@include file="/header/serverHeader.jsp" %>
+		<%
+	}else if(midx==4){
+		%>
 <%@include file="/header/managerHeader.jsp"%>
+		<%
+	}
+%>
 
 
  <div class = "all-title1">

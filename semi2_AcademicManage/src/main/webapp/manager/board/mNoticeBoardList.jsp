@@ -8,7 +8,10 @@
 <%
 request.setCharacterEncoding("utf-8");
 %>
-
+<%
+	MemberDTO dto2=(MemberDTO)session.getAttribute("smdto");
+	int midx = dto2.getMidx();
+%>
 
 
 <!DOCTYPE html>
@@ -223,7 +226,17 @@ if(cp%pageSize==0)userGroup--;
 
 
 <body>
+<%
+	if(midx==1){
+		%>
+<%@include file="/header/serverHeader.jsp" %>
+		<%
+	}else if(midx==4){
+		%>
 <%@include file="/header/managerHeader.jsp"%>
+		<%
+	}
+%>
 
 
  <div class = "all-title1">
