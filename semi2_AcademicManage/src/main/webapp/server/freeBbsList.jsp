@@ -7,8 +7,6 @@
 	MemberDTO mdto = (MemberDTO)session.getAttribute("smdto");
 	int midx = mdto.getMidx();
 	int idx = mdto.getIdx();
-	System.out.println("midx:"+midx);
-	System.out.println("idx:"+idx);
 %>
 <!DOCTYPE html>
 <html>
@@ -125,7 +123,17 @@ input[type="submit"],input[type="button"] {
 	BoardDTO bdto = new BoardDTO();
 %>
 <body>
+<%
+if(midx==1){
+%>
 <%@ include file="/header/serverHeader.jsp" %>
+<%
+}else if(midx==2){
+	%>
+<%@ include file="/header/studentHeader.jsp" %>
+	<%
+}
+%>
 	<div class="all-title1">
 		<h2>자유 게시판</h2>
 	</div>
