@@ -99,7 +99,7 @@ ul.sc-list {
 
 </head>
 <body>
-<%@include file="/header/managerHeader.jsp"%>
+
 
 <section class = "all-section0">
 <div class = "all-box">
@@ -127,15 +127,9 @@ ul.sc-list {
 					}
 				%>
 					</select>
-				<%
-				 // 요청 파라미터로 전달받기
-				if (idx != null && !idx.equals("")) {
-				    int idxValue = Integer.parseInt(idx);
-				    mrdto.setIdx(idxValue);
-				    System.out.println("초기화된 mrdto idx 값: " + mrdto.getIdx());
-				}
-				%>
+			
 					<input type="hidden" name="idx" value="<%=mrdto.getIdx()%>">
+					[[[[[[[[[[[[[[[[[[<%=mrdto.getIdx()%>]]]]]]]]]]]]]]]]]]
 					<input class = "setxt" type="date" name = "attendate" value = "<%=new java.sql.Date(System.currentTimeMillis()).toString() %>">
 					<input class = "sebt" type="submit" value="검색">
 		</form>

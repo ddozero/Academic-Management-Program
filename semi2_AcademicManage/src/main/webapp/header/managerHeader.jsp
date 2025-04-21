@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@page import="com.semi2.member.*" %>
-<%
-MemberDTO dto1=(MemberDTO)session.getAttribute("smdto");
-String sname=dto1.getName();
-%>
+
 <header>
 	<!-- 여기부터 추가 -->
   <div class="container">
@@ -16,18 +13,11 @@ String sname=dto1.getName();
     </div>
     <div class="right-group">
    		<div class="id-group">
-			<%
-				if(sname != null){
-			%>
-				<span><%=sname %>님</span>
-				<a href="/semi2_AcademicManage/server/logout.jsp">로그아웃</a>
-			<%
-				}
-			%>
+
 		</div>
     </div>
   </div>
-
+</header>
 	<nav id="aside">
 		<ul class="title-1">
 			<li class="subt">수강생</li>
@@ -51,16 +41,13 @@ String sname=dto1.getName();
 
 		<ul class="title-4">
 			<li class="subt">게시판</li>
-			<li><a href="#">공지사항</a></li>
-			<li><a href="#">취업 알리미</a></li>
+			<li><a href="/semi2_AcademicManage/manager/board/mNoticeBoardList.jsp">공지사항</a></li>
+			<li><a href="/semi2_AcademicManage/manager/board/mJobBoardList.jsp">취업 공고 안내</a></li>
 		</ul>
 
-		<ul class="title-select">
-			<li class="subt-select"><a href="https://www.naver.com/"
-				class="drive-link">학원 드라이브</a></li>
-		</ul>
+
 	</nav>
-</header>
+
 
 <!-- 메뉴 선택시 색변경(전체 헤더에 공통 적용해야함) -->
 <script>

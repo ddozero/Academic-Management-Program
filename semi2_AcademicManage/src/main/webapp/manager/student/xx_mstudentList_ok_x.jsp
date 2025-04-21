@@ -65,31 +65,19 @@ request.setCharacterEncoding("utf-8");
 </head>
 
 <%
-	String idx_s = request.getParameter("idx");
+String idx_s = request.getParameter("idx");
 
-	if(idx_s==null||idx_s.equals("")){
-		idx_s="0";
-	}
-	int idx = Integer.parseInt(idx_s);
-	System.out.println("idx: " + idx);
-	
-	MemberDTO dto = mdao.mstudentInfoDetail(idx);
-	
-	if(dto==null){
-%>
-	<script>
-		window.alert("학생 정보 등록 중입니다.")
-		location.href = '/semi2_AcademicManage/manager/student/mstudentList.jsp';
-	</script>
-	
-	<%
-	return;
-	}
-%>
+if (idx_s == null || idx_s.equals("")) {
+    idx_s = "0";
+}
+int idx = Integer.parseInt(idx_s);
+System.out.println("idx: " + idx);
 
+// DTO 객체 생성 및 데이터 조회
+MemberDTO dto = mdao.mstudentInfoDetail(idx);
+%>
 
 <body>
-<%@include file="/header/managerHeader.jsp"%>
 
 
   <form name = "mstudentInfo" method = "post">
@@ -151,6 +139,4 @@ request.setCharacterEncoding("utf-8");
 	</div>
 </form>
 
-<%@include file="/header/footer.jsp"%>
-</body>
 </html>

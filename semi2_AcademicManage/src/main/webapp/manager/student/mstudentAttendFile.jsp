@@ -3,12 +3,13 @@
     pageEncoding="UTF-8"%>
     
 <%@ page import = "com.semi2.record.*"%>
+<%@ page import = "com.semi2.group.*" %>
+<%@ page import = "com.semi2.member.*" %>
 <%@ page import = "java.util.*" %>
 <%@ page import = "java.text.*" %>
 <%
 request.setCharacterEncoding("utf-8");
 %>
-
 
 <jsp:useBean id="mrdao" class="com.semi2.record.MRecordDAO"></jsp:useBean>
 <jsp:useBean id ="mrdto" class="com.semi2.record.RecordDTO"></jsp:useBean>
@@ -118,6 +119,78 @@ request.setCharacterEncoding("utf-8");
     gap: 10px; 
     margin: 0; 
 }
+
+/**all-section 0 부분 디자인*/
+ul.sc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.all-box {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   flex-wrap: wrap;      
+   gap: 20px;
+   width: 100%;            
+   max-width: 1250px;      
+   margin: 0 auto;
+   box-sizing: border-box;
+}
+
+.search-group {
+   display: flex;
+   align-items: center;
+   flex-wrap: wrap;
+   gap: 20px; /* 요소 간 간격 */
+}
+
+.left-box, .right-box{
+	display: flex;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+
+.right-box{
+	position: right;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.setxt{
+	width : 200px;
+	height : 28px;
+	background: #fff;
+    color: #333;
+    border: 1px solid #d6d6d6; 
+    border-radius: 5px;
+    padding : 5px;
+}
+
+.sebt{ 
+    background: #567AF0;
+    color: #fff;
+    border: 1px solid #d9d9d9;
+    border-radius: 5px;
+    width: 50px;
+    height: 28px;
+    cursor: pointer;
+}
+
+.search label {
+    font-weight: bold; /
+    font-size: 13px; 
+    color: #333; 
+    margin-right: 5px;
+}
+
 </style>
 
 <body>
@@ -128,8 +201,59 @@ request.setCharacterEncoding("utf-8");
   <h2>수강생 출결 인정 서류</h2>
   </div>
   
-  <jsp:include page="mstudentAttendSearch_File.jsp"></jsp:include>
-  
+  <section class = "all-section0">
+	<div class = "all-box">
+		<div class="left-box">
+		  <div class="search-group">
+			<form class = "search" name = "selectList" method="post" action = "/semi2_AcademicManage/manager/student/mstudentAttendFile.jsp">
+					<label> 담당 반 </label>	
+					<select class = "se-select" name = "groupidx">
+						<option value = "" selected> 반 선택 </option>
+					
+				<%
+					ArrayList<GroupDTO> arr = mrdao.groupSelect();
+					if(arr==null||arr.size()==0){
+				%>	
+					<option value = ""> 미정 </option>
+				<%
+					}else{
+						for(int i = 0; i<arr.size(); i++){
+							int crtGroupidx = arr.get(i).getGroupidx();
+				%>
+					<option value = "<%=arr.get(i).getGroupidx() %>"><%=arr.get(i).getGroupname() %></option>
+					
+				<%
+						}
+					}
+				%>
+					</select>
+			
+					<input type="hidden" name="idx" value="<%=mrdto.getIdx()%>">
+					<input class = "sebt" type="submit" value="검색">
+			</form>
+		</div>
+	</div>
+
+<!-- <div class="right-box">
+		<div class="search-group">
+			<form class="search" name="dateFind" method="post" action="/semi2_AcademicManage/manager/student/mstudentAttendFile.jsp">
+				<select class = "se-select" name = "fkey">
+					<option value = "">전체</option>
+					<option value = "name">수강생명</option>
+				</select>
+				<input class = "setxt" type="text" name = "fvalue">
+				
+				<input type="hidden" name="groupidx" value="<%=(request.getParameter("groupidx")!=null)?request.getParameter("groupidx"):"0" %>">
+   				
+				
+				<input class = "sebt" type="submit" value="검색">
+			</form>
+		</div>
+	</div>
+ -->
+	</div>
+</section>
+
   <section class= "all-section1">
   	<table class="table-info">
 		<thead class="table-info-header">
@@ -138,9 +262,10 @@ request.setCharacterEncoding("utf-8");
 				<th>이름</th>
 				<th>수강반명</th>
 				<th>강좌명</th>
-				<th>일자</th>
+				<th>신청일자</th>
+				<th>구분</th>
 				<th>인정서류</th>
-				<th>상태</th>
+				<th>승인상태</th>
 				<th>변경처리</th>
 			</tr>
 		</thead>
@@ -148,92 +273,68 @@ request.setCharacterEncoding("utf-8");
 		<tbody>
 		
 			<%
-			String fkey = request.getParameter("fkey");
-			String fvalue = request.getParameter("fvalue");
 			String groupidx_s = request.getParameter("groupidx");
-			String attendate_s = request.getParameter("attendate");
-			String idx_s = request.getParameter("idx");
-			
-			int groupidx = 0;
-			int idx = 0;
-			if(groupidx_s==null||groupidx_s.equals("")){
-				groupidx_s = "0";
+			String appro_s = request.getParameter("appro");
+			String issueidx_s = request.getParameter("issueidx");
+
+			if (groupidx_s == null || groupidx_s.isEmpty()) {
+			    groupidx_s = "0"; 
 			}
-			
-			if(idx_s!=null && !idx_s.equals("")){
-				idx = Integer.parseInt(idx_s);
-				mrdto.setIdx(idx);
+
+			if (appro_s == null || appro_s.isEmpty()) {
+			    appro_s = "0"; 
 			}
-			System.out.println("mrdto.getIdx() 값: " + mrdto.getIdx());
-			System.out.println("idx: " + idx);
-			
-			java.sql.Date attendate = null;
-			if(attendate_s!=null&&!attendate_s.equals("")){
-				attendate = java.sql.Date.valueOf(attendate_s);
+
+			if (issueidx_s == null || issueidx_s.isEmpty()) {
+			    issueidx_s = "0"; 
 			}
-			System.out.println("수강생출결인정attendate값 :" + attendate);
-			
-			groupidx = Integer.parseInt(groupidx_s);
-			System.out.println("수강생출결인정groupidx값 :" + groupidx);
-			
-			ArrayList<RecordDTO> arr = null;
-		 	arr = mrdao.msRecordFile(idx, groupidx, attendate);
+
+			int groupidx = Integer.parseInt(groupidx_s);
+			int appro = Integer.parseInt(appro_s);
+			int issueidx = Integer.parseInt(issueidx_s);
 
 			
-			//이름 검색 시 
-			if ("name".equals(fkey) && fvalue != null && !fvalue.equals("")) {
-   				arr = mrdao.attendFind(fvalue, groupidx, attendate);
-			} else {
-			    arr = mrdao.msRecordFile(idx, groupidx, attendate);
-			}
-						
-			if(arr==null||arr.size()==0){
-				if("name".equals(fkey) && fvalue != null && !fvalue.equals("")){
-			%>
-			<tr>
-				<td colspan = "8" style="font-size:16px; padding:5px;"> 등록된 학생이 아닙니다. </td>
+			System.out.println("groupidx + appro + issueidx :" + groupidx + appro + issueidx);
+
+			ArrayList<RecordDTO> arr2 =null;
+			
+			arr2=mrdao.msRecordFile(groupidx);
+			
+			if(arr2==null||arr2.size()==0){
+	        %>
+				<tr>
+				<td colspan = "9" style="font-size:16px; padding:5px;"> 담당 반을 선택해주세요. </td>
 			</tr>
 			<%
 				}else{
-			%>	
-			<tr>
-				<td colspan = "8" style="font-size:16px; padding:5px;"> 담당 반과 날짜를 선택해주세요. </td>
-			</tr>
-			<%
-				}
-			}else{
-				for(int i = 0; i<arr.size(); i++){
-					RecordDTO r2dto = arr.get(i);
-					String statusText = "";
+				for(int i = 0; i<arr2.size(); i++){
+					RecordDTO r2dto = arr2.get(i);
+					String approText = "";
 					
 					//status값 문자 출력
-					switch(r2dto.getStatus()){
-					case 3 : statusText = "병가"; break;
-					case 4 : statusText = "조퇴"; break;
-					case 5: statusText = "휴가"; break;
-					default : statusText = "기타";
+					switch(r2dto.getAppro()){
+					case 1 : approText = "승인"; break;
+					case 0 : approText = "미승인"; break;
 					}
+					
 			%>
 			<tr>
 				<td><%=i+1 %></td>
-				<td><%=arr.get(i).getName()%></td>
-				<td><%=arr.get(i).getGroupname() %></td>
-				<td><%=arr.get(i).getClassname() %></td>
-				<td><%=arr.get(i).getattendate() %></td>
-				<td><a href = "<%=arr.get(i).getFilename() %>" download>서류확인</a></td>
-				<td><%=statusText %></td>
+				<td><%=arr2.get(i).getName()%></td>
+				<td><%=arr2.get(i).getGroupname()%></td>
+				<td><%=arr2.get(i).getClassname() %></td>
+				<td><%=arr2.get(i).getReqdate() %></td>
+				<td><%=arr2.get(i).getIssuedivi() %></td>
+				<td><a href = "<%=arr2.get(i).getFilename() %>" download>서류확인</a></td>
+				<td><%=arr2.get(i).getIssuestatus() %></td>
 				<td>
 					<form class= "form-sclist" name="mteacherAttendFile" method="post" action="/semi2_AcademicManage/manager/student/mrecordStatusFileUp_ok.jsp">
-					<input type="hidden" name = "idx" value = "<%=arr.get(i).getIdx() %>">
-					
-						<select class = "se-select" name = "status">
-							<option value = "3" <%=r2dto.getStatus()==3?"selected":"" %>>병결(출석)</option>
-							<option value = "4" <%=r2dto.getStatus()==4?"selected":"" %>>조퇴</option>
-							<option value = "5" <%=r2dto.getStatus()==5?"selected":"" %>>휴가</option>
+						<select class = "se-select" name = "appro">
+							<option value = "1" <%=r2dto.getAppro()==1?"selected":"" %>>승인</option>
+							<option value = "0" <%=r2dto.getAppro()==0?"selected":"" %>>미승인</option>
 						</select>
-						<input type="hidden" name="groupidx" value="<%= groupidx_s %>">
-						<input type="hidden" name="attendate" value="<%= attendate_s %>">
-						<input type="hidden" name="recordidx" value="<%= r2dto.getRecordidx()%>">
+						<input type="hidden" name = "issueidx" value = "<%=arr2.get(i).getIssueidx() %>">
+
 						<input type="submit" value="변경">
 					</form>
 				</td>

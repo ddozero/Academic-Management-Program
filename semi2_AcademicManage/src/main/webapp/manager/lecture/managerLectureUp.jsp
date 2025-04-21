@@ -145,49 +145,10 @@ select {
 
 				<tr>
 					<th class="header-style">담당강사</th>
-					<td class="cell-data"><select name="tname">
-					
-							<%
-							ArrayList<MemberDTO> tarr = mldao.managerMemberPick(3);
-							if (tarr == null || tarr.size() == 0) {
-							%>
-							<option value="">강사 없음</option>
-							<%
-							} else {
-							for (int i = 0; i < tarr.size(); i++) {
-								String ctname = tarr.get(i).getName();
-								String selected = ctname.equals(dto.getTname())?"selected":"";
-							%>
-							<option value="<%=ctname%>"<%=selected%>><%=ctname%></option>
-							<%
-							}
-							}
-							%>
-
-							
-
-					</select></td>
+					<td class="cell-data" style = "color: #888;"><%=dto.getTname() %></td>
 
 					<th class="header-style">담당매니저</th>
-					<td class="cell-data"><select name="chargemname">
-							<%
-							ArrayList<MemberDTO> marr = mldao.managerMemberPick(4);
-							if (marr == null || marr.size() == 0) {
-							%>
-							<option value="">매니저 없음</option>
-							<%
-							} else {
-							for (int i = 0; i < marr.size(); i++) {
-								String cmname = marr.get(i).getName();
-								String selected = cmname.equals(dto.getChargemname())?"selected":"";
-							%>
-							<option value="<%=cmname%>"<%=selected%>><%=cmname%></option>
-
-							<%
-							}
-							}
-							%>
-					</select></td>
+					<td class="cell-data" style = "color: #888;"><%=dto.getChargemname() %></td>
 				</tr>
 
 				<%
@@ -195,25 +156,7 @@ select {
 				%>
 				<tr>
 					<th class="header-style">수강반명</th>
-					<td class="cell-data"><select name="groupname">
-							<%
-							if (garr == null || garr.size() == 0) {
-							%>
-							<option value="">개설반 없음</option>
-							<%
-							} else {
-							for (int i = 0; i < garr.size(); i++) {
-								String cgname = garr.get(i).getGroupname();
-								String selected = cgname.equals(dto.getGroupname())?"selected":"";
-							%>
-							<option value="<%=cgname%>"<%=selected%>><%=cgname%></option>
-							<%
-							}
-							}
-							%>
-
-
-					</select></td>
+					<td class="cell-data" style = "color: #888;"><%=dto.getGroupname()%></td>
 					<th class="header-style">총수강일</th>
 					<td class="cell-data"><input type="text" name="entiredate" value = "<%=dto.getEntiredate()%>"></td>
 				</tr>
@@ -225,9 +168,16 @@ select {
 					<td class="cell-data"><input type="date" name="enddate" value="<%=dto.getEnddate() %>"></td>
 				</tr>
 				
+				<tr>
+					<th class="header-style">총인원</th>
+					<td class="cell-data"><input type="text" name="entirescount" value="<%=dto.getEntirescount()%>"></td>
+					<th class="header-style">현재인원</th>
+					<td class="cell-data"><input type="text" name="reqscount" value="<%=dto.getReqscount() %>"></td>
+				</tr>
+				
 				 <tr>
 			        <th class="header-style">강좌 개요</th>
-			        <td class = "cell-data" colspan="3"><input type="text" name = "classintro"></td>
+			        <td class = "cell-data" colspan="3"><input type="text" name = "classintro" value="<%=dto.getClassintro() %>" placeholder="수정할 내용을 입력해주세요"></td>
 			     </tr>
 				</tbody>
 			</table>

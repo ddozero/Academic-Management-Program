@@ -10,16 +10,16 @@ request.setCharacterEncoding("utf-8");
 
 <%
 String groupidx = request.getParameter("groupidx");
-String m2idx = request.getParameter("m2idx");
+String idx = request.getParameter("idx");
 
 
-if(groupidx!=null && !groupidx.equals("") && m2idx!=null && !m2idx.equals("")){
+if(groupidx!=null && !groupidx.equals("") && idx!=null && !idx.equals("")){
 	mdto.setGroupidx(Integer.parseInt(groupidx));
-	mdto.setM2idx(Integer.parseInt(m2idx));
+	mdto.setM2idx(Integer.parseInt(idx));
 }
 
 System.out.println("GroupIdx: " + groupidx); 
-System.out.println("idx: " + m2idx); 
+System.out.println("idx: " + idx); 
 
 
 int result = mdao.msgroupSelect(mdto);
