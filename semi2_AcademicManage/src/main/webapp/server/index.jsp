@@ -6,17 +6,60 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="../css/mainLayout.css">
-  <style>
+<style>
+
+html {
+  background-image: url('/semi2_AcademicManage/img/background.jpg'); 
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-position: center center; 
+}
+
+html, body {
+  height: 100%; /* 페이지 전체 높이를 설정 */
+  margin: 0; /* 기본 여백 제거 */
+  overflow-y: auto; /* 세로 스크롤바 추가 */
+}
+
+.container {
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+}
+
+.logo {
+  margin-top : 80px;
+  margin-bottom: 20px;
+
+}
+
+.logo img {
+  max-width: 250px;
+  height: auto; 
+  display: block; 
+  margin: 0 auto; 
+}
+
+
 .login-wrapper {
   width: 800px;
   height: 450px;
-  margin: 150px auto;
   display: flex;
   background-color: #ffffff;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
+
+.logo-etc img{
+  max-width:350px;
+  height: auto; 
+  display: block; 
+  margin: 0 auto; 
+  margin-bottom: 20px;
+	
+}
+
 
 .left {
   width: 50%;
@@ -40,21 +83,47 @@
   justify-content: center;
 }
 
-  </style>
+    /*footer 영역*/
+footer{
+	position: fixed;
+	display : flex;
+	align-items : center;
+	justify-content: center; 
+	bottom: 0;
+	width: 100%;
+	height: 30px;
+	left: 0;
+	z-index: 20; /* nav보다 위로 보이도록 지정함*/
+	text-align: center;
+	padding: 10px;
+	font-size: 12px;
+	color: #eee;
+    }
+
+
+
+</style>
 </head>
 <body>
-<%@ include file="/header/mainHeader.jsp" %>
 <section>
-  <article>
+	<div class="logo">
+		<img src = "/semi2_AcademicManage/img/logo.png">
+	</div>
+	
+	<div class = "logo-etc">
+		<img src = "/semi2_AcademicManage/img/logo-etc.png">
+	</div>
+	
     <div class="login-wrapper">
       <%@ include file="/server/index_left_memberJoin.jsp" %>
       <%@ include file="/server/index_right_login.jsp" %>
     </div>
-  </article>
+
 </section>
 
 <%@ include file="/header/footer.jsp" %>
-</body>
+
+
 <!-- /* sort : 0 , 1 , 4 사용중 || AMemberDAO - memSelect(String sort)에서 사용 중 */ -->
 	<!-- 0 : member1 테이블의 모든 레코드를 조회, 1과 4를 else한 경우를 의미하며  -->
 	<!-- 1 : appro승인처리가 된 계정과 되지 않은 계정을 나누는 용도  -->

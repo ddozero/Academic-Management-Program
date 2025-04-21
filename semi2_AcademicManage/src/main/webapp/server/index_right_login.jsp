@@ -14,6 +14,7 @@ if (cks != null) {
 }
 %>
 
+
 <style>
 .right {
   width: 100%;
@@ -27,18 +28,20 @@ if (cks != null) {
 }
 
 .right h2 {
-  font-size: 28px;
+  font-size: 25px;
   font-weight: bold;
   text-align: center;
   margin-bottom: 30px;
 }
 
 form {
-  width: 100%;
+  width: 80%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap:20px;
+  align-items: center; 
+  
 }
 
 .form-group {
@@ -53,11 +56,19 @@ form {
 
 .form-group input[type="text"],
 .form-group input[type="password"] {
+	width: 400px; 
   padding: 10px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  font-size: 15px;
+  border: none; 
+  border-bottom: 1px solid #ccc;
+  border-radius: 0; 
   box-sizing: border-box;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="password"]:focus {
+  border-bottom: 2px solid #4c6ef5; 
+  outline: none; 
 }
 
 .form-check {
@@ -79,7 +90,7 @@ form {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-  background-color: #fff;
+  background-color: #f9f9f9;
 }
 
 .captcha-group input[name="autoonly"] {
@@ -89,21 +100,19 @@ form {
 }
 
 button[type="submit"] {
-  background-color: #4c6ef5;
+  width : 80px;
+  height : 35px;
+  background-color: #0E3CA5;
   color: white;
-  padding: 12px;
   border: none;
   border-radius: 6px;
-  font-size: 16px;
+  font-size: 14px;
   cursor: pointer;
   margin-top: 10px;
 }
 
 button[type="submit"]:hover {
-  background-color: #3b5bdb;
-}
-input[name="autoonly"]{
-	letter-spacing : 5px;
+  color: #eee;
 }
 </style>
 
@@ -136,16 +145,16 @@ console.log('ddd');
   }
 </script>
 <div class="right">
-  <h2>로그인</h2>
+  <h2>아이디 로그인</h2>
+  
   <form name="login" action="login_ok.jsp" method="post" onsubmit="return valid()">
     <div class="form-group">
-      <label for="userid">아이디</label>
-      <input type="text" id="userid" name="userid" value="<%=saveid%>">
+      <img src = "">
+      <input type="text" id="userid" name="userid" value="<%=saveid%>" placeholder ="직번/아이디">
     </div>
 
     <div class="form-group">
-      <label for="userpwd">비밀번호</label>
-      <input type="password" id="userpwd" name="userpwd">
+      <input type="password" id="userpwd" name="userpwd" placeholder ="비밀번호">
     </div>
 
     <div class="form-check">
@@ -157,7 +166,9 @@ console.log('ddd');
       <input type="text" name="autoonly" readonly value="<%=mdao.autoInt()%>">
       <input type="text" name="autoinput" placeholder="자동입력방지문자">
     </div>
+
     <button type="submit">로그인</button>
   </form>
+  
 </div>
 
