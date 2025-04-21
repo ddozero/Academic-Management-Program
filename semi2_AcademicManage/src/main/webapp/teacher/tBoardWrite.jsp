@@ -3,29 +3,35 @@
 <%@ page import="com.semi2.board.*" %>
 
 <%
-TBoardDAO bdao = TBoardDAO.getInstance();
+    TBoardDAO bdao = TBoardDAO.getInstance();
 
-MemberDTO mdto = (MemberDTO)session.getAttribute("smdto");
-if (mdto == null) {
+    // 세션에서 로그인된 사용자 정보 가져오기
+    MemberDTO mdto = (MemberDTO) session.getAttribute("smdto");
+
+    // 세션에 로그인 정보가 없으면 로그인 페이지로 리디렉션
+    if (mdto == null) {
 %>
     <script>
         alert("로그인이 필요합니다.");
-        location.href = "/semi2_AcademicManage/server/index.jsp";
+        location.href = "/semi2_AcademicManage/server/index.jsp"; // 로그인 페이지로 이동
     </script>
 <%
-    return;
-}
+        return;
+    }
 
-int midx = mdto.getMidx();
-int idx = mdto.getIdx();
-System.out.println("넘어온 midx: " + midx);
-System.out.println("넘어온 idx: " + idx);
-String name = mdto.getName();
+    // 세션에서 midx, idx 값 추출
+    int midx = mdto.getMidx();
+    int idx = mdto.getIdx();
 
-String classname = bdao.findClassNameByIdx(idx);
+    // 디버깅을 위해 출력
+    System.out.println("넘어온 midx: " + midx);
+    System.out.println("넘어온 idx: " + idx);
 
-String role = (midx == 2) ? "학생" : (midx == 3) ? "강사" : "";
-String fullName = name + " (" + role + ")";
+    String name = mdto.getName();
+    String classname = bdao.findClassNameByIdx(idx);
+
+    String role = (midx == 2) ? "학생" : (midx == 3) ? "강사" : "";
+    String fullName = name + " (" + role + ")";
 %>
 
 <!DOCTYPE html>

@@ -3,7 +3,6 @@ package com.semi2.board;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,18 +11,17 @@ public class TBoardDAO {
     private PreparedStatement ps;
     private ResultSet rs;
 
-    // 싱글톤 인스턴스
     private static TBoardDAO instance = new TBoardDAO();
 
-    // 외부에서 생성 못하도록 private 생성자
-    private TBoardDAO() {}
+    private TBoardDAO() {
+    	
+    }
 
-    // 외부에서 접근할 수 있는 인스턴스 getter
     public static TBoardDAO getInstance() {
         return instance;
     }
     
-    // idx를 기준으로 수강 강좌명 조회
+ // idx를 기준으로 수강 강좌명 조회
     public String findClassNameByIdx(int idx) {
         String classname = "";
     
@@ -53,17 +51,18 @@ public class TBoardDAO {
 
         return classname;
     }
-
+    
     // 글 등록
-    public boolean insertBoard(int midx, int idx, String category, String title, String name, String pwd, String content, String writedate, String fileaddr) {
+    public boolean insertBoard(int midx, int idx, String category, String title, String name, String pwd, String content, String writedate, String fileaddr, int ref) {
         try {
-            conn = com.semi2.db.Semi2DB.getConn();
-
-            String sql = "INSERT INTO BOARD (boardidx, midx, idx, category, title, name, pwd, content, writedate, fileaddr) " +
-                         "VALUES (sq_BOARD_boardidx.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, TO_DATE(?, 'YYYY-MM-DD'), ?)";
-
+            // DB 연결
+        	conn = com.semi2.db.Semi2DB.getConn();
+            String sql = "INSERT INTO BOARD (boardidx, midx, idx, category, title, name, pwd, content, writedate, fileaddr, readnum, ref, lev, sunbun) " +
+                         "VALUES (sq_BOARD_boardidx.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, TO_DATE(?, 'YYYY-MM-DD'), ?, 0, ?, 0, 0)";
             ps = conn.prepareStatement(sql);
-            ps.setInt(1, midx); 
+            
+            // 파라미터 설정
+            ps.setInt(1, midx);
             ps.setInt(2, idx);
             ps.setString(3, category);
             ps.setString(4, title);
@@ -72,104 +71,31 @@ public class TBoardDAO {
             ps.setString(7, content);
             ps.setString(8, writedate);
             ps.setString(9, fileaddr);
-
-            return ps.executeUpdate() > 0;
-
+            ps.setInt(10, ref+1);
+            
+            // INSERT 실행
+            int count = ps.executeUpdate();
+            
+            // 삽입 성공 시 true 반환
+            return count > 0;
         } catch (Exception e) {
             e.printStackTrace();
             return false;
-
         } finally {
             try {
                 if (ps != null) ps.close();
                 if (conn != null) conn.close();
-            } catch (Exception e2) {
-                e2.printStackTrace();
+            } catch (Exception e) {
+              
             }
         }
     }
 
-    // 글 목록 조회
-    public List<BoardDTO> getBoardList() {
-        List<BoardDTO> list = new ArrayList<>();
-        try {
-            conn = com.semi2.db.Semi2DB.getConn();
-
-            String sql = "SELECT boardidx, title, name, TO_CHAR(writedate, 'YYYY-MM-DD') AS writedate, fileaddr, readnum FROM BOARD ORDER BY boardidx DESC";
-            ps = conn.prepareStatement(sql);
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-                BoardDTO dto = new BoardDTO();
-                dto.setBoardidx(rs.getInt("boardidx"));
-                dto.setTitle(rs.getString("title"));
-                dto.setName(rs.getString("name"));
-                dto.setWritedate(Date.valueOf(rs.getString("writedate")));
-                dto.setFileaddr(rs.getString("fileaddr"));
-                dto.setReadnum(rs.getInt("readnum"));
-                list.add(dto);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-
-        } finally {
-            try {
-                if (rs != null) rs.close();
-                if (ps != null) ps.close();
-                if (conn != null) conn.close();
-            } catch (Exception e2) {
-                e2.printStackTrace();
-            }
-        }
-        return list;
-    }
     
-    // 선택한 글 내용보기
-    public BoardDTO getBoardContent(int boardidx) {
-        BoardDTO dto = null;
-        try {
-            conn = com.semi2.db.Semi2DB.getConn();
-            String sql = "SELECT * FROM BOARD WHERE boardidx = ?";
-            ps = conn.prepareStatement(sql);
-            ps.setInt(1, boardidx);
-            rs = ps.executeQuery();
-
-            if (rs.next()) {
-                dto = new BoardDTO();
-                dto.setBoardidx(rs.getInt("boardidx"));
-                dto.setMidx(rs.getInt("midx"));
-                dto.setIdx(rs.getInt("idx"));
-                dto.setCategory(rs.getString("category"));
-                dto.setTitle(rs.getString("title"));
-                dto.setName(rs.getString("name"));
-                dto.setPwd(rs.getString("pwd"));
-                dto.setContent(rs.getString("content"));
-                dto.setWritedate(rs.getDate("writedate"));
-                dto.setFileaddr(rs.getString("fileaddr"));
-                dto.setReadnum(rs.getInt("readnum"));
-                dto.setRef(rs.getInt("ref"));
-                dto.setLev(rs.getInt("lev"));
-                dto.setSunbun(rs.getInt("sunbun"));
-                dto.setSecret(rs.getString("secret"));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (rs != null) rs.close();
-                if (ps != null) ps.close();
-                if (conn != null) conn.close();
-            } catch (Exception e2) {}
-        }
-        return dto;
-    }
-    
-    // 기존 답글의 순번(sunbun)을 한 칸씩 뒤로 미룸
+    // 답글 순번을 갱신하는 메서드 (sunbun 업데이트)
     public void updateSunbun(int ref, int sunbun) {
         try {
-        	conn = com.semi2.db.Semi2DB.getConn();
-            String sql = "UPDATE BOARD SET sunbun = sunbun + 1 WHERE ref = ? AND sunbun > ?";
+            String sql = "UPDATE BOARD SET sunbun = sunbun + 1 WHERE ref = ? AND sunbun >= ?";
             ps = conn.prepareStatement(sql);
             ps.setInt(1, ref);
             ps.setInt(2, sunbun);
@@ -179,46 +105,126 @@ public class TBoardDAO {
         } finally {
             try {
                 if (ps != null) ps.close();
+            } catch (Exception e2) {}
+        }
+    }
+
+    // 답글 삽입 메서드
+    public boolean insertReply(int midx, int idx, String category, String title, String name, String pwd,
+            String content, String writedate, String fileaddr, String secret, int ref, int lev, int sunbun) {
+        try {
+            conn = com.semi2.db.Semi2DB.getConn();
+            
+            // 답글 순번 갱신
+            updateSunbun(ref, sunbun + 1);  // 기존 답글의 순번을 갱신
+
+            String sql = "INSERT INTO BOARD (boardidx, midx, idx, category, title, name, pwd, content, writedate, fileaddr, secret, ref, lev, sunbun) " +
+                         "VALUES (sq_BOARD_boardidx.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, TO_DATE(?, 'YYYY-MM-DD'), ?, ?, ?, ?, ?)";
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, midx);
+            ps.setInt(2, idx);
+            ps.setString(3, category);
+            ps.setString(4, title);
+            ps.setString(5, name);
+            ps.setString(6, pwd);
+            ps.setString(7, content);
+            ps.setString(8, writedate);
+            ps.setString(9, fileaddr);
+            ps.setString(10, secret);
+            ps.setInt(11, ref);
+            ps.setInt(12, lev + 1); // 답글은 원본 글보다 하나 높은 레벨을 갖는다.
+            ps.setInt(13, sunbun + 1); // 답글의 순번을 1 증가시킨다.
+
+            return ps.executeUpdate() > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            try {
+                if (ps != null) ps.close();
                 if (conn != null) conn.close();
             } catch (Exception e2) {}
         }
     }
-    
-    // 답글 insert 메소드
-    public boolean insertReply(int midx, int idx, String category, String title, String name, String pwd,
-            String content, String writedate, String fileaddr, String secret, int ref, int lev, int sunbun) {
-		try {
-			conn = com.semi2.db.Semi2DB.getConn();
-			String sql = "INSERT INTO BOARD (boardidx, midx, idx, category, title, name, pwd, content, writedate, fileaddr, secret, ref, lev, sunbun) "
-			        + "VALUES (sq_BOARD_boardidx.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, TO_DATE(?, 'YYYY-MM-DD'), ?, ?, ?, ?, ?)";
-			ps = conn.prepareStatement(sql);
-			ps.setInt(1, midx);
-			ps.setInt(2, idx);
-			ps.setString(3, category);
-			ps.setString(4, title);
-			ps.setString(5, name);
-			ps.setString(6, pwd);
-			ps.setString(7, content);
-			ps.setString(8, writedate);
-			ps.setString(9, fileaddr);
-			ps.setString(10, secret);
-			ps.setInt(11, ref);
-			ps.setInt(12, lev);
-			ps.setInt(13, sunbun);
-			return ps.executeUpdate() > 0;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		} finally {
-			try {
-				if (ps != null)
-					ps.close();
-				if (conn != null)
-					conn.close();
-			} catch (Exception e2) {
-			}
-		}
-	}
+
+    // 게시판 목록 조회 (페이징 적용)
+    public List<BoardDTO> getBoardList(int cp, int ls) {
+        List<BoardDTO> list = new ArrayList<>();
+        try {
+            conn = com.semi2.db.Semi2DB.getConn();
+
+            // 페이징 처리: 시작과 끝 인덱스 계산
+            int start = (cp - 1) * ls + 1;
+            int end = cp * ls;
+
+            // SQL 쿼리 수정: ref DESC, sunbun ASC로 정렬하며, 페이징 처리
+            String sql = "SELECT * FROM (" +
+                         "    SELECT rownum as rnum, a.* FROM (" +
+                         "        SELECT boardidx, midx, idx, category, title, name, pwd, content, writedate, readnum, ref, lev, sunbun, secret, fileaddr " +
+                         "        FROM BOARD " +
+                         "        ORDER BY ref DESC, sunbun ASC" +
+                         "    ) a" +
+                         ") b WHERE rnum >= ? AND rnum <= ?";
+
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, start);
+            ps.setInt(2, end);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                BoardDTO dto = new BoardDTO();
+                dto.setBoardidx(rs.getInt("boardidx"));
+                dto.setMidx(rs.getInt("midx"));
+                dto.setIdx(rs.getInt("idx"));
+                dto.setCategory(rs.getString("category"));
+                dto.setTitle(rs.getString("title"));
+                dto.setName(rs.getString("name"));
+                dto.setPwd(rs.getString("pwd"));
+                dto.setContent(rs.getString("content"));
+                dto.setWritedate(rs.getDate("writedate"));
+                dto.setReadnum(rs.getInt("readnum"));
+                dto.setRef(rs.getInt("ref"));
+                dto.setLev(rs.getInt("lev"));
+                dto.setSunbun(rs.getInt("sunbun"));
+                dto.setSecret(rs.getString("secret"));
+                dto.setFileaddr(rs.getString("fileaddr"));
+                list.add(dto);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (ps != null) ps.close();
+                if (conn != null) conn.close();
+            } catch (Exception e2) { e2.printStackTrace(); }
+        }
+
+        return list;
+    }
+
+    // 게시물 총 개수 조회
+    public int getTotalCnt() {
+        int totalCnt = 0;
+        try {
+            conn = com.semi2.db.Semi2DB.getConn();
+            String sql = "SELECT COUNT(*) FROM BOARD";
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                totalCnt = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (ps != null) ps.close();
+                if (conn != null) conn.close();
+            } catch (Exception e2) { e2.printStackTrace(); }
+        }
+        return totalCnt;
+    }
     
     // 클릭 시 조회수 증가
     public void increaseReadnum(int boardidx) {
@@ -238,7 +244,7 @@ public class TBoardDAO {
         }
     }
     
-    // 작성자한정 게시물 삭제
+ // 작성자한정 게시물 삭제
     public boolean deletePost(int boardidx, int midx, String name) {
         try {
             conn = com.semi2.db.Semi2DB.getConn();
@@ -302,5 +308,44 @@ public class TBoardDAO {
             } catch (Exception e2) {}
         }
     }
+    
+    public BoardDTO getBoardContent(int boardidx) {
+        BoardDTO dto = null;
+        try {
+            conn = com.semi2.db.Semi2DB.getConn();
+            String sql = "SELECT * FROM BOARD WHERE boardidx = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, boardidx);
+            rs = ps.executeQuery();
 
+            if (rs.next()) {
+                dto = new BoardDTO();
+                dto.setBoardidx(rs.getInt("boardidx"));
+                dto.setMidx(rs.getInt("midx"));
+                dto.setIdx(rs.getInt("idx"));
+                dto.setCategory(rs.getString("category"));
+                dto.setTitle(rs.getString("title"));
+                dto.setName(rs.getString("name"));
+                dto.setPwd(rs.getString("pwd"));
+                dto.setContent(rs.getString("content"));
+                dto.setWritedate(rs.getDate("writedate"));
+                dto.setFileaddr(rs.getString("fileaddr"));
+                dto.setReadnum(rs.getInt("readnum"));
+                dto.setRef(rs.getInt("ref"));
+                dto.setLev(rs.getInt("lev"));
+                dto.setSunbun(rs.getInt("sunbun"));
+                dto.setSecret(rs.getString("secret"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (ps != null) ps.close();
+                if (conn != null) conn.close();
+            } catch (Exception e2) {}
+        }
+        return dto;
+    }
+    
 }
