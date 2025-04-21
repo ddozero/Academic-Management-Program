@@ -10,7 +10,7 @@
 <link rel="stylesheet" type="text/css" href="/semi2_AcademicManage/css/mainLayout.css">
 <script>
 	function managerJoin(){
-		location.href="memberJoin.jsp?mem=";
+		window.open("memberJoin.jsp?mem=","memberJoin","width=600,height=800,left=300,top=100,scrollbars=yes");
 	}
 	function showDetail(idx){
 		location.href="addManager.jsp?sort=4&idx="+idx;
