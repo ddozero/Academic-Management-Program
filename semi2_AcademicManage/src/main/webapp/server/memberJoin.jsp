@@ -5,32 +5,30 @@
 <meta charset="UTF-8">
 <title>회원가입</title>
 <style>
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
 
-  body {
-    font-family: 'Noto Sans KR', sans-serif;
-    background-color: #f0f3fa;
-  }
+body{
+	margin: 0px;
+    padding: 0px;
+}
+	
+.join-title{
+	width : 500px;
+}
 
-  .join-wrapper {
-    max-width: 500px;
-    margin: 80px auto;
-    padding: 40px 30px;
-    background-color: #fff;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-  }
-
-  h2 {
+.join-title h2{
     font-size: 26px;
     color: #3b5bdb;
-    margin-bottom: 25px;
     border-bottom: 2px solid #3b5bdb;
     padding-bottom: 8px;
+}
+	
+  .join-wrapper {
+    max-width: 500px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 30px;
+    padding-bottom : 30px;
+    background-color: #fff;
   }
 
   .form-group {
@@ -41,7 +39,7 @@
     display: block;
     font-weight: 500;
     margin-bottom: 6px;
-    font-size: 14px;
+    font-size: 15px;
     color: #222;
   }
 
@@ -49,7 +47,7 @@
   input[type="password"],
   input[type="email"],
   input[type="date"] {
-    width: 100%;
+    width: 80%;
     padding: 10px 12px;
     border: 1px solid #ccc;
     border-radius: 6px;
@@ -71,7 +69,8 @@
   }
 
   .inline-group button {
-    padding: 10px 16px;
+  	width : 70px;
+  	height : 35px;
     background-color: #567AF0;
     color: #fff;
     font-size: 13px;
@@ -86,8 +85,10 @@
   }
 
   .submit-btn {
-    width: 100%;
-    padding: 13px;
+   display: block; 
+    margin: 20px auto; 
+    width:200px;
+    height : 45px;
     background-color: #567AF0;
     border: none;
     border-radius: 8px;
@@ -95,12 +96,13 @@
     font-size: 15px;
     font-weight: bold;
     cursor: pointer;
-    margin-top: 20px;
+    margin-top: 50px;
   }
 
   .submit-btn:hover {
     background-color: #3b5bdb;
   }
+  
   .inline-radio {
   display: flex;
   gap: 20px;
@@ -192,7 +194,8 @@
 </head>
 <% String mem = request.getParameter("mem"); %>
 <body>
-	<div class="join-wrapper">
+<div class="join-wrapper">
+	<div class ="join-title">
 	<%if("0".equals(mem)){
 		%>
 		<h2>회원가입</h2>
@@ -203,6 +206,7 @@
 		<%
 	} 
 	%>
+	</div>
 		<form name="mj" action="memberJoin_ok.jsp" method="post" onsubmit="return valid()">
 		
 		
