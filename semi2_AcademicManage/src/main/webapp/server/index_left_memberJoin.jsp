@@ -1,15 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <style>
+  
   .left {
-    width: 50%;
-    height: 100%;
-    background-color: #4c6ef5;
-    color: white;
-    float: left;
-    text-align: center;
-    padding-top: 100px;
+  width: 50%;
+  height: 100%;
+  background-color: #0E3CA5;
+  color: white;
+  float: left;
+  text-align: center;
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center; 
+  box-sizing: border-box; 
   }
+  
 
   .left h2 {
     font-size: 30px;
@@ -20,19 +26,22 @@
     background-color: white;
     color: #4c6ef5;
     border: none;
-    padding: 15px 30px;
     border-radius: 10px;
-    font-size: 16px;
+    font-size: 15px;
     cursor: pointer;
+    width : 130px;
+    height : 40px;
+   	text-align: center; 
+   	color : #0E3CA5;
   }
 
   .left p {
     margin-top: 40px;
-    font-size: 14px;
+    font-size: 15px;
   }
 </style>
 <div class="left">
-  <h2>---로그---</h2>
+  <p>SYS Academy에 오신걸 <br> 환영합니다.</p>
   <button onclick="openJoinPopup()">회원가입</button>
 
 <script>
@@ -45,7 +54,7 @@
   }
 </script>
 
-  <p>Tel. 123-1234<br>
-     E-mail. e@naver.com
+  <p>Tel.123-1234<br>
+     E-mail.sysacademy@sys.com
   </p>
 </div>

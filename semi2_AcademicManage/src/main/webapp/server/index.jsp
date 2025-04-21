@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="../css/mainLayout.css">
+
 <style>
 
 html {
@@ -60,7 +60,6 @@ html, body {
 	
 }
 
-
 .left {
   width: 50%;
   background-color: #4c6ef5;
@@ -97,15 +96,16 @@ footer{
 	text-align: center;
 	padding: 10px;
 	font-size: 12px;
-	color: #eee;
+	color: #fff;
     }
-
 
 
 </style>
 </head>
+
 <body>
 <section>
+<div class="container">
 	<div class="logo">
 		<img src = "/semi2_AcademicManage/img/logo.png">
 	</div>
@@ -118,11 +118,11 @@ footer{
       <%@ include file="/server/index_left_memberJoin.jsp" %>
       <%@ include file="/server/index_right_login.jsp" %>
     </div>
-
+</div>
 </section>
 
 <%@ include file="/header/footer.jsp" %>
-
+</body>
 
 <!-- /* sort : 0 , 1 , 4 사용중 || AMemberDAO - memSelect(String sort)에서 사용 중 */ -->
 	<!-- 0 : member1 테이블의 모든 레코드를 조회, 1과 4를 else한 경우를 의미하며  -->
