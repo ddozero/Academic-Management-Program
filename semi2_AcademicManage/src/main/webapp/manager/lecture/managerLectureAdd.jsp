@@ -153,48 +153,24 @@ select {
             </select>
           </td>
           
-          <th class="header-style">담당매니저</th>
-          <td class="cell-data">
-            <select name="chargemname">
-              <% 
-                ArrayList<MemberDTO> marr = mldao.managerMemberPick(4);
-                if (marr == null || marr.size() == 0) { 
-              %>
-                <option value="">매니저 없음</option>
-              <% } else {
-                for (int i = 0; i < marr.size(); i++) { %>
-                <option value="<%=marr.get(i).getName()%>"><%=marr.get(i).getName()%></option>
-              <% }
-              } %>
-            </select>
-          </td>
-        </tr>
-
-        <tr>
-          <th class="header-style">수강반명</th>
-          <td class="cell-data">
-            <select name="groupname">
-              <% 
-                ArrayList<GroupDTO> arr = mldao.managerLecturePick();
-                if (arr == null || arr.size() == 0) { 
-              %>
-                <option value="">개설반 없음</option>
-              <% } else {
-                for (int i = 0; i < arr.size(); i++) { %>
-                <option value="<%=arr.get(i).getGroupname()%>"><%=arr.get(i).getGroupname()%></option>
-              <% }
-              } %>
-            </select>
-          </td>
           <th class="header-style">총수강일</th>
           <td class="cell-data"><input type="text" name="entiredate" placeholder="총수강일을 입력하세요"></td>
+
         </tr>
 
+    
         <tr>
           <th class="header-style">개강일</th>
           <td class="cell-data"><input type="date" name="comingdate"></td>
           <th class="header-style">종강일</th>
           <td class="cell-data"><input type="date" name="enddate"></td>
+        </tr>
+        
+        <tr>
+          <th class="header-style">총 인원</th>
+          <td class="cell-data"><input type="text" name="entirescount" placeholder="총인원을 입력하세요"></td>
+          <th class="header-style">현재 인원</th>
+          <td class="cell-data"><input type="text" name="reqscount" placeholder="현재인원을 입력하세요"></td>
         </tr>
         
         <tr>

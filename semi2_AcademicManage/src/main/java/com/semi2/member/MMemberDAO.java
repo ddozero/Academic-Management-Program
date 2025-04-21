@@ -17,10 +17,9 @@ public class MMemberDAO {
 	public ArrayList<MemberDTO> mstudentInfo(int midx){
 		try {
 			conn = com.semi2.db.Semi2DB.getConn();
-			String sql = "select m2.m2idx,m1.idx, name,sex,tel,email,addr, to_char(birth, 'yyyy-mm-dd') as birth\r\n"
-					+ "from member1 m1, member2 m2\r\n"
-					+ "where m1.idx = m2.idx \r\n"
-					+ "and m1.midx = ? order by m2idx";
+			String sql = "select m1.midx,m1.idx, name,sex,id,pwd,tel,email,addr, to_char(birth, 'yyyy-mm-dd') as birth,appro \r\n"
+					+ "from member1 m1\r\n"
+					+ "where m1.midx = ?";
 			
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, midx);
@@ -33,13 +32,15 @@ public class MMemberDAO {
 				int idx = rs.getInt("idx");
 				String name = rs.getString("name");
 				String sex = rs.getString("sex");
+				String id = rs.getString("id");
+				String pwd = rs.getString("pwd");
 				String tel = rs.getString("tel");
 				String email = rs.getString("email");
 				String addr = rs.getString("addr");
 				String birth = rs.getString("birth");
-				int m2idx = rs.getInt("m2idx");
+				int appro = rs.getInt("appro");
 				
-				MemberDTO dto = new MemberDTO(idx, name, sex, tel, email, birth, addr, m2idx);
+				MemberDTO dto = new MemberDTO(idx, midx, name, sex, id, pwd, tel, email, addr, birth, appro);
 				
 				arr.add(dto);
 			}
@@ -114,12 +115,13 @@ public class MMemberDAO {
 		try {
 			conn = com.semi2.db.Semi2DB.getConn();
 			
-			String sql = "select m1.midx, m1.idx, m1.name, m1.sex, m1.tel, m1.email, m1.addr, m1.birth, m2.career, c.comingdate, m2.groupname, m2.memo, m2.imgaddr, m2.edu, c.classname, c.enddate\r\n"
-					+ "from member1 m1, member2 m2, classgroup g, class c\r\n"
-					+ "where m1.idx = m2.idx\r\n"
-					+ "and m2.classidx = c.classidx\r\n"
-					+ "and g.groupidx = m2.groupidx\r\n"
-					+ "and m1.idx = ?";
+			String sql = "SELECT m1.midx, m1.idx, m1.name, m1.sex, m1.tel, m1.email, m1.addr, "
+	                   + "TO_CHAR(m1.birth, 'YYYY-MM-DD') AS birth, m2.career, c.comingdate, "
+	                   + "m2.groupname, m2.memo, m2.imgaddr, m2.edu, c.classname, c.enddate "
+	                   + "FROM MEMBER1 m1 "
+	                   + "LEFT JOIN MEMBER2 m2 ON m1.idx = m2.idx "
+	                   + "LEFT JOIN CLASS c ON m2.groupidx = c.groupidx "
+	                   + "WHERE m1.idx = ?";
 			
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, idx);
@@ -392,10 +394,11 @@ public class MMemberDAO {
 		try {
 			conn = com.semi2.db.Semi2DB.getConn();
 			
-			String sql = "update member2 set \r\n"
-					+ "groupidx = (select groupidx from classgroup where groupidx = ?),\r\n"
-					+ "groupname = (select groupname from classgroup where groupidx = ?)\r\n"
-					+ "where m2idx = ?";
+			String sql = "update member2 \r\n"
+					+ "set\r\n"
+					+ "groupidx = (select groupidx from classgroup where groupidx = ?), \r\n"
+					+ "groupname = (select groupname from classgroup where groupidx = ?) \r\n"
+					+ "where idx = ?";
 			
 			ps = conn.prepareStatement(sql);
 			

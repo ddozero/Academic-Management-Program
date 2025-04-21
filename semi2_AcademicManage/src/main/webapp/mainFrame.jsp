@@ -9,35 +9,11 @@
 </head>
 
 <style>
-.table-add {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 20px auto;
-  border-radius : 10px;
-  font-size : 15px;
-}
 
-.header-style {
-  width: 15%;
-  text-align: center;
-  border: 1px solid #ddd;
-  white-space: nowrap;
-  background-color: #eee;
-
- 
-}
-
-.cell-data {
-  width : 25%;
-  text-align: center;
-  padding: 3px;
-  border: 1px solid #ddd;
-
-}
 </style>
 <body>
+<div id="wrap">
 <%@include file="/header/managerHeader.jsp"%>
-
 
  <div class = "all-title1">
   <h2>수강생 목록</h2>
@@ -56,5 +32,6 @@
   </section>
 
 <%@include file="/header/footer.jsp"%>
+</div>
 </body>
 </html>

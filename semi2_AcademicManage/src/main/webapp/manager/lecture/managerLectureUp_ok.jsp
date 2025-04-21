@@ -11,7 +11,7 @@ request.setCharacterEncoding("UTF-8");
 
 <%
 int result = ldao.managerLectureUp(ldto);
-String msg = result>0?"수정 완료 되었습니다":"수정할 값을 전부 입력해주세요.";
+String msg = result>0?"수정 완료 되었습니다":"다시 입력해주세요.";
 %>
 
 <script>

@@ -25,20 +25,24 @@ public class RecordDTO {
 	private String filename;
 	Date reqdate; //신청날자 
 
-	//추가생성자 250415 - 수강생 출결 질병/조퇴 목록 조회(도영)
+	
+	//추가생성자 250418 - 수강생 출결 질병/조퇴 목록 조회 수정(도영)
 	private String name;
-	public RecordDTO(int recordidx, int midx, int idx, int classidx, int status, Date attendate, String filename,
-			String name, String groupname, int groupidx) {
+	public RecordDTO(int recordidx, int issueidx, int midx, int idx, String name, String groupname, String classname, String issuestatus, String issuedivi, String filename,
+			int appro, Date reqdate, int groupidx) {
 		super();
 		this.recordidx = recordidx;
+		this.issueidx = issueidx;
 		this.midx = midx;
 		this.idx = idx;
-		this.classidx = classidx;
-		this.status = status;
-		this.attendate = attendate;
-		this.filename = filename;
 		this.name = name;
 		this.groupname = groupname;
+		this.classname = classname;
+		this.issuestatus = issuestatus;
+		this.issuedivi = issuedivi;
+		this.filename = filename;
+		this.appro = appro;
+		this.reqdate = reqdate;
 		this.groupidx = groupidx;
 	}
 	
