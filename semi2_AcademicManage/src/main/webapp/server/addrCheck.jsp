@@ -96,16 +96,11 @@
   }
 </script>
 </head>
-<%
-Random rand = new Random();
-int randomNum = rand.nextInt(90000) + 10000;
-%>
 <body>
   <div class="popup-wrapper">
     <h2>주소검색</h2>
     <div class="form-row">
-      <input type="text" id="addr4" class="addr1" readonly placeholder="우편번호">
-      <input type="hidden" id="addr1" value="<%=randomNum%>"> 
+      <input type="text" id="addr1" class="addr1" placeholder="우편번호">
       <input type="text" id="addr2" class="addr2" placeholder="예: 서울시 마포구 ...">
     </div>
     <div class="form-row-full">
