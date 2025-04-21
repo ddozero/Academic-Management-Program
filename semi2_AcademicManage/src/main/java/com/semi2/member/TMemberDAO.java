@@ -13,22 +13,17 @@ public class TMemberDAO {
 		// TODO Auto-generated constructor stub
 	}
 	
-	// 강사 - 내정보보기
+	// 기존강사정보 - 내정보보기
 	public MemberDTO getTeacherInfo(String id, int midx) {
 	    MemberDTO dto = null;
 	    try {
 	        conn = com.semi2.db.Semi2DB.getConn();
 	        
 	        // classgroup을 m3.groupidx 기준으로 조인하도록 수정
-	        String sql = 
-	            "SELECT m1.*, m3.*, c.classname AS classname, g.groupname AS groupname " +
-	            "FROM member1 m1 " +
-	            "LEFT JOIN member3 m3 ON m1.idx = m3.idx " +
-	            "LEFT JOIN class c ON m3.classidx = c.classidx " +
-	            "LEFT JOIN classgroup g ON m3.groupidx = g.groupidx " +  // groupidx 조인 경로 변경
-	            "WHERE m1.id = ? " +
-	            "  AND m1.midx = ? " +
-	            "  AND m3.m3idx = (SELECT MAX(m3idx) FROM member3 WHERE idx = m1.idx)";
+			String sql = "SELECT m1.*, m3.*, c.classname AS classname, g.groupname AS groupname " + "FROM member1 m1 "
+					+ "LEFT JOIN member3 m3 ON m1.idx = m3.idx " + "LEFT JOIN class c ON m3.classidx = c.classidx "
+					+ "LEFT JOIN classgroup g ON m3.groupidx = g.groupidx " + "WHERE m1.id = ? " + "  AND m1.midx = ? "
+					+ "  AND m3.m3idx = (SELECT MAX(m3idx) FROM member3 WHERE idx = m1.idx)";
 
 	        ps = conn.prepareStatement(sql);
 	        ps.setString(1, id);
@@ -116,4 +111,5 @@ public class TMemberDAO {
 	        }
 	    }
 	}
+	
 }

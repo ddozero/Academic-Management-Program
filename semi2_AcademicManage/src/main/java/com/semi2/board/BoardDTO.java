@@ -17,13 +17,15 @@ public class BoardDTO {
 	private int lev;
 	private int sunbun;
 	private String secret;
+	//추가컬럼(강사)
+	private String fileaddr;
 	
 	public BoardDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public BoardDTO(int boardidx, int midx, int idx, String category, String title, String name, String pwd,
-			String content, Date writedate, int readnum, int ref, int lev, int sunbun, String secret) {
+			String content, Date writedate, int readnum, int ref, int lev, int sunbun, String secret, String fileaddr) {
 		super();
 		this.boardidx = boardidx;
 		this.midx = midx;
@@ -39,6 +41,7 @@ public class BoardDTO {
 		this.lev = lev;
 		this.sunbun = sunbun;
 		this.secret = secret;
+		this.fileaddr = fileaddr;
 	}
 
 	public int getBoardidx() {
@@ -153,6 +156,12 @@ public class BoardDTO {
 		this.secret = secret;
 	}
 
-	
-	
+	public String getFileaddr() {
+		return fileaddr;
+	}
+
+	public void setFileaddr(String fileaddr) {
+		this.fileaddr = fileaddr;
+	}
+
 }	

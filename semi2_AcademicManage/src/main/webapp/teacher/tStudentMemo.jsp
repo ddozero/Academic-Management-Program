@@ -6,6 +6,7 @@
 <jsp:useBean id="msdao" class="com.semi2.member.TstudentDAO"></jsp:useBean>
 <%
 request.setCharacterEncoding("utf-8");
+String idx = request.getParameter("idx");
 %>
 
 <!DOCTYPE html>
@@ -116,8 +117,9 @@ request.setCharacterEncoding("utf-8");
 			
 			<tbody>
 				<%
-				String idx = request.getParameter("idx");
-				ArrayList<MemberDTO> arr = msdao.mstudentInfo(2);
+				MemberDTO mdto = (MemberDTO)session.getAttribute("smdto");
+				String tname = mdto.getName();
+				ArrayList<MemberDTO> arr = msdao.findStudentsByTeacher(tname);
 				
 				if(arr==null||arr.size()==0){
 				%>
@@ -129,7 +131,7 @@ request.setCharacterEncoding("utf-8");
 					for(int i = 0; i<arr.size(); i++){
 				%>	
 				<tr>
-					<td><%=arr.get(i).getM2idx() %></td>
+					<td><%= i + 1 %></td> 
 					<td><%=arr.get(i).getName() %></td>
 					<td><%=arr.get(i).getSex() %></td>
 					<td><%=arr.get(i).getBirth() %></td>

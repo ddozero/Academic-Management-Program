@@ -198,4 +198,46 @@ public class TstudentDAO {
 	    return result;
 	}
 	
+	/** (강사) 강사정보로 해당 담당강좌 학생목록만 출력 */
+	public ArrayList<MemberDTO> findStudentsByTeacher(String tname) {
+	    ArrayList<MemberDTO> list = new ArrayList<>();
+	    try {
+	        conn = com.semi2.db.Semi2DB.getConn();
+	        String sql = 
+	        		"SELECT m1.idx, m2.m2idx, m1.name, m1.sex, TO_CHAR(m1.birth, 'YYYY-MM-DD') AS birth, " +
+	        				"m1.tel, m1.email, m2.memo " +
+	        				"FROM member1 m1 " +
+	        				"JOIN member2 m2 ON m1.idx = m2.idx " +
+	        				"JOIN class c ON m2.classidx = c.classidx " +
+	        				"WHERE TRIM(c.tname) = ?";
+	        ps = conn.prepareStatement(sql);
+	        ps.setString(1, tname.trim());
+
+	        rs = ps.executeQuery();
+	        while (rs.next()) {
+	            MemberDTO dto = new MemberDTO();
+	            dto.setIdx(rs.getInt("idx"));
+	            dto.setM2idx(rs.getInt("m2idx"));
+	            dto.setName(rs.getString("name"));
+	            dto.setSex(rs.getString("sex"));
+	            dto.setBirth(rs.getString("birth"));
+	            dto.setTel(rs.getString("tel"));
+	            dto.setEmail(rs.getString("email"));
+	            dto.setMemo(rs.getString("memo")); // 추가된 부분
+	            list.add(dto);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (rs != null) rs.close();
+	            if (ps != null) ps.close();
+	            if (conn != null) conn.close();
+	        } catch (Exception e2) {
+	            e2.printStackTrace();
+	        }
+	    }
+	    return list;
+	}
+	
 }
