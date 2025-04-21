@@ -15,7 +15,9 @@
 	int groupidx=stdao.studentGetGroupidx(classidx); //그룹 idx 가져온것 
 	
 	ArrayList<String> testidxs=new ArrayList<String>(); //testidx넣을 어레이
+	ArrayList<String> numidxs=new ArrayList<String>();//numidx넣을 어레이
 	ArrayList<String> sanswers=new ArrayList<String>(); //답 넣을 어레이
+	
 	ArrayList<TestDTO> checkanswer=new ArrayList<TestDTO>();	
 	int result=0;
 	String msg=null;
@@ -23,10 +25,13 @@
 	
 	
 	for(int i=0;i<count;i++){
-		String str=request.getParameter("testidx"+(i+1));
+		String str=request.getParameter("testidx"+i);
 		testidxs.add(str);
-		String str2=request.getParameter("answer"+(i+1));
-		sanswers.add(str2);
+		String str2=request.getParameter("numidx"+i);
+		numidxs.add(str2);
+		String str3=request.getParameter("answer"+i).trim();
+		sanswers.add(str3);
+		
 	}
 	
 
@@ -35,8 +40,10 @@
 		
 		
 		int testidx=Integer.parseInt(testidxs.get(j));
+		int numidx=Integer.parseInt(numidxs.get(j));
+		
 
-		result=stdao.studentSubmitTest(classidx, mdto.getIdx(), groupidx, testidx,sanswers.get(j));
+		result=stdao.studentSubmitTest(classidx, mdto.getIdx(), groupidx, testidx,numidx,sanswers.get(j));
 		if(result<0){
 			msg="제출에 실패하였습니다.";
 			break;

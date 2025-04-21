@@ -118,6 +118,9 @@
 							sw=false;
 						}
 					}
+				}else{
+					sw=true;
+					
 				}
 		
 				if(arr2.size()==0||sw==true||arr2==null){		

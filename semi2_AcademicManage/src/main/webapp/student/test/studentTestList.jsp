@@ -11,6 +11,16 @@
 	
 	int classidx=srdao.studentGetClassidx(mdto.getIdx());
 	int count=1;
+	if(classidx==0){
+%>
+	<script>
+	window.alert('현재 신청하신 강좌가 존재 하지않습니다. 강좌를 먼저 신청해주세요.');
+	location.href='/semi2_AcademicManage/student/studentlecture/studentLectureList.jsp';
+	</script>
+<%		
+		return;
+	}	
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -169,13 +179,17 @@ form[name="lectureFind"] {
 						if(arr2.get(j).getSubmit()==0){
 							sw=true;
 							break;
-						}else{
-							sw=false;
 						}
 					}
+				}else{
+					sw=true;
+					
 				}
 				
-				if(arr2.size()==0||sw==true||arr2==null){
+				
+				if(sw==true||arr2==null||arr.size()==0){
+				
+				
 			%>
 				<td><a href="studentTest.jsp?classidx=<%=classidx%>">문제풀기</a></td>
 				<td>미제출</td>

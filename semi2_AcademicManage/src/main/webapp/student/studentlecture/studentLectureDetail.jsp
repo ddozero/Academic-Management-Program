@@ -63,7 +63,7 @@ function showpopup2(){
     margin: 20px 0;
     font-size: 14px;
     text-align: left;
-    height:200px;
+    height:300px;
 }
 
 
@@ -114,7 +114,26 @@ function showpopup2(){
     border: 1px solid #ddd;
     font-weight: bold;
 }
+.extra2{
+	background-color: #4c6ef5;
+    color: white;
+    padding: 5px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
 
+}
+.all-section1 {
+		margin-left: 320px; 
+		background-color: #ffffff;
+		padding: 20px 40px;
+		border-radius: 10px;
+		max-width: calc(100% - 360px);
+		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+		max-height: 400px; /* 높이 설정 */
+  		overflow-y: auto; /* 세로 스크롤 추가 */
+	}
 
 </style>
 </head>
@@ -166,8 +185,9 @@ function showpopup2(){
 				for(int i=0;i<arr.size();i++){
 			%>
 				<tr>
-					<td class="extra1" ><%=arr.get(i).getWeeknum()%><%=arr.get(i).getWeekname() %></td>
-					<td colspan="7"><%=arr.get(i).getWeekcon()%></td>
+					<td class="extra1" ><%=arr.get(i).getWeeknum()%>주차</td>
+					<td><%=arr.get(i).getWeekname() %></td>
+					<td colspan="6"><%=arr.get(i).getWeekcon()%></td>
 				</tr>
 					
 					
@@ -185,11 +205,11 @@ function showpopup2(){
 				<% 
 				if(num==1){
 				%>
-				<td colspan="2" style="border: none;  text-align: right;"><input type="button" value="신청하기" onclick="showpopup()"><input type="button" value="뒤로가기" onclick="location.href='studentLectureList.jsp'"></td>
+				<td  colspan="2" style="border: none;  text-align: right;"><input type="button" value="신청하기" onclick="showpopup()" class="extra2"> <input type="button" value="뒤로가기" onclick="location.href='studentLectureList.jsp'" class="extra2"></td>
 				<%
 				}else{
 				%>
-				<td colspan="2" style="border: none;  text-align: right;"><input type="button" value="취소하기" onclick="showpopup2()"><input type="button" value="뒤로가기" onclick="location.href='studentMyLecture.jsp'"></td>
+				<td colspan="2" style="border: none;  text-align: right;"><input type="button" value="취소하기" onclick="showpopup2()" class="extra2"> <input type="button" value="뒤로가기" onclick="location.href='studentMyLecture.jsp'" class="extra2"></td>
 				<%	
 				}
 				%>

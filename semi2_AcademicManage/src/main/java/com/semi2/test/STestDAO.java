@@ -8,7 +8,7 @@ public class STestDAO {
 	private Connection conn;
 	private PreparedStatement ps;
 	private ResultSet rs;
-	
+
 	/**등록된 시험 불러오기 -오진우*/
 	public ArrayList<TestDTO> studentShowExam(int classidx) {
 		try {
@@ -42,23 +42,24 @@ public class STestDAO {
 			}
 		}
 	}
+
 	/**시험에 등록된 문제 불러오기 -오진우*/
 	public ArrayList<TestDTO> studentShowExam2(int classidx){
 		try {
 			conn=com.semi2.db.Semi2DB.getConn();
-			String sql="select * from test where classidx=? order by num asc";
+			String sql="select * from test where classidx=? order by numidx asc";
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, classidx);
 			rs=ps.executeQuery();
 			ArrayList<TestDTO> arr=new ArrayList<TestDTO>();
 			while(rs.next()) {
 				int testidx=rs.getInt("testidx");
-				int num=rs.getInt("num");
+				int numidx=rs.getInt("numidx");
 				String exam=rs.getString("exam");
 				
 				TestDTO tdto=new TestDTO();
 				tdto.setTestidx(testidx);
-				tdto.setNum(num);
+				tdto.setNumidx(numidx);
 				tdto.setExam(exam);
 				arr.add(tdto);
 				
@@ -80,17 +81,19 @@ public class STestDAO {
 		}
 		
 	}
+
 	/**시험문제 강사에게 제출 -오진우*/
-	public int studentSubmitTest(int classidx,int idx,int groupidx,int testidx,String sanswer) {
+	public int studentSubmitTest(int classidx,int idx,int groupidx,int testidx,int numidx,String sanswer) {
 		try {
 			conn=com.semi2.db.Semi2DB.getConn();
-			String sql="insert into sanswer values(sq_SANSWER_sansweridx.nextval,?,?,?,?,?,0,0,1)";
+			String sql="insert into sanswer values(sq_SANSWER_sansweridx.nextval,?,?,?,?,?,?,0,0,1)";
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, classidx);
 			ps.setInt(2, idx);
 			ps.setInt(3, groupidx);
 			ps.setInt(4, testidx);
-			ps.setString(5, sanswer);
+			ps.setInt(5, numidx);
+			ps.setString(6, sanswer);
 			int result=ps.executeUpdate();
 			return result;
 			
@@ -133,6 +136,7 @@ public class STestDAO {
 			}
 		}
 	}
+
 	/**시험 제출 여부 확인 메서드-오진우*/
 	public ArrayList<TestDTO> studentCheckSubmit(int classidx,int idx) {
 		try {
@@ -201,21 +205,21 @@ public class STestDAO {
 	public ArrayList<TestDTO> checkAnswer(int classidx,int idx){
 		try {
 			conn=com.semi2.db.Semi2DB.getConn();
-			String sql="select t.num,s.testidx,t.rightanswer,s.sanswer,t.score from sanswer s,test t where s.testidx=t.testidx and t.classidx=? and s.idx=?";
+			String sql="select t.numidx,s.testidx,t.rightanswer,s.sanswer,t.score from sanswer s,test t where s.testidx=t.testidx and s.numidx=t.numidx and t.classidx=? and s.idx=?";
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, classidx);
 			ps.setInt(2, idx);
 			rs=ps.executeQuery();
 			ArrayList<TestDTO> arr=new ArrayList<TestDTO>();
 			while(rs.next()) {
-				int num=rs.getInt("num");
+				int numidx=rs.getInt("numidx");
 				int testidx=rs.getInt("testidx");
 				String rightanswer=rs.getString("rightanswer");
 				String sanswer=rs.getString("sanswer");
 				int score=rs.getInt("score");
 				
 				TestDTO tdto=new TestDTO();
-				tdto.setNum(num);
+				tdto.setNumidx(numidx);;
 				tdto.setTestidx(testidx);
 				tdto.setRightanswer(rightanswer);
 				tdto.setSanswer(sanswer);

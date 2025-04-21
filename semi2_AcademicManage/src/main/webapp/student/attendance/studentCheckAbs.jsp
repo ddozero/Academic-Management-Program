@@ -6,7 +6,17 @@
 <%
 
 	MemberDTO mdto=(MemberDTO)session.getAttribute("smdto");
-
+	int classidx=srdao.studentGetClassidx(mdto.getIdx());
+	
+	if(classidx==0){
+	%>
+	<script>
+	window.alert('현재 신청하신 강좌가 존재 하지않습니다. 강좌를 먼저 신청해주세요.');
+	location.href='/semi2_AcademicManage/student/studentlecture/studentLectureList.jsp';
+	</script>
+	<%		
+		return;
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -63,14 +73,12 @@
 .table-info td form input[type="submit"]:hover {
   	color: #567AF0; /* 텍스트 색상 변경 */
 }
-
-
 </style>
 </head>
 <body>
 <%@include file="/header/studentHeader.jsp" %>
 <div class="all-title1">
-<h2>출결 신청 내역</h2>
+<h2>조퇴 신청 내역</h2>
 </div>
 <section class="all-section1">
 <article>
@@ -80,6 +88,7 @@
 				<th>신청일</th>
 				<th>강좌명</th>
 				<th>신청구분</th>
+				<th>업로드 파일</th>
 				<th>승인상태</th>
 			</tr>
 		</thead>
@@ -107,6 +116,7 @@
 			<td><%=arr.get(i).getReqdate() %></td>
 			<td><%=classname %></td>
 			<td><%=arr.get(i).getIssuedivi() %></td>
+			<td><a href="/semi2_AcademicManage/recordimg/<%=arr.get(i).getFilename()%>">다운로드</a></td>
 			<td><%=status%></td>
 		</tr>
 	<%

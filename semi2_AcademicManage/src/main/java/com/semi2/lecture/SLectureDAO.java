@@ -251,4 +251,31 @@ public class SLectureDAO {
 			}
 		}
 	}
+	
+	/**강좌 평가하기 -오진우*/
+	public int studentEstiTeacher(int classidx,int idx,int estinum,String esticon) {
+		try {
+			conn=com.semi2.db.Semi2DB.getConn();
+			String sql="insert into CLASSESTIMATE values(sq_CLASSESTIMATE_estidx.nextval,?,?,?,?)";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, classidx);
+			ps.setInt(2, idx);
+			ps.setInt(3, estinum);
+			ps.setString(4, esticon);
+			int result=ps.executeUpdate();
+			
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}finally {
+			try {
+				if(ps!=null)ps.close();
+				if(conn!=null)conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+	
 }

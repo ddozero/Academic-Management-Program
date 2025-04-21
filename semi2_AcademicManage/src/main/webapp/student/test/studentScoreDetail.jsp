@@ -150,7 +150,7 @@ form[name="lectureFind"] {
 				for(int i=0;i<arr.size();i++){
 		%>					
 				<tr>
-					<td><%=arr.get(i).getNum() %></td>
+					<td><%=arr.get(i).getNumidx() %></td>
 					<td><%=arr.get(i).getRightanswer() %></td>
 					<td><%=arr.get(i).getSanswer() %></td>
 		<%

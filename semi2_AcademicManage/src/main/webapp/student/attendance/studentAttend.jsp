@@ -6,11 +6,23 @@
 <%@ page import="java.util.Date"%>
 <jsp:useBean id="rdto" class="com.semi2.record.RecordDTO"></jsp:useBean>
 <jsp:useBean id="srdao" class="com.semi2.record.SRecordDAO"></jsp:useBean>
+<jsp:useBean id="sldao" class="com.semi2.lecture.SLectureDAO"></jsp:useBean>
 <%
 
 	MemberDTO mdto=(MemberDTO)session.getAttribute("smdto");
 	
-
+	int classidx=sldao.studentCheckMyLecture(mdto.getIdx());
+	
+	if(classidx==0){
+%>
+	<script>
+	window.alert('현재 신청하신 강좌가 존재 하지않습니다. 강좌를 먼저 신청해주세요.');
+	location.href='/semi2_AcademicManage/student/studentlecture/studentLectureList.jsp';
+	</script>
+<%		
+		return;
+	}
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -76,6 +88,17 @@
 	font-size: 16px;
 	color: #333;
 }
+.extra2{
+	
+	background-color: #4c6ef5;
+    color: white;
+    padding: 5px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+
+	}
 
 </style>
 <script>
@@ -125,12 +148,12 @@
 			
 			if(!temp2.equals(temp1)){ 
 	%>
-			<input style="float: right;" type="button" name="checkout" value="퇴실" onclick="window.alert('입실 처리되지 않았습니다.')">
-			<input style="float: right;" type="button" name="checkin" value="입실"   onclick="location.href='studentAttend_ok.jsp?num=1'">
+			<input style="float: right; margin-left: 5px;" type="button" name="checkout" value="퇴실" onclick="window.alert('입실 처리되지 않았습니다.')" class="extra2">
+			<input style="float: right;" type="button" name="checkin" value="입실"   onclick="location.href='studentAttend_ok.jsp?num=1'" class="extra2">
 	<%		
 			}else if(temp6.equals("0001-01-01 00:00:00.0")){
 	%>		
-			<input style="float: right;" type="button" name="checkout" value="퇴실" onclick="location.href='studentAttend_ok.jsp?num=2'">
+			<input style="float: right;" type="button" name="checkout" value="퇴실" onclick="location.href='studentAttend_ok.jsp?num=2'" class="extra2">
 	<%		
 			}else {
 	%>			
@@ -141,8 +164,8 @@
 					
 		}else{//아예 값이 없을때
 	%>
-			<input style="float: right;" type="button" name="checkout" value="퇴실" onclick="window.alert('입실 처리되지 않았습니다.')">
-			<input style="float: right;" type="button" name="checkin" value="입실"   onclick="location.href='studentAttend_ok.jsp?num=1'">
+			<input style="float: right; margin-left: 5px;" type="button" name="checkout" value="퇴실" onclick="window.alert('입실 처리되지 않았습니다.')" class="extra2">
+			<input style="float: right;" type="button" name="checkin" value="입실"   onclick="location.href='studentAttend_ok.jsp?num=1'" class="extra2">
 	<%
 		}
 	%>
@@ -161,7 +184,6 @@
 	<table class="table-info">
 		<thead class="table-info-header">
 			<tr>
-				<th>NO</th>
 				<th>수강강좌명</th>
 				<th>날짜</th>
 				<th>입실</th>
@@ -206,7 +228,6 @@
 		 		
 		 %>
 			<tr>
-				<td><%=rdto.getRecordidx() %></td>
 				<td><%=rdto.getClassname() %></td>
 				<td><%=rdto.getattendate() %></td>
 				<td><%=timeOnly %></td>

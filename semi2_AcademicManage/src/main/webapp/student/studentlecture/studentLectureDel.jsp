@@ -48,6 +48,17 @@
 	  color : #333333;
 	}
    
+   .extra2{
+	
+	background-color: #4c6ef5;
+    color: white;
+    padding: 5px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+
+	}
 </style>
 </head>
 <body>
@@ -65,8 +76,8 @@
 	<li>총수강일:<%=ldto.getEntiredate() %></li>
 </ul>
 <div style="text-align:center;">
-<input type="submit" value="취소">
-<input type="button" value="닫기" onclick="window.self.close()">
+<input type="submit" value="취소" class="extra2">
+<input type="button" value="닫기" onclick="window.self.close()" class="extra2">
 </div>
 </form>
 </body>
