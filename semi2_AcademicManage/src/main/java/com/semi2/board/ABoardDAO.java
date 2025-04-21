@@ -142,9 +142,10 @@ public class ABoardDAO {
 	            int lev = rs.getInt("lev");
 	            int sunbun = rs.getInt("sunbun");
 	            String secret = rs.getString("secret");
+	            String fileaddr = rs.getString("fileaddr");
 
 	            BoardDTO bdto = new BoardDTO(boardidx, midx, idx, category, title, name, pwd, content,
-	                                         writedate, readnum, ref, lev, sunbun, secret);
+	                                         writedate, readnum, ref, lev, sunbun, secret, fileaddr);
 	            arr.add(bdto);
 	        }
 	        return arr;
@@ -252,9 +253,10 @@ public class ABoardDAO {
 				int lev = rs.getInt("lev");
 				int sunbun = rs.getInt("sunbun");
 				String secret = rs.getString("secret");
+				String fileaddr = rs.getString("fileaddr");
 
 				BoardDTO bdto = new BoardDTO(boardidx, midx, idx, category, title, name, pwd, content, writedate,
-						readnum, ref, lev, sunbun, secret);
+						readnum, ref, lev, sunbun, secret, fileaddr);
 
 				arr.add(bdto);
 
@@ -299,9 +301,10 @@ public class ABoardDAO {
 			int lev = rs.getInt("lev");
 			int sunbun = rs.getInt("sunbun");
 			String secret = rs.getString("secret");
+			String fileaddr = rs.getString("fileaddr");
 
 			BoardDTO bdto = new BoardDTO(boardidx, midx,idx , category, title, name, pwd, content, writedate, readnum,
-					ref, lev, sunbun, secret);
+					ref, lev, sunbun, secret, fileaddr);
 
 			return bdto;
 		} catch (Exception e) {

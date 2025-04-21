@@ -52,7 +52,7 @@
 
 		<ul class="title-3">
 			<li class="subt">게시판</li>
-			<li><a href="/semiTest/teacher/tBoardList.jsp">">강좌게시판</a></li>
+			<li><a href="/semi2_AcademicManage/teacher/tBoardList.jsp">강좌게시판</a></li>
 		</ul>
 
 		<ul class="title-select">
