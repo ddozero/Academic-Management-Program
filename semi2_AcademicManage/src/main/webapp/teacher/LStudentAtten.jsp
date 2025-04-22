@@ -41,59 +41,81 @@ if ("name".equals(fkey) && !fvalue.equals("")) {
 <meta charset="UTF-8">
 <title>SYS Academy</title>
 <link rel="stylesheet" type="text/css" href="/semi2_AcademicManage/css/mainLayout.css">
+
 <style>
-body {
-	font-family: '맑은 고딕', sans-serif;
-	background-color: #f2f4f8;
-	margin: 0;
-	padding: 0;
+
+
+.setxt{
+	width : 200px;
+	height : 28px;
+	background: #fff;
+    color: #333;
+    border: 1px solid #d6d6d6; 
+    border-radius: 5px;
+    padding : 5px;
 }
 
-h2 {
-	margin: 20px 30px;
-	font-size: 30px;
+.sebt{ 
+    background: #567AF0;
+    color: #fff;
+    border: 1px solid #d9d9d9;
+    border-radius: 5px;
+    width: 50px;
+    height: 28px;
+    cursor: pointer;
 }
 
-.search-bar {
-	background-color: #e8f0ff;
-	border-radius: 10px;
-	padding: 15px 20px;
-	margin-bottom: 20px;
+
+
+.left-box, .right-box{
 	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	flex-wrap: wrap;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
 }
 
-.search-bar form {
+.right-box{
 	display: flex;
-	align-items: center;
-	gap: 10px;
+    justify-content: flex-end; /* 오른쪽 정렬 */
+    align-items: center;
+
 }
 
-input[type="date"], input[type="text"], select {
-	height: 32px;
-	border: 1px solid #ccc;
-	border-radius: 6px;
-	padding: 0 10px;
+.search {
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
-input[type="submit"] {
-	background-color: #fff;
-	border: 1px solid #567af0;
-	color: #567af0;
-	border-radius: 6px;
-	height: 32px;
-	padding: 0 15px;
-	font-weight: bold;
-	cursor: pointer;
+.search label {
+    font-weight: bold; /
+    font-size: 13px; 
+    color: #333; 
+    margin-right: 5px;
 }
 
-input[type="submit"]:hover {
-	background-color: #567af0;
-	color: white;
+.se-select { 
+    background: #fff;
+    color: #333;
+    border: 1px solid #d6d6d6; 
+    border-radius: 5px;
+    width: 80px;
+    height: 28px;
+    cursor: pointer; /* 커서 모양 */
+    padding : 5px;
 }
 
+.all-box {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   flex-wrap: wrap;      
+   gap: 20px;
+   width: 100%;            
+   max-width: 1250px;      
+   margin: 0 auto;
+   box-sizing: border-box;
+}
 .table-wrap {
 	overflow-x: auto;
 }
@@ -101,7 +123,7 @@ input[type="submit"]:hover {
 .table-info {
 	width: 100%;
 	border-collapse: collapse;
-	font-size: 14px;
+	font-size: 15px;
 }
 
 .table-info th, .table-info td {
@@ -115,9 +137,23 @@ input[type="submit"]:hover {
 }
 
 .notice {
-	font-family: '맑은 고딕', sans-serif;
 	color: grey;
-	font-size: 12px;
+	font-size: 14px;
+	text-align: left;
+}
+
+.all-section-lsatten{
+	margin-left: 320px; 
+	background-color: #ffffff;
+	padding: 20px 40px;
+	border-radius: 10px;
+	max-width: calc(100% - 360px);
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  	overflow-y: auto; /* 세로 스크롤 추가 */
+  	height:550px;
+  	max-height: 550px; 
+  	margin-bottom: 100px
+
 }
 
 </style>
@@ -149,33 +185,36 @@ window.onload = function() {
 <div class="all-title1">
 	<h2><%= rdto.getClassname() %>강좌 수강생 출결 조회</h2>
 </div>
-<section class="all-section1">
-	<div>
+<section class="all-section0">
+	<div class = "all-box">
 	<div class = "notice">
 	*특정 날짜 조회 또는 특정 이름으로 전체 검색, 전체 검색만 가능합니다.
 	</div>
-		<div class="search-bar">
-		
-			<form method="get" action="LStudentAtten.jsp">
+		<div class = "left-box">
+			<form class = "search" method="get" action="LStudentAtten.jsp">
 				<label>날짜</label>
-				<input type="date" name="attendate" value="<%=attendate_s%>">
+				<input class = "setxt" type="date" name="attendate" value="<%=attendate_s%>">
 				<input type="hidden" name="fkey" value="date">
-				<input type="submit" value="조회">
+				<input class = "sebt" type="submit" value="조회">
 			</form>
-
-				<form method="get" action="LStudentAtten.jsp">
+		
+		<div class="right-box">
+				<form class = "search" method="get" action="LStudentAtten.jsp">
 					<input type="hidden" name="attendate" value="<%=attendate_s%>">
-					<label>검색조건</label> <select name="fkey" id="fkeySelect"
-						onchange="toggleInputState()">
+					<label>검색조건</label> 
+					<select class = "se-select" name="fkey" id="fkeySelect" onchange="toggleInputState()">
 						<option value="all" <%="all".equals(fkey) ? "selected" : ""%>>전체</option>
 						<option value="name" <%="name".equals(fkey) ? "selected" : ""%>>이름</option>
-					</select> <input type="text" id="fvalueInput" name="fvalue"
-						value="<%=fvalue%>" placeholder="이름을 입력해주세요"> <input
-						type="submit" value="검색">
+					</select> 
+						<input class = "setxt" type="text" id="fvalueInput" name="fvalue" value="<%=fvalue%>" placeholder="이름을 입력해주세요"> 
+						<input class = "sebt" type="submit" value="검색">
 				</form>
-				
-			</div>
+		</div>
+	</div>
+</div>
+</section>
 
+<section class="all-section-lsatten">
 		<div class="table-wrap">
 			<table class="table-info">
 				<thead>
@@ -239,7 +278,6 @@ window.onload = function() {
 	총 <%= totalCount %>명
 </div>
 		</div>
-	</div>
 </section>
 <%@include file = "../header/footer.jsp" %>
 </body>

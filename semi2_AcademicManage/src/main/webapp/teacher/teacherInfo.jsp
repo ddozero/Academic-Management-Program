@@ -22,126 +22,182 @@ if (dto == null) {
 <meta charset="UTF-8">
 <title>SYS Academy</title>
 <link rel="stylesheet" type = "text/css" href="/semi2_AcademicManage/css/mainLayout.css"> 
-   <style>
-    .wrapper {
-      max-width: 800px;
-      margin: 0 auto;
-      background-color: white;
-      border-radius: 10px;
-      padding: 30px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    }
-    .title {
-      font-size: 20px;
-      font-weight: bold;
-      margin-bottom: 25px;
-    }
-    .info-box {
-      border: 1px solid #e0e0e0;
-      padding: 20px;
-    }
-    .info-box h3 {
-      margin-bottom: 20px;
-    }
-    .info-content {
-      display: flex;
-    }
-    .image-box {
-	  width: 150px;
-	  height: 180px;
-	  background-color: #f0f0f0;
+<style>
+   
+
+.name-title {
+   font-size: 20px;
+   font-weight: bold;
+   margin-top: 25px;
+   margin-bottom: 15px;
+}
+
+.info-box{
+	display: flex;
+	align-items: flex-start; 
+	gap: 20px; 
+	margin: 20px auto; 
+}
+	
+.table-add {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px auto;
+  border-radius : 10px;
+  font-size: 15px;
+
+}
+
+.header-style {
+  width: 10%;
+  text-align: center;
+  border: 1px solid #ddd;
+  white-space: nowrap;
+  background-color: #eee;
+  font-size : 15px;
+    height : 50px;
+}
+
+.cell-data {
+  width : 25%;
+  text-align: left;
+  padding: 10px;
+  border: 1px solid #ddd;
+  font-size: 15px;
+}
+	
+	
+.image-placeholder {
+    width: 180px; /* 원하는 크기로 조정 */
+    height: 200px; /* 원하는 크기로 조정 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ddd; 
+    border-radius: 10px;
+    margin-top:20px;
+}
+	
+.image-placeholder img {
+    width: 100%; /* 부모 요소 크기에 맞게 변경 */
+    height: 100%; /* 부모 요소 크기에 맞게 변경 */
+    object-fit: cover; /* 비율 유지하면서 채우기 */
+}
+	
+
+.addbt {
+   display: flex;
+    justify-content: flex-end; 
+    align-items: flex-end; 
+    position: absolute;
+    bottom: 130px;
+    right: 40px;
+
+}
+
+.addbt input[type="button"]{
+	  background: #567AF0;
+	  color: #fff;
+	  border: none;
+	  border-radius: 10px;
+	  width: 80px;
+	  height: 32px;
 	  display: flex;
 	  justify-content: center;
 	  align-items: center;
-	}
-	.image-box img {
-	  max-width: 100%;
-	  max-height: 100%;
-	}
-    .info-table {
-      flex-grow: 1;
-      width: 100%;
-      border-collapse: collapse;
-    }
-    .info-table td {
-      border: 1px solid #ddd;
-      padding: 10px;
-      height: 45px;
-    }
-    .info-table td.label {
-      background-color: #f9f9f9;
-      font-weight: bold;
-      width: 120px;
-    }
-    .button-box {
-      margin-top: 20px;
-      text-align: right;
-    }
-    .button-box button {
-      background-color: #356ae6;
-      color: white;
-      padding: 8px 18px;
-      border: none;
-      border-radius: 5px;
-      margin-left: 10px;
-      cursor: pointer;
-    }
-  </style>
+	  cursor: pointer;
+}
+
+.addbt input[type="button"]:hover {
+  background: #4569d6;
+}
+    
+.all-section-ac {
+	position: relative;
+	margin-left: 320px; 
+	margin-bottom: 10px;
+	background-color: #ffffff;
+	padding: 20px 40px;
+	border-radius: 10px;
+	max-width: calc(100% - 360px);
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+	max-height: 650px; /* 높이 설정 */
+	overflow-y: auto; /* 세로 스크롤 추가 */
+	height : 650px;
+	margin-bottom : 100px;
+}
+    
+</style>
 </head>
 <body>
 <%@include file = "../header/teacherHeader.jsp" %>
-<div class="wrapper">
-  <div class="title"><%= dto.getName() != null ? dto.getName() : "이름없음" %> 강사님 정보</div>
+
+<div class="all-title1">
+	<h2>My Information</h2>
+</div>
+
+<section class="all-section-ac">
+  <div class="name-title"><%= dto.getName() != null ? dto.getName() : "이름없음" %> 강사님 정보</div>
   
   <div class="info-box">
-   <h3><%=dto.getName() %> 강사님 기본 정보</h3>
-    
-    <div class="info-content">
-     <div class="image-box">
-    	<img src="img/test.jpg" alt="강사사진">
+     <div class="image-placeholder">
+    	<img src=<%=dto.getImgaddr() %> alt="강사사진">
 	</div>
-      <table class="info-table">
+	
+      <table class="table-add">
         <tr>
-          <td class="label">이름</td><td><%=dto.getName() %></td>
-          <td class="label">성별</td><td><%=dto.getSex() %></td>
+          <th class = "header-style">이름</th>
+          <td class = "cell-data"><%=dto.getName() %></td>
+          <th class="header-style">성별</th>
+          <td class = "cell-data"><%=dto.getSex() %></td>
         </tr>
         <tr>
-          <td class="label">생년월일</td>
+          <th class = "header-style">생년월일</th>
           <%
 		    String birth = dto.getBirth();
 		    String birthOnlyDate = (birth != null && birth.length() >= 10) ? birth.substring(0, 10) : "";
   		  %>
-  		  <td><%= birthOnlyDate %></td>
-          <td class="label">연락처</td><td><%=dto.getTel() %></td>
+  		  <td class = "cell-data"><%= birthOnlyDate %></td>
+          <th class = "header-style">연락처</th>
+          <td class = "cell-data"><%=dto.getTel() %></td>
         </tr>
         <tr>
-       	  <td class="label">이메일</td><td><%=dto.getEmail() %></td>
-          <td class="label">주소</td><td><%=dto.getAddr() %></td>
+       	  <th class = "header-style">이메일</th>
+       	  <td class = "cell-data"><%=dto.getEmail() %></td>
+          <th class = "header-style">주소</th>
+          <td class = "cell-data"><%=dto.getAddr() %></td>
         </tr>
         <tr>
-          <td class="label">입사일</td><td><%=dto.getComingdate() %></td>
-          <td class="label">학력</td><td><%=dto.getEdu2() %></td>
+          <th class = "header-style">입사일</th>
+          <td class = "cell-data"><%=dto.getComingdate() %></td>
+          <th class = "header-style">학력</th>
+          <td class = "cell-data"><%=dto.getEdu2() %></td>
         </tr>
+        
         <tr>
-        <td class="label">경력</td><td><%=dto.getCareer() %></td>
-        <td colspan="3"></td>
+	      <th class = "header-style">담당강좌명</th>
+          <td class = "cell-data" colspan="3"><%=dto.getClassname() %></td>
         </tr>
+        
         <tr>
-          <td class="label">반</td><td><%=dto.getGroupname() %></td>
-          <td class="label">담당강좌명</td><td><%=dto.getClassname() %></td>
+          <th class = "header-style">반</th>
+          <td class = "cell-data"><%=dto.getGroupname() %></td>
+          <th class = "header-style">경력</th>
+	      <td class = "cell-data"><%=dto.getCareer() %></td>
         </tr>
+        
         <tr>
-          <td class="label">특이사항</td><td><%=dto.getMemo() %></td>
-          <td colspan="3"></td>
+          <th class = "header-style">특이사항</th>
+          <td class = "cell-data" colspan="3"><%=dto.getMemo() %></td>
         </tr>
       </table>
-    </div>
 
-    <div class="button-box">
-      <button type="button" onclick="location.href='teacherInfoUpdate.jsp'">수정하기</button>
+
+    <div class="addbt">
+      <input type="button" value = "수정하기" onclick="location.href='teacherInfoUpdate.jsp'">
     </div>
   </div>
-</div>
+
 </section>
 <%@include file = "../header/footer.jsp" %>
 </body>

@@ -28,56 +28,120 @@ SimpleDateFormat sdfDateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
   <meta charset="UTF-8">
   <title>SYS Academy</title>
   <link rel="stylesheet" type="text/css" href="/semi2_AcademicManage/css/mainLayout.css">
-  <style>
-    .clock-box {
-      background-color: #e4ecff;
-      padding: 20px 30px;
-      border-radius: 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border: 1px solid #c7d9ff;
-      margin-bottom: 30px;
-      flex-wrap: wrap;
-    }
-    .clock-box .time {
-      font-size: 16px;
-    }
-    .btn-box {
-      display: flex;
-      gap: 10px;
-    }
-    .btn {
-      background-color: #356ae6;
-      color: #fff;
-      padding: 10px 24px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 15px;
-      transition: background-color 0.2s ease;
-    }
-    .btn:hover {
-      background-color: #2d5bd0;
-    }
-    .record-box h3 {
-      font-size: 16px;
-      margin-bottom: 10px;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    th, td {
-      border: 1px solid #ccc;
-      padding: 12px;
-      text-align: center;
-      font-size: 14px;
-    }
-    th {
-      background-color: #f5f5f5;
-    }
-  </style>
+ <style>
+
+.all-box {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   flex-wrap: wrap;      
+   gap: 20px;
+   width: 100%;            
+   max-width: 1250px;      
+   margin: 0 auto;
+   box-sizing: border-box;
+}	
+
+.current-time{
+
+	font-size:18px;
+	color : #0E3CA5; 
+	font-weight: bold;
+}
+
+.left-box {
+    display: flex;
+    justify-content: flex-start; /* 왼쪽 정렬 */
+    align-items: center;
+}
+
+.left-box, .right-box{
+	display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.right-box{
+	display : flex;
+	position: right;
+}
+
+.right-box input{
+	margin-left : 10px;
+}
+
+.btn {
+    background-color: #4c6ef5;
+    color: white;
+    padding: 5px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    width : 80px;
+    height : 35px;
+}
+
+.btn:hover {
+   background-color: #3b5cc7; /* 버튼 hover 효과 */
+ }
+ 
+ 
+.record-box h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+    
+
+.table-info {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 15px;
+    text-align: left;
+
+}
+
+
+.table-info-header th {
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #ddd;
+    
+}
+
+.table-info td {
+    padding: 3px;
+    border: 1px solid #ddd;
+    text-align: center;
+    height : 40px;
+}
+
+.title-inner h4 {
+	margin-top:16px;
+    font-size: 20px; /* 원하는 크기로 조정 */
+    font-weight: bold; /* 가독성을 높이기 위해 추가 */
+}
+
+.all-section-tattend{
+	margin-left: 320px; 
+	margin-bottom: 100px; 
+	background-color: #ffffff;
+	padding: 20px 40px;
+	border-radius: 10px;
+	max-width: calc(100% - 360px);
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+	max-height: 550px; /* 높이 설정 */
+  	overflow-y: auto; /* 세로 스크롤 추가 */
+  	height : 550px
+}   
+
+</style>
+  
+  
   <script>
     function noticeTime() {
       var now = new Date();
@@ -106,10 +170,14 @@ SimpleDateFormat sdfDateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 <div class="all-title1">
   <h2><%= mdto.getName() %> 강사님 출/퇴근 관리</h2>
 </div>
-<section class="all-section1">
-  <div class="clock-box">
-    <div class="time">현재 시간: <span id="timer"></span></div>
-    <div class="btn-box">
+
+<section class="all-section0">
+<div class = "all-box">
+	<div class ="left-box">
+    <div class="current-time">현재 시간: <span id="timer"></span></div>
+    </div>
+    
+    <div class="right-box">
 	<!-- 출근 버튼 -->
 	<form action="teacherAtten_ok.jsp" method="post">
 		<input type="hidden" name="midx" value="<%= midx %>">
@@ -127,12 +195,18 @@ SimpleDateFormat sdfDateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	    <input type="hidden" name="name" value="<%= name %>">
 	    <button class="btn" type="submit" name="action" value="out">퇴근</button>
 	</form>
-	</div>
-  </div>
-  <div class="record-box">
-      <h3>입퇴실 기록</h3>
-<table>
-  <thead>
+</div>
+</div>
+ </section>
+ 
+<section class="all-section-tattend">
+
+<div class = "title-inner">
+<h4>입퇴실 기록</h4>
+</div>
+
+<table class="table-info">
+  <thead class="table-info-header">
     <tr>
       <th>NO</th>
       <th>담당강좌명</th>
@@ -169,7 +243,6 @@ SimpleDateFormat sdfDateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
   <% } %>
   </tbody>
 </table>
-  </div>
 </section>
 <%@ include file="../header/footer.jsp" %>
 </body>

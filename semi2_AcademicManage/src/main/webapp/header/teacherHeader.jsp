@@ -9,7 +9,7 @@
 	<div class="container">
 		<div class="left-group">
 			<h1>
-				<a href="#">SYS Academy</a>
+				<a href="/semi2_AcademicManage/teacher/teacherInfo.jsp"><img class = "main-logo-img" src = "/semi2_AcademicManage/img/header-logo.png" alt = "main-logo" style="width: 170px; height: auto; margin-top:8px;"></a>
 			</h1>
 			<div class="user-group">
 				<h4>강사</h4>
@@ -20,7 +20,7 @@
 			<%
 				if(sname != null){
 			%>
-				<span><%=sname %>님</span>
+				<span style = "font-size:14px; font-weight: bold;"><%=sname %>님</span>
 				<a href="/semi2_AcademicManage/server/logout.jsp">로그아웃</a>
 			<%
 				}

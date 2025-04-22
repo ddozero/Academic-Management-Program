@@ -35,10 +35,7 @@ if (selectedClassidx > 0) {
   <title>SYS Academy</title>
   <link rel="stylesheet" type="text/css" href="/semi2_AcademicManage/css/mainLayout.css">
   <style>
-    h2 {
-      font-size: 24px;
-      margin: 30px 50px 20px;
-    }
+
     .form-row {
       display: flex;
       align-items: center;
@@ -53,7 +50,7 @@ if (selectedClassidx > 0) {
       font-size: 14px;
     }
     button {
-      background-color: #3366ff;
+      background-color: #567AF0;
       color: white;
       border: none;
       cursor: pointer;
@@ -63,13 +60,12 @@ if (selectedClassidx > 0) {
     }
     .table-box {
       border: 1px solid #ddd;
-      border-radius: 6px;
       overflow: hidden;
     }
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 14px;
+      font-size: 15px;
     }
     thead {
       background-color: #f1f1f1;
@@ -79,6 +75,21 @@ if (selectedClassidx > 0) {
       text-align: center;
       border-bottom: 1px solid #e5e5e5;
     }
+    
+.all-section-tscheck{
+	margin-left: 320px; 
+	margin-bottom: 50px;
+	background-color: #ffffff;
+	padding: 20px 30px;
+	border-radius: 10px;
+	max-width: calc(100% - 360px);
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+	max-height: 650px; /* 높이 설정 */
+  	overflow-y: auto; /* 세로 스크롤 추가 */
+  	overflow-x: hidden;
+  	margin-bottom : 100px;
+  	height: 650px;
+}
   </style>
 </head>
 <body>
@@ -89,7 +100,7 @@ if (selectedClassidx > 0) {
   <h2>시험 제출 조회현황</h2>
 </div>
 
-<section class="all-section1">
+<section class="all-section-tscheck">
   <form method="get" action="testSubmitCheck.jsp" class="form-row">
     <label for="classidx">강좌명</label>
     <select name="classidx" id="classidx">
