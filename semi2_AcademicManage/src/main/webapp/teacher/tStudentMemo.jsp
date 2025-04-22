@@ -18,11 +18,62 @@ String idx = request.getParameter("idx");
 <link rel="stylesheet" type="text/css" href="/semi2_AcademicManage/css/mainLayout.css">
 
 <style>
+
+.se-Find {
+    float: right; 
+    margin: 10px 0; 
+}
+
+form[name="mteaherFind"] {
+    float: right;
+}
+
+.sebt{ 
+    background: #d8d8d8;
+    color: #333;
+    border: 1px solid #d9d9d9;
+    border-radius: 5px;
+    width: 50px;
+    height: 28px;
+    cursor: pointer;
+}
+
+.search-button:hover {
+    color: #567AF0;
+}
+
+.se-select { 
+    background: #fff;
+    color: #333;
+    border: 1px solid #d6d6d6; 
+    border-radius: 5px;
+    width: 80px;
+    height: 28px;
+    cursor: pointer; /* 커서 모양 */
+    padding : 5px;
+}
+ 
+
+.se-select:focus {
+    outline: none; 
+}
+
+.setxt{
+	width : 200px;
+	height : 28px;
+	background: #fff;
+    color: #333;
+    border: 1px solid #d6d6d6; 
+    border-radius: 5px;
+    padding : 5px;
+}
+
+
 .table-info {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
-    font-size: 14px;
+    font-size: 15px;
     text-align: left;
 }
 
@@ -67,17 +118,17 @@ String idx = request.getParameter("idx");
 }
 .all-section2-sub{
 		margin-left: 320px; 
-		margin-bottom: 100px;
 		background-color: #ffffff;
-		padding: 8px 30px;
+		padding: 10px 30px;
+		padding-bottom:20px;
 		border-radius: 10px;
 		max-width: calc(100% - 360px);
 		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-		height: 500; /* 추가 높이 설정 */
-		max-height: 380px; /* 높이 설정 */
+		height: 550; /* 추가 높이 설정 */
+		max-height: 550x; /* 높이 설정 */
   		overflow-y: auto; /* 세로 스크롤 추가 */
   		overflow-x: hidden;
-  		margin-bottom : 20px;
+  		margin-bottom : 100px;
 }
 </style>
 
@@ -92,14 +143,14 @@ String idx = request.getParameter("idx");
   	<%@include file="../header/teacherHeader.jsp"%> 
 
     <article>
-		<form name="mstudentFind" method="post" action="tStudentMemo.jsp">
-			<select class= "se-Find" name = "fkey">
+		<form class="se-Find" name="mstudentFind" method="post" action="tStudentMemo.jsp">
+			<select class= "se-select" name = "fkey">
 				<option value = "">전체</option>
 				<option value = "classidx">이름</option>
 				<option value = "tname">수강반명</option>
 			</select>
-			<input type="text" name = "fvalue">
-			<input type="submit" value="검색">
+			<input class = "setxt" type="text" name = "fvalue">
+			<input class = "sebt" type="submit" value="검색">
 		</form>
 		
 		<table class="table-info">
@@ -162,7 +213,7 @@ String idx = request.getParameter("idx");
 	 <%
     if(idx == null||idx.equals("")){
     %>
-    	<p class= "list-alert">학생 세부정보를 확인하시려면 '보기' 버튼을 클릭하세요.</p>
+    	<p class= "list-alert"  style = "margin-top : 10px;">학생 세부정보를 확인하시려면 '조회' 버튼을 클릭하세요.</p>
     <%
     }else{
     %>

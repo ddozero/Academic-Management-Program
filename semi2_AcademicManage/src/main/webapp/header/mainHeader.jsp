@@ -5,7 +5,7 @@
 <header>
 	<div class="container">
 		<h1>
-			<a href="#"> SYS Academy </a>
+			<img src = "/semi2_AcademicManage/img/header-logo.jsp"> SYS Academy </a>
 		</h1>
 		<div class="user-group">
 			<h4>방문자</h4>

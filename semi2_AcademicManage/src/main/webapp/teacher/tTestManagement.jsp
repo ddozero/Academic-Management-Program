@@ -31,7 +31,7 @@ ArrayList<TestDTO> testList = tDAO.getTestListByClassidx(selectedClassidx);
 	border-radius: 10px;
 	padding: 20px;
 	margin: 30px auto;
-	width: 90%;
+	width: 100%;
 	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -48,7 +48,7 @@ ArrayList<TestDTO> testList = tDAO.getTestListByClassidx(selectedClassidx);
 }
 
 .input-table th {
-	width: 15%;
+	width: 10%;
 	background-color: #f5f5f5;
 }
 
@@ -74,7 +74,7 @@ ArrayList<TestDTO> testList = tDAO.getTestListByClassidx(selectedClassidx);
 
 .exam-table th, .exam-table td {
 	border: 1px solid #ccc;
-	padding: 10px;
+	padding: 5px;
 	text-align: center;
 }
 
@@ -94,7 +94,7 @@ ArrayList<TestDTO> testList = tDAO.getTestListByClassidx(selectedClassidx);
 	max-height: 400px; /* 높이 설정 */
 	overflow-y: auto; /* 세로 스크롤 추가 */
 	overflow-x: hidden;
-	margin-bottom: 20px;
+	margin-bottom: 100px;
 }
 
 .table-add {

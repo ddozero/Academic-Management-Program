@@ -42,13 +42,12 @@ boolean isEdit = "edit".equals(request.getParameter("action"));
 
 .table-add {
 	width: 100%;
-	border-collapse: collapse;
-	margin: 20px auto;
+	border-collapse: collapse;	
 	border-radius: 10px;
 }
 
 .header-style {
-	width: 15%;
+	width: 10%;
 	text-align: center;
 	border: 1px solid #ddd;
 	white-space: nowrap;
@@ -73,7 +72,6 @@ boolean isEdit = "edit".equals(request.getParameter("action"));
 .image-placeholder img {
 	width: 150px;
 	height: 200px;
-	margin-top: 20px;
 	object-fit: cover;
 	border: 1px solid #ddd;
 	border-radius: 10px;
@@ -96,15 +94,41 @@ textarea.memo-clean {
 	box-sizing: border-box;
 	white-space: pre-wrap;
 }
-input.blue-btn {
-  background-color: #356ae6;
-  color: white;
-  padding: 8px 18px;
-  border: none;
-  border-radius: 5px;
-  margin-left: 10px;
-  cursor: pointer;
+
+.bt-container{
+ 	display: flex;
+    justify-content: flex-end;
+    width: 100%; 
+    margin-top: 10px; 
 }
+
+.bt-ct1 {
+    display: flex;
+    justify-content: flex-end; /* 오른쪽 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    gap: 10px; /* 버튼 간 간격 */
+    width: 100%; /* 부모 요소 너비 맞춤 */
+    margin-top: 10px; /* 상단 간격 */
+}
+
+input.blue-btn {
+   background: #567AF0;
+	  color: #fff;
+	  border: none;
+	  border-radius: 10px;
+	  width: 80px;
+	  height: 32px;
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  cursor: pointer;
+
+}
+
+input.blue-btn:hover {
+  background: #4569d6;
+}
+
 
 </style>
 </head>
@@ -188,21 +212,20 @@ input.blue-btn {
 			</table>
 		</div>
 
-		<div style="text-align: right; margin: 0 auto; max-width: 1000px; margin-bottom: 30px;">
+		<div class = "bt-ct1">
 			<%
 			if (isEdit) {
 			%>
 			<input type="submit" value="저장" class="blue-btn"> <input
 				type="button" value="취소" class="blue-btn"
 				onclick="location.href='tStudentMemo.jsp?idx=<%=dto.getIdx()%>'">
-	
 		</div>
 		</form>
 	<%
 	} else {
 	%>
 	<form method="post" action="tStudentMemo.jsp">
-	<div>
+	<div class="bt-ct2">
 		<input type="hidden" name="idx" value="<%=dto.getIdx()%>">
 		<input type="hidden" name="action" value="edit">
 		<input type="submit" value="수정하기" class="blue-btn">

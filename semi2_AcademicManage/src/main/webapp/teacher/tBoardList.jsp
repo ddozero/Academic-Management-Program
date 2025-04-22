@@ -11,14 +11,11 @@
     <link rel="stylesheet" type="text/css" href="/semi2_AcademicManage/css/mainLayout.css">
 
     <style>
-        .container {
-            width: 800px;
-            margin: 30px auto;
-        }
-        .table-info {
+
+.table-info {
     width: 100%;
     border-collapse: collapse;
-    margin: 8px 0;
+    margin: 20px 0;
     font-size: 15px;
     text-align: left;
     
@@ -124,7 +121,7 @@
     <h2>강좌 공지사항</h2>
 </div>
 
-<section class="all-section1">
+<section class="all-section-board">
     <%@ include file="../header/teacherHeader.jsp" %>
 
     <%

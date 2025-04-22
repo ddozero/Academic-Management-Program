@@ -52,10 +52,7 @@ if (list != null && list.size() > 0) {
   <title>SYS Academy</title>
   <link rel="stylesheet" type="text/css" href="/semi2_AcademicManage/css/mainLayout.css">
   <style>
-    h2 {
-      font-size: 24px;
-      margin: 30px 50px 20px;
-    }
+
     .form-row {
       display: flex;
       align-items: center;
@@ -70,7 +67,7 @@ if (list != null && list.size() > 0) {
       font-size: 14px;
     }
     button {
-      background-color: #3366ff;
+      background-color: #567AF0;
       color: white;
       border: none;
       cursor: pointer;
@@ -92,7 +89,6 @@ if (list != null && list.size() > 0) {
     }
     .table-box {
       border: 1px solid #ddd;
-      border-radius: 6px;
       overflow: hidden;
     }
     table {
@@ -111,6 +107,21 @@ if (list != null && list.size() > 0) {
     td.memo {
       text-align: center;
     }
+    
+.all-section-tcesiti{
+	margin-left: 320px; 
+	margin-bottom: 50px;
+	background-color: #ffffff;
+	padding: 20px 30px;
+	border-radius: 10px;
+	max-width: calc(100% - 360px);
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+	max-height: 650px; /* 높이 설정 */
+  	overflow-y: auto; /* 세로 스크롤 추가 */
+  	overflow-x: hidden;
+  	margin-bottom : 100px;
+  	height: 650px;
+}
   </style>
 </head>
 <body>
@@ -120,7 +131,7 @@ if (list != null && list.size() > 0) {
   <h2><%= mldto != null ? mldto.getClassname() : "강좌 없음" %> 강좌 평가 조회</h2>
 </div>
 
-<section class="all-section1">
+<section class="all-section-tcesiti">
   <div class="form-row">
   <form method="get" action="tClassEstimate.jsp">
   <label for="course">강좌명</label>

@@ -38,31 +38,46 @@
 <title>SYS Academy</title>
 <link rel="stylesheet" type="text/css" href="/semi2_AcademicManage/css/mainLayout.css">
 <style>
-.wrapper {
-    max-width: 850px;
-    margin: 40px auto;
-    background-color: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+
+.all-section-board{
+	margin-left: 320px;
+  background-color: #ffffff;
+  padding: 20px 40px;
+  border-radius: 10px;
+  max-width: calc(100% - 360px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  overflow-y: auto;
+  flex: 1;
+  height: auto;
+  height : 700px;
+  margin-bottom : 100px;
 }
-h2 {
-    margin-bottom: 20px;
+
+.table-add {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px auto;
+  border-radius : 10px;
 }
-.table-view {
-    width: 100%;
-    border-collapse: collapse;
+
+.header-style {
+  width: 15%;
+  text-align: center;
+  border: 1px solid #ddd;
+  white-space: nowrap;
+  background-color: #eee;
+  font-size : 15px;
 }
-.table-view th, .table-view td {
-    border: 1px solid #ddd;
-    padding: 10px 14px;
-    vertical-align: top;
+
+.cell-data {
+  width : 25%;
+  text-align: left;
+  padding: 10px;
+  border: 1px solid #ddd;
 }
-.table-view th {
-    background-color: #f5f5f5;
-    text-align: left;
-    width: 120px;
-}
+
+
+
 .content-area {
     min-height: 200px;
     line-height: 1.6;
@@ -74,46 +89,46 @@ h2 {
 }
 .button-box a {
     display: inline-block;
-    background-color: #356ae6;
+    background-color: #567AF0; 
     color: white;
     padding: 8px 18px;
     border-radius: 5px;
     text-decoration: none;
     margin-left: 10px;
+   
 }
+
 </style>
 </head>
 <body>
 
 <div class="all-title1">
-  <h2>강좌 자유 게시판</h2>
+  <h2>강좌 자유게시판 상세 보기</h2>
 </div>
 
-<section class="all-section1">
+<section class="all-section-board">
     <%@ include file="../header/teacherHeader.jsp" %>
 
-    <div class="wrapper">
-        <h2>게시글 상세 보기</h2>
-        <table class="table-view">
+        <table class="table-add">
             <tr>
-                <th>번호</th>
-                <td><%= bdto.getBoardidx() %></td>
-                <th>작성일</th>
-                <td><%= bdto.getWritedate() %></td>
+                <th class="header-style">번호</th>
+                <td class="cell-data"><%= bdto.getBoardidx() %></td>
+                <th class="header-style">작성일</th>
+                <td class="cell-data"><%= bdto.getWritedate() %></td>
             </tr>
             <tr>
-                <th>작성자</th>
-                <td><%= bdto.getName() %></td>
-                <th>조회수</th>
-                <td><%= bdto.getReadnum() %></td>
+                <th class="header-style">작성자</th>
+                <td class="cell-data"><%= bdto.getName() %></td>
+                <th class="header-style">조회수</th>
+                <td class="cell-data"><%= bdto.getReadnum() %></td>
             </tr>
             <tr>
-                <th>제목</th>
-                <td colspan="3"><%= bdto.getTitle() %></td>
+                <th class="header-style">제목</th>
+                <td class="cell-data" colspan="3"><%= bdto.getTitle() %></td>
             </tr>
              <tr>
-                <th>첨부파일</th>
-    <td colspan="3">
+                <th class="header-style">첨부파일</th>
+    <td class="cell-data" colspan="3">
         <%
             String fileaddr = bdto.getFileaddr(); // DTO에서 가져온 파일 경로
             if (fileaddr == null || fileaddr.trim().equals("")) {
@@ -129,8 +144,8 @@ h2 {
     </td>
             </tr>
             <tr>
-                <th>내용</th>
-                <td colspan="3" class="content-area"><%= bdto.getContent() %></td>
+                <th class="header-style">내용</th>
+                <td class="cell-data" colspan="3" class="content-area"  style = "height : 400px; vertical-align: top;"><%= bdto.getContent() %></td>
             </tr>
         </table>
 
@@ -141,7 +156,6 @@ h2 {
 			<a href="tBoardDelete.jsp?boardidx=<%= bdto.getBoardidx() %>">삭제</a>
 
         </div>
-    </div>
 
     <%@ include file="../header/footer.jsp" %>
 </section>
