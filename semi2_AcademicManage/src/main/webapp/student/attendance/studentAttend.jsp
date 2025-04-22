@@ -28,17 +28,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>SYS Academy</title>
 <link rel="stylesheet" type="text/css" href="/semi2_AcademicManage/css/mainLayout.css">
 <style>
 .table-info {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
-    font-size: 14px;
+    font-size: 15px;
     text-align: left;
 }
-
 
 .table-info-header th {
     background-color: #f4f4f4;
@@ -52,18 +51,9 @@
     padding: 3px;
     border: 1px solid #ddd;
     text-align: center;
+    height : 30px; 
 }
 
-.table-info td:nth-child(2), .table-info th:nth-child(2) { /*강좌명 너비 조정*/
-	width: 350px; 
-	word-break: break-word;
-}
-
-
-.table-info td:nth-child(9), .table-info th:nth-child(9) { /*수정 너비 조정*/
-	width: 80px; 
-	word-break: break-word;
-}
 
 .table-info td form input[type="submit"]{
 	background: #fff;
@@ -88,8 +78,8 @@
 	font-size: 16px;
 	color: #333;
 }
+
 .extra2{
-	
 	background-color: #4c6ef5;
     color: white;
     padding: 5px;
@@ -97,8 +87,67 @@
     border-radius: 6px;
     font-size: 16px;
     cursor: pointer;
+}
+	
+.all-box {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   flex-wrap: wrap;      
+   gap: 20px;
+   width: 100%;            
+   max-width: 1250px;      
+   margin: 0 auto;
+   box-sizing: border-box;
+}	
 
-	}
+.current-time{
+	float:right;
+	font-size:18px;
+	color : #0E3CA5;
+	font-weight: bold;
+}
+
+
+.right-box{
+	display : flex;
+	position: right;
+	gab : 20px;
+}
+
+.right-box input{
+	margin-left : 10px;
+}
+
+.extra2 {
+    background-color: #4c6ef5;
+    color: white;
+    padding: 5px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    width : 80px;
+    height : 35px;
+}
+
+.all-section-sattend{
+	margin-left: 320px; 
+	background-color: #ffffff;
+	padding: 20px 40px;
+	border-radius: 10px;
+	max-width: calc(100% - 360px);
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+
+  	overflow-y: auto; /* 세로 스크롤 추가 */
+  	height:500px;
+  	margin-bottom: 100px
+}
+
+.extra2:hover {
+    background-color: #3b5cc7; /* 버튼 hover 효과 */
+}
+
 
 </style>
 <script>
@@ -127,9 +176,15 @@
 <h2><%=mdto.getName() %> 수강생님 입/퇴실 관리</h2> 
 </div>
 
-<section class="all-section1">
-	<span>현재시간  <span id="timer">0000-00-00 00:00:00 </span></span>
-	<span class="display: block;">
+<section class="all-section0">
+<div class = "all-box">
+	<div class = "left-box">
+		<span class = "current-time">현재시간 : 
+		<span id="timer">0000-00-00 00:00:00 </span>
+		</span>
+	</div>
+		
+		<div class = "right-box">
 	<%
 		rdto=srdao.studentShowAttend(mdto);
 		
@@ -148,12 +203,13 @@
 			
 			if(!temp2.equals(temp1)){ 
 	%>
-			<input style="float: right; margin-left: 5px;" type="button" name="checkout" value="퇴실" onclick="window.alert('입실 처리되지 않았습니다.')" class="extra2">
-			<input style="float: right;" type="button" name="checkin" value="입실"   onclick="location.href='studentAttend_ok.jsp?num=1'" class="extra2">
+			
+			<input type="button" name="checkout" value="퇴실" onclick="window.alert('입실 처리되지 않았습니다.')" class="extra2">
+			<input type="button" name="checkin" value="입실"   onclick="location.href='studentAttend_ok.jsp?num=1'" class="extra2">
 	<%		
 			}else if(temp6.equals("0001-01-01 00:00:00.0")){
 	%>		
-			<input style="float: right;" type="button" name="checkout" value="퇴실" onclick="location.href='studentAttend_ok.jsp?num=2'" class="extra2">
+			<input type="button" name="checkout" value="퇴실" onclick="location.href='studentAttend_ok.jsp?num=2'" class="extra2">
 	<%		
 			}else {
 	%>			
@@ -164,22 +220,20 @@
 					
 		}else{//아예 값이 없을때
 	%>
-			<input style="float: right; margin-left: 5px;" type="button" name="checkout" value="퇴실" onclick="window.alert('입실 처리되지 않았습니다.')" class="extra2">
-			<input style="float: right;" type="button" name="checkin" value="입실"   onclick="location.href='studentAttend_ok.jsp?num=1'" class="extra2">
+			<input type="button" name="checkout" value="퇴실" onclick="window.alert('입실 처리되지 않았습니다.')">
+			<input type="button" name="checkin" value="입실"   onclick="location.href='studentAttend_ok.jsp?num=1'" class="extra2">
 	<%
 		}
-	%>
-				
-		
-	
-		
-	</span>
+	%>	
+
+		</div>
+</div>
 </section>
 
 <div class="all-title2">
 <h2>입/퇴실 기록</h2>
 </div>
-<section class="all-section2">
+<section class="all-section-sattend">
 	<article>
 	<table class="table-info">
 		<thead class="table-info-header">

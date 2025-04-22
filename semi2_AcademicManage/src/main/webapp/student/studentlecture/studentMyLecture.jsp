@@ -7,23 +7,21 @@
 <jsp:useBean id="ldto" class="com.semi2.lecture.LectureDTO"></jsp:useBean>
 <%
 	MemberDTO mdto=(MemberDTO)session.getAttribute("smdto");
-	
-	
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>SYS Academy</title>
 <link rel="stylesheet" type="text/css" href="/semi2_AcademicManage/css/mainLayout.css">
 <style>
 .table-info {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
-    font-size: 14px;
+    font-size: 15px;
     text-align: left;
-    height:200px;
+    height:80px;
 }
 
 
@@ -41,16 +39,6 @@
     text-align: center;
 }
 
-.table-info td:nth-child(2), .table-info th:nth-child(2) { /*강좌명 너비 조정*/
-	width: 350px; 
-	word-break: break-word;
-}
-
-
-.table-info td:nth-child(9), .table-info th:nth-child(9) { /*수정 너비 조정*/
-	width: 80px; 
-	word-break: break-word;
-}
 
 .table-info td form input[type="submit"]{
 	background: #fff;
@@ -66,6 +54,17 @@
   	color: #567AF0; /* 텍스트 색상 변경 */
 }
 
+.all-section-smlecture{
+	margin-left: 320px; 
+	background-color: #ffffff;
+	padding: 20px 40px;
+	border-radius: 10px;
+	max-width: calc(100% - 360px);
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+	max-height: 650px; /* 높이 설정 */
+	overflow-y: auto; /* 세로 스크롤 추가 */
+	height: 650px;
+}
 
 </style>
 </head>
@@ -74,7 +73,7 @@
 <div class = "all-title1">
 <h2>내 강좌보기</h2>
 </div>
-<section class="all-section1">
+<section class="all-section-smlecture">
 	<article>
 		<table class="table-info">
 			

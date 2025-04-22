@@ -103,9 +103,10 @@ select {
 		border-radius: 10px;
 		max-width: calc(100% - 360px);
 		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-		height : 350px;
-		max-height: 350px; /* 높이 설정 */
+		height : 650px;
+		max-height: 650px; /* 높이 설정 */
   		overflow-y: auto; /* 세로 스크롤 추가 */
+  		margin-bottom: 100px;
 }
 </style>
 

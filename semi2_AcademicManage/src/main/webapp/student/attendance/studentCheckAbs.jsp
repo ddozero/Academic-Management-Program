@@ -22,16 +22,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>SYS Academy</title>
 <link rel="stylesheet" type="text/css" href="/semi2_AcademicManage/css/mainLayout.css">
 <style>
 .table-info {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
-    font-size: 14px;
+    font-size: 15px;
     text-align: left;
-    height:200px;
+    height:80px;
 }
 
 
@@ -49,16 +49,6 @@
     text-align: center;
 }
 
-.table-info td:nth-child(2), .table-info th:nth-child(2) { /*강좌명 너비 조정*/
-	width: 350px; 
-	word-break: break-word;
-}
-
-
-.table-info td:nth-child(9), .table-info th:nth-child(9) { /*수정 너비 조정*/
-	width: 80px; 
-	word-break: break-word;
-}
 
 .table-info td form input[type="submit"]{
 	background: #fff;
@@ -73,6 +63,36 @@
 .table-info td form input[type="submit"]:hover {
   	color: #567AF0; /* 텍스트 색상 변경 */
 }
+
+
+ .all-section-scabs {
+	margin-left: 320px; 
+	background-color: #ffffff;
+	padding: 20px 40px;
+	border-radius: 10px;
+	max-width: calc(100% - 360px);
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+	max-height: 650px; 
+  	overflow-y: auto; 
+  	height : 650px;
+}
+
+.scabs-etc{
+	background-color :  #CBD7FF;
+	border: 1px solid #567AF0;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+	border-radius: 10px;
+	width : 100%;
+	height : 50px;
+	padding : 10px;
+	font-size : 14px;
+	font-weight: bold;
+	display: flex;
+    justify-content: center; 
+    align-items: center; 
+    text-align: center;
+}
+
 </style>
 </head>
 <body>
@@ -80,8 +100,12 @@
 <div class="all-title1">
 <h2>조퇴 신청 내역</h2>
 </div>
-<section class="all-section1">
+<section class="all-section-scabs">
 <article>
+	<div class="scabs-etc">
+		담당 매니저 승인은 7일 이내로 이루어집니다. 승인 시 출결 인정이 완료 됩니다.
+		확인이 필요하시면 SYS Academy로 문의 주세요.
+	</div>
 	<table class="table-info">
 		<thead class="table-info-header">
 			<tr>
@@ -123,10 +147,7 @@
 			}
 		}
 	%>
-	
-		
-			
-		
+
 		</tbody>
 	</table>
 </article>

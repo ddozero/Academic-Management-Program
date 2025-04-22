@@ -23,7 +23,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>SYS Academy</title>
 <link rel="stylesheet" type="text/css" href="/semi2_AcademicManage/css/mainLayout.css">
 <script>
 
@@ -61,7 +61,7 @@ function showpopup2(){
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
-    font-size: 14px;
+    font-size: 15px;
     text-align: left;
     height:300px;
 }
@@ -81,16 +81,7 @@ function showpopup2(){
     text-align: center;
 }
 
-.table-info td:nth-child(2), .table-info th:nth-child(2) { /*강좌명 너비 조정*/
-	width: 350px; 
-	word-break: break-word;
-}
 
-
-.table-info td:nth-child(9), .table-info th:nth-child(9) { /*수정 너비 조정*/
-	width: 80px; 
-	word-break: break-word;
-}
 
 .table-info td form input[type="submit"]{
 	background: #fff;
@@ -115,24 +106,25 @@ function showpopup2(){
     font-weight: bold;
 }
 .extra2{
-	background-color: #4c6ef5;
+	background-color: #567AF0;
     color: white;
     padding: 5px;
     border: none;
     border-radius: 6px;
-    font-size: 16px;
+    font-size: 15px;
     cursor: pointer;
 
 }
-.all-section1 {
+.all-section-sldetail {
 		margin-left: 320px; 
 		background-color: #ffffff;
 		padding: 20px 40px;
 		border-radius: 10px;
 		max-width: calc(100% - 360px);
 		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-		max-height: 400px; /* 높이 설정 */
+		max-height: 650px; /* 높이 설정 */
   		overflow-y: auto; /* 세로 스크롤 추가 */
+  		height: 650px;
 	}
 
 </style>
@@ -143,7 +135,7 @@ function showpopup2(){
 <div class = "all-title1">
 <h2>강좌 자세히 보기</h2>
 </div>
-<section class="all-section1">
+<section class="all-section-sldetail">
 	<article>
 		<table class="table-info">
 			<thead class="table-info-header">
