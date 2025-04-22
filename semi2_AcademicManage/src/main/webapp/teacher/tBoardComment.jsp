@@ -36,29 +36,31 @@ String fullName = name + " (" + role + ")";
 <title>SYS Academy</title>
 <link rel="stylesheet" type="text/css" href="/semi2_AcademicManage/css/mainLayout.css">
 <style>
-h2 {
-    font-size: 24px;
-    color: #333;
+
+.table-add {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px auto;
+  border-radius : 10px;
 }
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
+
+.header-style {
+  width: 15%;
+  text-align: center;
+  border: 1px solid #ddd;
+  white-space: nowrap;
+  background-color: #eee;
+  font-size : 15px;
 }
-th {
-    text-align: left;
-    padding: 8px;
-    background-color: #f1f1f1;
-    width: 120px;
+
+.cell-data {
+  width : auto;
+  text-align: left;
+  padding: 10px;
+  border: 1px solid #ddd;
 }
-td {
-    padding: 8px;
-}
-textarea {
-    width: 100%;
-    height: 200px;
-    resize: none;
-}
+
+
 input[type="text"], input[type="password"], input[type="file"], input[type="date"] {
     width: 95%;
     padding: 6px;
@@ -79,6 +81,47 @@ input[type="text"], input[type="password"], input[type="file"], input[type="date
 .button-area input:hover {
     background-color: #357ABD;
 }
+.p2 {
+	color:grey;
+	font-size: 10px;
+}
+
+.all-section-tbwrite{
+	margin-left: 320px; 
+	background-color: #ffffff;
+	padding: 20px 40px;
+	border-radius: 10px;
+	max-width: calc(100% - 360px);
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+	max-height: 650px; /* 높이 설정 */
+	height : 1000px;
+  	overflow-y: auto; /* 세로 스크롤 추가 */
+  	margin-bottom : 100px;
+}
+
+input[type="text"],[type="password"],select {
+  border : none;
+  background-color:transparent;
+  outline:none;
+  width: calc(100% - 20px);
+  padding: 5px;
+  box-sizing: border-box;
+  font-size : 15px;
+}
+
+.textarea-custom {
+    width: 100%; 
+    height:250px; 
+    resize: none; 
+    border: none; 
+    padding: 10px; 
+    box-sizing: border-box; 
+    overflow: hidden;
+    font-size: 15px; 
+    vertical-align: top; 
+    background-color: transparent; 
+    outline: none; 
+}
 </style>
 </head>
 <%
@@ -92,42 +135,40 @@ String sunbun = request.getParameter("sunbun");
   <h1>강좌 자유 게시판</h1>
 </div>
 
- <section class= "all-section1">
+ <section class= "all-section-tbwrite">
   	<%@include file="../header/teacherHeader.jsp"%>
   	
-	<article>
-		<h2>자유게시판 답글쓰기</h2>
 		<form name = "tBoardComment" action="tBoardComment_ok.jsp" method="post" enctype="multipart/form-data">
 		<input type = "hidden" name = "ref" value = "<%=ref%>">
 		<input type = "hidden" name = "lev" value = "<%=lev%>">
 		<input type = "hidden" name = "sunbun" value = "<%=sunbun%>">
 		
 		<h2>답글쓰기 등록</h2>
-   		 <p>글 작성 시에는 비방 또는 글 도배를 삼가해주시길 바랍니다.</p>
+   		 <p class = "p2">글 작성 시에는 비방 또는 글 도배를 삼가해주시길 바랍니다.</p>
    		 
-        <table>
+        <table class = "table-add">
             <tr>
-                <th>제목</th>
-                <td colspan="3"><input type="text" name="title" value = "RE: <%=title%>" required></td>
+                <th class="header-style">제목</th>
+                <td colspan="3" class="cell-data"><input type="text" name="title" value = "RE: <%=title%>" required></td>
             </tr>
             <tr>
-               <th>작성자</th>
-               <td>
+               <th class="header-style">작성자</th>
+               <td class="cell-data">
                     <input type="text" value="<%= fullName %>" readonly>
                     <input type="hidden" name="name" value="<%= name %>">
                 </td>
-                <th>비밀번호</th>
-                <td><input type="password" name="pwd" required></td>
+                <th class="header-style">비밀번호</th>
+                <td class="cell-data"><input type="password" name="pwd" required></td>
             </tr>
             <tr>
-                <th>작성일</th>
-                <td><input type="date" name="writedate" value="<%= new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date()) %>" required></td>
-                <th>첨부파일</th>
-                <td><input type="file" name="fileaddr"></td>
+                <th class="header-style">작성일</th>
+                <td class="cell-data"><input type="date" name="writedate" value="<%= new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date()) %>" required></td>
+                <th class="header-style">첨부파일</th>
+                <td class="cell-data"><input type="file" name="fileaddr"></td>
             </tr>
             <tr>
-                <th>카테고리</th>
-                <td colspan="3">
+                <th class="header-style">카테고리</th>
+                <td colspan="3" class="cell-data">
                     <select name="category" required>
                         <option value="" disabled <%= (role.equals("")) ? "selected" : "" %>>카테고리를 선택해주세요</option>
                         <option value="학생" <%= (role.equals("학생") ? "selected" : "") %>>학생</option>
@@ -136,8 +177,8 @@ String sunbun = request.getParameter("sunbun");
                 </td>
             </tr>
             <tr>
-                <td colspan="4">
-                    <textarea name="content" placeholder="내용을 입력하세요." required></textarea>
+                <td colspan="4" class="cell-data">
+                    <textarea class="textarea-custom" name="content" placeholder="내용을 입력하세요." required></textarea>
                 </td>
             </tr>
         </table>

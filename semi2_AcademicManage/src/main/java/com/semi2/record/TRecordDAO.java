@@ -152,13 +152,14 @@ public class TRecordDAO {
 	    }
 	}
 	// 강사 출퇴근기록보기
-	public ArrayList<RecordDTO> recordShow(int midx) {
+	public ArrayList<RecordDTO> recordShow(int midx, int idx) {
 	    ArrayList<RecordDTO> arr = new ArrayList<>();
 	    try {
 	        conn = com.semi2.db.Semi2DB.getConn();
-	        String sql = "SELECT * FROM record WHERE MIDX = ? ORDER BY attendate DESC";
+	        String sql = "SELECT * FROM record WHERE MIDX = ? AND IDX= ? ORDER BY attendate DESC";
 	        ps = conn.prepareStatement(sql);
 	        ps.setInt(1, midx);
+	        ps.setInt(2, idx);
 	        rs = ps.executeQuery();
 	        while (rs.next()) {
 	            RecordDTO rdto = new RecordDTO();

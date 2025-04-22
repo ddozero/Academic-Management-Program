@@ -188,7 +188,7 @@ window.onload = function() {
 <section class="all-section0">
 	<div class = "all-box">
 	<div class = "notice">
-	*특정 날짜 조회 또는 특정 이름으로 전체 검색, 전체 검색만 가능합니다.
+	*특정 날짜 조회 또는 조건 이름으로 특정이름 검색, 조건 전체로 전체 검색만 가능합니다
 	</div>
 		<div class = "left-box">
 			<form class = "search" method="get" action="LStudentAtten.jsp">

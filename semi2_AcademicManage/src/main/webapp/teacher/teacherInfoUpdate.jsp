@@ -134,7 +134,7 @@ MemberDTO dto = dao.getTeacherInfo(id, midx);
         </tr>
         <tr>
           <td class="label">입사일</td>
-		  <td><input type="date" name="comingdate"></td>
+		  <td><input type="date" name="comingdate" value="<%= dto.getComingdate() %>" readonly></td>
           <td class="label">학력</td>
           <td><input type="text" name="edu2"></td>
         </tr>

@@ -56,14 +56,14 @@ public class TBoardDAO {
     public boolean insertBoard(int midx, int idx, String category, String title, String name, String pwd, String content, String writedate, String fileaddr, int ref) {
         try {
             // DB 연결
-        	conn = com.semi2.db.Semi2DB.getConn();
+            conn = com.semi2.db.Semi2DB.getConn();
             String sql = "INSERT INTO BOARD (boardidx, midx, idx, category, title, name, pwd, content, writedate, fileaddr, readnum, ref, lev, sunbun) " +
                          "VALUES (sq_BOARD_boardidx.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, TO_DATE(?, 'YYYY-MM-DD'), ?, 0, ?, 0, 0)";
             ps = conn.prepareStatement(sql);
             
             // 파라미터 설정
-            ps.setInt(1, midx);
-            ps.setInt(2, idx);
+            ps.setInt(1, midx);  // midx가 숫자형인지 확인
+            ps.setInt(2, idx);    // idx가 숫자형인지 확인
             ps.setString(3, category);
             ps.setString(4, title);
             ps.setString(5, name);
@@ -71,7 +71,7 @@ public class TBoardDAO {
             ps.setString(7, content);
             ps.setString(8, writedate);
             ps.setString(9, fileaddr);
-            ps.setInt(10, ref+1);
+            ps.setInt(10, ref + 1); // ref 값이 숫자형인지 확인
             
             // INSERT 실행
             int count = ps.executeUpdate();
@@ -86,11 +86,10 @@ public class TBoardDAO {
                 if (ps != null) ps.close();
                 if (conn != null) conn.close();
             } catch (Exception e) {
-              
+                e.printStackTrace();
             }
         }
     }
-
     
     // 답글 순번을 갱신하는 메서드 (sunbun 업데이트)
     public void updateSunbun(int ref, int sunbun) {
@@ -329,12 +328,12 @@ public class TBoardDAO {
                 dto.setPwd(rs.getString("pwd"));
                 dto.setContent(rs.getString("content"));
                 dto.setWritedate(rs.getDate("writedate"));
-                dto.setFileaddr(rs.getString("fileaddr"));
                 dto.setReadnum(rs.getInt("readnum"));
                 dto.setRef(rs.getInt("ref"));
                 dto.setLev(rs.getInt("lev"));
                 dto.setSunbun(rs.getInt("sunbun"));
                 dto.setSecret(rs.getString("secret"));
+                dto.setFileaddr(rs.getString("fileaddr"));
             }
         } catch (Exception e) {
             e.printStackTrace();

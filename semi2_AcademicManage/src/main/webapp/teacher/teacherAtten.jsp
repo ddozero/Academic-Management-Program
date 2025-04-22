@@ -19,7 +19,7 @@ RecordDTO rdto = new RecordDTO();
 rdao.getClassByName(rdto, name);
 int classidx = rdto.getClassidx();
 String classname = rdto.getClassname();
-ArrayList<RecordDTO> arrdto = rdao.recordShow(midx);
+ArrayList<RecordDTO> arrdto = rdao.recordShow(midx,idx);
 SimpleDateFormat sdfDateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 %>
 <!DOCTYPE html>

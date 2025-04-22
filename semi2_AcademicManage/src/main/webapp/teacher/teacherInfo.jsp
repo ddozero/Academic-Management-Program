@@ -141,7 +141,7 @@ if (dto == null) {
   
   <div class="info-box">
      <div class="image-placeholder">
-    	<img src=<%=dto.getImgaddr() %> alt="강사사진">
+    	<img src="/semi2_AcademicManage/img/<%=dto.getImgaddr() %>" alt="이미지테스트">
 	</div>
 	
       <table class="table-add">

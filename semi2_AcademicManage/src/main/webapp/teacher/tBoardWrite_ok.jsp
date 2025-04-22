@@ -27,10 +27,17 @@
         String title = mr.getParameter("title");
         String name = mr.getParameter("name");
         String pwd = mr.getParameter("pwd");
+        
         String content = mr.getParameter("content");
+        if (content == null || content.trim().isEmpty()) {
+            // 만약 content가 null이거나 빈 문자열이라면 에러 메시지 출력
+            out.println("<script>alert('게시글 내용을 작성해 주세요.');history.back();</script>");
+            return;
+        }
+        
         String writedate = mr.getParameter("writedate");
-        String fileaddr = mr.getFilesystemName("fileaddr"); // 업로드된 실제 파일명
         String ref_s = mr.getParameter("ref"); // 부모 글의 ref 값
+        String fileaddr = mr.getFilesystemName("fileaddr"); // 업로드된 실제 파일명
 
         // null 체크 후 파싱
         int midx = (midx_s != null) ? Integer.parseInt(midx_s) : 0; // 기본값 0 설정

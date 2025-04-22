@@ -49,28 +49,35 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시글 수정</title>
+<title>SYS Academy</title>
 <link rel="stylesheet" type="text/css" href="/semi2_AcademicManage/css/mainLayout.css">
 <style>
-h2 {
-    font-size: 24px;
-    color: #333;
+
+.table-add {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px auto;
+  border-radius : 10px;
 }
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
+
+.header-style {
+  width: 15%;
+  text-align: center;
+  border: 1px solid #ddd;
+  white-space: nowrap;
+  background-color: #eee;
+  font-size : 15px;
 }
-th, td {
-    padding: 8px;
-    border: 1px solid #ddd;
+
+.cell-data {
+  width : auto;
+  text-align: left;
+  padding: 10px;
+  border: 1px solid #ddd;
 }
-textarea {
-    width: 100%;
-    height: 200px;
-    resize: none;
-}
-input[type="text"], input[type="password"], input[type="date"], input[type="file"] {
+
+
+input[type="text"], input[type="password"], input[type="file"], input[type="date"] {
     width: 95%;
     padding: 6px;
     box-sizing: border-box;
@@ -90,6 +97,47 @@ input[type="text"], input[type="password"], input[type="date"], input[type="file
 .button-area input:hover {
     background-color: #357ABD;
 }
+.p2 {
+	color:grey;
+	font-size: 10px;
+}
+
+.all-section-tbwrite{
+	margin-left: 320px; 
+	background-color: #ffffff;
+	padding: 20px 40px;
+	border-radius: 10px;
+	max-width: calc(100% - 360px);
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+	max-height: 650px; /* 높이 설정 */
+	height : 1000px;
+  	overflow-y: auto; /* 세로 스크롤 추가 */
+  	margin-bottom : 100px;
+}
+
+input[type="text"],[type="password"],select {
+  border : none;
+  background-color:transparent;
+  outline:none;
+  width: calc(100% - 20px);
+  padding: 5px;
+  box-sizing: border-box;
+  font-size : 15px;
+}
+
+.textarea-custom {
+    width: 100%; 
+    height:250px; 
+    resize: none; 
+    border: none; 
+    padding: 10px; 
+    box-sizing: border-box; 
+    overflow: hidden;
+    font-size: 15px; 
+    vertical-align: top; 
+    background-color: transparent; 
+    outline: none; 
+}
 </style>
 </head>
 <body>
@@ -97,7 +145,7 @@ input[type="text"], input[type="password"], input[type="date"], input[type="file
   <h1>게시글 수정</h1>
 </div>
 
-<section class="all-section1">
+<section class= "all-section-tbwrite">
 <%@ include file="../header/teacherHeader.jsp" %>
 
 <form action="tBoardEdit_ok.jsp" method="post" enctype="multipart/form-data">
@@ -106,30 +154,30 @@ input[type="text"], input[type="password"], input[type="date"], input[type="file
     <input type="hidden" name="idx" value="<%= idx %>">
     <input type="hidden" name="name" value="<%= loginName %>">
 
-    <table>
+    <table class = "table-add">
         <tr>
-            <th>제목</th>
-            <td colspan="3"><input type="text" name="title" value="<%= bdto.getTitle() %>" required></td>
+            <th class="header-style">제목</th>
+            <td colspan="3" class="cell-data"><input type="text" name="title" value="<%= bdto.getTitle() %>" required></td>
         </tr>
         <tr>
-            <th>작성자</th>
-            <td><%= loginName %></td>
-            <th>비밀번호</th>
-            <td><input type="password" name="pwd" required></td>
+            <th class="header-style">작성자</th>
+            <td class="cell-data"><%= loginName %></td>
+            <th class="header-style">비밀번호</th>
+            <td class="cell-data"><input type="password" name="pwd" required></td>
         </tr>
         <tr>
-            <th>작성일</th>
-            <td><%= bdto.getWritedate() %></td>
-            <th>첨부파일</th>
-            <td><input type="file" name="fileaddr"> 기존파일: <%= bdto.getFileaddr() == null ? "없음" : bdto.getFileaddr() %></td>
+            <th class="header-style">작성일</th>
+            <td class="cell-data"><%= bdto.getWritedate() %></td>
+            <th class="header-style">첨부파일</th>
+            <td class="cell-data"><input type="file" name="fileaddr"> 기존파일: <%= bdto.getFileaddr() == null ? "없음" : bdto.getFileaddr() %></td>
         </tr>
         <tr>
-            <th>카테고리</th>
-            <td><%= bdto.getCategory() %></td>
+            <th class="header-style">카테고리</th>
+            <td class="cell-data" colspan = "3" ><%= bdto.getCategory() %></td>
         </tr>
         <tr>
-            <td colspan="4">
-                <textarea name="content" required><%= bdto.getContent() %></textarea>
+            <td colspan="4" class="cell-data">
+                <textarea class="textarea-custom" name="content" required><%= bdto.getContent() %></textarea>
             </td>
         </tr>
     </table>

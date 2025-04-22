@@ -178,7 +178,7 @@ input[type="text"],[type="password"],select {
             </tr>
             <tr>
                 <td colspan="4" class="cell-data">
-                    <textarea class="textarea-custom" placeholder="내용을 입력하세요." required></textarea>
+                    <textarea class="textarea-custom" name="content" placeholder="내용을 입력하세요." required></textarea>
                 </td>
             </tr>
         </table>
