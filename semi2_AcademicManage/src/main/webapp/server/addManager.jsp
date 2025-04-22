@@ -167,7 +167,7 @@ input[type="submit"],input[type="button"] {
 					%>
 					<tr onclick="showDetail('<%=dto.getIdx()%>')" id="check">
 						<td><input type="checkbox" <%= dto.getIdx() == idx ? "checked" : "" %>></td>
-						<td><%=dto.getIdx()%></td>
+						<td><%=i%></td>
 						<td><%=dto.getName()%></td>
 						<td><%=dto.getId()%></td>
 						<td><%=dto.getTel()%></td>

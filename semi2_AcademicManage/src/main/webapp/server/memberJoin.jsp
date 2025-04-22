@@ -138,7 +138,7 @@ body{
 			}
 			if(document.mj.pwd.value==''){
 				window.alert('비밀번호를 입력하셔야 합니다.');
-				window.mj.pwd1.focus();
+				window.mj.pwd.focus();
 				return false;
 			}
 			if(document.mj.pwd2.value==''){

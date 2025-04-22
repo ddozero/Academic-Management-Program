@@ -166,7 +166,7 @@ input[type="submit"],input[type="button"] {
 								<tr><td colspan="7">가입한 계정이 없습니다.</td></tr>
 							<%
 							}else {
-								for (int i = 1; i < arr.size(); i++) {
+								for (int i = 0; i < arr.size(); i++) {
 								    MemberDTO dto = arr.get(i);
 								    if(dto.getIdx()==0){
 								    	continue;

@@ -63,7 +63,7 @@ public class AGroupDAO {
         try {
             conn = com.semi2.db.Semi2DB.getConn();
             
-            String sql = "insert into CLASSGROUP values(sq_CLASSGROUP_groupidx.nextval, 'N', 'N', 'N', 20)";
+            String sql = "insert into CLASSGROUP values(sq_CLASSGROUP_groupidx.nextval, 'N', 'N', 'N', 50)";
             
             ps = conn.prepareStatement(sql);
             
