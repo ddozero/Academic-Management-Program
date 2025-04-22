@@ -110,7 +110,7 @@ input[type="submit"],input[type="button"] {
 <%
 
 	String idx_s = request.getParameter("idx");
-	if(idx_s==null)idx_s="0";
+	if(idx_s==null)idx_s="1";
 	int idx = Integer.parseInt(idx_s);
 	
 	String idxx_s = request.getParameter("idxx");
@@ -168,6 +168,9 @@ input[type="submit"],input[type="button"] {
 							}else {
 								for (int i = 1; i < arr.size(); i++) {
 								    MemberDTO dto = arr.get(i);
+								    if(dto.getIdx()==0){
+								    	continue;
+								    }
 								    
 								    boolean hidden = false;
 								    if (idxHidden != null && idxHidden[0] != 0) {

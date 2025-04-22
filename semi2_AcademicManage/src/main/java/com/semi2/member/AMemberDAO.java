@@ -91,6 +91,7 @@ public class AMemberDAO {
 		        	 dto.setName(rs.getString("name"));
 		        	 dto.setId(rs.getString("id"));
 		        	 dto.setPwd(rs.getString("pwd"));
+		        	 dto.setAppro(rs.getInt("appro"));
 		         }
 		         return dto;
 		      } catch (Exception e) {
