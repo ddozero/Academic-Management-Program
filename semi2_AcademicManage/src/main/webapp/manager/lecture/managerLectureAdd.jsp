@@ -155,10 +155,8 @@ select {
           
           <th class="header-style">총수강일</th>
           <td class="cell-data"><input type="text" name="entiredate" placeholder="총수강일을 입력하세요"></td>
-
         </tr>
 
-    
         <tr>
           <th class="header-style">개강일</th>
           <td class="cell-data"><input type="date" name="comingdate"></td>

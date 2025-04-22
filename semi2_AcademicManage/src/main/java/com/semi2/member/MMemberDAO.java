@@ -142,9 +142,9 @@ public class MMemberDAO {
 				String groupname = rs.getString("groupname");
 				String memo = rs.getString("memo");
 				String imgaddr = rs.getString("imgaddr");
-//				 if (imgaddr == null || imgaddr.equals("N")) {
-//		                imgaddr = "/semi2_AcademicManage/img/defaultpf.jpg"; // 기본 이미지 경로 설정
-//		            }
+				
+		                imgaddr = "/semi2_AcademicManage/img/defaultpf.jpg"; // 기본 이미지 경로 설정
+		          
 				String edu = rs.getString("edu");
 				String classname = rs.getString("classname");
 				Date enddate = rs.getDate("enddate");
@@ -366,9 +366,9 @@ public class MMemberDAO {
 				String selecclass = rs.getString("selecclass");
 				Date enddate = rs.getDate("enddate");
 				String imgaddr = rs.getString("imgaddr");
-//				 if (imgaddr == null || imgaddr.equals("N")) {
-//		                imgaddr = "/semi2_AcademicManage/img/defaultpf.jpg"; // 기본 이미지 경로 설정
-//		            }
+				
+		                imgaddr = "/semi2_AcademicManage/img/defaultpf.jpg"; // 기본 이미지 경로 설정
+		         
 				
 				dto = new MemberDTO(idx, midx, name, sex, tel, email, addr, birth,appro, m3idx, classidx, edu2, career, comingdate, groupname,memo, selecclass, enddate, imgaddr);
 			}

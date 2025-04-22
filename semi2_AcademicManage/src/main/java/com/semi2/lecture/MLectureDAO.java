@@ -234,7 +234,11 @@ public class MLectureDAO {
 			ArrayList<ManagerLectureDTO> arr = new ArrayList<ManagerLectureDTO>();
 
 			while (rs.next()) {
+				
+			    
+			    
 				int classidx = rs.getInt("classidx");
+				if (classidx == 0) continue;
 				int groupidx = rs.getInt("groupidx");
 				String classname = rs.getString("classname");
 				String tname = rs.getString("tname");

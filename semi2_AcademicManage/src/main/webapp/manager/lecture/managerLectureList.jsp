@@ -176,6 +176,7 @@ form[name="lectureFind"] {
 			<%
 			}else{
 				for(int i = 0; i<arr.size(); i++){
+					if (arr.get(i).getClassidx() == 0) continue; 
 			%>
 					<tr>
 						<td><%=arr.get(i).getClassidx() %></td>

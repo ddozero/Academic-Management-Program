@@ -128,7 +128,7 @@ System.out.println("classidx: " + classidx);
 				for(int i = 0; i<arr.size(); i++){
 			%>
 				<tr>
-					<td><%=arr.get(i).getIdx() %></td>
+					<td><%=i+1 %></td>
 					<td><%=arr.get(i).getName() %></td>
 					<td><%=arr.get(i).getSex() %></td>
 					<td><%=arr.get(i).getBirth() %></td>
