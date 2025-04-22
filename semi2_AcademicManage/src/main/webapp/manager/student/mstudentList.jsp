@@ -185,7 +185,16 @@ form[name="mstudentFind"] {
 </div>
  <section class= "all-section1">
   	<%@include file="/header/managerHeader.jsp"%>
+<%
+String idx = request.getParameter("idx");
+String fkey = request.getParameter("fkey");
+String fvalue = request.getParameter("fvalue");
 
+ArrayList<MemberDTO> arr = null;
+
+
+
+%>
     <article>
 		<form class = "se-Find" name="mstudentFind" method="post" action="mstudentList.jsp">
 			<select class= "se-select" name = "fkey">
@@ -195,9 +204,7 @@ form[name="mstudentFind"] {
 			<input class = "setxt" type="text" name = "fvalue">
 			<input class = "sebt" type="submit" value="검색">
 		</form>
-		<div class = "total-count">
-			<p>총 명</p>
-		</div>
+
 		<table class="table-info">
 			<thead class="table-info-header">
 				<tr>
@@ -214,19 +221,7 @@ form[name="mstudentFind"] {
 			
 			<tbody>
 				<%
-				String idx = request.getParameter("idx");
-				String fkey = request.getParameter("fkey");
-				String fvalue = request.getParameter("fvalue");
-				
-				ArrayList<MemberDTO> arr = null;
-				
-				//총 인원수 
-				int totalCount = 0;
-				if (arr != null) {
-					totalCount = arr.size();
-				} else {
-					totalCount = 0; 
-				}
+	
 				
 				if(fkey == null || fvalue == null || fkey.equals("") || fvalue.equals("")){
 					arr = mdao.mstudentInfo(2);

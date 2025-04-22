@@ -7,18 +7,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>SYS Academy</title>
 <link rel="stylesheet" type="text/css" href="/semi2_AcademicManage/css/mainLayout.css">
 <style>
 .table-info {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
-    font-size: 14px;
+    font-size: 15px;
     text-align: left;
     height:200px;
 }
-
 
 .table-info-header th {
     background-color: #f4f4f4;
@@ -34,16 +33,6 @@
     text-align: center;
 }
 
-.table-info td:nth-child(2), .table-info th:nth-child(2) { /*강좌명 너비 조정*/
-	width: 350px; 
-	word-break: break-word;
-}
-
-
-.table-info td:nth-child(9), .table-info th:nth-child(9) { /*수정 너비 조정*/
-	width: 80px; 
-	word-break: break-word;
-}
 
 .table-info td form input[type="submit"]{
 	background: #fff;
@@ -59,6 +48,27 @@
   	color: #567AF0; /* 텍스트 색상 변경 */
 }
 
+.all-section-slectur{
+	margin-left: 320px; 
+	background-color: #ffffff;
+	padding: 20px 40px;
+	border-radius: 10px;
+	max-width: calc(100% - 360px);
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+	max-height: 650px; /* 높이 설정 */
+  	overflow-y: auto; /* 세로 스크롤 추가 */
+  	height : 650px;
+}
+
+.td-lecture-text a{
+	text-decoration: none;
+	color : #333;
+}
+
+.td-lecture-text a:hover {
+    color: #567AF0;
+}
+
 
 </style>
 </head>
@@ -67,7 +77,7 @@
 <div class = "all-title1">
 <h2>현재 개설 강좌</h2>
 </div>
- <section class="all-section1" >
+ <section class="all-section-slectur" >
 	<article>
 		<table class="table-info">
 			
@@ -101,7 +111,7 @@
 			%>
 			<tr>
 				<td><%=arr.get(i).getClassidx() %></td>
-				<td><a href="studentLectureDetail.jsp?classidx=<%=arr.get(i).getClassidx()%>&num=1"><%=arr.get(i).getClassname() %></a></td>
+				<td class = "td-lecture-text"><a href="studentLectureDetail.jsp?classidx=<%=arr.get(i).getClassidx()%>&num=1"><%=arr.get(i).getClassname() %></a></td>
 				<td><%=arr.get(i).getTname() %></td>
 				<td><%=arr.get(i).getReqscount() %></td>
 				<td><%=arr.get(i).getEntirescount() %></td>

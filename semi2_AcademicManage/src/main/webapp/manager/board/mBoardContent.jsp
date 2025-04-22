@@ -103,6 +103,19 @@ if(dto==null){
     margin-right: 5px;
 }
 
+.board-pagenum a{
+	text-decoration: none;
+    font-size: 14px;
+    color: #333;
+    padding: 5px 10px; 
+    background-color: #fff; 
+    cursor: pointer; 
+}
+
+.board-pagenum a:hover {
+    color: #567AF0;
+}
+
 
 
 

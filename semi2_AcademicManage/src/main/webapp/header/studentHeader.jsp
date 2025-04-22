@@ -22,7 +22,7 @@
 			<%
 				if(sname != null){
 			%>
-				<span><%=sname %>님</span>
+				<span style = "font-size:14px; font-weight: bold;"><%=sname %>님</span>
 				<a href="/semi2_AcademicManage/server/logout.jsp">로그아웃</a>
 			<%
 				}

@@ -72,7 +72,7 @@ public class MBoardDAO {
 			conn = com.semi2.db.Semi2DB.getConn();
 			
 			
-			String sql = "INSERT INTO BOARD VALUES (sq_BOARD_boardidx.nextval, ?, ?, ?, ?, ?, ?, ?, SYSDATE, 0, 0, 0, 0, 0)";
+			String sql = "INSERT INTO BOARD(boardidx, midx, idx, category, title, name, pwd, content, writedate, readnum, ref, lev, sunbun) VALUES (sq_BOARD_boardidx.nextval, ?, ?, ?, ?, ?, ?, ?, SYSDATE, 0, 0, 0, 0)";
 			
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, dto.getMidx());
@@ -126,6 +126,7 @@ public class MBoardDAO {
 				int sunbun = rs.getInt("sunbun");
 				String secret = rs.getString("secret");
 				String fileaddr = rs.getString("fileaddr");
+
 
 				bdto = new BoardDTO(boardidx, midx, idx, category, title, name, pwd, content, writedate,
 						readnum, ref, lev, sunbun, secret, fileaddr);

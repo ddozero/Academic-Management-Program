@@ -21,9 +21,7 @@ request.setCharacterEncoding("utf-8");
     margin: 20px 0;
     font-size: 15px;
     text-align: left;
-    
 }
-
 
 .table-info-header th {
     background-color: #f4f4f4;

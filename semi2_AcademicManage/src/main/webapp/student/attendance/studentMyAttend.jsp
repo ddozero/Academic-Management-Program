@@ -31,18 +31,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>SYS Academy</title>
 <link rel="stylesheet" type="text/css" href="/semi2_AcademicManage/css/mainLayout.css">
 <style>
 .table-info {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
-    font-size: 14px;
+    font-size: 15px;
     text-align: left;
     height:100px;
 }
-
 
 .table-info-header th {
     background-color: #f4f4f4;
@@ -58,16 +57,6 @@
     text-align: center;
 }
 
-.table-info td:nth-child(2), .table-info th:nth-child(2) { /*강좌명 너비 조정*/
-	width: 350px; 
-	word-break: break-word;
-}
-
-
-.table-info td:nth-child(9), .table-info th:nth-child(9) { /*수정 너비 조정*/
-	width: 80px; 
-	word-break: break-word;
-}
 
 .table-info td form input[type="submit"]{
 	background: #fff;
@@ -91,9 +80,11 @@
 		border-radius: 10px;
 		max-width: calc(100% - 360px);
 		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-		max-height: 250px; /* 높이 설정 */
+		max-height: 400px; /* 높이 설정 */
   		overflow-y: auto; /* 세로 스크롤 추가 */
   		overflow-x: hidden;
+  		height: 400px;
+  		border-bottom: 100px;
 	}
     
 </style>
@@ -167,7 +158,7 @@
 						<th>날짜</th>
 						<th>입실시간</th>
 						<th>퇴실시간</th>
-						<th>상테</th>
+						<th>상태</th>
 					</tr>				
 				</thead>
 			

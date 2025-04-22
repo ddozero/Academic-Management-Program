@@ -203,7 +203,7 @@ form[name="lectureFind"] {
 int totalCnt = mbdao.mboardTotalcnt("공지사항");
 
 //보여줄 리스트수 
-int listSize = 1;
+int listSize = 15;
 
 //보여줄 페이지 수 (하단 출력 페이지 리스트)
 int pageSize = 5;

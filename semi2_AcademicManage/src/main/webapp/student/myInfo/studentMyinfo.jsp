@@ -13,14 +13,18 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="/semi2_AcademicManage/css/mainLayout.css">
+
 <style>
+
+
 .table-info {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
-    font-size: 14px;
+    font-size: 16px;
     text-align: left;
 }
+
 .table-info-header th {
     background-color: #f4f4f4;
     height:50px;
@@ -29,11 +33,14 @@
     text-align: center;
     border: 1px solid #ddd;
 }
-.table-info td {
+
+.table-info-header td {
     padding: 3px;
     border: 1px solid #ddd;
     text-align: center;
+    font-size: 15px;
 }
+
 .table-info td form input[type="submit"]{
 	background: #fff;
 	color: #777777;
@@ -41,19 +48,24 @@
 	width: 50px;
 	height:28px;
 	cursor: pointer;
+
 }
+
 .table-info td input[type="text"]{
     padding: 3px;
     border: 1px solid #fff;
     text-align: center;
     height:50px;
+    font-size: 16px;
 }
+
 input[readonly] {
   background-color: #f0f0f0;
   color: #999;
   border: 1px solid #ccc;
   cursor: not-allowed;
 }
+
 .image-placeholder img {
     width: 200px;
     height: 250px;
@@ -63,6 +75,7 @@ input[readonly] {
     border: 1px solid #ddd; 
   	border-radius: 10px;
 }
+
 .inner {
   display: flex;
   gap: 20px;
@@ -81,6 +94,7 @@ input[readonly] {
 .table-inner {
   flex: 8;
 }
+
 .all-section-ac {
 	margin-left: 320px; 
 	margin-bottom: 10px;
@@ -92,18 +106,30 @@ input[readonly] {
 	max-height: 1000px; /* 높이 설정 */
 	overflow-y: auto; /* 세로 스크롤 추가 */
 }
+
+.title1-etc{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:20px;
+}
+
+
 input[type="submit"],input[type="button"] {
-    background-color: #4c6ef5;
+    background-color: #567AF0;
     color: white;
-    padding: 12px;
     border: none;
-    border-radius: 6px;
-    font-size: 16px;
+    border-radius: 10px;
+    font-size: 15px;
     cursor: pointer;
     margin-top: 10px;
+    margin-bottom:20px;
+    width:100px;
+    height : 35px;
 }
 </style>
-<title>Insert title here</title>
+
+
+<title>SYS Academy</title>
 </head>
 <%
 	MemberDTO sdto = smdao.memberFind(sidx);
@@ -115,7 +141,7 @@ input[type="submit"],input[type="button"] {
 		</div>
 		<section class="all-section-ac">
 			<article>
-				<span><strong>내 정보 수정</strong></span>
+				<div class = "title1-etc">내 정보 수정</div>
 				<form action="stuUpdate.jsp" method="post">
 				<div class="inner">
 					<div class="image-placeholder">

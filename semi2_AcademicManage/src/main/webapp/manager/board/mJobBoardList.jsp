@@ -283,14 +283,14 @@ if(cp%pageSize==0)userGroup--;
 				<%
 				if(userGroup!=0){
 				%>
-					<a href="mNoticeBoardList.jsp?cp=<%=(userGroup-1)*pageSize+pageSize %>">&lt;&lt;</a>
+					<a href="mJobBoardList.jsp?cp=<%=(userGroup-1)*pageSize+pageSize %>">&lt;&lt;</a>
 				<%
 				}
 				%>
 				
 				<% /** 페이지 번호 출력 */
 				for(int i =(userGroup*pageSize+1);i<=(userGroup*pageSize+pageSize);i++){
-					%>&nbsp;&nbsp;<a href="mNoticeBoardList.jsp?cp=<%=i%>"><%=i%></a>&nbsp;&nbsp;<%
+					%>&nbsp;&nbsp;<a href="mJobBoardList.jsp?cp=<%=i%>"><%=i%></a>&nbsp;&nbsp;<%
 					if(i==totalPage){
 						break;
 					}
@@ -300,7 +300,7 @@ if(cp%pageSize==0)userGroup--;
 				<%
 				if(((totalPage/pageSize)-(totalPage%pageSize==0?1:0))!=userGroup){
 					%>
-					<a href = "mNoticeBoardList.jsp?cp=<%=(userGroup+1)*pageSize+1 %>">&gt;&gt;</a>
+					<a href = "mJobBoardList.jsp?cp=<%=(userGroup+1)*pageSize+1 %>">&gt;&gt;</a>
 					<%
 				}
 				%>

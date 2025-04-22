@@ -325,7 +325,7 @@ ul.sc-list {
 				<td><%=arr2.get(i).getClassname() %></td>
 				<td><%=arr2.get(i).getReqdate() %></td>
 				<td><%=arr2.get(i).getIssuedivi() %></td>
-				<td><a href = "<%=arr2.get(i).getFilename() %>" download>서류확인</a></td>
+				<td><a href = "/semi2_AcademicManage/recordimg/<%=arr2.get(i).getFilename()%>">서류확인</a></td>
 				<td><%=arr2.get(i).getIssuestatus() %></td>
 				<td>
 					<form class= "form-sclist" name="mteacherAttendFile" method="post" action="/semi2_AcademicManage/manager/student/mrecordStatusFileUp_ok.jsp">

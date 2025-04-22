@@ -26,15 +26,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>SYS Academy</title>
 <link rel="stylesheet" type="text/css" href="/semi2_AcademicManage/css/mainLayout.css">
 <style>
 .table-info {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
-    font-size: 14px;
+    font-size: 15px;
     text-align: left;
+    height : 80px;
 }
 
 
@@ -123,10 +124,21 @@ form[name="lectureFind"] {
     color: #333;
     border: 1px solid #d6d6d6; 
     border-radius: 5px;
-    padding : 5pxl=l
+    padding : 5px;
 }
 
-
+.all-section-stest{
+	margin-left: 320px; 
+	background-color: #ffffff;
+	padding: 20px 40px;
+	border-radius: 10px;
+	max-width: calc(100% - 360px);
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+	max-height:650px; /* 높이 설정 */
+	overflow-y: auto; /* 세로 스크롤 추가 */
+	height:650px;
+	border-bottom: 100px;
+}
 
 </style>
 </head>
@@ -135,7 +147,7 @@ form[name="lectureFind"] {
 <div class = "all-title1">
 <h2>시험 문제 풀기</h2>
 </div>
-<section class="all-section1">
+<section class="all-section-stest">
 <article>
 	<table class="table-info">
 		<%
