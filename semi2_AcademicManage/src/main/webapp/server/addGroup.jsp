@@ -66,7 +66,7 @@ input[readonly] {
   cursor: not-allowed;
 }
 input[type="submit"],input[type="button"] {
-    background-color: #4c6ef5;
+    background-color: #567AF0;
     color: white;
     padding: 4px 10px;
     border: none;
@@ -74,7 +74,19 @@ input[type="submit"],input[type="button"] {
     font-size: 16px;
     cursor: pointer;
 }
-
+.all-section-etc{
+	margin-left: 320px;
+  background-color: #ffffff;
+  padding: 20px 40px;
+  border-radius: 10px;
+  max-width: calc(100% - 360px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  overflow-y: auto;
+  flex: 1;
+  height: auto;
+  height : 350px;
+  margin-bottom : 100px;
+}
 </style>
 <script>
 	function addGroup(gidx){
@@ -222,7 +234,7 @@ input[type="submit"],input[type="button"] {
 	
 	<br>
 
-		<section class="all-section2">
+		<section class="all-section-etc">
 		<article>
 			<span><strong>반 상세조회</strong></span>
 			<table class="table-info">
