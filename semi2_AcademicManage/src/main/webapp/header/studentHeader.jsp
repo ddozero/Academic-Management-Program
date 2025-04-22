@@ -12,7 +12,7 @@
 	<div class="container">
 	   <div class="left-group">	
 		<h1>
-			<a href="#"> SYS Academy </a>
+			<a href="/semi2_AcademicManage/student/myInfo/studentMyinfo.jsp"><img class = "main-logo-img" src = "/semi2_AcademicManage/img/header-logo.png" alt = "main-logo" style="width: 170px; height: auto; margin-top:8px;"></a>
 		</h1>
 		<div class="user-group">
 			<h4>수강생</h4>

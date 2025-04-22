@@ -128,7 +128,7 @@
 	ArrayList<GroupDTO> garr = gdao.selectGroup();
 	GroupDTO gdto = new GroupDTO();
 %>
-	<section class="all-section1">
+	<section class="all-section-3">
 		<article>
 			<span><strong><a href="/semi2_AcademicManage/server/addGroup.jsp?gidx=0">개설된 반</a></strong></span>
 			<table class="table-info">

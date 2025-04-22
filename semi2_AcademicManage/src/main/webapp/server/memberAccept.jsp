@@ -73,14 +73,15 @@ select, input[type="text"] {
 }
    .all-section-ac {
 	margin-left: 320px; 
-	margin-bottom: 10px;
+	margin-bottom: 100px;
 	background-color: #ffffff;
 	padding: 20px 40px;
 	border-radius: 10px;
 	max-width: calc(100% - 360px);
 	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-	max-height: 550px; /* 높이 설정 */
- 		overflow-y: auto; /* 세로 스크롤 추가 */
+	max-height: 680x; /* 높이 설정 */
+ 	overflow-y: auto; /* 세로 스크롤 추가 */
+ 	height : 680px;
 }
 input[type="submit"],input[type="button"] {
     background-color: #4c6ef5;

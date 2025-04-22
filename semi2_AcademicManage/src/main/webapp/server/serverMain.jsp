@@ -79,9 +79,10 @@ select, input[type="text"] {
 .right button {
 	margin-left: 6px;
 }
-   .all-section-ac {
+
+.all-section-3{
 	margin-left: 320px; 
-	margin-bottom: 10px;
+	margin-bottom: 100px;
 	background-color: #ffffff;
 	padding: 20px 40px;
 	border-radius: 10px;
@@ -135,5 +136,6 @@ select, input[type="text"] {
 	}
 %>
 <%@ include file="serverMain2.jsp" %>
+<%@include file="/header/footer.jsp"%>
 </body>
 </html>
