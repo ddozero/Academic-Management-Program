@@ -8,6 +8,15 @@
 	MemberDTO mdto=(MemberDTO)session.getAttribute("smdto");
 	
 	int classidx=srdao.studentGetClassidx(mdto.getIdx());
+	if(classidx==0){
+	%>
+	<script>
+	window.alert('현재 신청하신 강좌가 존재 하지않습니다. 강좌를 먼저 신청해주세요.');
+	location.href='/semi2_AcademicManage/student/studentlecture/studentLectureList.jsp';
+	</script>
+	<%		
+		return;
+	}
 %>
 <!DOCTYPE html>
 <html>

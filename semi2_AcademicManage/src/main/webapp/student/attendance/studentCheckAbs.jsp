@@ -124,15 +124,15 @@
 		if(arr==null||arr.size()==0){
 	%>		
 		<tr>
-		<td colspan="4">신청하신 내역이 존재하지 않습니다.</td>
+		<td colspan="5">신청하신 내역이 존재하지 않습니다.</td>
 		</tr>
 	<%		
 		}else{
 			for(int i=0;i<arr.size();i++){
 				String status=null;
-				if(arr.get(i).getStatus()==0){
+				if(arr.get(i).getAppro()==0){
 					status="미승인";
-				}else if(arr.get(i).getStatus()==1){
+				}else if(arr.get(i).getAppro()==1){
 					status="승인";
 				}
 	%>		

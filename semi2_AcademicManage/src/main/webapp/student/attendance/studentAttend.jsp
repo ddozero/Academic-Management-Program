@@ -203,9 +203,9 @@
 			
 			if(!temp2.equals(temp1)){ 
 	%>
-			
-			<input type="button" name="checkout" value="퇴실" onclick="window.alert('입실 처리되지 않았습니다.')" class="extra2">
 			<input type="button" name="checkin" value="입실"   onclick="location.href='studentAttend_ok.jsp?num=1'" class="extra2">
+			<input type="button" name="checkout" value="퇴실" onclick="window.alert('입실 처리되지 않았습니다.')" class="extra2">
+			
 	<%		
 			}else if(temp6.equals("0001-01-01 00:00:00.0")){
 	%>		
@@ -220,8 +220,9 @@
 					
 		}else{//아예 값이 없을때
 	%>
-			<input type="button" name="checkout" value="퇴실" onclick="window.alert('입실 처리되지 않았습니다.')">
 			<input type="button" name="checkin" value="입실"   onclick="location.href='studentAttend_ok.jsp?num=1'" class="extra2">
+			<input type="button" name="checkout" value="퇴실" onclick="window.alert('입실 처리되지 않았습니다.')">
+			
 	<%
 		}
 	%>	
