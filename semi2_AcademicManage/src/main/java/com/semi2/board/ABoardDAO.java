@@ -169,7 +169,7 @@ public class ABoardDAO {
 		try {
 			conn = com.semi2.db.Semi2DB.getConn();
 
-			String sql = "insert into board values(sq_BOARD_boardidx.nextval,?,?,'자유 게시판',?,?,?,?,sysdate,0,0,0,0,?)";
+			String sql = "insert into board values(sq_BOARD_boardidx.nextval,?,?,'자유 게시판',?,?,?,?,sysdate,0,0,0,0,?,'null')";
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, dto.getMidx());
 			ps.setInt(2, dto.getIdx());

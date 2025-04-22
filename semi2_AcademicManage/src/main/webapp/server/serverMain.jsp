@@ -3,6 +3,7 @@
 <%
 MemberDTO mdto=(MemberDTO)session.getAttribute("smdto");
 int midx = mdto.getMidx();
+int appro = mdto.getAppro();
 String name = mdto.getName();
 String mmidx_s = request.getParameter("mmidx");
 if(mmidx_s == null){
@@ -93,6 +94,15 @@ select, input[type="text"] {
 </head>
 <body>
 <%
+	if(appro==0){
+		%>
+			<script>
+				window.alert('승인처리가 필요한 계정입니다.');
+				location.href="index.jsp";
+			</script>
+		<%
+	}
+
 	if(mmidx == 4){
 %>
 	<%@ include file="/header/managerHeader.jsp" %>
