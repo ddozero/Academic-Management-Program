@@ -8,8 +8,8 @@
 <%
 request.setCharacterEncoding("UTF-8");
 
-// 파일 저장 경로 설정
-String savepath = "C:/java_studyhistory/java_semi2_AcademicManage/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/semi2_AcademicManage/teacher/files";
+// 파일 저장 경로 설정 -> 상대경로변경
+String savepath = request.getRealPath("/recordimg");
 
 MultipartRequest mr = new MultipartRequest(request, savepath, 1024*1024*100, "utf-8"); // 100MB 제한
 

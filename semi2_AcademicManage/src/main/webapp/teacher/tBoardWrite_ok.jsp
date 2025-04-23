@@ -9,8 +9,8 @@
     try {
         request.setCharacterEncoding("UTF-8");
 
-        // 파일 저장 경로 (서버 절대경로)
-        String savepath = "C:/java_studyhistory/java_semi2_AcademicManage/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/semi2_AcademicManage/teacher/files";
+        // 파일 저장 경로 설정 -> 상대경로변경
+        String savepath = request.getRealPath("/recordimg");
 
         // multipart 형식이 아니면 오류 처리
         if (request.getContentType() == null || !request.getContentType().toLowerCase().startsWith("multipart/")) {

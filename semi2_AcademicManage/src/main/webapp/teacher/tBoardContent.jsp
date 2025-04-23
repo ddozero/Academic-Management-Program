@@ -137,7 +137,7 @@
         <%
             } else {
         %>
-            <a href="files/<%= bdto.getFileaddr() %>"><%=fileaddr%></a>
+            <a href="/semi2_AcademicManage/recordimg/<%= bdto.getFileaddr() %>"><%=fileaddr%></a>
         <%
             }
         %>
