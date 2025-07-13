@@ -24,7 +24,8 @@ JAVA + JSP 기반 학원 관리 프로그램 <br>
 
 ## :pushpin: 주요 기능 소개 (매니저)
 1) 강좌관리  
-🔖 [강좌 개설 및 수정, 삭제 기능]
+<a href="https://github.com/ddozero/Academic-Management-Program/wiki/1)-%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5-%E2%80%90-%EA%B0%95%EC%A2%8C%EA%B4%80%EB%A6%AC#%EA%B0%95%EC%A2%8C-%EA%B0%9C%EC%84%A4-%EB%B0%8F-%EC%88%98%EC%A0%95-%EC%82%AD%EC%A0%9C">🔖 강좌 개설 및 수정, 삭제 기능</a>
+
 🔖 [강좌 세부 정보 조회]
 🔖 [강좌별 수강생 현황]
 
