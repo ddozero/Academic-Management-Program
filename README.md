@@ -1,3 +1,5 @@
+<img width="1512" height="339" alt="image" src="https://github.com/user-attachments/assets/27211fc7-f814-4faf-bde3-f8360a5fd8e1" />
+
 # Academic-Management-Program
 JAVA + JSP 기반 학원 관리 프로그램 <br>
 
