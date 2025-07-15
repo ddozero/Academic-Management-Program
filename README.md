@@ -30,10 +30,20 @@ JAVA + JSP 기반 학원 관리 프로그램 <br>
 🔖 <a href="https://github.com/ddozero/Academic-Management-Program/wiki/1)-%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5-%E2%80%90-%EA%B0%95%EC%A2%8C%EA%B4%80%EB%A6%AC#-%EA%B0%95%EC%A2%8C-%EC%84%B8%EB%B6%80-%EC%A0%95%EB%B3%B4-%EC%A1%B0%ED%9A%8C">강좌 세부 정보 조회</a><br>
 🔖 <a href="https://github.com/ddozero/Academic-Management-Program/wiki/1)-%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5-%E2%80%90-%EA%B0%95%EC%A2%8C%EA%B4%80%EB%A6%AC#-%EA%B0%95%EC%A2%8C%EB%B3%84-%EC%88%98%EA%B0%95%EC%83%9D-%ED%98%84%ED%99%A9">강좌별 수강생 현황</a><br>
 
-3) 학생정보관리  
-4) 강사정보관리  
-5) 공지사항 / 취업공고게시판
+2) 학생정보관리<br>
+🔖 <a href="https://github.com/ddozero/Academic-Management-Program/wiki/2%EF%B8%8F%E2%83%A3--%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5-%E2%80%90-%EC%88%98%EA%B0%95%EC%83%9D-%EA%B4%80%EB%A6%AC#-%EC%88%98%EA%B0%95%EC%83%9D-%EC%A0%95%EB%B3%B4-%EC%A1%B0%ED%9A%8C-%EB%B0%8F-%EB%B0%98-%EB%B0%B0%EC%A0%95">수강생 정보 조회 및 반 배정</a><br>
+🔖 <a href="https://github.com/ddozero/Academic-Management-Program/wiki/2%EF%B8%8F%E2%83%A3--%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5-%E2%80%90-%EC%88%98%EA%B0%95%EC%83%9D-%EA%B4%80%EB%A6%AC#-%EC%88%98%EA%B0%95%EC%83%9D-%EC%B6%9C%EA%B2%B0-%EA%B4%80%EB%A6%AC">수강생 출결 관리</a><br>
+🔖 <a href="https://github.com/ddozero/Academic-Management-Program/wiki/2%EF%B8%8F%E2%83%A3--%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5-%E2%80%90-%EC%88%98%EA%B0%95%EC%83%9D-%EA%B4%80%EB%A6%AC#-%EC%88%98%EA%B0%95%EC%83%9D-%EC%B6%9C%EA%B2%B0-%EC%9D%B8%EC%A0%95-%EC%84%9C%EB%A5%98-%EA%B4%80%EB%A6%AC">수강생 출결 인정 서류 관리</a><br>
 
+3) 강사정보관리<br>
+🔖 <a href="">수강생 정보 조회 및 반 배정</a><br>
+🔖 <a href="">수강생 출결 관리</a><br>
+🔖 <a href="">수강생 출결 인정 서류 관리</a><br>
+
+4) 공지사항 / 취업공고게시판<br>
+🔖 <a href="">수강생 정보 조회 및 반 배정</a><br>
+🔖 <a href="">수강생 출결 관리</a><br>
+🔖 <a href="">수강생 출결 인정 서류 관리</a><br>
 
 
 
