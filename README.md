@@ -40,7 +40,7 @@ JAVA + JSP 기반 학원 관리 프로그램 <br>
 🔖 <a href="https://github.com/ddozero/Academic-Management-Program/wiki/3%EF%B8%8F%E2%83%A3-%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5-%E2%80%90-%EA%B0%95%EC%82%AC-%EA%B4%80%EB%A6%AC#-%EA%B0%95%EC%82%AC-%EA%B7%BC%ED%83%9C-%EA%B4%80%EB%A6%AC">강사 근태 관리</a><br>
 
 4) 공지사항 / 취업공고게시판<br>
-🔖 <a href="https://github.com/ddozero/Academic-Management-Program/wiki/4%EF%B8%8F%E2%83%A3--%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5-%E2%80%90-%EA%B2%8C%EC%8B%9C%ED%8C%90#-%EA%B2%8C%EC%8B%9C%ED%8C%90">게시판</a><br>
+🔖 <a href="https://github.com/ddozero/Academic-Management-Program/wiki/4%EF%B8%8F%E2%83%A3--%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5-%E2%80%90-%EA%B2%8C%EC%8B%9C%ED%8C%90#-%EA%B2%8C%EC%8B%9C%ED%8C%90">게시판CRUD</a><br>
 
 
 
